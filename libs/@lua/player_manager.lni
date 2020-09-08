@@ -1,0 +1,147 @@
+[player_manager]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'player_manager'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'player_manager'
+	},
+	2 = {
+		type = 'library',
+		name = 'player_manager'
+	}
+}
+
+[AddValidHands]
+description = 'Assigns view model hands to player model.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Player model name'
+``````````
+name = 'model'
+type = 'string'
+description = 'Hands model'
+``````````
+name = 'skin'
+type = 'number'
+description = 'Skin to apply to the hands'
+``````````
+name = 'bodygroups'
+type = 'string'
+description = 'Bodygroups to apply to the hands'
+
+[AddValidModel]
+description = 'Associates a simplified name with a path to a valid player model.\r\n\r\n\r\nOnly used internally.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Simplified name'
+``````````
+name = 'model'
+type = 'string'
+description = 'Valid PlayerModel path'
+
+[AllValidModels]
+description = 'Returns the entire list of valid player models.\r\n\r\n**Scope:** Shared'
+
+[ClearPlayerClass]
+description = 'Clears a player\'s class association by setting their ClassID to 0\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'Player to clear class from'
+
+[GetPlayerClass]
+description = 'Gets a players class\r\n\r\n**Returns:** The players class\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'Player to get class'
+[[.returns]]
+type = 'string'
+
+[OnPlayerSpawn]
+description = 'Applies basic class variables when the player spawns.\r\n\r\nCalled from <page>GM:PlayerSpawn</page> in the base gamemode.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'Player to setup'
+
+[RegisterClass]
+description = 'Register a class metatable to be assigned to players later\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Class name'
+``````````
+name = 'table'
+type = 'table'
+description = 'Class metatable'
+``````````
+name = 'base'
+type = 'string'
+description = 'Base class name'
+
+[RunClass]
+description = 'Execute a named function within the player\'s set class\r\n\r\n**Returns:** The values returned by the called function.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'Player to execute function on.'
+``````````
+name = 'funcName'
+type = 'string'
+description = 'Name of function.'
+``````````
+name = 'arguments'
+type = 'vararg'
+description = 'Optional arguments. Can be of any type.'
+[[.returns]]
+type = 'vararg'
+
+[SetPlayerClass]
+description = 'Sets a player\'s class\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'Player to set class'
+``````````
+name = 'classname'
+type = 'string'
+description = 'Name of class to set'
+
+[TranslatePlayerHands]
+description = 'Retrieves correct hands for given player model. By default returns citizen hands.\r\n\r\n**Returns:** A table with following contents:\r\n* <page>string</page> model - Model of hands\r\n* <page>number</page> skin - Skin of hands\r\n* <page>string</page> body - Bodygroups of hands\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Player model name'
+[[.returns]]
+type = 'table'
+
+[TranslatePlayerModel]
+description = 'Returns the valid model path for a simplified name.\r\n\r\n**Returns:** The valid model path for the short name.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'shortName'
+type = 'string'
+description = 'The short name of the model.'
+[[.returns]]
+type = 'string'
+
+[TranslateToPlayerModelName]
+description = 'Returns the simplified name for a valid model path of a player model.\r\n\r\nOpposite of <page>player_manager.TranslatePlayerModel</page>.\r\n\r\n**Returns:** The simplified name for that model\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'model'
+type = 'string'
+description = 'The model path to a player model'
+[[.returns]]
+type = 'string'
+

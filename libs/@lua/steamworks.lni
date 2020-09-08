@@ -1,0 +1,228 @@
+[steamworks]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'steamworks'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'steamworks'
+	},
+	2 = {
+		type = 'library',
+		name = 'steamworks'
+	}
+}
+
+[ApplyAddons]
+description = 'Refreshes clients addons.\r\n\r\n**Scope:** Client'
+
+[Download]
+description = 'Downloads a file from the supplied addon and saves it as a .cache file in garrysmod/cache folder.\r\n\r\nThis is mostly used to download the preview image of the addon, but the game seems to also use it to download replays and saves.\r\n\r\nIn case the retrieved file is an image and you need the <page>IMaterial</page>, use <page>Global.AddonMaterial</page> with the path supplied from the callback.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopPreviewID'
+type = 'string'
+description = 'The Preview ID of workshop item.'
+``````````
+name = 'uncompress'
+type = 'boolean'
+description = 'Whether to uncompress the file or not, assuming it was compressed with LZMA.<br>\r\nYou will usually want to set this to true.'
+``````````
+name = 'resultCallback'
+type = 'function'
+description = 'The function to process retrieved data. The first and only argument is a string, containing path to the saved file.'
+
+[DownloadUGC]
+description = 'Downloads a Steam Workshop file by its ID and returns a path to it.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopID'
+type = 'string'
+description = 'The ID of workshop item to download. **NOT** a file ID.'
+``````````
+name = 'resultCallback'
+type = 'function'
+description = 'The function to process retrieved data. The first argument is a string, containing path to the saved file, or nil if the download failed to any reason. The second argument is a <page>File</page> object pointing to the downloaded .gma file. The file handle will be closed after the function exits.'
+
+[FileInfo]
+description = 'Retrieves info about supplied Steam Workshop addon.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of Steam Workshop item.'
+``````````
+name = 'resultCallback'
+type = 'function'
+description = 'The function to process retrieved data, with the following arguments:\r\n* <page>table</page> data - The data about the item, if the request succeeded, nil otherwise. See <page>Structures/UGCFileInfo</page>.'
+
+[GetList]
+description = 'Retrieves a customized list of Steam Workshop addons.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'type'
+type = 'string'
+description = 'The type of items to retrieve. Possible values include:\r\n* popular (All invalid options will equal to this)\r\n* trending\r\n* latest\r\n* friends'
+``````````
+name = 'tags'
+type = 'table'
+description = 'A table of tags to match.'
+``````````
+name = 'offset'
+type = 'number'
+description = 'How much of results to skip from first one. Mainly used for pages.'
+``````````
+name = 'numRetrieve'
+type = 'number'
+description = 'How much items to retrieve, up to 50 at a time.'
+``````````
+name = 'days'
+type = 'number'
+description = 'When getting Most Popular content from Steam, this determines a time period. ( 7 = most popular addons in last 7 days, 1 = most popular addons today, etc )'
+``````````
+name = 'userID'
+type = 'string'
+description = '"0" to retrieve all addons, "1" to retrieve addons only published by you, or a valid SteamID64 of a user to get workshop items of.'
+``````````
+name = 'resultCallback'
+type = 'function'
+description = 'The function to process retrieved data. The first and only argument is a table, containing all the info, or nil in case of error'
+
+[GetPlayerName]
+description = '<deprecated>You should use the callback of <page>steamworks.RequestPlayerInfo</page> instead.</deprecated>\r\n\r\nRetrieves players name by his 64bit SteamID.\r\n\r\nYou must call <page>steamworks.RequestPlayerInfo</page> a decent amount of time before calling this function.\r\n\r\n**Returns:** The name of that player\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'steamID64'
+type = 'string'
+description = 'The 64bit Steam ID ( aka Community ID ) of the player'
+[[.returns]]
+type = 'string'
+
+[IsSubscribed]
+description = 'Returns whenever the client is subscribed to the specified Steam Workshop item.\r\n\r\n**Returns:** Is the client subscribed to the addon or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of the Steam Workshop item.'
+[[.returns]]
+type = 'boolean'
+
+[OpenWorkshop]
+description = 'Opens the workshop website in the steam overlay browser.\r\n\r\n**Scope:** Client'
+
+[Publish]
+description = '<internal></internal>\r\nPublishes dupes, saves or demos to workshop.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tags'
+type = 'table'
+description = 'The workshop tags to apply'
+``````````
+name = 'filename'
+type = 'string'
+description = 'Path to the file to upload'
+``````````
+name = 'image'
+type = 'string'
+description = 'Path to the image to use as icon'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the Workshop submission'
+``````````
+name = 'desc'
+type = 'string'
+description = 'Description of the Workshop submission'
+
+[RequestPlayerInfo]
+description = 'Requests information of the player with SteamID64 for later use with <page>steamworks.GetPlayerName</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'steamID64'
+type = 'string'
+description = 'The 64bit Steam ID of player.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'A callback function with only 1 argument - <page>string</page> name.'
+
+[SetFileCompleted]
+description = '\r\n\r\n**Returns:** Whatever you have put in as first argument\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopid'
+type = 'string'
+description = 'The Steam Workshop item id'
+[[.returns]]
+type = 'string'
+
+[SetFilePlayed]
+description = 'Sets whether you have played this addon or not. This will be shown to the user in the Steam Workshop itself:\r\n<img src="steamworksSetFilePlayedExample.png">\r\n\r\n**Returns:** Whatever you have put in as first argument\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopid'
+type = 'string'
+description = 'The Steam Workshop item ID'
+[[.returns]]
+type = 'string'
+
+[SetShouldMountAddon]
+description = 'Sets if an addon should be enabled or disabled. Call <page>steamworks.ApplyAddons</page> afterwards to update.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of the Steam Workshop item we should enable/disable'
+``````````
+name = 'shouldMount'
+type = 'boolean'
+description = 'true to enable the item, false to disable.'
+
+[ShouldMountAddon]
+description = 'Returns whenever the specified Steam Workshop addon will be mounted or not.\r\n\r\n**Returns:** Will the workshop item be mounted or not\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of the Steam Workshop'
+[[.returns]]
+type = 'boolean'
+
+[Subscribe]
+description = '<internal></internal>\r\n\r\nSubscribes to the specified workshop addon. Call <page>steamworks.ApplyAddons</page> afterwards to update.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of the Steam Workshop item we should subscribe to'
+
+[Unsubscribe]
+description = '<internal></internal> Unsubscribes to the specified workshop addon. Call <page>steamworks.ApplyAddons</page> afterwards to update.\r\n\r\nThis function should `never` be called without a user\'s consent and should not be called if the addon is currently in use (aka: the user is not in the main menu) as it may result in unexpected behaviour.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of the Steam Workshop item we should unsubscribe from.'
+
+[ViewFile]
+description = 'Opens the workshop website for specified Steam Workshop item in the Steam overlay browser.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of workshop item.'
+
+[Vote]
+description = '<internal></internal> Makes the user vote for the specified addon\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of workshop item.'
+``````````
+name = 'upOrDown'
+type = 'boolean'
+description = 'Sets if the user should vote up/down. True makes them upvote, false down'
+
+[VoteInfo]
+description = '<deprecated>Use data <page>steamworks.FileInfo</page> instead.</deprecated>\r\n\r\nRetrieves vote info of supplied addon.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'workshopItemID'
+type = 'string'
+description = 'The ID of workshop item.'
+``````````
+name = 'resultCallback'
+type = 'function'
+description = 'The function to process retrieved data. The first and only argument is a table, containing all the info.'
+

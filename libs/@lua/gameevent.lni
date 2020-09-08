@@ -1,0 +1,28 @@
+[gameevent]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'gameevent'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'gameevent'
+	},
+	2 = {
+		type = 'library',
+		name = 'gameevent'
+	}
+}
+
+[Listen]
+description = 'Add a game event listener.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'eventName'
+type = 'string'
+description = 'The event to listen to, travels through hooks with eventName as event.\r\n<br>\r\nList of valid events can be found <page text="here">Game_Events</page>.'
+

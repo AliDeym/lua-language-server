@@ -1,0 +1,117 @@
+[GWEN]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'GWEN'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'GWEN'
+	},
+	2 = {
+		type = 'library',
+		name = 'GWEN'
+	}
+}
+
+[CreateTextureBorder]
+description = 'Used in derma skins to create a bordered rectangle drawing function from an image. The texture is taken either from last argument or from SKIN.GwenTexture\r\n\r\n**Returns:** The drawing function. Arguments are:\r\n* <page>number</page> x - X coordinate for the box\r\n* <page>number</page> y - Y coordinate for the box\r\n* <page>number</page> w - Width of the box\r\n* <page>number</page> h - Height of the box\r\n* <page>table</page> clr - Optional color, default is white. Uses the <page>Color</page>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X coordinate on the texture'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y coordinate on the texture'
+``````````
+name = 'w'
+type = 'number'
+description = 'Width of the area on texture'
+``````````
+name = 'h'
+type = 'number'
+description = 'Height of the area on texture'
+``````````
+name = 'left'
+type = 'number'
+description = 'Left width of border'
+``````````
+name = 'top'
+type = 'number'
+description = 'Top width of border'
+``````````
+name = 'right'
+type = 'number'
+description = 'Right width of border'
+``````````
+name = 'bottom'
+type = 'number'
+description = 'Bottom width of border'
+``````````
+name = 'source'
+type = 'IMaterial'
+description = 'Texture of source image to create a bordered rectangle from. Uses SKIN.GwenTexture if not set.'
+[[.returns]]
+type = 'function'
+
+[CreateTextureCentered]
+description = 'Used in derma skins to create a rectangle drawing function from an image. The rectangle will not be scaled, but instead it will be drawn in the center of the box. The texture is taken from SKIN.GwenTexture\r\n\r\n**Returns:** The drawing function. Arguments are:\r\n<page>number</page> x - X coordinate for the box\r\n\r\n\r\n<page>number</page> y - Y coordinate for the box\r\n\r\n\r\n<page>number</page> w - Width of the box\r\n\r\n\r\n<page>number</page> h - Height of the box\r\n\r\n\r\n<page>table</page> clr - Optional color, default is white. Uses the <page>Color</page>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X coordinate on the texture'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y coordinate on the texture'
+``````````
+name = 'w'
+type = 'number'
+description = 'Width of the area on texture'
+``````````
+name = 'h'
+type = 'number'
+description = 'Height of the area on texture'
+[[.returns]]
+type = 'function'
+
+[CreateTextureNormal]
+description = 'Used in derma skins to create a rectangle drawing function from an image. The texture of the rectangle will be scaled. The texture is taken from SKIN.GwenTexture\r\n\r\n**Returns:** The drawing function. Arguments are:\r\n* <page>number</page> x - X coordinate for the box\r\n* <page>number</page> y - Y coordinate for the box\r\n* <page>number</page> w - Width of the box\r\n* <page>number</page> h - Height of the box\r\n* <page>table</page> clr - Optional color, default is white. Uses the <page>Color</page>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X coordinate on the texture'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y coordinate on the texture'
+``````````
+name = 'w'
+type = 'number'
+description = 'Width of the area on texture'
+``````````
+name = 'h'
+type = 'number'
+description = 'Height of the area on texture'
+[[.returns]]
+type = 'function'
+
+[TextureColor]
+description = 'When used in a material skin, it returns a color value from a point in the skin image.\r\n\r\n**Returns:** The color of the point on the skin as a <page>Color</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'X position of the pixel to get the color from.'
+``````````
+name = 'y'
+type = 'number'
+description = 'Y position of the pixel to get the color from.'
+[[.returns]]
+type = 'table'
+

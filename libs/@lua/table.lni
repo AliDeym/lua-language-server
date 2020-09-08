@@ -9,115 +9,472 @@ name = 'table'
 <default>
 type = 'function'
 parent = {
-    1 = {
-        type = 'global',
-        name = 'table',
-    },
-    2 = {
-        type = 'library',
-        name = 'table',
-    }
+	1 = {
+		type = 'global',
+		name = 'table'
+	},
+	2 = {
+		type = 'library',
+		name = 'table'
+	}
 }
 
-[concat]
+[Add]
+description = 'Adds the contents from one table into another. The target table will be modified.\r\n\r\nSee also <page>table.insert</page>, <page>table.Inherit</page> and <page>table.Merge</page>.\r\n\r\n**Returns:** The target table.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'list'
+name = 'target'
 type = 'table'
+description = 'The table to insert the new values into.'
 ``````````
-name = 'sep'
+name = 'source'
+type = 'table'
+description = 'The table to retrieve the values from.'
+[[.returns]]
+type = 'table'
+
+[ClearKeys]
+description = 'Changes all keys to sequential integers. This creates a new table object and does not affect the original.\r\n\r\n**Returns:** Table with integer keys.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'table'
+type = 'table'
+description = 'The original table to modify.'
+``````````
+name = 'saveKeys'
+type = 'boolean'
+description = 'Save the keys within each member table. This will insert a new field `__key` into each value, and should not be used if the table contains non-table values.'
+[[.returns]]
+type = 'table'
+
+[CollapseKeyValue]
+description = 'Collapses a table with keyvalue structure\r\n\r\n**Returns:** Output table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'input'
+type = 'table'
+description = 'Input table'
+[[.returns]]
+type = 'table'
+
+[concat]
+description = 'Concatenates the contents of a table to a string.\r\n\r\n**Returns:** Concatenated values\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to concatenate.'
+``````````
+name = 'concatenator'
 type = 'string'
-optional = 'after'
-default = ''
+description = 'A seperator to insert between strings'
 ``````````
-name = 'i'
-type = 'integer'
-optional = 'after'
-default = 1
+name = 'startPos'
+type = 'number'
+description = 'The key to start at'
 ``````````
-name = 'j'
-type = 'integer'
-optional = 'self'
+name = 'endPos'
+type = 'number'
+description = 'The key to end at'
 [[.returns]]
 type = 'string'
 
-[insert]
+[Copy]
+description = 'Creates a deep copy and returns that copy.\r\n\r\n<warning>This function does NOT copy userdata, such as <page>Vector</page>s and <page>Angle</page>s!</warning>\r\n\r\n**Returns:** A deep copy of the original table\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'list'
+name = 'originalTable'
 type = 'table'
+description = 'The table to be copied.'
+[[.returns]]
+type = 'table'
+
+[CopyFromTo]
+description = 'Empties the target table, and merges all values from the source table into it.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'source'
+type = 'table'
+description = 'The table to copy from.'
 ``````````
-name = 'pos'
-type = 'integer'
-optional = 'self'
+name = 'target'
+type = 'table'
+description = 'The table to write to.'
+
+[Count]
+description = 'Counts the amount of keys in a table. This should only be used when a table is not numerically and sequentially indexed. For those tables, consider the length (**#**) operator.\r\n\r\nIf you only want to test if the table is empty or not, use <page>table.IsEmpty</page> instead as it is a lot faster.\r\n\r\n**Returns:** The number of keyvalue pairs. This includes non-numeric and non-sequential keys, unlike the length (**#**) operator.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to count the keys of.'
+[[.returns]]
+type = 'number'
+
+[DeSanitise]
+description = 'Converts a table that has been sanitised with <page>table.Sanitise</page> back to its original form\r\n\r\n**Returns:** De-sanitised table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'Table to be de-sanitised'
+[[.returns]]
+type = 'table'
+
+[Empty]
+description = 'Removes all values from a table.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to empty.'
+
+[FindNext]
+description = '<deprecated>Instead, iterate the table using ipairs or increment from the previous index using <page>Global.next</page>. Non-numerically indexed tables are not ordered.</deprecated>\r\nReturns the value positioned after the supplied value in a table. If it isn\'t found then the first element in the table is returned\r\n\r\n**Returns:** Found element\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'Table to search'
 ``````````
 name = 'value'
 type = 'any'
+description = 'Value to return element after'
+[[.returns]]
+type = 'any'
+
+[FindPrev]
+description = '<deprecated>Instead, iterate your table with ipairs, storing the previous value and checking for the target. Non-numerically indexed tables are not ordered.</deprecated>\r\nReturns the value positioned before the supplied value in a table. If it isn\'t found then the last element in the table is returned\r\n\r\n**Returns:** Found element\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'Table to search'
+``````````
+name = 'value'
+type = 'any'
+description = 'Value to return element before'
+[[.returns]]
+type = 'any'
+
+[ForceInsert]
+description = 'Inserts a value in to the given table even if the table is non-existent\r\n\r\n**Returns:** The supplied or created table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to insert value in to'
+``````````
+name = 'value'
+type = 'any'
+description = 'Value to insert'
+[[.returns]]
+type = 'table'
+
+[foreach]
+description = '<deprecated>This was deprecated in Lua 5.1 and removed in 5.2. You should use <page>Global.pairs</page> instead.</deprecated> Iterates for each key-value pair in the table, calling the function with the key and value of the pair. If the function returns anything, the loop is broken.\r\n\r\nThis is inherited from the original Lua implementation and is deprecated in Lua as of 5.1; see [here](http://lua-users.org/wiki/TableLibraryTutorial). You should use <page>Global.pairs</page> instead. The GLua interpretation of this is <page>table.ForEach</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to iterate over.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'The function to run for each key and value.'
+
+[foreachi]
+description = '<deprecated>This was deprecated in Lua 5.1 and removed in 5.2. You should use <page>Global.ipairs</page>() instead.</deprecated> Iterates for each numeric index in the table in order.\r\n\r\nThis is inherited from the original Lua implementation and is deprecated in Lua as of 5.1; see [here](http://lua-users.org/wiki/TableLibraryTutorial). You should use <page>Global.ipairs</page>() instead.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'table'
+type = 'table'
+description = 'The table to iterate over.'
+``````````
+name = 'func'
+type = 'function'
+description = 'The function to run for each index.'
+
+[GetFirstKey]
+description = '<deprecated>Instead, expect the first key to be 1.\r\n\r\nNon-numerically indexed tables are not ordered and do not have a first key.</deprecated>\r\nReturns the first key found in the given table\r\n\r\n**Returns:** Key\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to retrieve key from'
+[[.returns]]
+type = 'any'
+
+[GetFirstValue]
+description = '<deprecated>Instead, index the table with a key of 1.\r\n\r\nNon-numerically indexed tables are not ordered and do not have a first key.</deprecated>\r\nReturns the first value found in the given table\r\n\r\n**Returns:** Value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to retrieve value from'
+[[.returns]]
+type = 'any'
+
+[GetKeys]
+description = 'Returns all keys of a table.\r\n\r\n**Returns:** Table of keys\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tabl'
+type = 'table'
+description = 'The table to get keys of'
+[[.returns]]
+type = 'table'
+
+[GetLastKey]
+description = '<deprecated>Instead, use the result of the length (#) operator, ensuring it is not zero. Non-numerically indexed tables are not ordered and do not have a last key.</deprecated>\r\nReturns the last key found in the given table\r\n\r\n**Returns:** Key\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to retrieve key from'
+[[.returns]]
+type = 'any'
+
+[GetLastValue]
+description = '<deprecated>Instead, index the table with the result of the length (#) operator, ensuring it is not zero. Non-numerically indexed tables are not ordered and do not have a last key.</deprecated>\r\nReturns the last value found in the given table\r\n\r\n**Returns:** Value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to retrieve value from'
+[[.returns]]
+type = 'any'
+
+[getn]
+description = '<deprecated>This function was deprecated in Lua 5.1 and is removed in 5.2. Use the length (#) operator instead.</deprecated> Returns the length of the table.\r\n\r\n**Returns:** Sequential length.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to check.'
+[[.returns]]
+type = 'number'
+
+[GetWinningKey]
+description = 'Returns a key of the supplied table with the highest number value.\r\n\r\n**Returns:** winningKey\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'inputTable'
+type = 'table'
+description = 'The table to search in.'
+[[.returns]]
+type = 'any'
+
+[HasValue]
+description = 'Checks if a table has a value.\r\n<warning>This function is **very inefficient for large tables** (O(n)) and should probably not be called in things that run each frame. Instead, consider a table structure such as example 2 below.</warning>\r\n<note>For optimization, functions that look for a value by sorting the table should never be needed if you work on a table that you built yourself.</note>\r\n\r\n**Returns:** Returns true if the table has that value, false otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'Table to check'
+``````````
+name = 'value'
+type = 'any'
+description = 'Value to search for'
+[[.returns]]
+type = 'boolean'
+
+[Inherit]
+description = 'Copies any missing data from base to target, and sets the target\'s `BaseClass` member to the base table\'s pointer.\r\n\r\nSee <page>table.Merge</page>, which overrides existing values and doesn\'t add a BaseClass member.\r\n\r\n\r\nSee also <page>table.Add</page>, which simply adds values of one table to another.\r\n\r\n<bug pull="1304">Sub-tables aren\'t inherited. The target\'s table value will take priority.</bug>\r\n\r\n**Returns:** Target\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'target'
+type = 'table'
+description = 'Table to copy data to'
+``````````
+name = 'base'
+type = 'table'
+description = 'Table to copy data from'
+[[.returns]]
+type = 'table'
+
+[insert]
+description = 'Inserts a value into a table at the end of the table or at the given position.\r\n<note>This function does not call the `__newindex` [metamethod](Metamethods).</note>\r\n\r\n**Returns:** The index the object was placed at.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to insert the variable into.'
+``````````
+name = 'position'
+type = 'number'
+description = 'The position in the table to insert the variable. If the third argument is nil this argument becomes the value to insert at the end of given table.'
+``````````
+name = 'value'
+type = 'any'
+description = 'The variable to insert into the table.'
+[[.returns]]
+type = 'number'
+
+[IsEmpty]
+description = 'Returns whether or not the given table is empty.\r\n\r\nThis works on both sequential and non-sequential tables, and is a lot faster to use than `table.Count(tbl) == 0`.\r\n\r\n**Returns:** Is empty\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to check'
+[[.returns]]
+type = 'boolean'
+
+[IsSequential]
+description = 'Returns whether or not the table\'s keys are sequential\r\n\r\n**Returns:** Is sequential\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to check'
+[[.returns]]
+type = 'boolean'
+
+[KeyFromValue]
+description = 'Returns the first key found to be containing the supplied value\r\n\r\n**Returns:** Key\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to search'
+``````````
+name = 'value'
+type = 'any'
+description = 'Value to search for'
+[[.returns]]
+type = 'any'
+
+[KeysFromValue]
+description = 'Returns a table of keys containing the supplied value\r\n\r\n**Returns:** Keys\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to search'
+``````````
+name = 'value'
+type = 'any'
+description = 'Value to search for'
+[[.returns]]
+type = 'table'
+
+[LowerKeyNames]
+description = 'Returns a copy of the input table with all string keys converted to be lowercase recursively\r\n\r\n**Returns:** New table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'Table to convert'
+[[.returns]]
+type = 'table'
 
 [maxn]
-version = {'Lua 5.1', 'LuaJIT'}
+description = 'Returns the highest numerical key.\r\n\r\n**Returns:** The highest numerical key.\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = table
+name = 'tbl'
+type = 'table'
+description = 'The table to search.'
 [[.returns]]
-type = integer
+type = 'number'
 
-[move]
-version = {'Lua 5.3', 'Lua 5.4'}
+[Merge]
+description = 'Merges the contents of the second table with the content in the first one. The destination table will be modified.\r\n\r\nSee <page>table.Inherit</page>, which doesn\'t override existing values.\r\n\r\n\r\nSee also <page>table.Add</page>, which simply adds values of one table to another.\r\n<note>This function will cause a stack overflow under certain circumstances.</note>\r\n\r\n**Returns:** Destination table\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'a1'
+name = 'destination'
 type = 'table'
+description = 'The table you want the source table to merge with'
 ``````````
-name = 'f'
-type = 'integer'
-``````````
-name = 'e'
-type = 'integer'
-``````````
-name = 't'
-type = 'integer'
-``````````
-name = 'a2'
+name = 'source'
 type = 'table'
-optional = 'self'
+description = 'The table you want to merge with the destination table'
 [[.returns]]
-name = 'a2'
 type = 'table'
 
-[pack]
-version = {'Lua 5.2', 'Lua 5.3', 'Lua 5.4'}
+[Random]
+description = 'Returns a random value from the supplied table.\r\n\r\n<warning>This function iterates over the given table **twice**, therefore with sequential tables you should instead use following:\r\n\r\n```\r\nmytable[ math.random( #mytable ) ]\r\n```\r\n</warning>\r\n\r\n**Returns:** A random value from the table.\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = '...'
-[[.returns]]
+name = 'haystack'
 type = 'table'
+description = 'The table to choose from.'
+[[.returns]]
+type = 'any'
 
 [remove]
+description = 'Removes a value from a table and shifts any other values down to fill the gap.\r\n<note>Does nothing if index is less than 1 or greater than `#tbl`</note>\r\n\r\n**Returns:** The value that was removed.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'list'
+name = 'tbl'
 type = 'table'
+description = 'The table to remove the value from.'
 ``````````
-name = 'pos'
-type = 'integer'
-optional = 'self'
+name = 'index'
+type = 'number'
+description = 'The index of the value to remove.'
 [[.returns]]
+type = 'any'
+
+[RemoveByValue]
+description = 'Removes the first instance of a given value from the specified table with <page>table.remove</page>, then returns the key that the value was found at.\r\n\r\n**Returns:** The key at which the value was found, or false if the value was not found.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table that will be searched.'
+``````````
+name = 'val'
+type = 'any'
+description = 'The value to find within the table.'
+[[.returns]]
+type = 'any'
+
+[Reverse]
+description = 'Returns a reversed copy of a sequential table. Any non-sequential and non-numeric keyvalue pairs will not be copied.\r\n\r\n**Returns:** A reversed copy of the table.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'Table to reverse.'
+[[.returns]]
+type = 'table'
+
+[Sanitise]
+description = 'Converts <page>Vector</page>s, <page>Angle</page>s and <page>boolean</page>s to be able to be converted to and from key-values. <page>table.DeSanitise</page> does the opposite\r\n\r\n**Returns:** Sanitised table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to sanitise'
+[[.returns]]
+type = 'table'
 
 [sort]
+description = 'Sorts a sequential table either ascending or by the given sort function.\r\n<note>This function modifies the table you give to it.</note>\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'list'
+name = 'tbl'
 type = 'table'
+description = 'The table to sort.'
 ``````````
-name = 'comp'
+name = 'sorter'
 type = 'function'
-optional = 'self'
+description = 'If specified, the function will be called with 2 parameters each.\r\nReturn true in this function if you want the first parameter to come first in the sorted array.'
 
-[unpack]
-version = {'Lua 5.2', 'Lua 5.3', 'Lua 5.4'}
+[SortByKey]
+description = 'Returns a list of keys sorted based on values of those keys.\r\n\r\nFor normal sorting see <page>table.sort</page>.\r\n\r\n**Returns:** A table of keys sorted by values from supplied table.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'list'
+name = 'tab'
 type = 'table'
+description = 'Table to sort. All values of this table must be of same type.'
 ``````````
-name = 'i'
-type = 'integer'
-optional = 'after'
-type = 1
+name = 'descending'
+type = 'boolean'
+description = 'Should the order be descending?'
+[[.returns]]
+type = 'table'
+
+[SortByMember]
+description = 'Sorts a table by a named member.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'Table to sort.'
 ``````````
-name = 'j'
-type = 'integer'
-optional = 'self'
+name = 'memberKey'
+type = 'any'
+description = 'The key used to identify the member.'
+``````````
+name = 'ascending'
+type = 'boolean'
+description = 'Whether or not the order should be ascending.'
+
+[SortDesc]
+description = 'Sorts a table in reverse order from <page>table.sort</page>.\r\n<note>This function modifies the table you give to it. Like table.sort, it does not return anything.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to sort in descending order.'
+
+[ToString]
+description = 'Converts a table into a string\r\n\r\n**Returns:** The table formatted as a string.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tbl'
+type = 'table'
+description = 'The table to iterate over.'
+``````````
+name = 'displayName'
+type = 'string'
+description = 'Optional. A name for the table.'
+``````````
+name = 'niceFormatting'
+type = 'boolean'
+description = 'Adds new lines and tabs to the string.'
+[[.returns]]
+type = 'string'
+

@@ -9,332 +9,565 @@ name = 'math'
 <default>
 type = 'function'
 parent = {
-    1 = {
-        type = 'global',
-        name = 'math',
-    },
-    2 = {
-        type = 'library',
-        name = 'math',
-    }
+	1 = {
+		type = 'global',
+		name = 'math'
+	},
+	2 = {
+		type = 'library',
+		name = 'math'
+	}
 }
 
 [abs]
+description = 'Calculates the absolute value of a number (effectively removes any negative sign).\r\n\r\n**Returns:** absolute_value\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'x'
 type = 'number'
+description = 'The number to get the absolute value of.'
 [[.returns]]
 type = 'number'
 
 [acos]
+description = 'Returns the  of the given number.\r\n\r\n**Returns:** An angle in radians, between 0 and pi, which has the given cos value.\r\n\r\n<page>nan</page> if the argument is out of range.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'cos'
 type = 'number'
+description = 'Cosine value in range of -1 to 1.'
+[[.returns]]
+type = 'number'
+
+[AngleDifference]
+description = 'Calculates the difference between two angles.\r\n\r\n**Returns:** The difference between the angles between -180 and 180\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'a'
+type = 'number'
+description = 'The first angle.'
+``````````
+name = 'b'
+type = 'number'
+description = 'The second angle.'
+[[.returns]]
+type = 'number'
+
+[Approach]
+description = 'Gradually approaches the target value by the specified amount.\r\n\r\n**Returns:** New current value, closer to the target than it was previously.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'current'
+type = 'number'
+description = 'The value we\'re currently at.'
+``````````
+name = 'target'
+type = 'number'
+description = 'The target value. This function will never overshoot this value.'
+``````````
+name = 'change'
+type = 'number'
+description = 'The amount that the current value is allowed to change by to approach the target. (It makes no difference whether this is positive or negative.)'
+[[.returns]]
+type = 'number'
+
+[ApproachAngle]
+description = 'Increments an angle towards another by specified rate.\r\n\r\n<note>This function is for numbers representing angles (0-360), NOT <page>Angle</page> objects!</note>\r\n\r\n**Returns:** Modified angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'currentAngle'
+type = 'number'
+description = 'The current angle to increase'
+``````````
+name = 'targetAngle'
+type = 'number'
+description = 'The angle to increase towards'
+``````````
+name = 'rate'
+type = 'number'
+description = 'The amount to approach the target angle by'
 [[.returns]]
 type = 'number'
 
 [asin]
+description = 'Returns the [arcsine](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions) of the given number.\r\n\r\n**Returns:** An angle in radians, in the range -pi/2 to pi/2, which has the given sine value.\r\n\r\n<page>nan</page> if the argument is out of range.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'normal'
 type = 'number'
+description = 'Sine value in the range of -1 to 1.'
 [[.returns]]
 type = 'number'
 
-["atan Lua 5.1"]
-name = 'atan'
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+[atan]
+description = 'Returns the [arctangent](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions) of the given number.\r\n\r\n**Returns:** An angle in radians, in the range -pi/2 to pi/2, which has the given tangent.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'y'
+name = 'normal'
 type = 'number'
-[[.returns]]
-type = 'number'
-
-["atan Lua 5.3"]
-name = 'atan'
-version = {'Lua 5.3', 'Lua 5.4'}
-[[.args]]
-name = 'y'
-type = 'number'
-``````````
-name = 'x'
-type = 'number'
-optional = 'self'
-default = 1
+description = 'Tangent value.'
 [[.returns]]
 type = 'number'
 
 [atan2]
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+description = 'functions like <page>math.atan</page>(y / x), except it also takes into account the quadrant of the angle and so doesn\'t have a limited range of output.\r\n\r\n<note>The Y argument comes first!</note>\r\n\r\n**Returns:** The angle of the line from (0, 0) to (x, y) in radians, in the range -pi to pi.\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'y'
 type = 'number'
+description = 'Y coordinate.'
 ``````````
 name = 'x'
 type = 'number'
+description = 'X coordinate.'
+[[.returns]]
+type = 'number'
+
+[BinToInt]
+description = 'Converts a binary string into a number.\r\n\r\n**Returns:** Base 10 number.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'string'
+type = 'string'
+description = 'Binary string to convert'
+[[.returns]]
+type = 'number'
+
+[BSplinePoint]
+description = 'Basic code for  algorithm.\r\n\r\n**Returns:** Point on Bezier curve, related to tDiff.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tDiff'
+type = 'number'
+description = 'From 0 to 1, where alongside the spline the point will be.'
+``````````
+name = 'tPoints'
+type = 'table'
+description = 'A table of <page>Vector</page>s. The amount cannot be less than 4.'
+``````````
+name = 'tMax'
+type = 'number'
+description = 'Just leave this at 1.'
+[[.returns]]
+type = 'Vector'
+
+[calcBSplineN]
+description = '<internal>Use <page>math.BSplinePoint</page> instead.</internal>\r\n\r\nBasic code for Bezier-Spline algorithm, helper function for <page>math.BSplinePoint</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'i'
+type = 'number'
+description = ''
+``````````
+name = 'k'
+type = 'number'
+description = '<bug pull="1477">Sending in a value < 1 will result in an infinite loop.</bug>'
+``````````
+name = 't'
+type = 'number'
+description = ''
+``````````
+name = 'tinc'
+type = 'number'
+description = ''
 [[.returns]]
 type = 'number'
 
 [ceil]
+description = 'Ceils or rounds a number up.\r\n\r\n**Returns:** ceiled numbers\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'number'
 type = 'number'
+description = 'The number to be rounded up.'
 [[.returns]]
-type = 'integer'
+type = 'number'
+
+[Clamp]
+description = 'Clamps a number between a minimum and maximum value\r\n\r\n**Returns:** The clamped value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'input'
+type = 'number'
+description = 'The number to clamp.'
+``````````
+name = 'min'
+type = 'number'
+description = 'The minimum value, this function will never return a number less than this.'
+``````````
+name = 'max'
+type = 'number'
+description = 'The maximum value, this function will never return a number greater than this.'
+[[.returns]]
+type = 'number'
 
 [cos]
+description = 'Returns the [cosine](https://en.wikipedia.org/wiki/Trigonometric_functions#cos) of given angle.\r\n\r\n**Returns:** Cosine of given angle\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'number'
 type = 'number'
+description = 'Angle in radians'
 [[.returns]]
 type = 'number'
 
 [cosh]
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+description = 'Returns the [hyperbolic cosine](https://en.wikipedia.org/wiki/Cosh_(mathematical_function)) of the given angle.\r\n\r\n**Returns:** The hyperbolic cosine of the given angle.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'number'
 type = 'number'
+description = 'Angle in radians.'
 [[.returns]]
 type = 'number'
 
 [deg]
+description = 'Converts radians to degrees.\r\n\r\n**Returns:** degrees\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'radians'
 type = 'number'
+description = 'Value to be converted to degrees.'
+[[.returns]]
+type = 'number'
+
+[Dist]
+description = '<deprecated>You should use <page>math.Distance</page> instead</deprecated>\r\n\r\nReturns the difference between two points in 2D space. Alias of <page>math.Distance</page>.\r\n\r\n**Returns:** Distance between the two points.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'x1'
+type = 'number'
+description = 'X position of first point'
+``````````
+name = 'y1'
+type = 'number'
+description = 'Y position of first point'
+``````````
+name = 'x2'
+type = 'number'
+description = 'X position of second point'
+``````````
+name = 'y2'
+type = 'number'
+description = 'Y position of second point'
+[[.returns]]
+type = 'number'
+
+[Distance]
+description = 'Returns the difference between two points in 2D space.\r\n\r\n**Returns:** Distance between the two points\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'x1'
+type = 'number'
+description = 'X position of first point'
+``````````
+name = 'y1'
+type = 'number'
+description = 'Y position of first point'
+``````````
+name = 'x2'
+type = 'number'
+description = 'X position of second point'
+``````````
+name = 'y2'
+type = 'number'
+description = 'Y position of second point'
+[[.returns]]
+type = 'number'
+
+[EaseInOut]
+description = 'Calculates the progress of a value fraction, taking in to account given easing fractions\r\n\r\n**Returns:** "Eased" Value, from 0 to 1\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'progress'
+type = 'number'
+description = 'Fraction of the progress to ease, from 0 to 1'
+``````````
+name = 'easeIn'
+type = 'number'
+description = 'Fraction of how much easing to begin with'
+``````````
+name = 'easeOut'
+type = 'number'
+description = 'Fraction of how much easing to end with'
 [[.returns]]
 type = 'number'
 
 [exp]
+description = 'Returns the x power of the Euler constant \'\'\'\'.\r\n\r\n**Returns:** e to the specified power\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'exponent'
 type = 'number'
+description = 'The exponent for the function.'
 [[.returns]]
 type = 'number'
 
 [floor]
+description = 'Floors or rounds a number down.\r\n\r\n**Returns:** floored numbers\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'number'
 type = 'number'
+description = 'The number to be rounded down.'
 [[.returns]]
-type = 'integer'
+type = 'number'
 
 [fmod]
+description = 'Returns the modulus of the specified values.\r\n\r\nWhile this is similar to the % operator, **it will return a negative value if the first argument is negative**, whereas the % operator will return a `positive` value **even if the first operand is negative**.\r\n\r\n**Returns:** The calculated modulus.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'base'
 type = 'number'
+description = 'The base value.'
 ``````````
-name = 'y'
+name = 'modulator'
 type = 'number'
+description = 'The modulator.'
 [[.returns]]
 type = 'number'
 
 [frexp]
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+description = '<-- Lua reference description: Returns m and e such that x = m2e, e is an integer and the absolute value of m is in the range ((0.5, 1) (or zero when x is zero).  -->\r\nUsed to split the number value into a normalized fraction and an exponent. Two values are returned: the first is a multiplier in the range 1/2 (inclusive) to 1 (exclusive) and the second is an integer exponent.\r\n\r\nThe result is such that x = m*2^e.\r\n\r\n**Returns:** m, multiplier - between 0.5 and 1\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'x'
 type = 'number'
+description = 'The value to get the normalized fraction and the exponent from.'
 [[.returns]]
-name = 'm'
-type = 'number'
-``````````
-name = 'e'
 type = 'number'
 
-[huge]
+[IntToBin]
+description = 'Converts an integer to a binary (base-2) string.\r\n\r\n**Returns:** Binary number string. The length of this will always be a multiple of 3.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'int'
 type = 'number'
+description = 'Number to be converted.'
+[[.returns]]
+type = 'string'
 
 [ldexp]
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+description = 'Takes a normalised number and returns the floating point representation.\r\n\r\n**Returns:** result\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'm'
+name = 'normalizedFraction'
 type = 'number'
+description = 'The value to get the normalized fraction and the exponent from.'
 ``````````
-name = 'e'
-type = 'integer'
+name = 'exponent'
+type = 'number'
+description = 'The value to get the normalized fraction and the exponent from.'
 [[.returns]]
 type = 'number'
 
 [log]
+description = 'With one argument, return the natural logarithm of x (to base e).\r\n\r\nWith two arguments, return the logarithm of x to the given base, calculated as log(x)/log(base).\r\n\r\n**Returns:** Logarithm of x to the given base\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'x'
 type = 'number'
+description = 'The value to get the base from exponent from.'
 ``````````
 name = 'base'
 type = 'number'
-optional = 'self'
-default = 'e'
-[[.returns]]
-type = 'number'
-
-['log Lua 5.1']
-name = log
-version = 'Lua 5.1'
-[[.args]]
-name = 'x'
-type = 'number'
+description = 'The logarithmic base.'
 [[.returns]]
 type = 'number'
 
 [log10]
-version = 'Lua 5.1'
+description = 'Returns the base-10 logarithm of x. This is usually more accurate than math.log(x, 10).\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'x'
 type = 'number'
-[[.returns]]
-type = 'number'
+description = 'The value to get the base from exponent from.'
 
 [max]
+description = 'Returns the largest value of all arguments.\r\n\r\n**Returns:** The largest number\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
-type = 'number'
-``````````
-type = '...'
+name = 'numbers'
+type = 'vararg'
+description = 'Numbers to get the largest from'
 [[.returns]]
 type = 'number'
-
-[maxinteger]
-version = {'Lua 5.3', 'Lua 5.4'}
-type = 'integer'
 
 [min]
+description = 'Returns the smallest value of all arguments.\r\n\r\n**Returns:** The smallest number\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
-type = 'number'
-``````````
-type = '...'
+name = 'numbers'
+type = 'vararg'
+description = 'Numbers to get the smallest from.'
 [[.returns]]
 type = 'number'
 
-[mininteger]
-version = {'Lua 5.3', 'Lua 5.4'}
-type = 'integer'
+[mod]
+description = '<deprecated>This is removed in Lua versions later than what GMod is currently using. You should use the % operator or <page>math.fmod</page> instead.</deprecated>\r\n\r\nReturns the modulus of the specified values. Same as <page>math.fmod</page>.\r\n\r\n**Returns:** The calculated modulus\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'base'
+type = 'number'
+description = 'The base value'
+``````````
+name = 'modulator'
+type = 'number'
+description = 'Modulator'
+[[.returns]]
+type = 'number'
 
 [modf]
+description = 'Returns the integral and fractional component of the modulo operation.\r\n\r\n**Returns:** The integral component.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'base'
 type = 'number'
+description = 'The base value.'
 [[.returns]]
-type = 'integer'
-``````````
 type = 'number'
 
-[pi]
+[NormalizeAngle]
+description = 'Normalizes angle, so it returns value between -180 and 180.\r\n\r\n**Returns:** The normalized angle, in the range of -180 to 180 degrees.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'angle'
+type = 'number'
+description = 'The angle to normalize, in degrees.'
+[[.returns]]
 type = 'number'
 
 [pow]
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+description = 'Returns x raised to the power y.\r\nIn particular, math.pow(1.0, x) and math.pow(x, 0.0) always return 1.0, even when x is a zero or a <page>nan</page>. If both x and y are finite, x is negative, and y is not an integer then math.pow(x, y) is undefined.\r\n\r\n**Returns:** y power of x\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'x'
 type = 'number'
+description = 'Base.'
 ``````````
 name = 'y'
 type = 'number'
+description = 'Exponent.'
 [[.returns]]
 type = 'number'
 
 [rad]
+description = 'Converts an angle in degrees to it\'s equivalent in radians.\r\n\r\n**Returns:** radians\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'degrees'
 type = 'number'
+description = 'The angle measured in degrees.'
+[[.returns]]
+type = 'number'
+
+[Rand]
+description = 'Returns a random float between min and max.\r\n\r\nSee also <page>math.random</page>\r\n\r\n**Returns:** Random float between min and max.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'min'
+type = 'number'
+description = 'The minimum value.'
+``````````
+name = 'max'
+type = 'number'
+description = 'The maximum value.'
 [[.returns]]
 type = 'number'
 
 [random]
+description = 'When called without arguments, returns a uniform pseudo-random real number in the range 0 to 1 which includes 0 but excludes 1.\r\n\r\nWhen called with an integer number m, returns a uniform pseudo-random integer in the range 1 to m inclusive.\r\n\r\nWhen called with two integer numbers m and n, returns a uniform pseudo-random integer in the range m to n inclusive.\r\n\r\nSee also <page>math.Rand</page>\r\n\r\n**Returns:** Random value\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'm'
-type = 'integer'
-optional = 'after'
+type = 'number'
+description = 'If m is the only parameter: upper limit.\r\n\r\nIf n is also provided: lower limit.\r\n\r\nIf provided, this must be an integer.'
 ``````````
 name = 'n'
-type = 'integer'
-optional = 'self'
+type = 'number'
+description = 'Upper limit.\r\n\r\nIf provided, this must be an integer.'
 [[.returns]]
 type = 'number'
 
 [randomseed]
+description = 'Seeds the random number generator. The same seed will guarantee the same sequence of numbers each time with <page>math.random</page>.\r\n\r\nFor shared random values across predicted realms, use <page>util.SharedRandom</page>.\r\n\r\n<warning>Incorrect usage of this function will affect `all` random numbers in the game.</warning>\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
-type = 'integer'
+name = 'seed'
+type = 'number'
+description = 'The new seed'
 
-["randomseed Lua 5.4"]
-name = 'randomseed'
-version = 'Lua 5.4'
+[Remap]
+description = 'Remaps the value from one range to another\r\n\r\n**Returns:** The number in the new range\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
-type = 'integer'
-optional = 'after'
+name = 'value'
+type = 'number'
+description = 'The value'
 ``````````
-name = 'y'
-type = 'integer'
-optional = 'after'
-default = 0
+name = 'inMin'
+type = 'number'
+description = 'The minimum of the initial range'
+``````````
+name = 'inMax'
+type = 'number'
+description = 'The maximum of the initial range'
+``````````
+name = 'outMin'
+type = 'number'
+description = 'The minimum of new range'
+``````````
+name = 'outMax'
+type = 'number'
+description = 'The maximum of new range'
+[[.returns]]
+type = 'number'
+
+[Round]
+description = 'Rounds the given value to the nearest whole number or to the given decimal places.\r\n\r\n**Returns:** The rounded value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to round.'
+``````````
+name = 'decimals'
+type = 'number'
+description = 'The decimal places to round to.'
+[[.returns]]
+type = 'number'
 
 [sin]
+description = 'Returns the [sine](https://en.wikipedia.org/wiki/Trigonometric_functions) of given angle.\r\n\r\n**Returns:** Sine for given angle\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'number'
 type = 'number'
+description = 'Angle in radians'
 [[.returns]]
 type = 'number'
 
 [sinh]
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+description = 'Returns the [hyperbolic sine](https://en.wikipedia.org/wiki/Hyperbolic_functions) of the given angle.\r\n\r\n**Returns:** The hyperbolic sine of the given angle.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'number'
 type = 'number'
+description = 'Angle in radians.'
 [[.returns]]
 type = 'number'
 
 [sqrt]
+description = 'Returns the square root of the number.\r\n\r\n**Returns:** squareRoot\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'value'
 type = 'number'
+description = 'Value to get the square root of.'
 [[.returns]]
 type = 'number'
 
 [tan]
+description = 'Returns the tangent of the given angle.\r\n\r\n**Returns:** The tangent of the given angle.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'value'
 type = 'number'
+description = 'Angle in radians'
 [[.returns]]
 type = 'number'
 
 [tanh]
-version = {'Lua 5.1', 'Lua 5.2', 'LuaJIT'}
+description = 'Returns the [hyperbolic tangent](https://en.wikipedia.org/wiki/Hyperbolic_functions) of the given number.\r\n\r\n**Returns:** The hyperbolic tangent of the given angle.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'number'
 type = 'number'
+description = 'Angle in radians.'
 [[.returns]]
 type = 'number'
 
-[tointeger]
+[TimeFraction]
+description = 'Returns the fraction of where the current time is relative to the start and end times\r\n\r\n**Returns:** Fraction\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'x'
+name = 'start'
 type = 'number'
-[[.returns]]
-type = 'integer'
-
-[type]
-[[.args]]
-name = 'x'
+description = 'Start time in seconds'
+``````````
+name = 'end'
 type = 'number'
+description = 'End time in seconds'
+``````````
+name = 'current'
+type = 'number'
+description = 'Current time in seconds'
 [[.returns]]
-name = 'type'
-type = 'string'
-[[.enums]]
-name = 'type'
-enum = '"integer"'
-``````````
-name = 'type'
-enum = '"float"'
-``````````
-name = 'type'
-code = 'nil'
+type = 'number'
 
-[ult]
+[Truncate]
+description = 'Rounds towards zero.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'm'
-type = 'integer'
+name = 'num'
+type = 'number'
+description = 'The number to truncate'
 ``````````
-name = 'n'
-type = 'integer'
-[[.returns]]
-type = 'boolean'
+name = 'digits'
+type = 'number'
+description = 'The amount of digits to keep after the point.'
+

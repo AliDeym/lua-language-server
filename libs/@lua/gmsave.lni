@@ -1,0 +1,74 @@
+[gmsave]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'gmsave'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'gmsave'
+	},
+	2 = {
+		type = 'library',
+		name = 'gmsave'
+	}
+}
+
+[LoadMap]
+description = 'Loads a saved map.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'mapData'
+type = 'string'
+description = 'The JSON encoded string containing all the map data.'
+``````````
+name = 'ply'
+type = 'Player'
+description = 'The player to load positions for'
+
+[PlayerLoad]
+description = 'Sets player position and angles from supplied table\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player to "load" values for'
+``````````
+name = 'data'
+type = 'table'
+description = 'A table containing Origin and Angle keys for position and angles to set.'
+
+[PlayerSave]
+description = 'Returns a table containing player position and angles. Used by <page>gmsave.SaveMap</page>.\r\n\r\n**Returns:** A table containing player position ( Origin ) and angles ( Angle )\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player to "save"'
+[[.returns]]
+type = 'table'
+
+[SaveMap]
+description = 'Saves the map\r\n\r\n**Returns:** The encoded to JSON string containing save data\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player, whose position should be saved for loading the save'
+[[.returns]]
+type = 'string'
+
+[ShouldSaveEntity]
+description = 'Returns if we should save this entity in a duplication or a map save or not.\r\n\r\n**Returns:** Should save entity or not\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity'
+``````````
+name = 't'
+type = 'table'
+description = 'A table containing classname key with entities classname.'
+[[.returns]]
+type = 'boolean'
+

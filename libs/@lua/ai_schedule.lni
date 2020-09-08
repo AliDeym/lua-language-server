@@ -1,0 +1,30 @@
+[ai_schedule]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'ai_schedule'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'ai_schedule'
+	},
+	2 = {
+		type = 'library',
+		name = 'ai_schedule'
+	}
+}
+
+[New]
+description = 'Creates a schedule for scripted NPC.\r\n\r\n**Returns:** A table containing schedule information to be used with <page>ENTITY:StartSchedule</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Name of the schedule.'
+[[.returns]]
+type = 'table'
+

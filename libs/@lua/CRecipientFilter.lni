@@ -1,0 +1,115 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CRecipientFilter'
+	},
+}
+
+[AddAllPlayers]
+description = 'Adds all players to the recipient filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+
+[AddPAS]
+description = 'Adds all players that are in the same [PAS (Potentially Audible Set)](https://developer.valvesoftware.com/wiki/PAS "PAS - Valve Developer Community") as this position.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'A position that players may be able to hear, usually the position of an entity the sound is playing played from.'
+
+[AddPlayer]
+description = 'Adds a player to the recipient filter\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'Player'
+type = 'Player'
+description = 'Player to add to the recipient filter.'
+
+[AddPVS]
+description = 'Adds all players that are in the same [PVS(Potential Visibility Set)](https://developer.valvesoftware.com/wiki/PVS "PVS - Valve Developer Community") as this position.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'Position'
+type = 'Vector'
+description = 'PVS position that players may be able to see.'
+
+[AddRecipientsByTeam]
+description = 'Adds all players that are on the given team to the filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'teamid'
+type = 'number'
+description = 'Team index to add players from.'
+
+[GetCount]
+description = 'Returns the number of valid players in the recipient filter.\r\n\r\n**Returns:** Number of valid players in the recipient filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+[[.returns]]
+type = 'number'
+
+[GetPlayers]
+description = 'Returns a table of all valid players currently in the recipient filter.\r\n\r\n**Returns:** A table of all valid players currently in the recipient filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+[[.returns]]
+type = 'table'
+
+[RemoveAllPlayers]
+description = 'Removes all players from the recipient filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+
+[RemovePAS]
+description = 'Removes all players from the filter that are in Potentially Audible Set for given position.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The position to test'
+
+[RemovePlayer]
+description = 'Removes the player from the recipient filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'Player'
+type = 'Player'
+description = 'The player that should be in the recipient filter if you call this function.'
+
+[RemovePVS]
+description = 'Removes all players that can see this PVS from the recipient filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'Position that players may be able to see.'
+
+[RemoveRecipientsByTeam]
+description = 'Removes all players that are on the given team from the filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'teamid'
+type = 'number'
+description = 'Team index to remove players from.'
+
+[RemoveRecipientsNotOnTeam]
+description = 'Removes all players that are not on the given team from the filter.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CRecipientFilter'
+``````````
+name = 'teamid'
+type = 'number'
+description = 'Team index.'
+

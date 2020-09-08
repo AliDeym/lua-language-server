@@ -1,0 +1,103 @@
+[killicon]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'killicon'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'killicon'
+	},
+	2 = {
+		type = 'library',
+		name = 'killicon'
+	}
+}
+
+[Add]
+description = 'Creates new kill icon using a texture.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'class'
+type = 'string'
+description = 'Weapon or entity class'
+``````````
+name = 'texture'
+type = 'string'
+description = 'Path to the texture'
+``````````
+name = 'color'
+type = 'table'
+description = 'Color of the kill icon'
+
+[AddAlias]
+description = 'Creates kill icon from existing one.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'new_class'
+type = 'string'
+description = 'New class of the kill icon'
+``````````
+name = 'existing_class'
+type = 'string'
+description = 'Already existing kill icon class'
+
+[AddFont]
+description = 'Adds kill icon for given weapon/entity class using special font.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'class'
+type = 'string'
+description = 'Weapon or entity class'
+``````````
+name = 'font'
+type = 'string'
+description = 'Font to be used'
+``````````
+name = 'symbol'
+type = 'string'
+description = 'The symbol to be used'
+``````````
+name = 'color'
+type = 'table'
+description = 'Color of the killicon'
+
+[Draw]
+description = 'Draws a kill icon.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'X coordinate of the icon'
+``````````
+name = 'y'
+type = 'number'
+description = 'Y coordinate of the icon'
+``````````
+name = 'name'
+type = 'string'
+description = 'Classname of the kill icon'
+``````````
+name = 'alpha'
+type = 'number'
+description = 'Alpha/transparency value ( 0 - 255 ) of the icon'
+
+[Exists]
+description = 'Checks if kill icon exists for given class.\r\n\r\n**Returns:** Returns true if kill icon exists\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'class'
+type = 'string'
+description = 'The class to test'
+[[.returns]]
+type = 'boolean'
+
+[GetSize]
+description = 'Returns the size of a kill icon.\r\n\r\n**Returns:** Width of the kill icon\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Classname of the kill icon'
+[[.returns]]
+type = 'number'
+

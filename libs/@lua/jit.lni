@@ -1,0 +1,180 @@
+[jit]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'jit'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'jit'
+	},
+	2 = {
+		type = 'library',
+		name = 'jit'
+	}
+}
+
+[attach]
+description = 'You can attach callbacks to a number of compiler events with jit.attach. The callback can be called:\r\n\r\n* when a function has been compiled to bytecode ("bc");\r\n* when trace recording starts or stops ("trace");\r\n* as a trace is being recorded ("record");\r\n* or when a trace exits through a side exit ("texit").\r\n\r\nSet a callback with jit.attach(callback, "event") and clear the same callback with jit.attach(callback)\r\n\r\n<warning>This function isn\'t officially documented on LuJIT wiki, use it at your own risk.</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'callback'
+type = 'function'
+description = 'The callback function.\r\n\r\nThe arguments passed to the callback depend on the event being reported:\r\n\r\n* "bc":\r\n<page>function</page> func - The function that\'s just been recorded\r\n\r\n\r\n\r\n* "trace":\r\n<page>string</page> what - description of the trace event: "flush", "start", "stop", "abort". Available for all events.\r\n\r\n\r\n<page>number</page> tr - The trace number. Not available for flush.\r\n\r\n\r\n<page>function</page> func - The function being traced. Available for start and abort.\r\n\r\n\r\n<page>number</page> pc - The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.\r\n\r\n\r\n<page>number</page> otr - start: the parent trace number if this is a side trace, abort: abort code\r\n\r\n\r\n<page>string</page> oex - start: the exit number for the parent trace, abort: abort reason (string)\r\n\r\n\r\n\r\n* "record":\r\n<page>number</page> tr - The trace number. Not available for flush.\r\n\r\n\r\n<page>function</page> func - The function being traced. Available for start and abort.\r\n\r\n\r\n<page>number</page> pc - The program counter - the bytecode number of the function being recorded (if this a Lua function). Available for start and abort.\r\n\r\n\r\n<page>number</page> depth  - The depth of the inlining of the current bytecode.\r\n\r\n\r\n\r\n* "texit":\r\n<page>number</page> tr - The trace number. Not available for flush.\r\n\r\n\r\n<page>number</page> ex - The exit number\r\n\r\n\r\n<page>number</page> ngpr - The number of general-purpose and floating point registers that are active at the exit.\r\n\r\n\r\n<page>number</page> nfpr - The number of general-purpose and floating point registers that are active at the exit.'
+``````````
+name = 'event'
+type = 'string'
+description = 'The event to hook into.'
+
+[flush]
+description = 'Flushes the whole cache of compiled code.\r\n\r\n**Scope:** Shared'
+
+[off]
+description = 'Disables LuaJIT Lua compilation.\r\n\r\n**Scope:** Shared'
+
+[on]
+description = 'Enables LuaJIT Lua compilation.\r\n\r\n**Scope:** Shared'
+
+[optstart]
+description = 'JIT compiler optimization control. The opt sub-module provides the backend for the -O command line LuaJIT option.\r\nYou can also use it programmatically, e.g.:\r\n\r\n```\r\njit.opt.start(2) -- same as -O2\r\njit.opt.start("-dce")\r\njit.opt.start("hotloop=10", "hotexit=2")\r\n```\r\n\r\nA list of LuaJIT -O command line options can be found here(a table of various optimization levels are displayed towards the bottom of the page along with exactly which optimization options are enabled for each level): http://luajit.org/running.html\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'args'
+type = 'vararg'
+description = ''
+
+[status]
+description = 'Returns the status of the JIT compiler and the current optimizations enabled.\r\n\r\n**Returns:** Is JIT enabled\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'boolean'
+
+[funcbc]
+description = 'Returns bytecode of a function at a position.\r\n\r\n**Returns:** bytecode instruction\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'func'
+type = 'function'
+description = 'Function to retrieve bytecode from.'
+``````````
+name = 'pos'
+type = 'number'
+description = 'Position of the bytecode to retrieve.'
+[[.returns]]
+type = 'number'
+
+[funcinfo]
+description = 'Retrieves LuaJIT information about a given function, similarly to <page>debug.getinfo</page>. Possible table fields:\r\n* linedefined: as for <page>debug.getinfo</page>\r\n* lastlinedefined: as for <page>debug.getinfo</page>\r\n* params: the number of parameters the function takes\r\n* stackslots: the number of stack slots the function\'s local variable use\r\n* upvalues: the number of upvalues the function uses\r\n* bytecodes: the number of bytecodes it the compiled function\r\n* gcconsts: the number of garbage collectable constants\r\n* nconsts: the number of lua_Number (double) constants\r\n* children: Boolean representing whether the function creates closures\r\n* currentline: as for <page>debug.getinfo</page>\r\n* isvararg: if the function is a vararg function\r\n* source: as for <page>debug.getinfo</page>\r\n* loc: a string describing the source and currentline, like "<source>:<line>"\r\n* ffid: the fast function id of the function (if it is one). In this case only upvalues above and addr below are valid\r\n* addr: the address of the function (if it is not a Lua function). If it\'s a C function rather than a fast function, only upvalues above is valid*\r\n\r\n**Returns:** Information about the supplied function/proto.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'func'
+type = 'function'
+description = 'Function or Proto to retrieve info about.'
+``````````
+name = 'pos'
+type = 'number'
+description = ''
+[[.returns]]
+type = 'table'
+
+[funck]
+description = 'Gets a constant at a certain index in a function.\r\n<warning>This function isn\'t officially documented on LuJIT wiki, use it at your own risk.</warning>\r\n<note>Numbers constants goes from 0 (included) to n-1, n being the value of nconsts in <page>jit.util.funcinfo</page> in other words, the consts goes from (nconsts-1) to -n</note>\r\n<note>This function only works for Lua defined functions.</note>\r\n\r\n**Returns:** The constant found.\r\n\r\n<note>This will return a <page>proto</page> for functions that are created inside the target function - see Example 2.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'func'
+type = 'function'
+description = 'Function to get constant from'
+``````````
+name = 'index'
+type = 'number'
+description = 'Constant index (counting down from the top of the function at -1)'
+[[.returns]]
+type = 'any'
+
+[funcuvname]
+description = 'Does the exact same thing as debug.getupvalue except it only returns the name, not the name and the object. The upvalue indexes also start at 0 rather than 1, so doing jit.util.funcuvname(func, 0) will get you the same name as debug.getupvalue(func, 1)\r\n<warning>This function isn\'t officially documented on LuJIT wiki, use it at your own risk.</warning>\r\n\r\n**Returns:** The function returns nil if there is no upvalue with the given index, otherwise the name of the upvalue is returned\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'func'
+type = 'function'
+description = 'Function to get the upvalue indexed from'
+``````````
+name = 'index'
+type = 'number'
+description = 'The upvalue index, starting from 0'
+[[.returns]]
+type = 'string'
+
+[ircalladdr]
+description = 'Gets the address of a function from a list of 20 functions, for the list see <page>Ircalladdr Functions</page>\r\n<warning>This function isn\'t officially documented on LuJIT wiki, use it at your own risk.</warning>\r\n\r\n**Returns:** The address of the function\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'The index of the function address to get from the ircalladdr func array (starting from 0)'
+[[.returns]]
+type = 'number'
+
+[traceexitstub]
+description = '\r\n\r\n**Returns:** exitstub trace address\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'exitno'
+type = 'number'
+description = 'exit number to retrieve exit stub address from (gotten via <page>jit.attach</page> with the texit event)'
+[[.returns]]
+type = 'number'
+
+[traceinfo]
+description = 'Return table fields:\r\n* link (number): the linked trace (0 for link types: none, return, interpreter)\r\n* nk (number): the lowest IR constant (???)\r\n* nins (number): the next IR instruction (???)\r\n* linktype (string): the link type (none, root, loop, tail-recursion, up-recursion, down-recursion, interpreter, return)\r\n* nexit (number): number of snapshots (for use with <page>jit.util.tracesnap</page>)\r\n\r\n**Returns:** trace info\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'trace'
+type = 'number'
+description = 'trace index to retrieve info for (gotten via <page>jit.attach</page>)'
+[[.returns]]
+type = 'table'
+
+[traceir]
+description = '\r\n\r\n**Returns:** m\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tr'
+type = 'number'
+description = ''
+``````````
+name = 'index'
+type = 'number'
+description = ''
+[[.returns]]
+type = 'number'
+
+[tracek]
+description = '\r\n\r\n**Returns:** k\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tr'
+type = 'number'
+description = ''
+``````````
+name = 'index'
+type = 'number'
+description = ''
+[[.returns]]
+type = 'any'
+
+[tracemc]
+description = '\r\n\r\n**Returns:** mcode\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tr'
+type = 'number'
+description = ''
+[[.returns]]
+type = 'string'
+
+[tracesnap]
+description = 'Return table fields:\r\n* 0 (ref) (number): first IR ref for the snapshot\r\n* 1 (nslots) (number): the number of valid slots\r\n* all indexes except first 2 and last (there might not be any of these): the snapshot map\r\n* last index in table (number): -16777216 (255 << 24)\r\n\r\n**Returns:** snapshot\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tr'
+type = 'number'
+description = 'trace index to retrieve snapshot for (gotten via <page>jit.attach</page>)'
+``````````
+name = 'sn'
+type = 'number'
+description = 'snapshot index for trace (starting from 0 to nexit - 1, nexit gotten via <page>jit.util.traceinfo</page>)'
+[[.returns]]
+type = 'table'
+

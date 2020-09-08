@@ -1,0 +1,211 @@
+[navmesh]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'navmesh'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'navmesh'
+	},
+	2 = {
+		type = 'library',
+		name = 'navmesh'
+	}
+}
+
+[AddWalkableSeed]
+description = 'Add this position and normal to the list of walkable positions, used before map generation with <page>navmesh.BeginGeneration</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The terrain position.'
+``````````
+name = 'dir'
+type = 'Vector'
+description = 'The normal of this terrain position.'
+
+[BeginGeneration]
+description = 'Starts the generation of a new navmesh.\r\n\r\n<note>This process is highly resource intensive and it\'s not wise to use during normal gameplay</note>\r\n\r\n**Scope:** Server'
+
+[ClearWalkableSeeds]
+description = 'Clears all the walkable positions, used before calling <page>navmesh.BeginGeneration</page>.\r\n\r\n**Scope:** Server'
+
+[CreateNavArea]
+description = 'Creates a new <page>CNavArea</page>.\r\n\r\n**Returns:** The new <page>CNavArea</page> or <page>nil</page> if we failed for some reason.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'corner'
+type = 'Vector'
+description = 'The first corner of the new <page>CNavArea</page>'
+``````````
+name = 'opposite_corner'
+type = 'Vector'
+description = 'The opposite (diagonally) corner of the new <page>CNavArea</page>'
+[[.returns]]
+type = 'CNavArea'
+
+[Find]
+description = 'Returns a bunch of areas within distance, used to find hiding spots by <page>NextBot</page>s for example.\r\n\r\n**Returns:** A table of <page>CNavArea</page>s\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The position to search around'
+``````````
+name = 'radius'
+type = 'number'
+description = 'Radius to search within'
+``````````
+name = 'stepdown'
+type = 'number'
+description = 'Maximum stepdown( fall distance ) allowed'
+``````````
+name = 'stepup'
+type = 'number'
+description = 'Maximum stepup( jump height ) allowed'
+[[.returns]]
+type = 'table'
+
+[GetAllNavAreas]
+description = 'Returns an integer indexed table of all <page>CNavArea</page>s on the current map. If the map doesn\'t have a navmesh generated then this will return an empty table.\r\n\r\n**Returns:** A table of all the <page>CNavArea</page>s on the current map.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'table'
+
+[GetEditCursorPosition]
+description = 'Returns the position of the edit cursor when nav_edit is set to 1.\r\n\r\n**Returns:** The position of the edit cursor.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'Vector'
+
+[GetGroundHeight]
+description = 'Finds the closest standable ground at, above, or below the provided position.\r\n\r\n<note>The ground must have at least 32 units of empty space above it to be considered by this function, unless 16 layers are tested without finding valid ground.</note>\r\n\r\n**Returns:** The height of the ground layer.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'Position to find the closest ground for.'
+[[.returns]]
+type = 'number'
+
+[GetMarkedArea]
+description = 'Returns the currently marked <page>CNavArea</page>, for use with editing console commands.\r\n\r\n**Returns:** The currently marked <page>CNavArea</page>.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'CNavArea'
+
+[GetMarkedLadder]
+description = 'Returns the currently marked <page>CNavLadder</page>, for use with editing console commands.\r\n\r\n**Returns:** The currently marked <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'CNavLadder'
+
+[GetNavArea]
+description = 'Returns the Nav Area contained in this position that also satisfies the elevation limit.\r\n\r\nThis function will properly see blocked <page>CNavArea</page>s. See <page>navmesh.GetNearestNavArea</page>.\r\n\r\n**Returns:** The nav area.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The position to search for.'
+``````````
+name = 'beneathLimit'
+type = 'number'
+description = 'The elevation limit at which the Nav Area will be searched.'
+[[.returns]]
+type = 'CNavArea'
+
+[GetNavAreaByID]
+description = 'Returns a <page>CNavArea</page> by the given ID.\r\n\r\n<note>Avoid calling this function every frame, as internally it does a lookup trough all the <page>CNavArea</page>s, call this once and store the result</note>\r\n\r\n**Returns:** The <page>CNavArea</page> with given ID.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'ID of the <page>CNavArea</page> to get. Starts with 1.'
+[[.returns]]
+type = 'CNavArea'
+
+[GetNavAreaCount]
+description = 'Returns the highest ID of all nav areas on the map. While this can be used to get all nav areas, this number may not actually be the actual number of nav areas on the map.\r\n\r\n**Returns:** The highest ID of all nav areas on the map.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'number'
+
+[GetNavLadderByID]
+description = 'Returns a <page>CNavLadder</page> by the given ID.\r\n\r\n**Returns:** The <page>CNavLadder</page> with given ID.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'ID of the <page>CNavLadder</page> to get. Starts with 1.'
+[[.returns]]
+type = 'CNavLadder'
+
+[GetNearestNavArea]
+description = 'Returns the closest <page>CNavArea</page> to given position at the same height, or beneath it.\r\n\r\nThis function will ignore blocked <page>CNavArea</page>s. See <page>navmesh.GetNavArea</page> for a function that does see blocked areas.\r\n\r\n**Returns:** The closest <page>CNavArea</page> found with the given parameters, or a NULL <page>CNavArea</page> if one was not found.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The position to look from'
+``````````
+name = 'anyZ'
+type = 'boolean'
+description = 'This argument is ignored and has no effect'
+``````````
+name = 'maxDist'
+type = 'number'
+description = 'This is the maximum distance from the given position that the function will look for a <page>CNavArea</page>'
+``````````
+name = 'checkLOS'
+type = 'boolean'
+description = 'If this is set to true then the function will internally do a <page>util.TraceLine</page> from the starting position to each potential <page>CNavArea</page> with a [MASK_NPCSOLID_BRUSHONLY](https://wiki.facepunch.com/gmod/Enums/MASK). If the trace fails then the <page>CNavArea</page> is ignored.\r\n\r\nIf this is set to false then the function will find the closest <page>CNavArea</page> through anything, including the world.'
+``````````
+name = 'checkGround'
+type = 'boolean'
+description = 'If checkGround is true then this function will internally call <page>navmesh.GetNavArea</page> to check if there is a <page>CNavArea</page> directly below the position, and return it if so, before checking anywhere else.'
+``````````
+name = 'team'
+type = 'number'
+description = 'This will internally call <page>CNavArea:IsBlocked</page> to check if the target <page>CNavArea</page> is not to be navigated by the given team. Currently this appears to do nothing.'
+[[.returns]]
+type = 'CNavArea'
+
+[GetPlayerSpawnName]
+description = 'Returns the classname of the player spawn entity.\r\n\r\n**Returns:** The classname of the spawn point entity. By default returns "info_player_start"\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'string'
+
+[IsGenerating]
+description = 'Whether we\'re currently generating a new navmesh with <page>navmesh.BeginGeneration</page>.\r\n\r\n**Returns:** Whether we\'re generating a nav mesh or not.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'boolean'
+
+[IsLoaded]
+description = 'Returns true if a navmesh has been loaded when loading the map.\r\n\r\n**Returns:** Whether a navmesh has been loaded when loading the map.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'boolean'
+
+[Load]
+description = 'Loads a new navmesh from the .nav file for current map discarding any changes made to the navmesh previously.\r\n\r\n**Scope:** Server'
+
+[Reset]
+description = 'Deletes every <page>CNavArea</page> and <page>CNavLadder</page> on the map **without saving the changes**.\r\n\r\n**Scope:** Server'
+
+[Save]
+description = 'Saves any changes made to navmesh to the .nav file.\r\n\r\n**Scope:** Server'
+
+[SetMarkedArea]
+description = 'Sets the <page>CNavArea</page> as marked, so it can be used with editing console commands.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'area'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> to set as the marked area.'
+
+[SetMarkedLadder]
+description = 'Sets the <page>CNavLadder</page> as marked, so it can be used with editing console commands.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'area'
+type = 'CNavLadder'
+description = 'The <page>CNavLadder</page> to set as the marked ladder.'
+
+[SetPlayerSpawnName]
+description = 'Sets the classname of the default spawn point entity, used before generating a new navmesh with <page>navmesh.BeginGeneration</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'spawnPointClass'
+type = 'string'
+description = 'The classname of what the player uses to spawn, automatically adds it to the walkable positions during map generation.'
+

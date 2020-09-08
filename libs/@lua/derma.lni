@@ -1,0 +1,146 @@
+[derma]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'derma'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'derma'
+	},
+	2 = {
+		type = 'library',
+		name = 'derma'
+	}
+}
+
+[Color]
+description = 'Gets the color from a Derma skin of a panel and returns default color if not found\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = ''
+``````````
+name = 'pnl'
+type = 'Panel'
+description = ''
+``````````
+name = 'default'
+type = 'table'
+description = 'The default color in case of failure.'
+
+[DefineControl]
+description = 'Defines a new Derma control with an optional base.\r\n\r\nThis calls <page>vgui.Register</page> internally, but also does the following:\r\n* Adds the control to <page>derma.GetControlList</page>\r\n* Adds a key "Derma" - This is returned by <page>derma.GetControlList</page>\r\n* Makes a global table with the name of the control (This is technically deprecated and should not be relied upon)\r\n* If reloading (i.e. called this function with name of an existing panel), updates all existing instances of panels with this name. (Updates functions, calls <page>PANEL:PreAutoRefresh</page> and <page>PANEL:PostAutoRefresh</page>, etc.)\r\n\r\n**Returns:** A table containing the new control\'s methods and properties\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Name of the newly created control'
+``````````
+name = 'description'
+type = 'string'
+description = 'Description of the control'
+``````````
+name = 'tab'
+type = 'table'
+description = 'Table containing control methods and properties'
+``````````
+name = 'base'
+type = 'string'
+description = 'Derma control to base the new control off of'
+[[.returns]]
+type = 'table'
+
+[DefineSkin]
+description = 'Defines a new skin so that it is usable by Derma. The default skin can be found in `garrysmod/lua/skins/default.lua`\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Name of the skin'
+``````````
+name = 'descriptions'
+type = 'string'
+description = 'Description of the skin'
+``````````
+name = 'skin'
+type = 'table'
+description = 'Table containing skin data'
+
+[GetControlList]
+description = 'Returns the <page>derma.Controls</page> table, a list of all derma controls registered with <page>derma.DefineControl</page>.\r\n\r\n**Returns:** A listing of all available derma-based controls. See <page>derma.Controls</page> for structure and contents.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetDefaultSkin]
+description = 'Returns the default skin table, which can be changed with the hook <page>GM:ForceDermaSkin</page>\r\n\r\n**Returns:** Skin table\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetNamedSkin]
+description = 'Returns the skin table of the skin with the supplied name\r\n\r\n**Returns:** Skin table\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Name of skin'
+[[.returns]]
+type = 'table'
+
+[GetSkinTable]
+description = 'Returns a copy of the table containing every Derma skin\r\n\r\n**Returns:** Table of every Derma skin\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[RefreshSkins]
+description = 'Clears all cached panels so that they reassess which skin they should be using.\r\n\r\n**Scope:** Client'
+
+[SkinChangeIndex]
+description = 'Returns how many times <page>derma.RefreshSkins</page> has been called.\r\n\r\n**Returns:** Amount of times <page>derma.RefreshSkins</page> has been called.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[SkinHook]
+description = 'Calls the specified hook for the given panel\r\n\r\n**Returns:** The returned variable from the skin hook\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'type'
+type = 'string'
+description = 'The type of hook to run'
+``````````
+name = 'name'
+type = 'string'
+description = 'The name of the hook to run'
+``````````
+name = 'panel'
+type = 'Panel'
+description = 'The panel to call the hook for'
+``````````
+name = 'w'
+type = 'number'
+description = 'The width of the panel'
+``````````
+name = 'h'
+type = 'number'
+description = 'The height of the panel'
+[[.returns]]
+type = 'any'
+
+[SkinTexture]
+description = 'Returns a function to draw a specified texture of panels skin.\r\n\r\n**Returns:** A function that is created with the <page>GWEN</page> to draw a texture.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The identifier of the texture'
+``````````
+name = 'pnl'
+type = 'Panel'
+description = 'Panel to get the skin of.'
+``````````
+name = 'fallback'
+type = 'any'
+description = 'What to return if we failed to retrieve the texture'
+[[.returns]]
+type = 'function'
+

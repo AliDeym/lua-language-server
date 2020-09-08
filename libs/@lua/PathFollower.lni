@@ -1,0 +1,249 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'PathFollower'
+	},
+}
+
+[Chase]
+description = 'If you created your path with type "Chase" this functions should be used in place of <page>PathFollower:Update</page> to cause the bot to chase the specified entity.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'bot'
+type = 'NextBot'
+description = 'The bot to update along the path'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity we want to chase'
+
+[Compute]
+description = 'Compute shortest path from bot to \'goal\' via A* algorithm.\r\n\r\n**Returns:** * If returns true, path was found to the goal position.\r\n* If returns false, path may either be invalid (use IsValid() to check), or valid but doesn\'t reach all the way to the goal.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'from'
+type = 'NextBot'
+description = 'The nextbot we\'re generating for'
+``````````
+name = 'to'
+type = 'Vector'
+description = 'To point'
+``````````
+name = 'generator'
+type = 'function'
+description = 'A funtion that allows you to alter the path generation. See example below for the default function.'
+[[.returns]]
+type = 'boolean'
+
+[Draw]
+description = 'Draws the path. This is meant for debugging - and uses debug overlay.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+
+[FirstSegment]
+description = 'Returns the first segment of the path.\r\n\r\n**Returns:** A table with <page>Structures/PathSegment</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'table'
+
+[GetAge]
+description = 'Returns the age since the path was built\r\n\r\n**Returns:** Path age\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'number'
+
+[GetAllSegments]
+description = 'Returns all of the segments of the given path.\r\n\r\n**Returns:** A table of tables with <page>Structures/PathSegment</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'table'
+
+[GetClosestPosition]
+description = 'The closest position along the path to a position\r\n\r\n**Returns:** The closest position on the path\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The point we\'re querying for'
+[[.returns]]
+type = 'Vector'
+
+[GetCurrentGoal]
+description = 'Returns the current goal data. Can return nil if the current goal is invalid, for example immediately after <page>PathFollower:Update</page>.\r\n\r\n**Returns:** A table with <page>Structures/PathSegment</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'table'
+
+[GetCursorData]
+description = 'Returns the cursor data\r\n\r\n**Returns:** A table with 3 keys:\r\n<page>number</page> curvature\r\n\r\n\r\n<page>Vector</page> forward\r\n\r\n\r\n<page>Vector</page> pos\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'table'
+
+[GetCursorPosition]
+description = 'Returns the current progress along the path\r\n\r\n**Returns:** The current progress\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'number'
+
+[GetEnd]
+description = 'Returns the path end position\r\n\r\n**Returns:** The end position\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'Vector'
+
+[GetGoalTolerance]
+description = 'Returns how close we can get to the goal to call it done.\r\n\r\n**Returns:** The distance we\'re setting it to\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'number'
+
+[GetHindrance]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'Entity'
+
+[GetLength]
+description = 'Returns the total length of the path\r\n\r\n**Returns:** The length of the path\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'number'
+
+[GetMinLookAheadDistance]
+description = 'Returns the minimum range movement goal must be along path.\r\n\r\n**Returns:** The minimum look ahead distance\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'number'
+
+[GetPositionOnPath]
+description = 'Returns the vector position of distance along path\r\n\r\n**Returns:** The position\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'distance'
+type = 'number'
+description = 'The distance along the path to query'
+[[.returns]]
+type = 'Vector'
+
+[GetStart]
+description = 'Returns the path start position\r\n\r\n**Returns:** The start position\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'Vector'
+
+[Invalidate]
+description = 'Invalidates the current path\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+
+[IsValid]
+description = 'Returns true if the path is valid\r\n\r\n**Returns:** Wether the path is valid or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'boolean'
+
+[LastSegment]
+description = 'Returns the last segment of the path.\r\n\r\n**Returns:** A table with <page>Structures/PathSegment</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+[[.returns]]
+type = 'table'
+
+[MoveCursor]
+description = 'Moves the cursor by give distance.\r\n\r\nFor a function that sets the distance, see <page>PathFollower:MoveCursorTo</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'distance'
+type = 'number'
+description = 'The distance to move the cursor (in relative world units)'
+
+[MoveCursorTo]
+description = 'Sets the cursor position to given distance.\r\n\r\nFor relative distance, see <page>PathFollower:MoveCursor</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'distance'
+type = 'number'
+description = 'The distance to move the cursor (in world units)'
+
+[MoveCursorToClosestPosition]
+description = 'Moves the cursor of the path to the closest position compared to given vector.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'pos'
+type = 'Vector'
+description = ''
+``````````
+name = 'type'
+type = 'number'
+description = 'Seek type\r\n\r\n\r\n0 = SEEK_ENTIRE_PATH - Search the entire path length\r\n\r\n\r\n1 = SEEK_AHEAD - Search from current cursor position forward toward end of path\r\n\r\n\r\n2 = SEEK_BEHIND - Search from current cursor position backward toward path start'
+``````````
+name = 'alongLimit'
+type = 'number'
+description = ''
+
+[MoveCursorToEnd]
+description = 'Moves the cursor to the end of the path\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+
+[MoveCursorToStart]
+description = 'Moves the cursor to the end of the path\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+
+[ResetAge]
+description = 'Resets the age which is retrieved by <page>PathFollower:GetAge</page> to 0.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+
+[SetGoalTolerance]
+description = 'How close we can get to the goal to call it done\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'distance'
+type = 'number'
+description = 'The distance we\'re setting it to'
+
+[SetMinLookAheadDistance]
+description = 'Sets minimum range movement goal must be along path\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'mindist'
+type = 'number'
+description = 'The minimum look ahead distance'
+
+[Update]
+description = 'Move the bot along the path.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PathFollower'
+``````````
+name = 'bot'
+type = 'NextBot'
+description = 'The bot to update along the path'
+

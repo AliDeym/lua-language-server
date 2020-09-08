@@ -1,0 +1,51 @@
+[chat]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'chat'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'chat'
+	},
+	2 = {
+		type = 'library',
+		name = 'chat'
+	}
+}
+
+[AddText]
+description = 'Adds text to the local player\'s chat box (which only they can read).\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'arguments'
+type = 'vararg'
+description = 'The arguments. Arguments can be:\r\n* <page>table</page> - <page>Color</page>. Will set the color for all following strings until the next Color argument.\r\n* <page>string</page> - Text to be added to the chat box.\r\n* <page>Player</page> - Adds the name of the player in the player\'s team color to the chat box.\r\n* <page>any</page> - Any other type, such as <page>Entity</page> will be converted to string and added as text.'
+
+[Close]
+description = 'Closes the chat window.\r\n\r\n**Scope:** Client'
+
+[GetChatBoxPos]
+description = 'Returns the chatbox position.\r\n\r\n**Returns:** The X coordinate of the chatbox\'s position.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetChatBoxSize]
+description = 'Returns the chatbox size.\r\n\r\n**Returns:** The width of the chatbox.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[Open]
+description = 'Opens the chat window.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mode'
+type = 'number'
+description = 'If equals 1, opens public chat, otherwise opens team chat'
+
+[PlaySound]
+description = 'Plays the chat "tick" sound.\r\n\r\n**Scope:** Client'
+

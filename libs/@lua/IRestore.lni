@@ -1,0 +1,71 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'IRestore'
+	},
+}
+
+[EndBlock]
+description = 'Ends current data block started with <page>IRestore:StartBlock</page> and returns to the parent block.\r\n\r\nTo avoid all sorts of errors, you **must** end all blocks you start.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+
+[ReadAngle]
+description = 'Reads next bytes from the restore object as an <page>Angle</page>.\r\n\r\n**Returns:** The angle that has been read\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'Angle'
+
+[ReadBool]
+description = 'Reads next bytes from the restore object as a <page>boolean</page>.\r\n\r\n**Returns:** The boolean that has been read\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'boolean'
+
+[ReadEntity]
+description = 'Reads next bytes from the restore object as an <page>Entity</page>.\r\n\r\n**Returns:** The entity that has been read.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'Entity'
+
+[ReadFloat]
+description = 'Reads next bytes from the restore object as a floating point <page>number</page>.\r\n\r\n**Returns:** The read floating point number.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'number'
+
+[ReadInt]
+description = 'Reads next bytes from the restore object as an integer <page>number</page>.\r\n\r\n**Returns:** The read integer number.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'number'
+
+[ReadString]
+description = 'Reads next bytes from the restore object as a <page>string</page>.\r\n\r\n**Returns:** The read string. Maximum length is 1024.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'string'
+
+[ReadVector]
+description = 'Reads next bytes from the restore object as a <page>Vector</page>.\r\n\r\n**Returns:** The read vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'Vector'
+
+[StartBlock]
+description = 'Loads next block of data to be read inside current block. Blocks **must** be ended with <page>IRestore:EndBlock</page>.\r\n\r\n**Returns:** The name of the next data block to be read.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IRestore'
+[[.returns]]
+type = 'string'
+

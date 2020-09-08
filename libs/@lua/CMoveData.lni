@@ -1,0 +1,303 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CMoveData'
+	},
+}
+
+[AddKey]
+description = 'Adds keys to the move data, as if player pressed them.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'keys'
+type = 'number'
+description = 'Keys to add, see <page>Enums/IN</page>'
+
+[GetAbsMoveAngles]
+description = 'Gets the aim angle. Seems to be same as <page>CMoveData:GetAngles</page>.\r\n\r\n**Returns:** Aiming angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'Angle'
+
+[GetAngles]
+description = 'Gets the aim angle. On client is the same as <page>Entity:GetAngles</page>.\r\n\r\n**Returns:** Aiming angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'Angle'
+
+[GetButtons]
+description = 'Gets which buttons are down\r\n\r\n**Returns:** An integer representing which buttons are down, see <page>Enums/IN</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetConstraintRadius]
+description = 'Returns the radius that constrains the players movement.\r\n\r\n**Returns:** The constraint radius\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetForwardSpeed]
+description = 'Returns the players forward speed.\r\n\r\n**Returns:** speed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetImpulseCommand]
+description = 'Gets the number passed to "impulse" console command\r\n\r\n**Returns:** The impulse\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetMaxClientSpeed]
+description = 'Returns the maximum client speed of the player\r\n\r\n**Returns:** The maximum client speed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetMaxSpeed]
+description = 'Returns the maximum speed of the player.\r\n\r\n**Returns:** The maximum speed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetMoveAngles]
+description = 'Returns the angle the player is moving at. For more info, see <page>CMoveData:SetMoveAngles</page>.\r\n\r\n**Returns:** The move direction\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'Angle'
+
+[GetOldAngles]
+description = 'Gets the aim angle. Only works clientside, server returns same as <page>CMoveData:GetAngles</page>.\r\n\r\n**Returns:** The aim angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'Angle'
+
+[GetOldButtons]
+description = 'Get which buttons were down last frame\r\n\r\n**Returns:** An integer representing which buttons were down, see <page>Enums/IN</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetOrigin]
+description = 'Gets the player\'s position.\r\n\r\n**Returns:** The player\'s position.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'Vector'
+
+[GetSideSpeed]
+description = 'Returns the strafe speed of the player.\r\n\r\n**Returns:** speed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetUpSpeed]
+description = 'Returns the vertical speed of the player. ( Z axis of <page>CMoveData:GetVelocity</page> )\r\n\r\n**Returns:** Vertical speed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'number'
+
+[GetVelocity]
+description = 'Gets the players velocity.\r\n\r\n<bug issue="3413">This will return Vector(0,0,0) sometimes when walking on props.</bug>\r\n\r\n**Returns:** The players velocity\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+[[.returns]]
+type = 'Vector'
+
+[KeyDown]
+description = 'Returns whether the key is down or not\r\n\r\n**Returns:** Is the key down or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key to test, see <page>Enums/IN</page>'
+[[.returns]]
+type = 'boolean'
+
+[KeyPressed]
+description = 'Returns whether the key was pressed. If you want to check if the key is held down, try <page>CMoveData:KeyDown</page>\r\n\r\n**Returns:** Was the key pressed or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key to test, see <page>Enums/IN</page>'
+[[.returns]]
+type = 'boolean'
+
+[KeyReleased]
+description = 'Returns whether the key was released\r\n\r\n**Returns:** Was the key released or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'key'
+type = 'number'
+description = 'A key to test, see <page>Enums/IN</page>'
+[[.returns]]
+type = 'boolean'
+
+[KeyWasDown]
+description = 'Returns whether the key was down or not.\r\n\r\n\r\n\r\n\r\nUnlike <page>CMoveData:KeyDown</page>, it will return false if <page>CMoveData:KeyPressed</page> is true and it will return true if <page>CMoveData:KeyReleased</page> is true.\r\n\r\n**Returns:** Was the key down or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key to test, see <page>Enums/IN</page>'
+[[.returns]]
+type = 'boolean'
+
+[SetAbsMoveAngles]
+description = 'Sets absolute move angles.( ? ) Doesn\'t seem to do anything.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'New absolute move angles'
+
+[SetAngles]
+description = 'Sets angles.\r\n\r\n<bug issue="2382">This function does nothing.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'The angles.'
+
+[SetButtons]
+description = 'Sets the pressed buttons on the move data\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'buttons'
+type = 'number'
+description = 'A number representing which buttons are down, see <page>Enums/IN</page>'
+
+[SetConstraintRadius]
+description = 'Sets the radius that constrains the players movement.\r\n\r\n\r\nIt is unknown what this function does as changing its values doesn\'t affect player movement.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'radius'
+type = 'number'
+description = 'The new constraint radius'
+
+[SetForwardSpeed]
+description = 'Sets players forward speed.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'speed'
+type = 'number'
+description = 'New forward speed'
+
+[SetImpulseCommand]
+description = 'Sets the impulse command. This isn\'t actually utilised in the engine anywhere.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'impulse'
+type = 'number'
+description = 'The impulse to set'
+
+[SetMaxClientSpeed]
+description = 'Sets the maximum player speed. Player won\'t be able to run or sprint faster then this value.\r\n\r\n\r\nThis also automatically sets <page>CMoveData:SetMaxSpeed</page> when used in the <page>GM:SetupMove</page> hook. You must set it manually in the <page>GM:Move</page> hook.\r\n\r\n\r\nThis must be called on both client and server to avoid prediction errors.\r\n\r\n\r\nThis will **not** reduce speed in air.\r\n<note>Setting this to 0 will not make the player stationary. It won\'t do anything.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'maxSpeed'
+type = 'number'
+description = 'The new maximum speed'
+
+[SetMaxSpeed]
+description = 'Sets the maximum speed of the player. This must match with <page>CMoveData:SetMaxClientSpeed</page> both, on server and client.\r\n\r\n\r\nDoesn\'t seem to be doing anything on it\'s own, use <page>CMoveData:SetMaxClientSpeed</page> instead.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'maxSpeed'
+type = 'number'
+description = 'The new maximum speed'
+
+[SetMoveAngles]
+description = 'Sets the serverside move angles, making the movement keys act as if player was facing that direction.\r\n\r\n<bug issue="1181">This does nothing clientside.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'dir'
+type = 'Angle'
+description = 'The aim direction.'
+
+[SetOldAngles]
+description = 'Sets old aim angles. ( ? ) Doesn\'t seem to be doing anything.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'aimAng'
+type = 'Angle'
+description = 'The old angles'
+
+[SetOldButtons]
+description = 'Sets the \'old\' pressed buttons on the move data. These buttons are used to work out which buttons have been released, which have just been pressed and which are being held down.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'buttons'
+type = 'number'
+description = 'A number representing which buttons were down, see <page>Enums/IN</page>'
+
+[SetOrigin]
+description = 'Sets the players position.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position'
+
+[SetSideSpeed]
+description = 'Sets players strafe speed.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'speed'
+type = 'number'
+description = 'Strafe speed'
+
+[SetUpSpeed]
+description = 'Sets vertical speed of the player. ( Z axis of <page>CMoveData:SetVelocity</page> )\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'speed'
+type = 'number'
+description = 'Vertical speed to set'
+
+[SetVelocity]
+description = 'Sets the player\'s velocity\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CMoveData'
+``````````
+name = 'velocity'
+type = 'Vector'
+description = 'The velocity to set'
+

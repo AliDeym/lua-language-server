@@ -1,0 +1,39 @@
+[widgets]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'widgets'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'widgets'
+	},
+	2 = {
+		type = 'library',
+		name = 'widgets'
+	}
+}
+
+[PlayerTick]
+description = '<internal></internal> Automatically called to update all widgets.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+``````````
+name = 'mv'
+type = 'CMoveData'
+description = 'Player move data'
+
+[RenderMe]
+description = 'Renders a widget. Normally you won\'t need to call this.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'Widget entity to render'
+

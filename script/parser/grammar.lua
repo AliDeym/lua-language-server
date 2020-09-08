@@ -10,6 +10,7 @@ local defs = ast.defs
 -- goto 可以作为名字，合法性之后处理
 local RESERVED = {
     ['and']      = true,
+    ['continue'] = true,
     ['break']    = true,
     ['do']       = true,
     ['else']     = true,
@@ -80,7 +81,7 @@ local function errorpos(pos, err)
 end
 
 grammar 'Comment' [[
-Comment         <-  LongComment / '--' ShortComment
+Comment         <-  LongComment / '--' ShortComment / '//' ShortComment
 LongComment     <-  ('--[' {} {:eq: '='* :} {} '[' 
                     {(!CommentClose .)*}
                     (CommentClose {} / {} {}))
@@ -91,7 +92,8 @@ LongComment     <-  ('--[' {} {:eq: '='* :} {} '['
                     {} '*/' {}
                     )
                 ->  CLongComment
-CommentClose    <-  ']' =eq ']'
+CommentClose    <-  (']' =eq ']')
+CCommentClose   <-  (!'*/' .)*
 ShortComment    <-  (!%nl .)*
 ]]
 
@@ -106,8 +108,10 @@ Cut         <-  !Word
 X16         <-  [a-fA-F0-9]
 Rest        <-  (!%nl .)*
 
-AND         <-  Sp {'and'}    Cut
+AND         <-  Sp {} {'and'} Cut
+CAND        <-  Sp {} {'&&'}
 BREAK       <-  Sp 'break'    Cut
+CONTINUE    <-  Sp 'continue' Cut
 DO          <-  Sp 'do'       Cut
             /   Sp ({} 'then' Cut {}) -> ErrDo
 ELSE        <-  Sp 'else'     Cut
@@ -123,6 +127,7 @@ LOCAL       <-  Sp 'local'    Cut
 NIL         <-  Sp 'nil'      Cut
 NOT         <-  Sp 'not'      Cut
 OR          <-  Sp {'or'}     Cut
+COR         <-  Sp {'||'}
 REPEAT      <-  Sp 'repeat'   Cut
 RETURN      <-  Sp 'return'   Cut
 THEN        <-  Sp 'then'     Cut
@@ -171,6 +176,7 @@ MulsList    <-  '*'
             /   '%'
 Unary       <-  Sp {} {UnaryList}
 UnaryList   <-  NOT
+            /   '!' !'='
             /   '#'
             /   '-'
             /   '~' !'='
@@ -178,10 +184,12 @@ POWER       <-  Sp {'^'}
 
 BinaryOp    <-  Sp {} {'or'} Cut
             /   Sp {} {'and'} Cut
-            /   Sp {} {'<=' / '>=' / '<'!'<' / '>'!'>' / '~=' / '=='}
+            /   Sp {} {'<=' / '>=' / '<'!'<' / '>'!'>' / '~=' / '!=' / '=='}
             /   Sp {} ({} '=' {}) -> ErrEQ
-            /   Sp {} ({} '!=' {}) -> ErrUEQ
+            /   Sp {} {'||'}
             /   Sp {} {'|'}
+            /   Sp {} {'!'}
+            /   Sp {} {'&&'}
             /   Sp {} {'~'}
             /   Sp {} {'&'}
             /   Sp {} {'<<' / '>>'}
@@ -189,7 +197,7 @@ BinaryOp    <-  Sp {} {'or'} Cut
             /   Sp {} {'+' / '-'}
             /   Sp {} {'*' / '//' / '/' / '%'}
             /   Sp {} {'^'}
-UnaryOp     <-  Sp {} {'not' Cut / '#' / '~' !'=' / '-' !'-'}
+UnaryOp     <-  Sp {} {'not' Cut / '#' / '!' !'=' / '~' !'=' / '-' !'-'}
 
 PL          <-  Sp '('
 PR          <-  Sp ')'
@@ -314,6 +322,7 @@ CallStart   <-  PL
             /   TL
             /   '"'
             /   "'"
+            /   '/*'
             /   '[' '='* '['
 
 DirtyExp    <-  Exp
@@ -366,6 +375,7 @@ Action      <-  Sp (CrtAction / UnkAction)
 CrtAction   <-  Semicolon
             /   Do
             /   Break
+            /   Continue
             /   Return
             /   Label
             /   GoTo
@@ -381,8 +391,6 @@ CrtAction   <-  Semicolon
             /   ExpInAction
 UnkAction   <-  ({} {Word+})
             ->  UnknownAction
-            /   ({} '//' {} (LongComment / ShortComment))
-            ->  CCommentPrefix
             /   ({} {. (!Sps !CrtAction .)*})
             ->  UnknownAction
 ExpInAction <-  Sp ({} Exp {})
@@ -403,6 +411,12 @@ Break       <-  BREAK ({} Semicolon* AfterBreak?)
 AfterBreak  <-  Sp !END !UNTIL !ELSEIF !ELSE Action
 BreakStart  <-  {} -> BreakStart
 BreakEnd    <-  {} -> BreakEnd
+
+Continue        <-  CONTINUE ({} Semicolon* AfterContinue?)
+                ->  Continue
+AfterContinue   <-  Sp !END !UNTIL !ELSEIF !ELSE Action
+ContinueStart   <-  {} -> ContinueStart
+ContinueEnd     <-  {} -> ContinueEnd
 
 Return      <-  (ReturnBody Semicolon* AfterReturn?)
             ->  AfterReturn
@@ -443,7 +457,9 @@ Loop        <-  Sp ({} LoopBody {})
             ->  Loop
 LoopBody    <-  FOR LoopStart LoopFinish LoopStep NeedDo
                     BreakStart
+                    ContinueStart
                     (Emmy / !END Action)*
+                    ContinueEnd
                     BreakEnd
                 NeedEnd
 LoopStart   <-  MustName AssignOrEQ DirtyExp
@@ -456,7 +472,9 @@ In          <-  Sp ({} InBody {})
             ->  In
 InBody      <-  FOR InNameList NeedIn ExpList NeedDo
                     BreakStart
+                    ContinueStart
                     (Emmy / !END Action)*
+                    ContinueEnd
                     BreakEnd
                 NeedEnd
 InNameList  <-  &IN DirtyName
@@ -466,7 +484,9 @@ While       <-  Sp ({} WhileBody {})
             ->  While
 WhileBody   <-  WHILE DirtyExp NeedDo
                     BreakStart
+                    ContinueStart
                     (Emmy / !END Action)*
+                    ContinueEnd
                     BreakEnd
                 NeedEnd
 
@@ -474,7 +494,9 @@ Repeat      <-  Sp ({} RepeatBody {})
             ->  Repeat
 RepeatBody  <-  REPEAT
                     BreakStart
+                    ContinueStart
                     (Emmy / !UNTIL Action)*
+                    ContinueEnd
                     BreakEnd
                 NeedUntil DirtyExp
 

@@ -1,0 +1,132 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'ConVar'
+	},
+}
+
+[GetBool]
+description = 'Tries to convert the current string value of a <page>ConVar</page> to a boolean.\r\n\r\n**Returns:** The boolean value of the console variable. If the variable is numeric and not 0, the result will be true. Otherwise the result will be false.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'boolean'
+
+[GetDefault]
+description = 'Returns the default value of the <page>ConVar</page>\r\n\r\n**Returns:** The default value of the console variable.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'string'
+
+[GetFlags]
+description = 'Returns the <page>Enums/FCVAR</page> flags of the ConVar\r\n\r\n**Returns:** The bitflag. See <page>Enums/FCVAR</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'number'
+
+[GetFloat]
+description = 'Attempts to convert the <page>ConVar</page> value to a float\r\n\r\n**Returns:** The float value of the console variable.\r\n\r\n\r\nIf the value cannot be converted to a float, it will return 0.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'number'
+
+[GetHelpText]
+description = 'Returns the help text assigned to that convar.\r\n\r\n**Returns:** The help text\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'string'
+
+[GetInt]
+description = 'Attempts to convert the <page>ConVar</page> value to a integer.\r\n\r\n**Returns:** The integer value of the console variable.\r\n\r\n\r\nIf it fails to convert to an integer, it will return 0.\r\n\r\n\r\nAll float/decimal values will be rounded down. ( With <page>math.floor</page> )\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'number'
+
+[GetMax]
+description = 'Returns the maximum value of the <page>ConVar</page>\r\n\r\n**Returns:** The maximum value of the <page>ConVar</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'number'
+
+[GetMin]
+description = 'Returns the minimum value of the <page>ConVar</page>\r\n\r\n**Returns:** The minimum value of the <page>ConVar</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'number'
+
+[GetName]
+description = 'Returns the name of the <page>ConVar</page>.\r\n\r\n**Returns:** The name of the console variable.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'string'
+
+[GetString]
+description = 'Returns the current <page>ConVar</page> value as a string.\r\n\r\n**Returns:** The current console variable value as a string.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+[[.returns]]
+type = 'string'
+
+[IsFlagSet]
+description = 'Returns whether the specified flag is set on the <page>ConVar</page>\r\n\r\n**Returns:** Whether the flag is set or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+``````````
+name = 'flag'
+type = 'number'
+description = 'The <page>Enums/FCVAR</page> flag to test'
+[[.returns]]
+type = 'boolean'
+
+[Revert]
+description = 'Reverts <page>ConVar</page> to its default value\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+
+[SetBool]
+description = 'Sets a ConVar\'s value to 1 or 0 based on the input boolean. This can only be ran on ConVars created from within Lua.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+``````````
+name = 'value'
+type = 'boolean'
+description = 'Value to set the ConVar to.'
+
+[SetFloat]
+description = 'Sets a ConVar\'s value to to the input number. This can only be ran on ConVars created from within Lua.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+``````````
+name = 'value'
+type = 'number'
+description = 'Value to set the ConVar to.'
+
+[SetInt]
+description = 'Sets a ConVar\'s value to the input number after converting it to an integer. This can only be ran on ConVars created from within Lua.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+``````````
+name = 'value'
+type = 'number'
+description = 'Value to set the ConVar to.'
+
+[SetString]
+description = 'Sets a ConVar\'s value to the input string. This can only be ran on ConVars created from within Lua.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ConVar'
+``````````
+name = 'value'
+type = 'string'
+description = 'Value to set the ConVar to.'
+

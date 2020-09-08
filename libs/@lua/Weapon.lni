@@ -1,0 +1,258 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Weapon'
+	},
+}
+
+[AllowsAutoSwitchFrom]
+description = 'Returns whether the weapon allows to being switched from when a better ( <page>Weapon:GetWeight</page> ) weapon is being picked up.\r\n\r\n**Returns:** Whether the weapon allows to being switched from.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'boolean'
+
+[AllowsAutoSwitchTo]
+description = 'Returns whether the weapon allows to being switched to when a better ( <page>Weapon:GetWeight</page> ) weapon is being picked up.\r\n\r\n**Returns:** Whether the weapon allows to being switched to.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'boolean'
+
+[CallOnClient]
+description = 'Calls a SWEP function on client.\r\n\r\n<warning>This uses the <page>usermessage</page> internally, because of that, the combined length of the arguments of this function may not exceed 254 bytes/characters or the function will cease to function!</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'functionName'
+type = 'string'
+description = 'Name of function to call. If you want to call SWEP:MyFunc() on client, you type in "MyFunc"'
+``````````
+name = 'arguments'
+type = 'string'
+description = 'Arguments for the function, separated by spaces.\r\n<note>Only the second argument is passed as argument and must be a string</note>'
+
+[Clip1]
+description = 'Returns how much primary ammo is in the magazine.\r\n<note>This is not shared between clients and will instead return the maximum primary clip size.</note>\r\n\r\n**Returns:** The amount of primary ammo in the magazine.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[Clip2]
+description = 'Returns how much secondary ammo is in the magazine.\r\n<note>This is not shared between clients and will instead return the maximum secondary clip size.</note>\r\n\r\n**Returns:** The amount of secondary ammo in the magazine.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[DefaultReload]
+description = 'Forces the weapon to reload while playing given animation.\r\n<note>\r\nThis will stop the <page>Weapon:Think</page> function from getting called while the weapon is reloading!\r\n</note>\r\n\r\n**Returns:** Did reloading actually take place\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'act'
+type = 'number'
+description = 'Sequence to use as reload animation. Uses the <page>Enums/ACT</page>.'
+[[.returns]]
+type = 'boolean'
+
+[GetActivity]
+description = 'Returns the sequence enumeration number that the weapon is playing.\r\n\r\n<bug issue="2543">This can return inconsistent results between the server and client.</bug>\r\n\r\n**Returns:** Current activity, see <page>Enums/ACT</page>. Returns 0 if the weapon doesn\'t have active sequence.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetHoldType]
+description = 'Returns the hold type of the weapon.\r\n\r\n**Returns:** The hold type of the weapon. You can find a list of default hold types <page text="here">Hold_Types</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'string'
+
+[GetMaxClip1]
+description = 'Returns maximum primary clip size\r\n\r\n**Returns:** Maximum primary clip size\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetMaxClip2]
+description = 'Returns maximum secondary clip size\r\n\r\n**Returns:** Maximum secondary clip size\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetNextPrimaryFire]
+description = 'Gets the next time the weapon can primary fire. ( Can call <page>WEAPON:PrimaryAttack</page> )\r\n\r\n**Returns:** The time, relative to <page>Global.CurTime</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetNextSecondaryFire]
+description = 'Gets the next time the weapon can secondary fire. ( Can call <page>WEAPON:SecondaryAttack</page> )\r\n\r\n**Returns:** The time, relative to <page>Global.CurTime</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetPrimaryAmmoType]
+description = 'Gets the primary ammo type of the given weapon.\r\n\r\n**Returns:** The ammo type ID, or -1 if not found.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetPrintName]
+description = 'Returns the non-internal name of the weapon, that should be for displaying.\r\n\r\n<note>If that returns an untranslated message (#HL2_XX), use <page>language.GetPhrase</page> to see the "nice" name.</note>\r\n<note>If SWEP.PrintName is not set in the Weapon or the Weapon Base then "<MISSING SWEP PRINT NAME>" will be returned.</note>\r\n\r\n**Returns:** The "nice" name of the weapon.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'string'
+
+[GetSecondaryAmmoType]
+description = 'Gets the ammo type of the given weapons secondary fire.\r\n\r\n**Returns:** The secondary ammo type ID, or -1 if not found.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetSlot]
+description = 'Returns the slot of the weapon.\r\n<note>The slot numbers start from 0.</note>\r\n\r\n**Returns:** The slot of the weapon.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetSlotPos]
+description = 'Returns slot position of the weapon\r\n\r\n**Returns:** The slot position of the weapon\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[GetWeaponViewModel]
+description = 'Returns the view model of the weapon.\r\n\r\n**Returns:** The view model of the weapon.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'string'
+
+[GetWeaponWorldModel]
+description = 'Returns the world model of the weapon.\r\n\r\n**Returns:** The world model of the weapon.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'string'
+
+[GetWeight]
+description = 'Returns the "weight" of the weapon, which is used when deciding which <page>Weapon</page> is better by the engine.\r\n\r\n**Returns:** The weapon "weight".\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[HasAmmo]
+description = 'Returns whether the weapon has ammo left or not. It will return false when there\'s no ammo left in the magazine **and** when there\'s no reserve ammo left.\r\n\r\n<note>This will return true for weapons like crowbar, gravity gun, etc.</note>\r\n\r\n**Returns:** Whether the weapon has ammo or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'boolean'
+
+[IsCarriedByLocalPlayer]
+description = 'Returns whenever the weapon is carried by the local player.\r\n\r\n**Returns:** Is the weapon is carried by the local player or not\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'boolean'
+
+[IsScripted]
+description = 'Checks if the weapon is a SWEP or a built-in weapon.\r\n\r\n**Returns:** Returns true if weapon is scripted ( SWEP ), false if not ( A built-in HL2 weapon )\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'boolean'
+
+[IsWeaponVisible]
+description = 'Returns whether the weapon is visible. The term visibility is not exactly what gets checked here, first it checks if the owner is a player, then checks if the active view model has EF_NODRAW flag NOT set.\r\n\r\n**Returns:** Is visible or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'boolean'
+
+[LastShootTime]
+description = 'Returns the time since this weapon last fired a bullet with <page>Entity:FireBullets</page> in seconds. It is not networked.\r\n\r\n**Returns:** The time in seconds when the last bullet was fired.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+[[.returns]]
+type = 'number'
+
+[SendWeaponAnim]
+description = 'Forces weapon to play activity/animation.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'act'
+type = 'number'
+description = 'Activity to play. See the <page>Enums/ACT</page> (specifically ACT_VM_).'
+
+[SetClip1]
+description = 'Lets you change the number of bullets in the given weapons primary clip.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'ammo'
+type = 'number'
+description = 'The amount of bullets the clip should contain'
+
+[SetClip2]
+description = 'Lets you change the number of bullets in the given weapons secondary clip.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'ammo'
+type = 'number'
+description = 'The amount of bullets the clip should contain'
+
+[SetHoldType]
+description = 'Sets the hold type of the weapon. This function also calls <page>WEAPON:SetWeaponHoldType</page> and properly networks it to all clients.\r\n\r\n<note>This only works on scripted weapons.</note>\r\n\r\n<bug>Using this function on weapons held by bots will not network holdtype changes to clients if the world model is set to an empty string (SWEP.WorldModel = "").</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the hold type. You can find all default hold types <page text="here">Hold_Types</page>'
+
+[SetLastShootTime]
+description = 'Sets the time since this weapon last fired in seconds. Used in conjunction with <page>Weapon:LastShootTime</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'time'
+type = 'number'
+description = 'The time in seconds when the last time the weapon was fired.'
+
+[SetNextPrimaryFire]
+description = 'Sets when the weapon can fire again. Time should be based on <page>Global.CurTime</page>.\r\n\r\n<bug issue="3786">This will fire extra bullets if the time is set to less than <page>Global.CurTime</page>.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'time'
+type = 'number'
+description = 'Time when player should be able to use primary fire again'
+
+[SetNextSecondaryFire]
+description = 'Sets when the weapon can alt-fire again. Time should be based on <page>Global.CurTime</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Weapon'
+``````````
+name = 'time'
+type = 'number'
+description = 'Time when player should be able to use secondary fire again'
+

@@ -1,0 +1,870 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'NPC'
+	},
+}
+
+[AddEntityRelationship]
+description = 'Makes the NPC like, hate, feel neutral towards, or fear the entity in question. If you want to setup relationship towards a certain entity `class`, use <page>NPC:AddRelationship</page>.\r\n\r\n<note>NPCs do not see <page>NextBot</page>s by default. This can be fixed by adding the <page text="FL_OBJECT">Enums/FL</page> flag to the NextBot.</note>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'target'
+type = 'Entity'
+description = 'The entity for the relationship to be applied to.'
+``````````
+name = 'disposition'
+type = 'number'
+description = 'A <page>Enums/D</page> representing the relationship type.'
+``````````
+name = 'priority'
+type = 'number'
+description = 'How strong the relationship is.'
+
+[AddRelationship]
+description = 'Changes how an NPC feels towards another NPC.  If you want to setup relationship towards a certain `entity`, use <page>NPC:AddEntityRelationship</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'relationstring'
+type = 'string'
+description = 'A string representing how the relationship should be set up.\r\nShould be formatted as "npc_class <page>Enums/D</page> numberPriority".'
+
+[AlertSound]
+description = 'Force an NPC to play his Alert sound.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[CapabilitiesAdd]
+description = 'Adds a capability to the NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'capabilities'
+type = 'number'
+description = 'Capabilities to add, see <page>Enums/CAP</page>'
+
+[CapabilitiesClear]
+description = 'Removes all of Capabilities the NPC has.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[CapabilitiesGet]
+description = 'Returns the NPC\'s capabilities along the ones defined on its weapon.\r\n\r\n**Returns:** The capabilities as a bitflag.\r\nSee <page>Enums/CAP</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[CapabilitiesRemove]
+description = 'Remove a certain capability.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'capabilities'
+type = 'number'
+description = 'Capabilities to remove, see <page>Enums/CAP</page>'
+
+[Classify]
+description = 'Returns the NPC class. Do not confuse with <page>Entity:GetClass</page>!\r\n\r\n**Returns:** See <page>Enums/CLASS</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[ClearCondition]
+description = 'Clears out the specified <page>Enums/COND</page> on this NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'condition'
+type = 'number'
+description = 'The <page>Enums/COND</page> to clear out.'
+
+[ClearEnemyMemory]
+description = 'Clears the Enemy from the NPC\'s memory, effectively forgetting it until met again with either the NPC vision or with <page>NPC:UpdateEnemyMemory</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to mark'
+
+[ClearExpression]
+description = 'Clears the NPC\'s current expression which can be set with <page>NPC:SetExpression</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[ClearGoal]
+description = 'Clears the current NPC goal or target.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[ClearSchedule]
+description = 'Stops the current schedule that the NPC is doing.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[ConditionName]
+description = 'Translates condition ID to a string.\r\n\r\n**Returns:** A human understandable string equivalent of that condition.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'cond'
+type = 'number'
+description = 'The NPCs condition ID, see <page>Enums/COND</page>'
+[[.returns]]
+type = 'string'
+
+[Disposition]
+description = 'Returns the way the NPC "feels" about the entity.\r\n\r\n**Returns:** The NPCs disposition, see <page>Enums/D</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to get the disposition from.'
+[[.returns]]
+type = 'number'
+
+[DropWeapon]
+description = 'Forces the NPC to drop the specified weapon.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'weapon'
+type = 'Weapon'
+description = 'Weapon to be dropped. If unset, will default to the currently equipped weapon.'
+``````````
+name = 'target'
+type = 'Vector'
+description = 'If set, launches the weapon at given position. There is a limit to how far it is willing to throw the weapon. Overrides velocity argument.'
+``````````
+name = 'velocity'
+type = 'Vector'
+description = 'If set and previous argument is unset, launches the weapon with given velocity. If the velocity is higher than 400, it will be clamped to 400.'
+
+[ExitScriptedSequence]
+description = 'Makes an NPC exit a scripted sequence, if one is playing.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[FearSound]
+description = 'Force an NPC to play his Fear sound.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[FoundEnemySound]
+description = 'Force an NPC to play its FoundEnemy sound.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[GetActiveWeapon]
+description = 'Returns the weapon the NPC is currently carrying, or <page text="NULL">Global_Variables</page>.\r\n\r\n**Returns:** The NPCs current weapon\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'Entity'
+
+[GetActivity]
+description = 'Returns the NPC\'s current activity.\r\n\r\n**Returns:** Current activity, see <page>Enums/ACT</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetAimVector]
+description = 'Returns the aim vector of the NPC. NPC alternative of <page>Player:GetAimVector</page>.\r\n\r\n**Returns:** The aim direction of the NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'Vector'
+
+[GetArrivalActivity]
+description = 'Returns the activity to be played when the NPC arrives at its goal\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetArrivalSequence]
+description = 'Returns the sequence to be played when the NPC arrives at its goal.\r\n\r\n**Returns:** Sequence ID to be played, or -1 if there\'s no sequence.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetBlockingEntity]
+description = 'Returns the entity blocking the NPC along its path.\r\n\r\n**Returns:** Blocking entity\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'Entity'
+
+[GetCurrentSchedule]
+description = 'Returns the NPC\'s current schedule.\r\n\r\n**Returns:** The NPCs schedule, see <page>Enums/SCHED</page> or -1 if we failed for some reason\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetCurrentWeaponProficiency]
+description = 'Returns how proficient (skilled) an NPC is with its current weapon.\r\n\r\n**Returns:** NPC\'s proficiency for current weapon. See <page>Enums/WEAPON_PROFICIENCY</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetCurWaypointPos]
+description = 'Gets the NPC\'s current waypoint position (where NPC is currently moving towards), if any is available.\r\n\r\n**Returns:** The position of the current NPC waypoint.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'Vector'
+
+[GetEnemy]
+description = 'Returns the entity that this NPC is trying to fight.\r\n\r\n<bug issue="3132">This returns nil if the NPC has no enemy. You should use <page>Global.IsValid</page> (which accounts for nil and NULL) on the return to verify validity of the enemy.</bug>\r\n\r\n**Returns:** Enemy NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'NPC'
+
+[GetEnemyFirstTimeSeen]
+description = 'Returns the first time an NPC\'s enemy was seen by the NPC.\r\n\r\n**Returns:** First time the given enemy was seen.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to check.'
+[[.returns]]
+type = 'number'
+
+[GetEnemyLastKnownPos]
+description = 'Returns the last known position of an NPC\'s enemy.\r\n\r\n**Returns:** The last known position.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to check.'
+[[.returns]]
+type = 'Vector'
+
+[GetEnemyLastSeenPos]
+description = 'Returns the last seen position of an NPC\'s enemy.\r\n\r\n**Returns:** The last seen position.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to check.'
+[[.returns]]
+type = 'Vector'
+
+[GetEnemyLastTimeSeen]
+description = 'Returns the last time an NPC\'s enemy was seen by the NPC.\r\n\r\n**Returns:** Last time the given enemy was seen.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to check.'
+[[.returns]]
+type = 'number'
+
+[GetExpression]
+description = 'Returns the expression file the NPC is currently playing.\r\n\r\n**Returns:** The file path of the expression.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'string'
+
+[GetHullType]
+description = 'Returns NPCs hull type set by <page>NPC:SetHullType</page>.\r\n\r\n**Returns:** Hull type, see <page>Enums/HULL</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetMovementActivity]
+description = 'Returns the NPC\'s current movement activity.\r\n\r\n**Returns:** Current NPC movement activity, see <page>Enums/ACT</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetMovementSequence]
+description = 'Returns the index of the sequence the NPC uses to move.\r\n\r\n**Returns:** The movement sequence index\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetNextWaypointPos]
+description = 'Gets the NPC\'s next waypoint position, where NPC will be moving after reaching current waypoint, if any is available.\r\n\r\n**Returns:** The position of the next NPC waypoint.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'Vector'
+
+[GetNPCState]
+description = 'Returns the NPC\'s state.\r\n\r\n**Returns:** The NPC\'s current state, see <page>Enums/NPC_STATE</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetPathDistanceToGoal]
+description = 'Returns the distance the NPC is from Target Goal.\r\n\r\n**Returns:** The number of hammer units the NPC is away from the Goal.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetPathTimeToGoal]
+description = 'Returns the amount of time it will take for the NPC to get to its Target Goal.\r\n\r\n**Returns:** The amount of time to get to the target goal.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'number'
+
+[GetShootPos]
+description = 'Returns the shooting position of the NPC.\r\n\r\n<note>This only works properly when called on an NPC that can hold weapons, otherwise it will return the same value as <page>Entity:GetPos</page>.</note>\r\n\r\n**Returns:** The NPC\'s shooting position.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'Vector'
+
+[GetTarget]
+description = 'Returns the NPC\'s current target set by <page>NPC:SetTarget</page>.\r\n\r\n<bug issue="3132">This returns nil if the NPC has no target. You should use <page>Global.IsValid</page> (which accounts for nil and NULL) on the return to verify validity of the target.</bug>\r\n\r\n**Returns:** Target entity\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'Entity'
+
+[GetWeapon]
+description = 'Returns a specific weapon the NPC owns.\r\n\r\n**Returns:** The weapon for the specified class, or NULL of the NPC doesn\'t have given weapon.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'class'
+type = 'string'
+description = 'A classname of the weapon to try to get.'
+[[.returns]]
+type = 'Weapon'
+
+[GetWeapons]
+description = 'Returns a table of the NPC\'s weapons.\r\n\r\n**Returns:** A list of the weapons the NPC currently has.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'table'
+
+[Give]
+description = 'Used to give a weapon to an already spawned NPC.\r\n\r\n**Returns:** The weapon entity given to the NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'weapon'
+type = 'string'
+description = 'Class name of the weapon to equip to the NPC.'
+[[.returns]]
+type = 'Weapon'
+
+[HasCondition]
+description = 'Returns whether or not the NPC has the given condition.\r\n\r\n**Returns:** True if the NPC has the given condition, false otherwise.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'condition'
+type = 'number'
+description = 'The condition index, see <page>Enums/COND</page>.'
+[[.returns]]
+type = 'boolean'
+
+[HasEnemyEluded]
+description = 'Polls the enemy memory to check if the given entity has eluded us or not.\r\n\r\n**Returns:** If the enemy has eluded us.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to test.'
+[[.returns]]
+type = 'boolean'
+
+[HasEnemyMemory]
+description = 'Polls the enemy memory to check if the NPC has any memory of given enemy.\r\n\r\n**Returns:** If we have any memory on given enemy.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The entity to test.'
+[[.returns]]
+type = 'boolean'
+
+[IdleSound]
+description = 'Force an NPC to play his Idle sound.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[IsCurrentSchedule]
+description = 'Returns whether or not the NPC is performing the given schedule.\r\n\r\n**Returns:** True if the NPC is performing the given schedule, false otherwise.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'schedule'
+type = 'number'
+description = 'The schedule number, see <page>Enums/SCHED</page>.'
+[[.returns]]
+type = 'boolean'
+
+[IsMoving]
+description = 'Returns whether the NPC is moving or not.\r\n\r\n**Returns:** Whether the NPC is moving or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'boolean'
+
+[IsRunningBehavior]
+description = 'Checks if the NPC is running an **ai_goal**. ( e.g. An npc_citizen NPC following the Player. )\r\n\r\n**Returns:** Returns true if running an ai_goal, otherwise returns false.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'boolean'
+
+[IsUnreachable]
+description = 'Returns true if the entity was remembered as unreachable. The memory is updated automatically from following engine tasks if they failed:\r\n* TASK_GET_CHASE_PATH_TO_ENEMY\r\n* TASK_GET_PATH_TO_ENEMY_LKP\r\n* TASK_GET_PATH_TO_INTERACTION_PARTNER\r\n* TASK_ANTLIONGUARD_GET_CHASE_PATH_ENEMY_TOLERANCE\r\n* SCHED_FAIL_ESTABLISH_LINE_OF_FIRE - Combine NPCs, also when failing to change their enemy\r\n\r\n**Returns:** If the entity is reachable or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'testEntity'
+type = 'Entity'
+description = 'The entity to test.'
+[[.returns]]
+type = 'boolean'
+
+[LostEnemySound]
+description = 'Force an NPC to play his LostEnemy sound.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[MaintainActivity]
+description = 'Tries to achieve our ideal animation state, playing any transition sequences that we need to play to get there.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[MarkEnemyAsEluded]
+description = 'Causes the NPC to temporarily forget the current enemy and switch on to a better one.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to mark'
+
+[MoveOrder]
+description = 'Makes the NPC walk toward the given position. The NPC will return to the player after amount of time set by **player_squad_autosummon_time** <page>ConVar</page>.\r\n\r\nOnly works on Citizens (npc_citizen) and is a part of the Half-Life 2 squad system.\r\n\r\nThe NPC **must** be in the player\'s squad for this to work.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The target position for the NPC to walk to.'
+
+[NavSetGoal]
+description = 'Works similarly to <page>NPC:NavSetRandomGoal</page>, but doesn\'t actually work. This will be fixed in the next update.\r\n\r\n**Returns:** Whether path generation was successful or not\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position to set as the goal'
+[[.returns]]
+type = 'boolean'
+
+[NavSetGoalTarget]
+description = 'Set the goal target for an NPC.\r\n\r\n**Returns:** Whether path generation was successful or not\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'target'
+type = 'Entity'
+description = 'The targeted entity to set the goal to.'
+``````````
+name = 'offset'
+type = 'Vector'
+description = 'The offset to apply to the targeted entity\'s position.'
+[[.returns]]
+type = 'boolean'
+
+[NavSetRandomGoal]
+description = 'Creates a random path of specified minimum length between a closest start node and random node in the specified direction. This won\'t actually force the NPC to move.\r\n\r\n**Returns:** Whether path generation was successful or not\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'minPathLength'
+type = 'number'
+description = 'Minimum length of path in units'
+``````````
+name = 'dir'
+type = 'Vector'
+description = 'Unit vector pointing in the direction of the target random node'
+[[.returns]]
+type = 'boolean'
+
+[NavSetWanderGoal]
+description = 'Sets a goal in x, y offsets for the NPC to wander to\r\n\r\n**Returns:** Whether path generation was successful or not\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'xOffset'
+type = 'number'
+description = 'X offset'
+``````````
+name = 'yOffset'
+type = 'number'
+description = 'Y offset'
+[[.returns]]
+type = 'boolean'
+
+[PickupWeapon]
+description = 'Forces the NPC to pickup an existing weapon entity. The NPC will not pick up the weapon if they already own a weapon of given type, or if the NPC could not normally have this weapon in their inventory.\r\n\r\n**Returns:** Whether the NPC succeeded in picking up the weapon or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'wep'
+type = 'Weapon'
+description = 'The weapon to try to pick up.'
+[[.returns]]
+type = 'boolean'
+
+[PlaySentence]
+description = 'Forces the NPC to play a sentence from scripts/sentences.txt\r\n\r\n**Returns:** Returns the sentence index, -1 if the sentence couldn\'t be played.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'sentence'
+type = 'string'
+description = 'The sentence string to speak.'
+``````````
+name = 'delay'
+type = 'number'
+description = 'Delay in seconds until the sentence starts playing.'
+``````````
+name = 'volume'
+type = 'number'
+description = 'The volume of the sentence, from 0 to 1.'
+[[.returns]]
+type = 'number'
+
+[RememberUnreachable]
+description = 'Makes the NPC remember an entity or an enemy as unreachable, for a specified amount of time. Use <page>NPC:IsUnreachable</page> to check if an entity is still unreachable.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to mark as unreachable.'
+``````````
+name = 'time'
+type = 'number'
+description = 'For how long to remember the entity as unreachable. Negative values will act as `3` seconds.'
+
+[RemoveMemory]
+description = '<deprecated></deprecated>\r\n\r\nThis function crashes the game no matter how it is used and will be removed in a future update.\r\n\r\nUse <page>NPC:ClearEnemyMemory</page> instead.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[RunEngineTask]
+description = 'Starts an engine task.\r\n\r\nUsed internally by the <page>ai_task</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'taskID'
+type = 'number'
+description = 'The task ID, see [ai_task.h](https://github.com/ValveSoftware/source-sdk-2013/blob/55ed12f8d1eb6887d348be03aee5573d44177ffb/mp/src/game/server/ai_task.h#L89-L502)'
+``````````
+name = 'taskData'
+type = 'number'
+description = 'The task data.'
+
+[SelectWeapon]
+description = 'Forces the NPC to switch to a specific weapon the NPC owns. See <page>NPC:GetWeapons</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'class'
+type = 'string'
+description = 'A classname of the weapon or a <page>Weapon</page> entity to switch to.'
+
+[SentenceStop]
+description = 'Stops any sounds (speech) the NPC is currently palying.\r\n\r\nEquivalent to `Entity:EmitSound( "AI_BaseNPC.SentenceStop" )`\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[SetArrivalActivity]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'act'
+type = 'number'
+description = ''
+
+[SetArrivalDirection]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[SetArrivalDistance]
+description = 'Sets the distance to goal at which the NPC should stop moving and continue to other business such as doing the rest of their tasks in a schedule.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'dist'
+type = 'number'
+description = 'The distance to goal that is close enough for the NPC'
+
+[SetArrivalSequence]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[SetArrivalSpeed]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[SetCondition]
+description = 'Sets an NPC condition.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'condition'
+type = 'number'
+description = 'The condition index, see <page>Enums/COND</page>.'
+
+[SetCurrentWeaponProficiency]
+description = 'Sets the weapon proficiency of an NPC (how skilled an NPC is with its current weapon).\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'proficiency'
+type = 'number'
+description = 'The proficiency for the NPC\'s current weapon. See <page>Enums/WEAPON_PROFICIENCY</page>.'
+
+[SetEnemy]
+description = 'Sets the target for an NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy that the NPC should target'
+``````````
+name = 'newenemy'
+type = 'boolean'
+description = 'Calls <page>NPC:SetCondition</page>(COND_NEW_ENEMY) if the new enemy is valid and not equal to the last enemy.'
+
+[SetExpression]
+description = 'Sets the NPC\'s .vcd expression. Similar to <page>Entity:PlayScene</page> except the scene is looped until it\'s interrupted by default NPC behavior or <page>NPC:ClearExpression</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'expression'
+type = 'string'
+description = 'The expression filepath.'
+[[.returns]]
+type = 'number'
+
+[SetHullSizeNormal]
+description = 'Updates the NPC\'s hull and physics hull in order to match its model scale. <page>Entity:SetModelScale</page> seems to take care of this regardless.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[SetHullType]
+description = 'Sets the hull type for the NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'hullType'
+type = 'number'
+description = 'Hull type. See <page>Enums/HULL</page>'
+
+[SetIdealYawAndUpdate]
+description = 'Sets the ideal yaw angle (left-right rotation) for the NPC and forces them to turn to that angle.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'angle'
+type = 'number'
+description = 'The aim direction to set, the `yaw` component.'
+``````````
+name = 'speed'
+type = 'number'
+description = 'The turn speed. Special values are:\r\n* `-1` - Calculate automatically\r\n* `-2` - Keep the previous yaw speed'
+
+[SetLastPosition]
+description = 'Sets the last registered or memorized position for an npc. When using scheduling, the NPC will focus on navigating to the last position via nodes.\r\n\r\n<note>The navigation requires ground nodes to function properly, otherwise the NPC could only navigate in a small area. (https://developer.valvesoftware.com/wiki/Info_node)</note>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'Position'
+type = 'Vector'
+description = 'Where the NPC\'s last position will be set.'
+
+[SetMaxRouteRebuildTime]
+description = 'Sets how long to try rebuilding path before failing task.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'time'
+type = 'number'
+description = 'How long to try rebuilding path before failing task'
+
+[SetMovementActivity]
+description = 'Sets the activity the NPC uses when it moves.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'activity'
+type = 'number'
+description = 'The movement activity, see <page>Enums/ACT</page>.'
+
+[SetMovementSequence]
+description = 'Sets the sequence the NPC navigation path uses for speed calculation. Doesn\'t seem to have any visible effect on NPC movement.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'sequenceId'
+type = 'number'
+description = 'The movement sequence index'
+
+[SetNPCState]
+description = 'Sets the state the NPC is in to help it decide on a ideal schedule.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'state'
+type = 'number'
+description = 'New NPC state, see <page>Enums/NPC_STATE</page>'
+
+[SetSchedule]
+description = 'Sets the NPC\'s current schedule.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'schedule'
+type = 'number'
+description = 'The NPC schedule, see <page>Enums/SCHED</page>.'
+
+[SetTarget]
+description = 'Sets the NPC\'s target. This is used in some engine schedules.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'entity'
+type = 'Entity'
+description = 'The target of the NPC.'
+
+[StartEngineTask]
+description = 'Forces the NPC to start an engine task, this has different results for every NPC.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'task'
+type = 'number'
+description = 'The id of the task to start, see [ai_task.h](https://github.com/ValveSoftware/source-sdk-2013/blob/55ed12f8d1eb6887d348be03aee5573d44177ffb/mp/src/game/server/ai_task.h#L89-L502)'
+``````````
+name = 'taskData'
+type = 'number'
+description = 'The task data as a float, not all tasks make use of it.'
+
+[StopMoving]
+description = 'Resets the NPC\'s movement animation and velocity. Does not actually stop the NPC from moving.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[TargetOrder]
+description = 'Cancels <page>NPC:MoveOrder</page> basically.\r\n\r\nOnly works on Citizens (npc_citizen) and is a part of the Half-Life 2 squad system.\r\n\r\nThe NPC **must** be in the player\'s squad for this to work.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'target'
+type = 'Entity'
+description = 'Must be a player, does nothing otherwise.'
+
+[TaskComplete]
+description = 'Marks the current NPC task as completed.\r\n\r\nThis is meant to be used alongside <page>NPC:TaskFail</page> to complete or fail custom Lua defined tasks. (<page>Schedule:AddTask</page>)\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+
+[TaskFail]
+description = 'Marks the current NPC task as failed.\r\n\r\nThis is meant to be used alongside <page>NPC:TaskComplete</page> to complete or fail custom Lua defined tasks. (<page>Schedule:AddTask</page>)\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'task'
+type = 'string'
+description = 'A string most likely defined as a Source Task, for more information on Tasks go to https://developer.valvesoftware.com/wiki/Task'
+
+[UpdateEnemyMemory]
+description = 'Force the NPC to update information on the supplied enemy, as if it had line of sight to it.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+``````````
+name = 'enemy'
+type = 'Entity'
+description = 'The enemy to update.'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The last known position of the enemy.'
+
+[UseActBusyBehavior]
+description = 'Only usable on "ai" base entities.\r\n\r\n**Returns:** If we succeeded setting the behavior.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'boolean'
+
+[UseAssaultBehavior]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'boolean'
+
+[UseFollowBehavior]
+description = 'Only usable on "ai" base entities.\r\n\r\n**Returns:** If we succeeded setting the behavior.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'boolean'
+
+[UseFuncTankBehavior]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'boolean'
+
+[UseLeadBehavior]
+description = '\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+[[.returns]]
+type = 'boolean'
+
+[UseNoBehavior]
+description = 'Undoes the other Use*Behavior functions.\r\n\r\nOnly usable on "ai" base entities.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'NPC'
+

@@ -1,0 +1,646 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'PhysObj'
+	},
+}
+
+[AddAngleVelocity]
+description = 'Adds the specified velocity to the current.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'angularVelocity'
+type = 'Vector'
+description = 'Additional velocity.'
+
+[AddGameFlag]
+description = 'Adds one or more bit flags.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'flags'
+type = 'number'
+description = 'Bitflag, see <page>Enums/FVPHYSICS</page>.'
+
+[AddVelocity]
+description = 'Adds the specified velocity to the current.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'velocity'
+type = 'Vector'
+description = 'Additional velocity.'
+
+[AlignAngles]
+description = 'Rotates the object so that it\'s angles are aligned to the ones inputted.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'from'
+type = 'Angle'
+description = ''
+``````````
+name = 'to'
+type = 'Angle'
+description = ''
+[[.returns]]
+type = 'Angle'
+
+[ApplyForceCenter]
+description = 'Applies the specified force to the physics object. (in Newtons)\r\n\r\n<note>This will not work on players, use <page>Entity:SetVelocity</page> instead.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'force'
+type = 'Vector'
+description = 'The force to be applied.'
+
+[ApplyForceOffset]
+description = 'Applies the specified force on the physics object at the specified position\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'force'
+type = 'Vector'
+description = 'The force to be applied.'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The position in world coordinates where the force is applied to the physics object.'
+
+[ApplyTorqueCenter]
+description = 'Applies specified angular impulse to the physics object. See <page>PhysObj:CalculateForceOffset</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'torque'
+type = 'Vector'
+description = 'The angular impulse to be applied in `kg * degrees / s` (verification needed).'
+
+[CalculateForceOffset]
+description = 'Calculates the force and torque on the center of mass for an offset force impulse. The outputs can be directly passed to <page>PhysObj:ApplyForceCenter</page> and <page>PhysObj:ApplyTorqueCenter</page>, respectively.\r\n\r\n**Returns:** The calculated force on the physics object\'s center of mass\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'force'
+type = 'Vector'
+description = 'The initial force'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The location of the force in world coordinates'
+[[.returns]]
+type = 'Vector'
+
+[CalculateVelocityOffset]
+description = 'Calculates the linear and angular velocities on the center of mass for an offset force impulse. The outputs can be directly passed to <page>PhysObj:AddVelocity</page> and <page>PhysObj:AddAngleVelocity</page>, respectively.\r\n\r\n**Returns:** The calculated linear velocity from the force on the physics object\'s center of mass\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'force'
+type = 'Vector'
+description = 'The initial force'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The location of the force in world coordinates'
+[[.returns]]
+type = 'Vector'
+
+[ClearGameFlag]
+description = 'Removes one of more specified flags.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'flags'
+type = 'number'
+description = 'Bitflag, see <page>Enums/FVPHYSICS</page>.'
+
+[ComputeShadowControl]
+description = 'Allows you to move a PhysObj to a point and angle in 3D space.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'shadowparams'
+type = 'table'
+description = 'The parameters for the shadow. See example code to see how its used.'
+
+[EnableCollisions]
+description = 'Sets whether the physics object should collide with anything or not, including world.\r\n\r\n<warning>This function currently has major problems with player collisions, and as such should be avoided at all costs.\r\n\r\n\r\n\r\nA better alternative to this function would be using <page>Entity:SetCollisionGroup</page>( COLLISION_GROUP_WORLD ).</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'enable'
+type = 'boolean'
+description = 'True to enable, false to disable.'
+
+[EnableDrag]
+description = 'Sets whenever the physics object should be affected by drag.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'enable'
+type = 'boolean'
+description = 'True to enable, false to disable.'
+
+[EnableGravity]
+description = 'Sets whether the PhysObject should be affected by gravity\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'enable'
+type = 'boolean'
+description = 'True to enable, false to disable.'
+
+[EnableMotion]
+description = 'Sets whether the physobject should be able to move or not.\r\n\r\nThis is the exact method the Physics Gun uses to freeze props. If a motion-disabled physics object is grabbed with the physics gun, the object will be able to move again. To disallow this, use <page>GM:PhysgunPickup</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'enable'
+type = 'boolean'
+description = 'True to enable, false to disable.'
+
+[GetAABB]
+description = 'Returns the mins and max of the physics object.\r\n\r\n**Returns:** Mins\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Vector'
+
+[GetAngles]
+description = 'Returns the angles of the physics object.\r\n\r\n**Returns:** The angles of the physics object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Angle'
+
+[GetAngleVelocity]
+description = 'Gets the angular velocity of the object in degrees per second.\r\n\r\n**Returns:** The angular velocity\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Vector'
+
+[GetContents]
+description = 'Returns the contents flag of the <page>PhysObj</page>.\r\n\r\n**Returns:** The <page>Enums/CONTENTS</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetDamping]
+description = 'Returns the linear and angular damping of the physics object.\r\n\r\n**Returns:** The linear damping\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetEnergy]
+description = 'Returns the sum of the linear and rotational kinetic energies of the physics object.\r\n\r\n**Returns:** The kinetic energy\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetEntity]
+description = 'Returns the parent entity of the physics object.\r\n\r\n**Returns:** parent\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Entity'
+
+[GetFrictionSnapshot]
+description = 'Returns the friction snapshot of this physics object. This is useful for determining if an object touching ground for example.\r\n\r\n**Returns:** A table of tables containing the following data:\r\n* <page>PhysObj</page> Other - The other physics object we came in contact with\r\n* <page>number</page> EnergyAbsorbed -\r\n* <page>number</page> FrictionCoefficient -\r\n* <page>number</page> NormalForce -\r\n* <page>Vector</page> Normal - Direction of the friction event\r\n* <page>Vector</page> ContactPoint - Contact point of the friction event\r\n* <page>number</page> Material - Surface Property ID of our physics obj\r\n* <page>number</page> MaterialOther - Surface Property ID of the physics obj we came in contact with\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'table'
+
+[GetInertia]
+description = 'Returns the directional inertia of the physics object.\r\n\r\n**Returns:** directionalInertia\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Vector'
+
+[GetInvInertia]
+description = 'Returns 1 divided by the inertia.\r\n\r\n**Returns:** The inverted inertia\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetInvMass]
+description = 'Returns 1 divided by the physics object\'s mass.\r\n\r\n**Returns:** The inverted mass.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetMass]
+description = 'Returns the mass of the physics object.\r\n\r\n**Returns:** The mass in kilograms.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetMassCenter]
+description = 'Returns the center of mass of the physics object as a local vector.\r\n\r\n**Returns:** The center of mass of the physics object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Vector'
+
+[GetMaterial]
+description = 'Returns the physical material of the physics object.\r\n\r\n**Returns:** The physical material\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'string'
+
+[GetMesh]
+description = 'Returns the physics mesh of the object which is used for physobj-on-physobj collision.\r\n\r\n**Returns:** Table of <page>Structures/MeshVertex</page>s where each three vertices represent a triangle. Returns nil if the physics object is a sphere.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'table'
+
+[GetMeshConvexes]
+description = 'Returns all convex physics meshes of the object. See <page>Entity:PhysicsInitMultiConvex</page> for more information.\r\n\r\n**Returns:** Table of <page>Structures/MeshVertex</page>s where each <page>Structures/MeshVertex</page> is an independent convex mesh and each three vertices represent a triangle. Returns nil if the physics object is a sphere.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'table'
+
+[GetName]
+description = 'Returns the name of the physics object.\r\n\r\n**Returns:** The name of the physics object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'string'
+
+[GetPos]
+description = 'Returns the position of the physics object.\r\n\r\n**Returns:** The position\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Vector'
+
+[GetPositionMatrix]
+description = 'Returns the position and angle of the physics object as a 3x4 matrix (<page>VMatrix</page> is 4x4 so the fourth row goes unused). The first three columns store the angle as a [rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix), and the fourth column stores the position vector.\r\n\r\n**Returns:** The position and angle matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'VMatrix'
+
+[GetRotDamping]
+description = 'Returns the rotation damping of the physics object.\r\n\r\n**Returns:** The rotation damping\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetShadowAngles]
+description = 'Returns the angles of the <page>PhysObj</page> shadow. See <page>PhysObj:UpdateShadow</page>.\r\n\r\n**Returns:** The angles of the <page>PhysObj</page> shadow.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Angle'
+
+[GetShadowPos]
+description = 'Returns the position of the <page>PhysObj</page> shadow. See <page>PhysObj:UpdateShadow</page>.\r\n\r\n**Returns:** The position of the <page>PhysObj</page> shadow.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Vector'
+
+[GetSpeedDamping]
+description = 'Returns the speed damping of the physics object.\r\n\r\n**Returns:** speedDamping\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetStress]
+description = 'Returns the stress of the entity.\r\n\r\n**Returns:** exertedStress\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetSurfaceArea]
+description = 'Returns the surface area of the physics object in source-units². Or nil if the PhysObj is a generated sphere or box.\r\n\r\n**Returns:** The surface area or nil if the PhysObj is a generated sphere or box.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[GetVelocity]
+description = 'Returns the absolute directional velocity of the physobject.\r\n\r\n**Returns:** velocity\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'Vector'
+
+[GetVelocityAtPoint]
+description = 'Returns the world velocity of a point in world coordinates about the object. This is useful for objects rotating around their own axis/origin.\r\n\r\n**Returns:** Velocity at the given point\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'point'
+type = 'Vector'
+description = 'A point to test in world space coordinates'
+[[.returns]]
+type = 'Vector'
+
+[GetVolume]
+description = 'Returns the volume in source units³. Or nil if the PhysObj is a generated sphere or box.\r\n\r\n**Returns:** The volume or nil if the PhysObj is a generated sphere or box.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'number'
+
+[HasGameFlag]
+description = 'Returns whenever the specified flag(s) is/are set.\r\n\r\n**Returns:** If flag was set or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'flags'
+type = 'number'
+description = 'Bitflag, see <page>Enums/FVPHYSICS</page>.'
+[[.returns]]
+type = 'boolean'
+
+[IsAsleep]
+description = 'Returns whether the physics object is "sleeping".\r\n\r\nSee <page>PhysObj:Sleep</page> for more information.\r\n\r\n**Returns:** Whether the physics object is sleeping.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[IsCollisionEnabled]
+description = 'Returns whenever the entity is able to collide or not.\r\n\r\n**Returns:** isCollisionEnabled\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[IsDragEnabled]
+description = 'Returns whenever the entity is affected by drag.\r\n\r\n**Returns:** dragEnabled\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[IsGravityEnabled]
+description = 'Returns whenever the entity is affected by gravity.\r\n\r\n**Returns:** gravitated\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[IsMotionEnabled]
+description = 'Returns if the physics object can move itself (by velocity, acceleration)\r\n\r\n**Returns:** motionEnabled\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[IsMoveable]
+description = 'Returns whenever the entity is able to move.\r\n\r\n**Returns:** movable\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[IsPenetrating]
+description = 'Returns whenever the physics object is penetrating another physics object.\r\n\r\nThis is internally implemented as `PhysObj:HasGameFlag( FVPHYSICS_PENETRATING )` and thus is only updated for non-static physics objects.\r\n\r\n**Returns:** Whether the physics object is penetrating another object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[IsValid]
+description = 'Returns if the physics object is valid/not NULL.\r\n\r\n**Returns:** isValid\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+[[.returns]]
+type = 'boolean'
+
+[LocalToWorld]
+description = 'Mapping a vector in local frame of the physics object to world frame.\r\n\r\n<note>this function does translation and rotation, with translation done first.</note>\r\n\r\n**Returns:** The corresponding vector in world frame\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'LocalVec'
+type = 'Vector'
+description = 'A vector in the physics object\'s local frame'
+[[.returns]]
+type = 'Vector'
+
+[LocalToWorldVector]
+description = 'Rotate a vector from the local frame of the physics object to world frame.\r\n\r\n<note>This function only rotates the vector, without any translation operation.</note>\r\n\r\n**Returns:** The corresponding vector in world frame\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'LocalVec'
+type = 'Vector'
+description = 'A vector in the physics object\'s local frame'
+[[.returns]]
+type = 'Vector'
+
+[OutputDebugInfo]
+description = 'Prints debug info about the state of the physics object to the console.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+
+[RecheckCollisionFilter]
+description = 'Call this when the collision filter conditions change due to this object\'s state (e.g. changing solid type or collision group)\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+
+[RotateAroundAxis]
+description = 'A convinience function for <page>Angle:RotateAroundAxis</page>.\r\n\r\n**Returns:** The resulting angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'dir'
+type = 'Vector'
+description = 'Direction, around which we will rotate'
+``````````
+name = 'ang'
+type = 'number'
+description = 'Amount of rotation, in degrees'
+[[.returns]]
+type = 'Angle'
+
+[SetAngleDragCoefficient]
+description = 'Sets the amount of [drag](https://en.wikipedia.org/wiki/Drag_(physics)) to apply to a physics object when attempting to rotate.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'coefficient'
+type = 'number'
+description = '[Drag coefficient](https://en.wikipedia.org/wiki/Drag_coefficient). The bigger this value is, the slower the angles will change.'
+
+[SetAngles]
+description = 'Sets the angles of the physobject.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'angles'
+type = 'Angle'
+description = 'The new angles of the physobject.'
+
+[SetBuoyancyRatio]
+description = 'Sets the buoyancy ratio of the physics object. (How well it floats in water)\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'buoyancy'
+type = 'number'
+description = 'Buoyancy ratio, where 0 is not buoyant at all (like a rock), and 1 is very buoyant (like wood). You can set values larger than 1 for greater effect.'
+
+[SetContents]
+description = 'Sets the contents flag of the <page>PhysObj</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'contents'
+type = 'number'
+description = 'The <page>Enums/CONTENTS</page>.'
+
+[SetDamping]
+description = 'Sets the linear and angular damping of the physics object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'linearDamping'
+type = 'number'
+description = 'Linear damping.'
+``````````
+name = 'angularDamping'
+type = 'number'
+description = 'Angular damping.'
+
+[SetDragCoefficient]
+description = 'Modifies how much drag (air resistance) affects the object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'drag'
+type = 'number'
+description = 'The drag coefficient\r\nIt can be positive or negative.'
+
+[SetInertia]
+description = 'Sets the directional inertia.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'directionalInertia'
+type = 'Vector'
+description = 'The directional inertia of the object.<br>\r\nA value of Vector(0,0,0) makes the physobject go invalid.'
+
+[SetMass]
+description = 'Sets the mass of the physics object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'mass'
+type = 'number'
+description = 'The mass in kilograms.'
+
+[SetMaterial]
+description = 'Sets the material of the physobject.\r\n\r\n<note>Impact sounds will only change if this is called on client</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'materialName'
+type = 'string'
+description = 'The name of the phys material to use. From this list: [Valve Developer](https://developer.valvesoftware.com/wiki/Material_surface_properties)'
+
+[SetPos]
+description = 'Sets the position of the physobject.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The new position of the physobject.'
+``````````
+name = 'teleport'
+type = 'boolean'
+description = ''
+
+[SetVelocity]
+description = 'Sets the velocity of the physics object for the next iteration.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'velocity'
+type = 'Vector'
+description = 'The new velocity of the physics object.'
+
+[SetVelocityInstantaneous]
+description = 'Sets the velocity of the physics object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'velocity'
+type = 'Vector'
+description = 'The new velocity of the physics object.'
+
+[Sleep]
+description = 'Makes the physics object "sleep".\r\n\r\nThe physics object will no longer be moving unless it is "woken up" by either a collision with another moving object, or by <page>PhysObj:Wake</page>. This is an optimization feature of the physics engine.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+
+[UpdateShadow]
+description = 'Unlike <page>PhysObj:SetPos</page> and <page>PhysObj:SetAngles</page>, this allows the movement of a physobj while leaving physics interactions intact.<br>\r\nThis is used internally by the motion controller of the Gravity Gun , the +use pickup and the Physics Gun, and entities such as the crane.\r\n\r\n<note>This is the ideal function to move a physics shadow created with <page>Entity:PhysicsInitShadow</page> or <page>Entity:MakePhysicsObjectAShadow</page>.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'targetPosition'
+type = 'Vector'
+description = 'The position we should move to.'
+``````````
+name = 'targetAngles'
+type = 'Angle'
+description = 'The angle we should rotate towards.'
+``````````
+name = 'frameTime'
+type = 'number'
+description = 'The frame time to use for this movement, can be generally filled with <page>Global.FrameTime</page> or <page>ENTITY:PhysicsSimulate</page> with the deltaTime.\r\n\r\nCan be set to 0 when you need to update the physics object just once.'
+
+[Wake]
+description = 'Wakes the physics object.\r\n\r\nSee <page>PhysObj:Sleep</page> for more information.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+
+[WorldToLocal]
+description = 'Converts a vector to a relative to the physics object coordinate system.\r\n\r\n**Returns:** The vector local to <page>PhysObj:GetPos</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'vec'
+type = 'Vector'
+description = 'The vector in world space coordinates.'
+[[.returns]]
+type = 'Vector'
+
+[WorldToLocalVector]
+description = 'Rotate a vector from the world frame to the local frame of the physics object.\r\n\r\n<note>This function only rotates the vector, without any translation operation.</note>\r\n\r\n**Returns:** The corresponding vector relative to the PhysObj\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysObj'
+``````````
+name = 'WorldVec'
+type = 'Vector'
+description = 'A vector in the world frame'
+[[.returns]]
+type = 'Vector'
+

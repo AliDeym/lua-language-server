@@ -1,0 +1,127 @@
+[numpad]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'numpad'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'numpad'
+	},
+	2 = {
+		type = 'library',
+		name = 'numpad'
+	}
+}
+
+[Activate]
+description = 'Activates numpad key owned by the player\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player whose numpad should be simulated'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key to press, see <page>Enums/KEY</page>'
+``````````
+name = 'isButton'
+type = 'boolean'
+description = 'Should this keypress pretend to be a from a gmod_button? (causes <page>numpad.FromButton</page> to return true)'
+
+[Deactivate]
+description = 'Deactivates numpad key owned by the player\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player whose numpad should be simulated'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key to press, corresponding to <page>Enums/KEY</page>'
+``````````
+name = 'isButton'
+type = 'boolean'
+description = 'Should this keypress pretend to be a from a gmod_button? (causes <page>numpad.FromButton</page> to return true)'
+
+[FromButton]
+description = 'Returns true during a function added with <page>numpad.Register</page> when the third argument to <page>numpad.Activate</page> is true.\r\n\r\nThis is caused when a numpad function is triggered by a button SENT being used.\r\n\r\n**Returns:** wasButton\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'boolean'
+
+[OnDown]
+description = 'Calls a function registered with <page>numpad.Register</page> when a player presses specified key.\r\n\r\nSee for key released action: <page>numpad.OnUp</page>\r\n\r\n**Returns:** The impulse ID\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player whose numpad should be watched'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key, corresponding to <page>Enums/KEY</page>'
+``````````
+name = 'name'
+type = 'string'
+description = 'The name of the function to run, corresponding with the one used in <page>numpad.Register</page>'
+``````````
+name = '...'
+type = 'vararg'
+description = 'Arguments to pass to the function passed to <page>numpad.Register</page>.'
+[[.returns]]
+type = 'number'
+
+[OnUp]
+description = 'Calls a function registered with <page>numpad.Register</page> when a player releases specified key.\r\n\r\nSee for key pressed action: <page>numpad.OnDown</page>\r\n\r\n**Returns:** The impulse ID\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player whose numpad should be watched'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key, corresponding to <page>Enums/KEY</page>'
+``````````
+name = 'name'
+type = 'string'
+description = 'The name of the function to run, corresponding with the one used in <page>numpad.Register</page>'
+``````````
+name = '...'
+type = 'vararg'
+description = 'Arguments to pass to the function passed to <page>numpad.Register</page>.'
+[[.returns]]
+type = 'number'
+
+[Register]
+description = 'Registers a numpad library action for use with <page>numpad.OnDown</page> and <page>numpad.OnUp</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'id'
+type = 'string'
+description = 'The unique id of your action.'
+``````````
+name = 'func'
+type = 'function'
+description = 'The function to be executed.\r\n\r\nArguments are:\r\n\r\n<page>Player</page> ply - The player who pressed the button\r\n\r\n<page>vararg</page> ... - The 4th and all subsequent arguments passed from <page>numpad.OnDown</page> and/or <page>numpad.OnUp</page>\r\n\r\nReturning **false** in this function will remove the listener which triggered this function (example: return false if one of your varargs is an entity which is no longer valid)'
+
+[Remove]
+description = 'Removes a function added by either <page>numpad.OnUp</page> or <page>numpad.OnDown</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ID'
+type = 'number'
+description = 'The impulse ID returned by <page>numpad.OnUp</page> or <page>numpad.OnDown</page>'
+
+[Toggle]
+description = 'Either runs <page>numpad.Activate</page> or <page>numpad.Deactivate</page> depending on the key\'s current state\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player whose numpad should be simulated'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key to press, corresponding to <page>Enums/KEY</page>'
+

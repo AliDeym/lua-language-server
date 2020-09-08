@@ -1,0 +1,40 @@
+[menubar]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'menubar'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'menubar'
+	},
+	2 = {
+		type = 'library',
+		name = 'menubar'
+	}
+}
+
+[Init]
+description = 'Creates the menu bar ( The bar at the top of the screen when holding C or Q in sandbox ) and docks it to the top of the screen. It will not appear.\r\n\r\n\r\nCalling this multiple times will **NOT** remove previous panel.\r\n\r\n**Scope:** Client'
+
+[IsParent]
+description = 'Checks if the supplied panel is parent to the menubar\r\n\r\n**Returns:** Is parent or not\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'pnl'
+type = 'Panel'
+description = 'The panel to check'
+[[.returns]]
+type = 'boolean'
+
+[ParentTo]
+description = 'Parents the menubar to the panel and displays the menubar.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'pnl'
+type = 'Panel'
+description = 'The panel to parent to'
+

@@ -1,0 +1,135 @@
+[effects]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'effects'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'effects'
+	},
+	2 = {
+		type = 'library',
+		name = 'effects'
+	}
+}
+
+[BeamRingPoint]
+description = 'Creates a "beam ring point" effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The origin position of the effect.'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'How long the effect will be drawing for, in seconds.'
+``````````
+name = 'startRad'
+type = 'number'
+description = 'Initial radius of the effect.'
+``````````
+name = 'endRad'
+type = 'number'
+description = 'Final radius of the effect, at the end of the effect\'s lifetime.'
+``````````
+name = 'width'
+type = 'number'
+description = 'How thick the beam should be.'
+``````````
+name = 'amplitude'
+type = 'number'
+description = 'How noisy the beam should be.'
+``````````
+name = 'color'
+type = 'table'
+description = 'Beam\'s <page>Global.Color</page>.'
+``````````
+name = 'extra'
+type = 'table'
+description = 'Extra info, all optional. A table with the following keys: (any combination)\r\n* <page>number</page> speed - ?\r\n* <page>number</page> spread - ?\r\n* <page>number</page> delay - Delay in seconds after which the effect should appear.\r\n* <page>number</page> flags- Beam flags.\r\n* <page>number</page> framerate - texture framerate.\r\n* <page>string</page> material - The material to use instead of the default one.'
+
+[Bubbles]
+description = 'Creates a bunch of bubbles inside a defined box.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'mins'
+type = 'Vector'
+description = 'The lowest extents of the box.'
+``````````
+name = 'maxs'
+type = 'Vector'
+description = 'The highest extents of the box.'
+``````````
+name = 'count'
+type = 'number'
+description = 'How many bubbles to spawn. There\'s a hard limit of 500 tempents at any time.'
+``````````
+name = 'height'
+type = 'number'
+description = 'How high the bubbles can fly up before disappearing.'
+``````````
+name = 'speed'
+type = 'number'
+description = 'How quickly the bubbles move.'
+``````````
+name = 'delay'
+type = 'number'
+description = 'Delay in seconds after the function call and before the effect actually spawns.'
+
+[BubbleTrail]
+description = 'Creates a bubble trail effect, the very same you get when shooting underwater.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'startPos'
+type = 'Vector'
+description = 'The start position of the effect.'
+``````````
+name = 'endPos'
+type = 'Vector'
+description = 'The end position of the effects.'
+``````````
+name = 'count'
+type = 'number'
+description = 'How many bubbles to spawn. There\'s a hard limit of 500 tempents at any time.'
+``````````
+name = 'height'
+type = 'number'
+description = 'How high the bubbles can fly up before disappearing.'
+``````````
+name = 'speed'
+type = 'number'
+description = 'How quickly the bubbles move.'
+``````````
+name = 'delay'
+type = 'number'
+description = 'Delay in seconds after the function call and before the effect actually spawns.'
+
+[Create]
+description = '<internal>You are looking for <page>util.Effect</page>.</internal>Returns the table of the effect specified.\r\n\r\n**Returns:** Effect table.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Effect name.'
+[[.returns]]
+type = 'table'
+
+[GetList]
+description = '<internal></internal>Returns a list of all Lua-defined effects.\r\n\r\n**Returns:** The effects table.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[Register]
+description = '<internal></internal>Registers a new effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'effect_table'
+type = 'table'
+description = 'Effect table.'
+``````````
+name = 'name'
+type = 'string'
+description = 'Effect name.'
+

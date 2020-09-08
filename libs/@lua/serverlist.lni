@@ -1,0 +1,42 @@
+[serverlist]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'serverlist'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'serverlist'
+	},
+	2 = {
+		type = 'library',
+		name = 'serverlist'
+	}
+}
+
+[AddCurrentServerToFavorites]
+description = '<internal></internal>Adds current server the player is on to their favorites.\r\n\r\n**Scope:** Client'
+
+[PlayerList]
+description = 'Queries a server for its player list.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'ip'
+type = 'string'
+description = 'The IP address of the server, including the port.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'The function to be called if and when the request finishes. Function has one argument, a table containing tables with player info.\r\n\r\nEach table with player info has next fields:\r\n\r\n\r\n<page>number</page> time - The amount of time the player is playing on the server, in seconds\r\n\r\n\r\n<page>string</page> name - The player name\r\n\r\n\r\n<page>number</page> score - The players score'
+
+[Query]
+description = 'Queries the master server for server list.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'data'
+type = 'table'
+description = 'The information about what kind of servers we want. See <page>Structures/ServerQueryData</page>.'
+

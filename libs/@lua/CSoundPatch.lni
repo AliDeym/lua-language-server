@@ -1,0 +1,121 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CSoundPatch'
+	},
+}
+
+[ChangePitch]
+description = 'Adjust the pitch, alias the speed at which the sound is being played.\r\n\r\nThis invokes the <page>GM:EntityEmitSound</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+``````````
+name = 'pitch'
+type = 'number'
+description = 'The pitch can range from 0-255.'
+``````````
+name = 'deltaTime'
+type = 'number'
+description = 'The time to fade from previous to the new pitch.'
+
+[ChangeVolume]
+description = 'Adjusts the volume of the sound played.<br>\r\nAppears to only work while the sound is being played.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+``````````
+name = 'volume'
+type = 'number'
+description = 'The volume ranges from 0 to 1.'
+``````````
+name = 'deltaTime'
+type = 'number'
+description = 'Time to fade the volume from previous to new value from.'
+
+[FadeOut]
+description = 'Fades out the volume of the sound from the current volume to 0 in the given amount of seconds.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+``````````
+name = 'seconds'
+type = 'number'
+description = 'Fade time.'
+
+[GetDSP]
+description = 'Returns the DSP ( Digital Signal Processor ) effect for the sound.\r\n\r\n**Returns:** The DSP effects of the sound\r\nList of DSP\'s are Pick from the [here](https://developer.valvesoftware.com/wiki/Dsp_presets).\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+[[.returns]]
+type = 'number'
+
+[GetPitch]
+description = 'Returns the current pitch.\r\n\r\n**Returns:** The current pitch, can range from 0-255.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+[[.returns]]
+type = 'number'
+
+[GetSoundLevel]
+description = 'Returns the current sound level.\r\n\r\n**Returns:** The current sound level, see <page>Enums/SNDLVL</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+[[.returns]]
+type = 'number'
+
+[GetVolume]
+description = 'Returns the current volume.\r\n\r\n**Returns:** The current volume, ranging from 0 to 1.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+[[.returns]]
+type = 'number'
+
+[IsPlaying]
+description = 'Returns whenever the sound is being played.\r\n\r\n**Returns:** Is playing or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+[[.returns]]
+type = 'boolean'
+
+[Play]
+description = 'Starts to play the sound. This will reset the sound\'s volume and pitch to their default values. See <page>CSoundPatch:PlayEx</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+
+[PlayEx]
+description = 'Same as <page>CSoundPatch:Play</page> but with 2 extra arguments allowing to set volume and pitch directly.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+``````````
+name = 'volume'
+type = 'number'
+description = 'The volume ranges from 0 to 1.'
+``````````
+name = 'pitch'
+type = 'number'
+description = 'The pitch can range from 0-255.'
+
+[SetDSP]
+description = 'Sets the DSP (Digital Signal Processor) effect for the sound. Similar to <page>Player:SetDSP</page> but for individual sounds.\r\n\r\n<bug issue="4086">This will only apply if the sound is not playing.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+``````````
+name = 'dsp'
+type = 'number'
+description = 'The DSP effect to set.\r\nPick from the [list of DSP\'s](https://developer.valvesoftware.com/wiki/Dsp_presets)'
+
+[SetSoundLevel]
+description = 'Sets the sound level in decibel.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+``````````
+name = 'level'
+type = 'number'
+description = 'The sound level in decibel. See <page>Enums/SNDLVL</page>'
+
+[Stop]
+description = 'Stops the sound from being played.\r\n\r\n<bug issue="3260">This will not work if the entity attached to this sound patch (specified by <page>Global.CreateSound</page>) is invalid.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CSoundPatch'
+

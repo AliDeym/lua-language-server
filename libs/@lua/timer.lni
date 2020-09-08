@@ -1,0 +1,161 @@
+[timer]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'timer'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'timer'
+	},
+	2 = {
+		type = 'library',
+		name = 'timer'
+	}
+}
+
+[Adjust]
+description = 'Adjusts the timer if the timer with the given identifier exists.\r\n\r\n**Returns:** true if succeeded\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer to adjust.'
+``````````
+name = 'delay'
+type = 'number'
+description = 'The delay interval in seconds.'
+``````````
+name = 'repetitions'
+type = 'number'
+description = 'Repetitions. Use 0 for infinite.'
+``````````
+name = 'func'
+type = 'function'
+description = 'The new function.'
+[[.returns]]
+type = 'boolean'
+
+[Check]
+description = '<deprecated></deprecated> This function does nothing.\r\n\r\n**Scope:** Shared'
+
+[Create]
+description = 'Creates a new timer that will repeat its function given amount of times.\r\nThis function also requires the timer to be named, which allows you to control it after it was created via the <page>timer</page>.\r\n\r\nFor a simple one-time timer with no identifiers, see <page>timer.Simple</page>.\r\n\r\n<warning>Timers use <page>Global.CurTime</page> internally. Due to this, they won\'t advance while the client is timing out from the server or on an empty dedicated server due to hibernation. (unless sv_hibernate_think is set to 1)</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'Identifier of the timer to create. Must be unique. If a timer already exists with the same identifier, that timer will be updated to the new settings and reset.'
+``````````
+name = 'delay'
+type = 'number'
+description = 'The delay interval in seconds. If the delay is too small, the timer will fire on the next frame/tick.'
+``````````
+name = 'repetitions'
+type = 'number'
+description = 'The number of times to repeat the timer. Enter 0 for infinite repetitions.'
+``````````
+name = 'func'
+type = 'function'
+description = 'Function called when timer has finished the countdown.'
+
+[Destroy]
+description = '<deprecated>You should be using <page>timer.Remove</page> instead.</deprecated> Stops and destroys the given timer. Alias of <page>timer.Remove</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'Identifier of the timer to destroy.'
+
+[Exists]
+description = 'Returns whenever the given timer exists or not.\r\n\r\n**Returns:** Returns true if the timer exists, false if it doesn\'t\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'boolean'
+
+[Pause]
+description = 'Pauses the given timer.\r\n\r\n**Returns:** false if the timer didn\'t exist or was already paused, true otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'boolean'
+
+[Remove]
+description = 'Stops and removes a timer created by <page>timer.Create</page>.\r\n<warning>The timers are removed in the next frame! Keep this in mind when storing identifiers in variables.</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'Identifier of the timer to remove.'
+
+[RepsLeft]
+description = 'Returns amount of repetitions/executions left before the timer destroys itself.\r\n\r\n**Returns:** The amount of executions left.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'number'
+
+[Simple]
+description = 'Creates a simple timer that runs the given function after a specified delay.\r\n\r\nFor a more advanced version that you can control after creation, see <page>timer.Create</page>.\r\n\r\n<warning>Timers use <page>Global.CurTime</page> internally. Due to this, they won\'t advance while the client is timing out from the server or on an empty dedicated server due to hibernation. (unless sv_hibernate_think is set to 1)</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'delay'
+type = 'number'
+description = 'How long until the function should be ran (in seconds). Use 0 to have the function run in the next <page>GM:Think</page>.'
+``````````
+name = 'func'
+type = 'function'
+description = 'The function to run after the specified delay.'
+
+[Start]
+description = 'Restarts the given timer.\r\n\r\n<note>Timers use <page>Global.CurTime</page> for timing.</note>\r\n<warning>Timers won\'t advance while the client is timing out from the server.</warning>\r\n\r\n**Returns:** true if the timer exists, false if it doesn\'t.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'boolean'
+
+[Stop]
+description = 'Stops the given timer and rewinds it.\r\n\r\n**Returns:** false if the timer didn\'t exist or was already stopped, true otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'boolean'
+
+[TimeLeft]
+description = 'Returns amount of time left (in seconds) before the timer executes its function.\r\n\r\n<note>If the timer is paused, the amount will be negative.</note>\r\n\r\n**Returns:** The amount of time left (in seconds).\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'number'
+
+[Toggle]
+description = 'Runs either <page>timer.Pause</page> or <page>timer.UnPause</page> based on the timer\'s current status.\r\n\r\n**Returns:** status of the timer.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'boolean'
+
+[UnPause]
+description = 'Unpauses the timer.\r\n\r\n**Returns:** false if the timer didn\'t exist or was already running, true otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'any'
+description = 'Identifier of the timer.'
+[[.returns]]
+type = 'boolean'
+

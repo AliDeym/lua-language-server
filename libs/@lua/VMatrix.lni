@@ -1,0 +1,323 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'VMatrix'
+	},
+}
+
+[GetAngles]
+description = 'Returns the absolute rotation of the matrix.\r\n\r\n**Returns:** Absolute rotation of the matrix\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'Angle'
+
+[GetField]
+description = 'Returns a specific field in the matrix.\r\n\r\n**Returns:** The value of the specified field\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'row'
+type = 'number'
+description = 'Row of the field whose value is to be retrieved, from 1 to 4'
+``````````
+name = 'column'
+type = 'number'
+description = 'Column of the field whose value is to be retrieved, from 1 to 4'
+[[.returns]]
+type = 'number'
+
+[GetForward]
+description = 'Gets the forward direction of the matrix.\r\n\r\nie. The first column of the matrix, excluding the w coordinate.\r\n\r\n**Returns:** The forward direction of the matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'Vector'
+
+[GetInverse]
+description = 'Returns an inverted matrix without modifying the original matrix.\r\n\r\nInverting the matrix will fail if its [determinant](https://en.wikipedia.org/wiki/Determinant) is 0 or close to 0. (ie. its "scale" in any direction is 0.)\r\n\r\nSee also <page>VMatrix:GetInverseTR</page>.\r\n\r\n**Returns:** The inverted matrix if possible, nil otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'VMatrix'
+
+[GetInverseTR]
+description = 'Returns an inverted matrix without modifying the original matrix. This function will not fail, but only works correctly on matrices that contain only translation and/or rotation.\r\n\r\nUsing this function on a matrix with modified scale may return an incorrect inverted matrix.\r\n\r\nTo get the inverse of a matrix that contains other modifications, see <page>VMatrix:GetInverse</page>.\r\n\r\n**Returns:** The inverted matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'VMatrix'
+
+[GetRight]
+description = 'Gets the right direction of the matrix.\r\n\r\nie. The second column of the matrix, negated, excluding the w coordinate.\r\n\r\n**Returns:** The right direction of the matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'Vector'
+
+[GetScale]
+description = 'Returns the absolute scale of the matrix.\r\n\r\n**Returns:** Absolute scale of the matrix\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'Vector'
+
+[GetTranslation]
+description = 'Returns the absolute translation of the matrix.\r\n\r\n**Returns:** Absolute translation of the matrix\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'Vector'
+
+[GetUp]
+description = 'Gets the up direction of the matrix.\r\n\r\nie. The third column of the matrix, excluding the w coordinate.\r\n\r\n**Returns:** The up direction of the matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'Vector'
+
+[Identity]
+description = 'Initializes the matrix as Identity matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+
+[Invert]
+description = 'Inverts the matrix.\r\n\r\nInverting the matrix will fail if its [determinant](https://en.wikipedia.org/wiki/Determinant) is 0 or close to 0. (ie. its "scale" in any direction is 0.)\r\n\r\nIf the matrix cannot be inverted, it does not get modified.\r\n\r\nSee also <page>VMatrix:InvertTR</page>.\r\n\r\n**Returns:** Whether the matrix was inverted or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'boolean'
+
+[InvertTR]
+description = 'Inverts the matrix. This function will not fail, but only works correctly on matrices that contain only translation and/or rotation.\r\n\r\nUsing this function on a matrix with modified scale may return an incorrect inverted matrix.\r\n\r\nTo invert a matrix that contains other modifications, see <page>VMatrix:Invert</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+
+[IsIdentity]
+description = 'Returns whether the matrix is equal to Identity matrix or not.\r\n\r\n**Returns:** Is the matrix an Identity matrix or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'boolean'
+
+[IsRotationMatrix]
+description = 'Returns whether the matrix is a rotation matrix or not.\r\n\r\nTechnically it checks if the forward, right and up vectors are orthogonal and normalized.\r\n\r\n**Returns:** Is the matrix a rotation matrix or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'boolean'
+
+[IsZero]
+description = 'Checks whenever all fields of the matrix are 0, aka if this is a [null matrix](https://en.wikipedia.org/wiki/Zero_matrix).\r\n\r\n**Returns:** If the matrix is a null matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'boolean'
+
+[Rotate]
+description = 'Rotates the matrix by the given angle.\r\n\r\nPostmultiplies the matrix by a rotation matrix (A = AR).\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'rotation'
+type = 'Angle'
+description = 'Rotation.'
+
+[Scale]
+description = 'Scales the matrix by the given vector.\r\n\r\nPostmultiplies the matrix by a scaling matrix (A = AS).\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'scale'
+type = 'Vector'
+description = 'Vector to scale with matrix with.'
+
+[ScaleTranslation]
+description = 'Scales the absolute translation with the given value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'scale'
+type = 'number'
+description = 'Value to scale the translation with.'
+
+[Set]
+description = 'Copies values from the given matrix object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'src'
+type = 'VMatrix'
+description = 'The matrix to copy values from.'
+
+[SetAngles]
+description = 'Sets the absolute rotation of the matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'angle'
+type = 'Angle'
+description = 'New angles.'
+
+[SetField]
+description = 'Sets a specific field in the matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'row'
+type = 'number'
+description = 'Row of the field to be set, from 1 to 4'
+``````````
+name = 'column'
+type = 'number'
+description = 'Column of the field to be set, from 1 to 4'
+``````````
+name = 'value'
+type = 'number'
+description = 'The value to set in that field'
+
+[SetForward]
+description = 'Sets the forward direction of the matrix.\r\n\r\nie. The first column of the matrix, excluding the w coordinate.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'forward'
+type = 'Vector'
+description = 'The forward direction of the matrix.'
+
+[SetRight]
+description = 'Sets the right direction of the matrix.\r\n\r\nie. The second column of the matrix, negated, excluding the w coordinate.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'forward'
+type = 'Vector'
+description = 'The right direction of the matrix.'
+
+[SetScale]
+description = 'Modifies the scale of the matrix while preserving the rotation and translation.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'scale'
+type = 'Vector'
+description = 'The scale to set.'
+
+[SetTranslation]
+description = 'Sets the absolute translation of the matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'translation'
+type = 'Vector'
+description = 'New translation.'
+
+[SetUnpacked]
+description = 'Sets each component of the matrix.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'e11'
+type = 'number'
+description = ''
+``````````
+name = 'e12'
+type = 'number'
+description = ''
+``````````
+name = 'e13'
+type = 'number'
+description = ''
+``````````
+name = 'e14'
+type = 'number'
+description = ''
+``````````
+name = 'e21'
+type = 'number'
+description = ''
+``````````
+name = 'e22'
+type = 'number'
+description = ''
+``````````
+name = 'e23'
+type = 'number'
+description = ''
+``````````
+name = 'e24'
+type = 'number'
+description = ''
+``````````
+name = 'e31'
+type = 'number'
+description = ''
+``````````
+name = 'e32'
+type = 'number'
+description = ''
+``````````
+name = 'e33'
+type = 'number'
+description = ''
+``````````
+name = 'e34'
+type = 'number'
+description = ''
+``````````
+name = 'e41'
+type = 'number'
+description = ''
+``````````
+name = 'e42'
+type = 'number'
+description = ''
+``````````
+name = 'e43'
+type = 'number'
+description = ''
+``````````
+name = 'e44'
+type = 'number'
+description = ''
+
+[SetUp]
+description = 'Sets the up direction of the matrix.\r\n\r\nie. The third column of the matrix, excluding the w coordinate.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'forward'
+type = 'Vector'
+description = 'The up direction of the matrix.'
+
+[ToTable]
+description = 'Converts the matrix to a 4x4 table. See <page>Global.Matrix</page> function.\r\n\r\n**Returns:** The 4x4 table.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'table'
+
+[Translate]
+description = 'Translates the matrix by the given vector aka. adds the vector to the translation.\r\n\r\nPostmultiplies the matrix by a translation matrix (A = AT).\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+``````````
+name = 'translation'
+type = 'Vector'
+description = 'Vector to translate the matrix by.'
+
+[Unpack]
+description = 'Returns each component of the matrix, expanding rows before columns.\r\n\r\n**Returns:** <page>VMatrix:GetField</page>(1, 1)\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+[[.returns]]
+type = 'number'
+
+[Zero]
+description = 'Sets all components of the matrix to 0, also known as a [null matrix](https://en.wikipedia.org/wiki/Zero_matrix).\r\n\r\nThis function is more efficient than setting each element manually.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'VMatrix'
+

@@ -1,0 +1,121 @@
+[sound]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'sound'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'sound'
+	},
+	2 = {
+		type = 'library',
+		name = 'sound'
+	}
+}
+
+[Add]
+description = 'Creates a sound script. It can also override sounds, which seems to only work when set on the server.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'soundData'
+type = 'table'
+description = 'The sounds properties. See <page>Structures/SoundData</page>'
+
+[AddSoundOverrides]
+description = 'Overrides sounds defined inside of a txt file; typically used for adding map-specific sounds.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'filepath'
+type = 'string'
+description = 'Path to the script file to load.'
+
+[Generate]
+description = 'Creates a sound from a function.\r\n\r\n<bug issue="3360">This function cannot generate sounds that have a duration of less than 1 second.</bug>\r\n<bug issue="4082">Sounds persist between disconnects.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'indentifier'
+type = 'string'
+description = 'An unique identified for the sound.\r\n\r\n<warning>You cannot override already existing ones.</warning>'
+``````````
+name = 'samplerate'
+type = 'number'
+description = 'The sample rate of the sound. Must be 11025, 22050 or 44100.'
+``````````
+name = 'length'
+type = 'number'
+description = 'The length in seconds of the sound to generate.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'A function which will be called to generate every sample on the sound. This function gets the current sample number passed as the first argument. The return value must be between -1.0 and 1.0. Other values will wrap back to the -1 to 1 range and basically clip. There are 65535 possible quantifiable values between -1 and 1.'
+
+[GetProperties]
+description = 'Returns properties of the soundscript.\r\n\r\n**Returns:** The properties of the soundscript. See <page>Structures/SoundData</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the sound script'
+[[.returns]]
+type = 'table'
+
+[GetTable]
+description = 'Returns a list of all registered sound scripts.\r\n\r\n**Returns:** The list/array of all registered sound scripts ( No other information is provided )\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[Play]
+description = 'Plays a sound from the specified position in the world.\r\nIf you want to play a sound without a position, such as a UI sound, use <page>surface.PlaySound</page> instead.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'Name'
+type = 'string'
+description = 'A string path to the sound.'
+``````````
+name = 'Pos'
+type = 'Vector'
+description = 'A vector describing where the sound should play.'
+``````````
+name = 'Level'
+type = 'number'
+description = 'Sound level in decibels. 75 is normal. Ranges from 20 to 180, where 180 is super loud. This affects how far away the sound will be heard.'
+``````````
+name = 'Pitch'
+type = 'number'
+description = 'An integer describing the sound pitch. Range is from 0 to 255. 100 is normal pitch.'
+``````````
+name = 'Volume'
+type = 'number'
+description = 'A float ranging from 0-1 describing the output volume of the sound.'
+
+[PlayFile]
+description = 'Plays a file from GMod directory. You can find a list of all error codes [here](http://www.un4seen.com/doc/#bass/BASS_ErrorGetCode.html)\r\n\r\nFor external file/stream playback, see <page>sound.PlayURL</page>.\r\n\r\n<bug issue="1752">This fails for looping .wav files in 3D mode.</bug>\r\n\r\n<bug issue="2304">This fails with unicode file names.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'path'
+type = 'string'
+description = 'The path to the file to play.\r\n\r\nUnlike other sound functions and structures, the path is relative to `garrysmod/` instead of `garrysmod/sound/`'
+``````````
+name = 'flags'
+type = 'string'
+description = 'Flags for the sound. Can be one or more of following, separated by a space (" "):\r\n* 3d - Makes the sound 3D, so you can set its position\r\n* mono - Forces the sound to have only one channel\r\n* noplay - Forces the sound not to play as soon as this function is called\r\n* noblock - Disables streaming in blocks. It is more resource-intensive, but it is required for <page>IGModAudioChannel:SetTime</page>.\r\n\r\n\r\n\r\n\r\nIf you don\'t want to use any of the above, you can just leave it as "".'
+``````````
+name = 'callback'
+type = 'function'
+description = 'Callback function that is called as soon as the the stream is loaded. It has next arguments:\r\n* <page>IGModAudioChannel</page> soundchannel - The sound channel. Will be nil if an error occured.\r\n* <page>number</page> errorID - ID of an error if an error has occured. Will be nil, otherwise.\r\n* <page>string</page> errorName - Name of an error if an error has occured. Will be nil, otherwise.'
+
+[PlayURL]
+description = 'Allows you to play external sound files, as well as online radio streams.\r\nYou can find a list of all error codes [here](http://www.un4seen.com/doc/#bass/BASS_ErrorGetCode.html)\r\n\r\nFor offline file playback, see <page>sound.PlayFile</page>.\r\n\r\n<bug issue="2296">Due to a bug with [BASS](http://www.un4seen.com/), AAC codec streams cannot be played in 3D mode.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'url'
+type = 'string'
+description = 'The URL of the sound to play'
+``````````
+name = 'flags'
+type = 'string'
+description = 'Flags for the sound. Can be one or more of following, separated by a space (" "):\r\n* 3d - Makes the sound 3D, so you can set its position\r\n* mono - Forces the sound to have only one channel\r\n* noplay - Forces the sound not to play as soon as this function is called\r\n* noblock - Disables streaming in blocks. It is more resource-intensive, but it is required for <page>IGModAudioChannel:SetTime</page>.\r\n\r\n\r\n\r\n\r\nIf you don\'t want to use any of the above, you can just leave it as "".'
+``````````
+name = 'callback'
+type = 'function'
+description = 'Callback function that is called as soon as the the stream is loaded. It has next arguments:\r\n\r\n\r\n<page>IGModAudioChannel</page> soundchannel - The sound channel\r\n\r\n\r\n<page>number</page> errorID - ID of an error, if an error has occured\r\n\r\n\r\n<page>string</page> errorName - Name of an error, if an error has occured'
+

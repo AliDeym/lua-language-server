@@ -120,6 +120,10 @@ return function (lsp, params)
                 textEdit.range = posToRange(lines, textEdit.start, textEdit.finish)
                 textEdit.start = nil
                 textEdit.finish = nil
+                textEdit.insert = {
+                    position = textEdit.range,
+                    newText = "DOGGGG"
+                }
             end
         end
     end

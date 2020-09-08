@@ -22,6 +22,7 @@ return function (self, lua, mode, version)
     Errs = {}
     State= {
         Break = 0,
+        Continue = 0,
         Label = {{}},
         Dots = {true},
         Version = version,

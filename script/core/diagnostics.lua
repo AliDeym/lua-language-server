@@ -180,7 +180,7 @@ function mt:searchSpaces(callback)
             if isInString(vm, start, finish) then
                 goto NEXT_LINE
             end
-            callback(start, finish, lang.script.DIAG_LINE_ONLY_SPACE)
+            --callback(start, finish, lang.script.DIAG_LINE_ONLY_SPACE)
             goto NEXT_LINE
         end
 
@@ -690,9 +690,10 @@ function mt:checkEmmyType(source, callback)
                 return class
             end
         end)
-        if not class then
+        -- Gmod update, no need to warn users for classes that are not emmy defined.
+        --[[if not class then
             callback(tpsource.start, tpsource.finish, lang.script.DIAG_UNDEFINED_CLASS)
-        end
+        end]]
     end
 end
 

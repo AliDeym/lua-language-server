@@ -1,0 +1,152 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Angle'
+	},
+}
+
+[Add]
+description = 'Adds the values of the argument angle to the orignal angle.\r\n\r\nThis functions the same as angle1 + angle2 without creating a new angle object, skipping object construction and garbage collection.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'angle'
+type = 'Angle'
+description = 'The angle to add.'
+
+[Div]
+description = 'Divides all values of the original angle by a scalar. This functions the same as angle1 / num without creating a new angle object, skipping object construction and garbage collection.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'scalar'
+type = 'number'
+description = 'The number to divide by.'
+
+[Forward]
+description = 'Returns a normal vector facing in the direction that the angle points.\r\n\r\n**Returns:** The forward direction of the angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+[[.returns]]
+type = 'Vector'
+
+[IsZero]
+description = 'Returns whether the pitch, yaw and roll are 0 or not.\r\n\r\n**Returns:** Whether the pitch, yaw and roll are 0 or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+[[.returns]]
+type = 'boolean'
+
+[Mul]
+description = 'Multiplies a scalar to all the values of the orignal angle. This functions the same as num * angle without creating a new angle object, skipping object construction and garbage collection.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'scalar'
+type = 'number'
+description = 'The number to multiply.'
+
+[Normalize]
+description = 'Normalizes the angles by applying a module with 360 to pitch, yaw and roll.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+
+[Right]
+description = 'Returns a normal vector facing in the direction that points right relative to the angle\'s direction.\r\n\r\n**Returns:** The right direction of the angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+[[.returns]]
+type = 'Vector'
+
+[RotateAroundAxis]
+description = 'Rotates the angle around the specified axis by the specified degrees.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'axis'
+type = 'Vector'
+description = 'The axis to rotate around.'
+``````````
+name = 'rotation'
+type = 'number'
+description = 'The degrees to rotate around the specified axis.'
+
+[Set]
+description = 'Copies pitch, yaw and roll from the second angle to the first.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'originalAngle'
+type = 'Angle'
+description = 'The angle to copy the values from.'
+
+[SetUnpacked]
+description = 'Sets the p, y, and r of the angle.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'p'
+type = 'number'
+description = 'The pitch component of the Angle'
+``````````
+name = 'y'
+type = 'number'
+description = 'The yaw component of the Angle'
+``````````
+name = 'r'
+type = 'number'
+description = 'The roll component of the Angle'
+
+[SnapTo]
+description = 'Snaps the angle to nearest interval of degrees.\r\n\r\n<note>This will modify the original angle too!</note>\r\n\r\n**Returns:** The snapped angle.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'axis'
+type = 'string'
+description = 'The component/axis to snap. Can be either "p"/"pitch", "y"/"yaw" or "r"/"roll".'
+``````````
+name = 'target'
+type = 'number'
+description = 'The target angle snap interval'
+[[.returns]]
+type = 'Angle'
+
+[Sub]
+description = 'Subtracts the values of the argument angle to the orignal angle. This functions the same as angle1 - angle2 without creating a new angle object, skipping object construction and garbage collection.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+``````````
+name = 'angle'
+type = 'Angle'
+description = 'The angle to subtract.'
+
+[ToTable]
+description = 'Returns the angle as a table with three elements.\r\n\r\n**Returns:** The table with elements 1 = p, 2 = y, 3 = r.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+[[.returns]]
+type = 'table'
+
+[Unpack]
+description = 'Returns the pitch, yaw, and roll components of the angle.\r\n\r\n**Returns:** p, pitch, x, or Angle[1].\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+[[.returns]]
+type = 'number'
+
+[Up]
+description = 'Returns a normal vector facing in the direction that points up relative to the angle\'s direction.\r\n\r\n**Returns:** The up direction of the angle.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+[[.returns]]
+type = 'Vector'
+
+[Zero]
+description = 'Sets pitch, yaw and roll to 0.\r\nThis function is faster than doing it manually.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Angle'
+

@@ -1,5 +1,4 @@
 [utf8]
-version = {'Lua 5.3', 'Lua 5.4'}
 type = 'table'
 [[.source]]
 type = 'global'
@@ -8,167 +7,123 @@ type = 'library'
 name = 'utf8'
 
 <default>
-version = {'Lua 5.3', 'Lua 5.4'}
 type = 'function'
 parent = {
-    1 = {
-        type = 'global',
-        name = 'utf8',
-    },
-    2 = {
-        type = 'library',
-        name = 'utf8',
-    }
+	1 = {
+		type = 'global',
+		name = 'utf8'
+	},
+	2 = {
+		type = 'library',
+		name = 'utf8'
+	}
 }
 
 [char]
+description = 'Receives zero or more integers, converts each one to its corresponding UTF-8 byte sequence and returns a string with the concatenation of all these sequences.\r\n\r\n**Returns:** UTF-8 string generated from given arguments.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'code'
-type = 'integer'
-``````````
-type = '...'
+name = 'codepoints'
+type = 'vararg'
+description = 'Unicode code points to be converted in to a UTF-8 string.'
 [[.returns]]
 type = 'string'
-
-[charpattern]
-type = 'string'
-code = [=['[\0-\x7F\xC2-\xF4][\x80-\xBF]*']=]
-
-[codes]
-[[.args]]
-type = 'string'
-[[.returns]]
-type = 'function'
-returns = {
-    1 = {
-        name = 'p',
-        type = 'integer',
-    },
-    2 = {
-        name = 'c',
-        type = 'integer',
-    }
-}
-
-["codes Lua 5.4"]
-name = 'codes'
-version = 'Lua 5.4'
-[[.args]]
-type = 'string'
-``````````
-name = 'lax'
-type = 'boolean'
-optional = 'after'
-[[.returns]]
-type = 'function'
-returns = {
-    1 = {
-        name = 'p',
-        type = 'integer',
-    },
-    2 = {
-        name = 'c',
-        type = 'integer',
-    }
-}
 
 [codepoint]
+description = 'Returns the codepoints (as numbers) from all characters in the given string that start between byte position startPos and endPos. It raises an error if it meets any invalid byte sequence. This functions similarly to <page>string.byte</page>.\r\n\r\n**Returns:** The codepoint number(s).\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'string'
 type = 'string'
+description = 'The string that you will get the code(s) from.'
 ``````````
-name = 'i'
-type = 'integer'
-optional = 'after'
-default = 1
+name = 'startPos'
+type = 'number'
+description = 'The starting byte of the string to get the codepoint of.'
 ``````````
-name = 'j'
-type = 'integer'
-optional = 'self'
+name = 'endPos'
+type = 'number'
+description = 'The ending byte of the string to get the codepoint of.'
 [[.returns]]
-name = 'code'
-type = 'integer'
-``````````
-type = '...'
+type = 'vararg'
 
-["codepoint Lua 5.4"]
-name = 'codepoint'
-version = 'Lua 5.4'
+[codes]
+description = 'Returns an iterator (like <page>string.gmatch</page>) which returns both the position and codepoint of each utf8 character in the string. It raises an error if it meets any invalid byte sequence.\r\n\r\n**Returns:** The iterator (to be used in a for loop).\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'string'
 type = 'string'
-``````````
-name = 'i'
-type = 'integer'
-optional = 'after'
-default = 1
-``````````
-name = 'j'
-type = 'integer'
-optional = 'after'
-``````````
-name = 'lax'
-type = 'boolean'
-optional = 'after'
+description = 'The string that you will get the codes from.'
 [[.returns]]
-name = 'code'
-type = 'integer'
+type = 'function'
+
+[force]
+description = 'Forces a string to contain only valid UTF-8 data. Invalid sequences are replaced with U+FFFD (the Unicode replacement character).\r\n\r\nThis is a lazy way for users to ensure a string contains only valid UTF-8 data.\r\n\r\n**Returns:** The UTF-8 string.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'string'
+type = 'string'
+description = 'The string that will become a valid UTF-8 string.'
+[[.returns]]
+type = 'string'
+
+[GetChar]
+description = 'A UTF-8 compatible version of <page>string.GetChar</page>.\r\n\r\n**Returns:** str\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'str'
+type = 'string'
+description = 'The string that you will be searching with the supplied index.'
 ``````````
-type = '...'
+name = 'index'
+type = 'number'
+description = 'The index\'s value of the string to be returned.'
+[[.returns]]
+type = 'string'
 
 [len]
+description = 'Returns the number of UTF-8 sequences in the given string between positions startPos and endPos (both inclusive). If it finds any invalid UTF-8 byte sequence, returns false as well as the position of the first invalid byte.\r\n\r\n**Returns:** The number of UTF-8 characters in the string. If there are invalid bytes, this will be false.\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'string'
 type = 'string'
+description = 'The string to calculate the length of.'
 ``````````
-name = 'i'
-type = 'integer'
-optional = 'after'
-default = 1
+name = 'startPos'
+type = 'number'
+description = 'The starting position to get the length from.'
 ``````````
-name = 'j'
-type = 'integer'
-optional = 'self'
-default = -1
+name = 'endPos'
+type = 'number'
+description = 'The ending position to get the length from.'
 [[.returns]]
-type = 'integer'
-``````````
-name = 'errpos'
-type = 'integer'
-optional = 'self'
-
-["len Lua 5.4"]
-name = 'len'
-version = 'Lua 5.4'
-[[.args]]
-type = 'string'
-``````````
-name = 'i'
-type = 'integer'
-optional = 'after'
-default = 1
-``````````
-name = 'j'
-type = 'integer'
-optional = 'after'
-default = -1
-``````````
-name = 'lax'
-type = 'boolean'
-optional = 'after'
-[[.returns]]
-type = 'integer'
-``````````
-name = 'errpos'
-type = 'integer'
-optional = 'self'
+type = 'number'
 
 [offset]
+description = 'Returns the byte-index of the n\'th UTF-8-character after the given startPos (nil if none). startPos defaults to 1 when n is positive and -1 when n is negative. If n is zero, this function instead returns the byte-index of the UTF-8-character startPos lies within.\r\n\r\n**Returns:** Starting byte-index of the given position.\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'string'
 type = 'string'
+description = 'The string that you will get the byte position from.'
 ``````````
 name = 'n'
-type = 'integer'
+type = 'number'
+description = 'The position to get the beginning byte position from.'
 ``````````
-name = 'i'
-type = 'integer'
+name = 'startPos'
+type = 'number'
+description = 'The offset for n.'
 [[.returns]]
-name = 'p'
-type = 'integer'
+type = 'number'
+
+[sub]
+description = 'A UTF-8 compatible version of <page>string.sub</page>.\r\n\r\n**Returns:** The substring.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'string'
+type = 'string'
+description = 'The string you\'ll take a sub-string out of.'
+``````````
+name = 'StartPos'
+type = 'number'
+description = 'The position of the first character that will be included in the sub-string.'
+``````````
+name = 'EndPos'
+type = 'number'
+description = 'The position of the last character to be included in the sub-string. It can be negative to count from the end.'
+[[.returns]]
+type = 'string'
+

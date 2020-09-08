@@ -1,0 +1,94 @@
+[sql]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'sql'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'sql'
+	},
+	2 = {
+		type = 'library',
+		name = 'sql'
+	}
+}
+
+[Begin]
+description = 'Tells the engine a set of queries is coming. Will wait until <page>sql.Commit</page> is called to run them.<br>\r\nThis is most useful when you run more than 100+ queries.<br>\r\nThis is equivalent to\r\n```\r\nsql.Query("BEGIN")\r\n```\r\n\r\n**Scope:** Shared'
+
+[Commit]
+description = 'Tells the engine to execute a series of queries queued for execution, must be preceded by <page>sql.Begin</page>\r\n\r\nThis is equivalent to `sql.Query("COMMIT")`.\r\n\r\n**Scope:** Shared'
+
+[IndexExists]
+description = 'Returns true if the index with the specified name exists.\r\n\r\n**Returns:** exists\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'indexName'
+type = 'string'
+description = 'The name of the index to check.'
+[[.returns]]
+type = 'boolean'
+
+[LastError]
+description = 'Returns the last error from a SQLite query.\r\n\r\n**Returns:** error\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'string'
+
+[Query]
+description = 'Performs a query on the local SQLite database, returns a table as result set, nil if result is empty and false on error.\r\n\r\n**Returns:** false is returned if there is an error, nil if the query returned no data.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'query'
+type = 'string'
+description = 'The query to execute.'
+[[.returns]]
+type = 'table'
+
+[QueryRow]
+description = 'Performs the query like <page>sql.Query</page>, but returns the first row found.\r\n\r\nBasically equivalent to\r\n```\r\nsql.Query("*query* LIMIT 1")\r\n```\r\n\r\n**Returns:** The returned row.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'query'
+type = 'string'
+description = 'The input query'
+``````````
+name = 'row'
+type = 'number'
+description = 'The row number. Say we receive back 5 rows, putting 3 as this argument will give us row #3.'
+[[.returns]]
+type = 'table'
+
+[QueryValue]
+description = 'Performs the query like <page>sql.QueryRow</page>, but returns the first value found.\r\n\r\n**Returns:** The returned value; the engine automatically converts numerical output to Lua numbers.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'query'
+type = 'string'
+description = 'The input query.'
+[[.returns]]
+type = 'any'
+
+[SQLStr]
+description = 'Escapes dangerous characters and symbols from user input used in an SQLite SQL Query.\r\n\r\n<note>this function is not meant to be used with external database engines such as `MySQL`. Escaping strings with inadequate functions is dangerous!</note>\r\n\r\n**Returns:** The escaped input.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'string'
+type = 'string'
+description = 'The string to be escaped.'
+``````````
+name = 'bNoQuotes'
+type = 'boolean'
+description = 'Set this as true, and the function will not wrap the input string in apostrophes.'
+[[.returns]]
+type = 'string'
+
+[TableExists]
+description = 'Returns true if the table with the specified name exists.\r\n\r\n**Returns:** exists\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tableName'
+type = 'string'
+description = 'The name of the table to check.'
+[[.returns]]
+type = 'boolean'
+

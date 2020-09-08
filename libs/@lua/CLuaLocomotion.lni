@@ -1,0 +1,266 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CLuaLocomotion'
+	},
+}
+
+[Approach]
+description = 'Sets the location we want to get to\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'goal'
+type = 'Vector'
+description = 'The vector we want to get to'
+``````````
+name = 'goalweight'
+type = 'number'
+description = 'If unsure then set this to 1'
+
+[ClearStuck]
+description = 'Removes the stuck status from the bot\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+
+[FaceTowards]
+description = 'Sets the direction we want to face\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'goal'
+type = 'Vector'
+description = 'The vector we want to face'
+
+[GetAcceleration]
+description = 'Returns the acceleration speed\r\n\r\n**Returns:** Current acceleration speed\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetCurrentAcceleration]
+description = 'Returns the current acceleration as a vector\r\n\r\n**Returns:** Current acceleration\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'Vector'
+
+[GetDeathDropHeight]
+description = 'Gets the height the bot is scared to fall from\r\n\r\n**Returns:** Current death drop height\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetDeceleration]
+description = 'Gets the deceleration speed\r\n\r\n**Returns:** Current deceleration speed\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetGravity]
+description = 'Returns the locomotion\'s gravity.\r\n\r\n**Returns:** The gravity.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetGroundMotionVector]
+description = 'Return unit vector in XY plane describing our direction of motion - even if we are currently not moving\r\n\r\n**Returns:** A vector representing the X and Y movement\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'Vector'
+
+[GetJumpHeight]
+description = 'Gets the height of the bot\'s jump\r\n\r\n**Returns:** Current jump height\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetMaxJumpHeight]
+description = 'Returns maximum jump height of this <page>CLuaLocomotion</page>.\r\n\r\n**Returns:** The maximum jump height.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetMaxYawRate]
+description = 'Returns the max rate at which the NextBot can visually rotate.\r\n\r\n**Returns:** Maximum yaw rate\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetNextBot]
+description = 'Returns the <page>NextBot</page> this locomotion is associated with.\r\n\r\n**Returns:** The nextbot\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'NextBot'
+
+[GetStepHeight]
+description = 'Gets the max height the bot can step up\r\n\r\n**Returns:** Current step height\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'number'
+
+[GetVelocity]
+description = 'Returns the current movement velocity as a vector\r\n\r\n**Returns:** Current velocity\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'Vector'
+
+[IsAreaTraversable]
+description = 'Returns whether this <page>CLuaLocomotion</page> can reach and/or traverse/move in given <page>CNavArea</page>.\r\n\r\n**Returns:** Whether this <page>CLuaLocomotion</page> can traverse given <page>CNavArea</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = 'The area to test'
+[[.returns]]
+type = 'boolean'
+
+[IsAttemptingToMove]
+description = 'Returns true if we\'re trying to move.\r\n\r\n**Returns:** Whether we\'re trying to move or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'boolean'
+
+[IsClimbingOrJumping]
+description = 'Returns true of the locomotion engine is jumping or climbing\r\n\r\n**Returns:** Whether we\'re climbing or jumping or not\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'boolean'
+
+[IsOnGround]
+description = 'Returns whether the nextbot this locomotion is attached to is on ground or not.\r\n\r\n**Returns:** Whether the nextbot is on ground or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'boolean'
+
+[IsStuck]
+description = 'Returns true if we\'re stuck\r\n\r\n**Returns:** Whether we\'re stuck or not\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'boolean'
+
+[IsUsingLadder]
+description = 'Returns whether or not the target in question is on a ladder or not.\r\n\r\n**Returns:** If the target is on a ladder or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+[[.returns]]
+type = 'boolean'
+
+[Jump]
+description = 'Makes the bot jump. It must be on ground (<page>Entity:IsOnGround</page>) and its model must have `ACT_JUMP` activity.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+
+[JumpAcrossGap]
+description = 'Makes the bot jump across a gap. The bot must be on ground (<page>Entity:IsOnGround</page>) and its model must have `ACT_JUMP` activity.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'landingGoal'
+type = 'Vector'
+description = ''
+``````````
+name = 'landingForward'
+type = 'Vector'
+description = ''
+
+[SetAcceleration]
+description = 'Sets the acceleration speed\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'speed'
+type = 'number'
+description = 'Speed acceleration (default is 400)'
+
+[SetDeathDropHeight]
+description = 'Sets the height the bot is scared to fall from.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'height'
+type = 'number'
+description = 'Height (default is 200)'
+
+[SetDeceleration]
+description = 'Sets the deceleration speed.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'deceleration'
+type = 'number'
+description = 'New deceleration speed (default is 400)'
+
+[SetDesiredSpeed]
+description = 'Sets movement speed.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'speed'
+type = 'number'
+description = 'The new desired speed'
+
+[SetGravity]
+description = 'Sets the locomotion\'s gravity.\r\n\r\n<note>With values 0 or below, or even lower positive values, the nextbot will start to drift sideways, use <page>CLuaLocomotion:SetVelocity</page> to counteract this.</note>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'gravity'
+type = 'number'
+description = 'New gravity to set. Default is 1000.'
+
+[SetJumpHeight]
+description = 'Sets the height of the bot\'s jump\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'height'
+type = 'number'
+description = 'Height (default is 58)'
+
+[SetMaxYawRate]
+description = 'Sets the max rate at which the NextBot can visually rotate. This will not affect moving or pathing.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'yawRate'
+type = 'number'
+description = 'Desired new maximum yaw rate'
+
+[SetStepHeight]
+description = 'Sets the max height the bot can step up\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'height'
+type = 'number'
+description = 'Height (default is 18)'
+
+[SetVelocity]
+description = 'Sets the current movement velocity\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CLuaLocomotion'
+``````````
+name = 'velocity'
+type = 'Vector'
+description = ''
+

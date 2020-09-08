@@ -1,0 +1,293 @@
+[debugoverlay]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'debugoverlay'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'debugoverlay'
+	},
+	2 = {
+		type = 'library',
+		name = 'debugoverlay'
+	}
+}
+
+[Axis]
+description = 'Displays an axis indicator at the specified position.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'origin'
+type = 'Vector'
+description = 'Position origin'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'Angle of the axis'
+``````````
+name = 'size'
+type = 'number'
+description = 'Size of the axis'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'ignoreZ'
+type = 'boolean'
+description = 'If true, will draw on top of everything; ignoring the Z buffer'
+
+[Box]
+description = 'Displays a solid coloured box at the specified position.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'origin'
+type = 'Vector'
+description = 'Position origin'
+``````````
+name = 'mins'
+type = 'Vector'
+description = 'Minimum bounds of the box'
+``````````
+name = 'maxs'
+type = 'Vector'
+description = 'Maximum bounds of the box'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>'
+
+[BoxAngles]
+description = 'Displays a solid colored rotated box at the specified position.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'World position'
+``````````
+name = 'mins'
+type = 'Vector'
+description = 'The mins of the box (lowest corner)'
+``````````
+name = 'maxs'
+type = 'Vector'
+description = 'The maxs of the box (highest corner)'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'The angle to draw the box at'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Amount of seconds to show the box'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>'
+
+[Cross]
+description = 'Creates a coloured cross at the specified position for the specified time.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Position origin'
+``````````
+name = 'size'
+type = 'number'
+description = 'Size of the cross'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds the cross to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the cross. Uses the <page>Color</page>'
+``````````
+name = 'ignoreZ'
+type = 'boolean'
+description = 'If true, will draw on top of everything; ignoring the Z buffer'
+
+[EntityTextAtPosition]
+description = 'Displays 2D text at the specified coordinates.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The position in 3D to display the text.'
+``````````
+name = 'line'
+type = 'number'
+description = 'Line of text, will offset text on the to display the new line unobstructed'
+``````````
+name = 'text'
+type = 'string'
+description = 'The text to display'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>'
+
+[Grid]
+description = 'Draws a 3D grid of limited size in given position.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = ''
+
+[Line]
+description = 'Displays a coloured line at the specified position.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'pos1'
+type = 'Vector'
+description = 'First position of the line'
+``````````
+name = 'pos2'
+type = 'Vector'
+description = 'Second position of the line'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the line. Uses the <page>Color</page>'
+``````````
+name = 'ignoreZ'
+type = 'boolean'
+description = 'If true, will draw on top of everything; ignoring the Z buffer'
+
+[ScreenText]
+description = 'Displays text triangle at the specified coordinates.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The position of the text, from 0 ( left ) to 1 ( right ).'
+``````````
+name = 'y'
+type = 'number'
+description = 'The position of the text, from 0 ( top ) to 1 ( bottom ).'
+``````````
+name = 'text'
+type = 'string'
+description = 'The text to display'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>'
+
+[Sphere]
+description = 'Displays a coloured sphere at the specified position.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'origin'
+type = 'Vector'
+description = 'Position origin'
+``````````
+name = 'size'
+type = 'number'
+description = 'Size of the sphere'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the sphere. Uses the <page>Color</page>'
+``````````
+name = 'ignoreZ'
+type = 'boolean'
+description = 'If true, will draw on top of everything; ignoring the Z buffer'
+
+[SweptBox]
+description = 'Displays "swept" box, two boxes connected with lines by their verices.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'vStart'
+type = 'Vector'
+description = 'The start position of the box.'
+``````````
+name = 'vEnd'
+type = 'Vector'
+description = 'The end position of the box.'
+``````````
+name = 'vMins'
+type = 'Vector'
+description = 'The "minimum" edge of the box.'
+``````````
+name = 'vMaxs'
+type = 'Vector'
+description = 'The "maximum" edge of the box.'
+``````````
+name = 'ang'
+type = 'Angle'
+description = ''
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>'
+
+[Text]
+description = 'Displays text at the specified position.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'origin'
+type = 'Vector'
+description = 'Position origin'
+``````````
+name = 'text'
+type = 'string'
+description = 'String message to display'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'viewCheck'
+type = 'boolean'
+description = 'Clip text that is obscured'
+
+[Triangle]
+description = 'Displays a colored triangle at the specified coordinates.\r\n\r\n<note>This function will silently fail if the **developer** <page>ConVar</page> is set to 0.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'pos1'
+type = 'Vector'
+description = 'First point of the triangle'
+``````````
+name = 'pos2'
+type = 'Vector'
+description = 'Second point of the triangle'
+``````````
+name = 'pos3'
+type = 'Vector'
+description = 'Third point of the triangle'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'Number of seconds to appear'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>'
+``````````
+name = 'ignoreZ'
+type = 'boolean'
+description = 'If true, will draw on top of everything; ignoring the Z buffer'
+

@@ -1,0 +1,53 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'PhysCollide'
+	},
+}
+
+[Destroy]
+description = 'Destroys the <page>PhysCollide</page> object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysCollide'
+
+[IsValid]
+description = 'Checks whether this <page>PhysCollide</page> object is valid or not.\r\n\r\nYou should just use <page>Global.IsValid</page> instead.\r\n\r\n**Returns:** Is valid or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysCollide'
+[[.returns]]
+type = 'boolean'
+
+[TraceBox]
+description = 'Performs a trace against this PhysCollide with the given parameters. This can be used for both line traces and box traces.\r\n\r\n**Returns:** Hit position of the trace. This is false if the trace did not hit.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'PhysCollide'
+``````````
+name = 'origin'
+type = 'Vector'
+description = 'The origin for the PhysCollide during the trace'
+``````````
+name = 'angles'
+type = 'Angle'
+description = 'The angles for the PhysCollide during the trace'
+``````````
+name = 'rayStart'
+type = 'Vector'
+description = 'The start position of the trace'
+``````````
+name = 'rayEnd'
+type = 'Vector'
+description = 'The end position of the trace'
+``````````
+name = 'rayMins'
+type = 'Vector'
+description = 'The mins of the trace\'s bounds'
+``````````
+name = 'rayMaxs'
+type = 'Vector'
+description = 'The maxs of the trace\'s bounds'
+[[.returns]]
+type = 'Vector'
+

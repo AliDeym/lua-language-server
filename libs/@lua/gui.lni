@@ -1,0 +1,160 @@
+[gui]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'gui'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'gui'
+	},
+	2 = {
+		type = 'library',
+		name = 'gui'
+	}
+}
+
+[ActivateGameUI]
+description = 'Opens the game menu overlay.\r\n\r\n**Scope:** Client'
+
+[EnableScreenClicker]
+description = 'Enables the mouse cursor without restricting player movement, like using Sandbox\'s context menu.\r\n\r\n<bug issue="982">Some <page>CUserCmd</page> functions will return incorrect values when this function is active.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enabled'
+type = 'boolean'
+description = 'Whether the cursor should be enabled or not. (true = enable, false = disable)'
+
+[HideGameUI]
+description = 'Hides the game menu overlay.\r\n\r\n**Scope:** Client'
+
+[InternalCursorMoved]
+description = 'Simulates a mouse move with the given deltas.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'deltaX'
+type = 'number'
+description = 'The movement delta on the x axis.'
+``````````
+name = 'deltaY'
+type = 'number'
+description = 'The movement delta on the y axis.'
+
+[InternalKeyCodePressed]
+description = 'Simulates a key press for the given key.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/KEY</page>.'
+
+[InternalKeyCodeReleased]
+description = 'Simulates a key release for the given key.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/KEY</page>.'
+
+[InternalKeyCodeTyped]
+description = 'Simulates a key type typing to the specified key.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/KEY</page>.'
+
+[InternalKeyTyped]
+description = 'Simulates an ASCII symbol writing.\r\nUse to write text in the chat or in VGUI.\r\nDoesn\'t work while the main menu is open!\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'code'
+type = 'number'
+description = 'ASCII code of symbol, see http://www.mikroe.com/img/publication/spa/pic-books/programming-in-basic/chapter/04/fig4-24.gif'
+
+[InternalMouseDoublePressed]
+description = 'Simulates a double mouse key press for the given mouse key.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/MOUSE</page>.'
+
+[InternalMousePressed]
+description = 'Simulates a mouse key press for the given mouse key.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/MOUSE</page>.'
+
+[InternalMouseReleased]
+description = 'Simulates a mouse key release for the given mouse key.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/MOUSE</page>.'
+
+[InternalMouseWheeled]
+description = 'Simulates a mouse wheel scroll with the given delta.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'delta'
+type = 'number'
+description = 'The amount of scrolling to simulate.'
+
+[IsConsoleVisible]
+description = 'Returns whether the console is visible or not.\r\n\r\n**Returns:** Whether the console is visible or not.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[IsGameUIVisible]
+description = 'Returns whenever the game menu overlay ( main menu ) is open or not.\r\n\r\n**Returns:** Whenever the game menu overlay ( main menu ) is open or not\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[MousePos]
+description = '<deprecated>Use <page>input.GetCursorPos</page> instead.</deprecated>\r\n\r\nReturns the cursor\'s position on the screen, or 0, 0 if cursor is not visible.\r\n\r\n**Returns:** mouseX\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[MouseX]
+description = 'Returns x component of the mouse position.\r\n\r\n**Returns:** mouseX\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[MouseY]
+description = 'Returns y component of the mouse position.\r\n\r\n**Returns:** mouseY\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[OpenURL]
+description = 'Opens specified URL in the steam overlay browser. The URL has to start with either http:// or https://\r\n\r\n<note>When called clientside, user will be asked for confirmation before the website will open.</note>\r\n<bug issue="3383">You can\'t click the confirmation if a model panel has focus.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'url'
+type = 'string'
+description = 'URL to open'
+
+[ScreenToVector]
+description = 'Converts the specified screen position to a **direction** vector local to the player\'s view. A related function is <page>Vector:ToScreen</page>, which translates a 3D position to a screen coordinate.\r\n\r\n<page>util.AimVector</page> is a more generic version of this, using a custom view instead of the player\'s current view.\r\n\r\n**Returns:** Direction\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'X coordinate on the screen.'
+``````````
+name = 'y'
+type = 'number'
+description = 'Y coordinate on the screen.'
+[[.returns]]
+type = 'Vector'
+
+[SetMousePos]
+description = '<deprecated>Use <page>input.SetCursorPos</page> instead.</deprecated>\r\nSets the cursor\'s position on the screen, relative to the topleft corner of the window\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mouseX'
+type = 'number'
+description = 'The X coordinate to move the cursor to.'
+``````````
+name = 'mouseY'
+type = 'number'
+description = 'The Y coordinate to move the cursor to.'
+
+[ShowConsole]
+description = 'Shows console in the game UI.\r\n\r\n**Scope:** Client'
+

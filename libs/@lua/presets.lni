@@ -1,0 +1,94 @@
+[presets]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'presets'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'presets'
+	},
+	2 = {
+		type = 'library',
+		name = 'presets'
+	}
+}
+
+[Add]
+description = 'Adds preset to a preset group.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'groupname'
+type = 'string'
+description = 'The preset group name, usually it\'s tool class name.'
+``````````
+name = 'name'
+type = 'string'
+description = 'Preset name, must be unique.'
+``````````
+name = 'values'
+type = 'table'
+description = 'A table of preset console commands.'
+
+[BadNameAlert]
+description = '<internal></internal>\r\n\r\nUsed internally to tell the player that the name they tried to use in their preset is not acceptable.\r\n\r\n**Scope:** Client'
+
+[Exists]
+description = 'Returns whether a preset with given name exists or not\r\n\r\n**Returns:** true if the preset does exist\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'type'
+type = 'string'
+description = 'The preset group name, usually it\'s tool class name.'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the preset to test'
+[[.returns]]
+type = 'boolean'
+
+[GetTable]
+description = 'Returns a table with preset names and values from a single preset group.\r\n\r\n**Returns:** All presets in specified group.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'groupname'
+type = 'string'
+description = 'Preset group name.'
+[[.returns]]
+type = 'table'
+
+[OverwritePresetPrompt]
+description = '<internal></internal>\r\n\r\nUsed internally to ask the player if they want to override an already existing preset.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'callback'
+type = 'function'
+description = ''
+
+[Remove]
+description = 'Removes a preset entry from a preset group.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'groupname'
+type = 'string'
+description = 'Preset group to remove from'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of preset to remove'
+
+[Rename]
+description = 'Renames preset.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'groupname'
+type = 'string'
+description = 'Preset group name'
+``````````
+name = 'oldname'
+type = 'string'
+description = 'Old preset name'
+``````````
+name = 'newname'
+type = 'string'
+description = 'New preset name'
+

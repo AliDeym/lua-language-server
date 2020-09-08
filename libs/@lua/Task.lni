@@ -1,0 +1,91 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Task'
+	},
+}
+
+[Init]
+description = '<internal></internal> Initialises the AI task. Called by <page>ai_task.New</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+
+[InitEngine]
+description = 'Initialises the AI task as an engine task.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+``````````
+name = 'taskname'
+type = 'string'
+description = 'The name of the task.'
+``````````
+name = 'taskdata'
+type = 'number'
+description = ''
+
+[InitFunctionName]
+description = 'Initialises the AI task as NPC method-based.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+``````````
+name = 'startname'
+type = 'string'
+description = 'The name of the NPC method to call on task start.'
+``````````
+name = 'runname'
+type = 'string'
+description = 'The name of the NPC method to call on task run.'
+``````````
+name = 'taskdata'
+type = 'number'
+description = ''
+
+[IsEngineType]
+description = 'Determines if the task is an engine task (`TYPE_ENGINE`, 1).\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+
+[IsFNameType]
+description = 'Determines if the task is an NPC method-based task (`TYPE_FNAME`, 2).\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+
+[Run]
+description = 'Runs the AI task.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+``````````
+name = 'target'
+type = 'NPC'
+description = 'The NPC to run the task on.'
+
+[Run_FName]
+description = '<internal></internal> Runs the AI task as an NPC method. This requires the task to be of type `TYPE_FNAME`.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+``````````
+name = 'target'
+type = 'NPC'
+description = 'The NPC to run the task on.'
+
+[Start]
+description = 'Starts the AI task.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+``````````
+name = 'target'
+type = 'NPC'
+description = 'The NPC to start the task on.'
+
+[Start_FName]
+description = '<internal></internal> Starts the AI task as an NPC method.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Task'
+``````````
+name = 'target'
+type = 'NPC'
+description = 'The NPC to start the task on.'
+

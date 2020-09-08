@@ -1,0 +1,51 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'IVideoWriter'
+	},
+}
+
+[AddFrame]
+description = 'Adds the current framebuffer to the video stream.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IVideoWriter'
+``````````
+name = 'frameTime'
+type = 'number'
+description = 'Usually set to what <page>Global.FrameTime</page> is, or simply 1/fps.'
+``````````
+name = 'downsample'
+type = 'boolean'
+description = 'If true it will downsample the whole screenspace to the videos width and height, otherwise it will just record from the top left corner to the given width and height and therefor not the whole screen.'
+
+[Finish]
+description = 'Ends the video recording and dumps it to disk.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IVideoWriter'
+
+[Height]
+description = 'Returns the height of the video stream.\r\n\r\n**Returns:** height\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IVideoWriter'
+[[.returns]]
+type = 'number'
+
+[SetRecordSound]
+description = 'Sets whether to record sound or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IVideoWriter'
+``````````
+name = 'record'
+type = 'boolean'
+description = 'Record.'
+
+[Width]
+description = 'Returns the width of the video stream.\r\n\r\n**Returns:** width\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IVideoWriter'
+[[.returns]]
+type = 'number'
+

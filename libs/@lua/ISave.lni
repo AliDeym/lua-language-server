@@ -1,0 +1,87 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'ISave'
+	},
+}
+
+[EndBlock]
+description = 'Ends current data block started with <page>ISave:StartBlock</page> and returns to the parent block.\r\n\r\nTo avoid all sorts of errors, you **must** end all blocks you start.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+
+[StartBlock]
+description = 'Starts a new block of data that you can write to inside current block. Blocks **must** be ended with <page>ISave:EndBlock</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the new block. Used for determining which block is which, returned by <page>IRestore:StartBlock</page> during game load.'
+
+[WriteAngle]
+description = 'Writes an <page>Angle</page> to the save object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'The angle to write.'
+
+[WriteBool]
+description = 'Writes a <page>boolean</page> to the save object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'bool'
+type = 'boolean'
+description = 'The boolean to write.'
+
+[WriteEntity]
+description = 'Writes an <page>Entity</page> to the save object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to write.'
+
+[WriteFloat]
+description = 'Writes a floating point <page>number</page> to the save object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'float'
+type = 'number'
+description = 'The floating point number to write.'
+
+[WriteInt]
+description = 'Writes an integer <page>number</page> to the save object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'int'
+type = 'number'
+description = 'The integer number to write.'
+
+[WriteString]
+description = 'Writes a <page>string</page> to the save object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'str'
+type = 'string'
+description = 'The string to write. Maximum length is 1024.'
+
+[WriteVector]
+description = 'Writes a <page>Vector</page> to the save object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ISave'
+``````````
+name = 'vec'
+type = 'Vector'
+description = 'The vector to write.'
+

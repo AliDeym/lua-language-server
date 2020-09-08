@@ -1,0 +1,71 @@
+[weapons]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'weapons'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'weapons'
+	},
+	2 = {
+		type = 'library',
+		name = 'weapons'
+	}
+}
+
+[Get]
+description = 'Get a `copy` of weapon table by name. This function also inherits fields from the weapon\'s base class, unlike <page>weapons.GetStored</page>.\r\n<note> This will only work on SWEP\'s, this means that this will not return anything for HL2 weapons. </note>\r\n\r\n**Returns:** The retrieved table or nil\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'Class name of weapon to retrieve'
+[[.returns]]
+type = 'table'
+
+[GetList]
+description = 'Get a list of all the registered SWEPs. This does not include weapons added to spawnmenu manually.\r\n\r\n**Returns:** List of all the registered SWEPs\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[GetStored]
+description = 'Gets the REAL weapon table, not a copy. The produced table does `not` inherit fields from the weapon\'s base class, unlike <page>weapons.Get</page>.\r\n\r\n<warning>Modifying this table will modify what is stored by the weapons library. Take a copy or use <page>weapons.Get</page> to avoid this.</warning>\r\n\r\n**Returns:** The weapon table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'weapon_class'
+type = 'string'
+description = 'Weapon class to retrieve weapon table of'
+[[.returns]]
+type = 'table'
+
+[IsBasedOn]
+description = 'Checks if name is based on base\r\n\r\n**Returns:** Returns true if class name is based on base, else false.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Entity\'s class name to be checked'
+``````````
+name = 'base'
+type = 'string'
+description = 'Base class name to be checked'
+[[.returns]]
+type = 'boolean'
+
+[OnLoaded]
+description = '<internal></internal>\r\n\r\nCalled after all SWEPS have been loaded and runs <page>baseclass.Set</page> on each one.\r\n\r\nYou can retrieve all the currently registered SWEPS with <page>weapons.GetList</page>.\r\n\r\n<note>This is not called after a SWEP auto refresh, and thus the inherited baseclass functions retrieved with <page>baseclass.Get</page> will not be updated</note>\r\n\r\n**Scope:** Shared'
+
+[Register]
+description = 'Used to register your SWEP with the engine.\r\n\r\n<bug pull="1300">Sub-tables provided in the first argument will not carry over their metatable, and will receive a BaseClass key if the table was merged with the base\'s. Userdata references, which includes Vectors, Angles, Entities, etc. will not be copied.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'swep_table'
+type = 'table'
+description = 'The SWEP table'
+``````````
+name = 'classname'
+type = 'string'
+description = 'Classname to assign to that swep'
+

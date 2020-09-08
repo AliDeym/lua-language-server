@@ -1,0 +1,56 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'MarkupObject'
+	},
+}
+
+[Draw]
+description = 'Draws the computed markupobject to the screen.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'MarkupObject'
+``````````
+name = 'xOffset'
+type = 'number'
+description = 'The X coordinate on the screen.'
+``````````
+name = 'yOffset'
+type = 'number'
+description = 'The Y coordinate on the screen.'
+``````````
+name = 'xAlign'
+type = 'number'
+description = 'The alignment of the x coordinate using <page>Enums/TEXT_ALIGN</page>'
+``````````
+name = 'yAlign'
+type = 'number'
+description = 'The alignment of the y coordinate using <page>Enums/TEXT_ALIGN</page>'
+``````````
+name = 'alphaoverride'
+type = 'number'
+description = 'Sets the alpha of all drawn objects to this.'
+
+[GetHeight]
+description = 'Gets computed the height of the markupobject.\r\n\r\n**Returns:** The computed height.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'MarkupObject'
+[[.returns]]
+type = 'number'
+
+[GetWidth]
+description = 'Gets computed the width of the markupobject.\r\n\r\n**Returns:** The computed width.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'MarkupObject'
+[[.returns]]
+type = 'number'
+
+[Size]
+description = 'Gets computed the width and height of the markupobject.\r\n\r\n**Returns:** The computed width.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'MarkupObject'
+[[.returns]]
+type = 'number'
+

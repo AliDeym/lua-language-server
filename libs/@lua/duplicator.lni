@@ -1,0 +1,345 @@
+[duplicator]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'duplicator'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'duplicator'
+	},
+	2 = {
+		type = 'library',
+		name = 'duplicator'
+	}
+}
+
+[Allow]
+description = 'Allow this entity to be duplicated\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'An entity\'s classname'
+
+[ApplyBoneModifiers]
+description = 'Calls every function registered with <page>duplicator.RegisterBoneModifier</page> on each bone the ent has.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player whose entity this is'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity in question'
+
+[ApplyEntityModifiers]
+description = 'Calls every function registered with <page>duplicator.RegisterEntityModifier</page> on the entity.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player whose entity this is'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity in question'
+
+[ClearEntityModifier]
+description = 'Clears/removes the chosen entity modifier from the entity.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity the modification is stored on'
+``````````
+name = 'key'
+type = 'any'
+description = 'The key of the stored entity modifier'
+
+[Copy]
+description = 'Copies the entity, and all of its constraints and entities, then returns them in a table.\r\n\r\n**Returns:** A table containing duplication info which includes the following members:\r\n* <page>table</page> Entities\r\n* <page>table</page> Constraints\r\n* <page>Vector</page> Mins\r\n* <page>Vector</page> Maxs\r\n\r\nThe values of Mins & Maxs from the table are returned from <page>duplicator.WorkoutSize</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to duplicate. The function will automatically copy all constrained entities.'
+``````````
+name = 'tableToAdd'
+type = 'table'
+description = 'A preexisting table to add entities and constraints in from.\r\nUses the same table format as the table returned from this function.'
+[[.returns]]
+type = 'table'
+
+[CopyEnts]
+description = 'Copies the passed table of entities to save for later.\r\n\r\n**Returns:** A table containing duplication info which includes the following members:\r\n* <page>table</page> Entities\r\n* <page>table</page> Constraints\r\n* <page>Vector</page> Mins\r\n* <page>Vector</page> Maxs\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ents'
+type = 'table'
+description = 'A table of entities to save/copy.'
+[[.returns]]
+type = 'table'
+
+[CopyEntTable]
+description = 'Returns a table with some entity data that can be used to create a new entity with <page>duplicator.CreateEntityFromTable</page>\r\n\r\n**Returns:** See <page>Structures/EntityCopyData</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity table to save'
+[[.returns]]
+type = 'table'
+
+[CreateConstraintFromTable]
+description = '<internal></internal> Creates a constraint from a saved/copied constraint table.\r\n\r\n**Returns:** The newly created constraint entity\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'constraint'
+type = 'table'
+description = 'Saved/copied constraint table'
+``````````
+name = 'entityList'
+type = 'table'
+description = 'The list of entities that are to be constrained'
+[[.returns]]
+type = 'Entity'
+
+[CreateEntityFromTable]
+description = '"Create an entity from a table."\r\n\r\n\r\nThis creates an entity using the data in EntTable.\r\n\r\n\r\nIf an entity factory has been registered for the entity\'s Class, it will be called.\r\n\r\n\r\nOtherwise, <page>duplicator.GenericDuplicatorFunction</page> will be called instead.\r\n\r\n**Returns:** The newly created entity\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player who wants to create something'
+``````````
+name = 'entTable'
+type = 'table'
+description = 'The duplication data to build the entity with. See <page>Structures/EntityCopyData</page>'
+[[.returns]]
+type = 'Entity'
+
+[DoBoneManipulator]
+description = '"Restores the bone\'s data."\r\n\r\n\r\nLoops through Bones and calls <page>Entity:ManipulateBoneScale</page>, <page>Entity:ManipulateBoneAngles</page> and <page>Entity:ManipulateBonePosition</page> on ent with the table keys and the subtable values s, a and p respectively.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to be bone manipulated'
+``````````
+name = 'bones'
+type = 'table'
+description = 'Table with a <page>Structures/BoneManipulationData</page> for every bone (that has manipulations applied) using the bone ID as the table index.'
+
+[DoFlex]
+description = 'Restores the flex data using <page>Entity:SetFlexWeight</page> and <page>Entity:SetFlexScale</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to restore the flexes on'
+``````````
+name = 'flex'
+type = 'table'
+description = 'The flexes to restore'
+``````````
+name = 'scale'
+type = 'number'
+description = 'The flex scale to apply. (Flex scale is unchanged if omitted)'
+
+[DoGeneric]
+description = '"Applies generic every-day entity stuff for ent from table data."\r\n\r\n\r\nDepending on the values of Model, Angle, Pos, Skin, Flex, Bonemanip, ModelScale, ColGroup, Name, and BodyG (<page>table</page> of multiple values) in the data table, this calls <page>Entity:SetModel</page>, <page>Entity:SetAngles</page>, <page>Entity:SetPos</page>, <page>Entity:SetSkin</page>, <page>duplicator.DoFlex</page>, <page>duplicator.DoBoneManipulator</page>, <page>Entity:SetModelScale</page>, <page>Entity:SetCollisionGroup</page>, <page>Entity:SetName</page>, <page>Entity:SetBodygroup</page> on ent.\r\n\r\n\r\nIf ent has a RestoreNetworkVars function, it is called with data.DT.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to be applied upon'
+``````````
+name = 'data'
+type = 'table'
+description = 'The data to be applied onto the entity'
+
+[DoGenericPhysics]
+description = '"Applies bone data, generically."\r\n\r\n\r\nIf data contains a PhysicsObjects table, it moves, re-angles and if relevent freezes all specified bones, first converting from local coordinates to world coordinates.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to be applied upon'
+``````````
+name = 'ply'
+type = 'Player'
+description = 'The player who owns the entity. Unused in function as of early 2013'
+``````````
+name = 'data'
+type = 'table'
+description = 'The data to be applied onto the entity'
+
+[FindEntityClass]
+description = 'Returns the entity class factory registered with <page>duplicator.RegisterEntityClass</page>.\r\n\r\n**Returns:** Is compromised of the following members:\r\n* <page>function</page> Func - The function that creates the entity\r\n* <page>table</page> Args - Arguments to pass to the function\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the entity class factory'
+[[.returns]]
+type = 'table'
+
+[GenericDuplicatorFunction]
+description = '"Generic function for duplicating stuff"\r\n\r\n\r\nThis is called when <page>duplicator.CreateEntityFromTable</page> can\'t find an entity factory to build with. It calls <page>duplicator.DoGeneric</page> and <page>duplicator.DoGenericPhysics</page> to apply standard duplicator stored things such as the model and position.\r\n\r\n**Returns:** The newly created entity\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player who wants to create something'
+``````````
+name = 'data'
+type = 'table'
+description = 'The duplication data to build the entity with'
+[[.returns]]
+type = 'Entity'
+
+[GetAllConstrainedEntitiesAndConstraints]
+description = '<internal></internal> Fills entStorageTable with all of the entities in a group connected with constraints. Fills constraintStorageTable with all of the constrains constraining the group.\r\n\r\n**Returns:** entStorageTable\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to start from'
+``````````
+name = 'entStorageTable'
+type = 'table'
+description = 'The table the entities will be inserted into'
+``````````
+name = 'constraintStorageTable'
+type = 'table'
+description = 'The table the constraints will be inserted into'
+[[.returns]]
+type = 'table'
+
+[IsAllowed]
+description = 'Returns whether the entity can be duplicated or not\r\n\r\n**Returns:** Returns true if the entity can be duplicated (nil otherwise)\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'An entity\'s classname'
+[[.returns]]
+type = 'boolean'
+
+[Paste]
+description = '"Given entity list and constraint list, create all entities and return their tables"\r\n\r\nCalls <page>duplicator.CreateEntityFromTable</page> on each sub-table of EntityList. If an entity is actually created, it calls <page>ENTITY:OnDuplicated</page> with the entity\'s duplicator data, then <page>duplicator.ApplyEntityModifiers</page>, <page>duplicator.ApplyBoneModifiers</page> and finally  <page>ENTITY:PostEntityPaste</page> is called.\r\n\r\nThe constraints are then created with <page>duplicator.CreateConstraintFromTable</page>.\r\n\r\n**Returns:** List of created entities\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Player'
+type = 'Player'
+description = 'The player who wants to create something'
+``````````
+name = 'EntityList'
+type = 'table'
+description = 'A table of duplicator data to create the entities from'
+``````````
+name = 'ConstraintList'
+type = 'table'
+description = 'A table of duplicator data to create the constraints from'
+[[.returns]]
+type = 'table'
+
+[RegisterBoneModifier]
+description = 'Registers a function to be called on each of an entity\'s bones when <page>duplicator.ApplyBoneModifiers</page> is called.\r\n\r\n<note>This function is available to call on the client, but registered functions aren\'t used anywhere!</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'key'
+type = 'any'
+description = 'The type of the key doesn\'t appear to matter, but it is preferable to use a string.'
+``````````
+name = 'boneModifier'
+type = 'function'
+description = 'Function called on each bone that an ent has. Called during <page>duplicator.ApplyBoneModifiers</page>.\r\nFunction parameters are:\r\n* <page>Player</page> ply\r\n* <page>Entity</page> ent\r\n* <page>number</page> boneID\r\n* <page>PhysObj</page> bone\r\n* <page>table</page> data\r\n\r\n\r\nThe data table that is passed to boneModifier is set with <page>duplicator.StoreBoneModifier</page>'
+
+[RegisterConstraint]
+description = 'Register a function used for creating a duplicated constraint.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The unique name of new constraint'
+``````````
+name = 'callback'
+type = 'function'
+description = 'Function to be called when this constraint is created'
+``````````
+name = '...'
+type = 'any'
+description = 'Arguments passed to the callback function'
+
+[RegisterEntityClass]
+description = 'This allows you to specify a specific function to be run when your SENT is pasted with the duplicator, instead of relying on the generic automatic functions.\r\n\r\n<note>Automatically calls <page>duplicator.Allow</page> for the entity class.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The ClassName of the entity you wish to register a factory for'
+``````````
+name = 'function'
+type = 'function'
+description = 'The factory function you want to have called. It should have the arguments (Player, ...) where ... is whatever arguments you request to be passed. It also should return the entity created, otherwise <page>duplicator.Paste</page> result will not include it!'
+``````````
+name = 'args'
+type = 'vararg'
+description = 'Strings of the names of arguments you want passed to function the from the <page>Structures/EntityCopyData</page>. As a special case, "Data" will pass the whole structure.'
+
+[RegisterEntityModifier]
+description = 'This allows you to register tweaks to entities. For instance, if you were making an "unbreakable" addon, you would use this to enable saving the "unbreakable" state of entities between duplications.\r\n\r\nThis function registers a piece of generic code that is run on all entities with this modifier. In order to have it actually run, use <page>duplicator.StoreEntityModifier</page>.\r\n\r\nThis function does nothing when run clientside.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'An identifier for your modification. This is not limited, so be verbose. "Person\'s \'Unbreakable\' mod" is far less likely to cause conflicts than "unbreakable"'
+``````````
+name = 'func'
+type = 'function'
+description = 'The function to be called for your modification. It should have the arguments (Player, Entity, Data), where data is what you pass to <page>duplicator.StoreEntityModifier</page>.'
+
+[RemoveMapCreatedEntities]
+description = 'Help to remove certain map created entities before creating the saved entities\r\nThis is obviously so we don\'t get duplicate props everywhere.\r\nIt should be called before calling Paste.\r\n\r\n**Scope:** Server'
+
+[SetLocalAng]
+description = '"When a copy is copied it will be translated according to these.\r\nIf you set them - make sure to set them back to 0 0 0!"\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'v'
+type = 'Angle'
+description = 'The angle to offset all pastes from'
+
+[SetLocalPos]
+description = '"When a copy is copied it will be translated according to these.\r\nIf you set them - make sure to set them back to 0 0 0!"\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'v'
+type = 'Vector'
+description = 'The position to offset all pastes from'
+
+[StoreBoneModifier]
+description = 'Stores bone mod data for a registered bone modification function\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to add bone mod data to'
+``````````
+name = 'boneID'
+type = 'number'
+description = 'The bone ID.\r\nSee <page>Entity:GetPhysicsObjectNum</page>'
+``````````
+name = 'key'
+type = 'any'
+description = 'The key for the bone modification'
+``````````
+name = 'data'
+type = 'table'
+description = 'The bone modification data that is passed to the bone modification function'
+
+[StoreEntityModifier]
+description = 'Stores an entity modifier into an entity for saving\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'entity'
+type = 'Entity'
+description = 'The entity to store modifier in'
+``````````
+name = 'name'
+type = 'string'
+description = 'Unique modifier name as defined in <page>duplicator.RegisterEntityModifier</page>'
+``````````
+name = 'data'
+type = 'table'
+description = 'Modifier data'
+
+[WorkoutSize]
+description = '"Work out the AABB size"\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ents'
+type = 'table'
+description = 'A table of entity duplication datums.'
+

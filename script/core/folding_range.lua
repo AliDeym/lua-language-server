@@ -8,7 +8,7 @@ local foldingType = {
     ['while']         = {'region', 'end',  },
     ['repeat']        = {'region', 'until',},
     ['table']         = {'region', '}',    },
-    ['string']        = {'regtion', ']',   },
+    ['string']        = {'region', ']',   },
 }
 
 return function (vm, comments)

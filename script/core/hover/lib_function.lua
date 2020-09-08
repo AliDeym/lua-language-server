@@ -14,6 +14,7 @@ local function buildLibArgs(lib, object, select)
     end
     local strs = {}
     local args = {}
+    local descr = nil
     for i = start, #lib.args do
         local arg = lib.args[i]
         if arg.optional then
@@ -35,6 +36,13 @@ local function buildLibArgs(lib, object, select)
         if arg.name then
             name = ('%s: '):format(arg.name)
         end
+
+        -- GMod code.
+        if arg.description and i == select then
+            descr = "`" .. arg.name .. ":` " .. arg.description
+        end
+
+
         if type(arg.type) == 'table' then
             name = name .. table.concat(arg.type, '/')
         else
@@ -77,7 +85,7 @@ local function buildLibArgs(lib, object, select)
     if #argLabel == 0 then
         argLabel = nil
     end
-    return text, argLabel, args
+    return text, argLabel, args, descr
 end
 
 local function buildLibReturns(lib)
@@ -153,16 +161,18 @@ local function buildEnum(lib)
     local strs = {}
     local raw = {}
     for name, enums in pairs(container) do
-        local tp
+        -- Gmod modify
+        --[[local tp
         if type(enums.type) == 'table' then
             tp = table.concat(enums.type, '/')
         else
             tp = enums.type
         end
-        strs[#strs+1] = ('\n%s: %s'):format(name, tp or 'any')
+        strs[#strs+1] = ('\n%s: %s'):format(name, tp or 'any')]]
+        strs[#strs + 1] = '\n' .. name .. " =>"
         raw[name] = {}
         for _, enum in ipairs(enums) do
-            if enum.default then
+            --[[if enum.default then
                 strs[#strs+1] = '\n  -> '
             else
                 strs[#strs+1] = '\n   | '
@@ -175,6 +185,11 @@ local function buildEnum(lib)
             raw[name][#raw[name]+1] = strs[#strs]
             if enum.description then
                 strs[#strs+1] = ' -- ' .. enum.description
+            end]]
+            if enum.enum then
+                local descr = enum.description and ": " .. enum.description or ""
+                strs[#strs+1] = '\n\t' .. enum.enum .. descr
+                raw[name][#raw[name]+1] = tostring(enum.enum)
             end
         end
     end
@@ -210,8 +225,13 @@ local function getDocFormater()
     end
 end
 
-local function buildDescription(lib)
+local function buildDescription(lib, descr)
     local desc = lib.description
+
+    if descr then
+        desc = descr .. "\r\n\r\n" .. desc
+    end
+
     if not desc then
         return
     end
@@ -238,10 +258,10 @@ local function buildDoc(lib)
 end
 
 return function (name, lib, object, select)
-    local argStr, argLabel, args = buildLibArgs(lib, object, select)
+    local argStr, argLabel, args, descr = buildLibArgs(lib, object, select)
     local returns = buildLibReturns(lib)
     local enum, rawEnum = buildEnum(lib)
-    local tip = buildDescription(lib)
+    local tip = buildDescription(lib, descr)
     local doc = buildDoc(lib)
     return {
         label = ('function %s(%s)%s'):format(name, argStr, returns),

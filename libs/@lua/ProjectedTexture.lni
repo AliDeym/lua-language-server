@@ -1,0 +1,292 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'ProjectedTexture'
+	},
+}
+
+[GetAngles]
+description = 'Returns the angle of the ProjectedTexture, which were previously set by <page>ProjectedTexture:SetAngles</page>\r\n\r\n**Returns:** The angles of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'Angle'
+
+[GetBrightness]
+description = 'Returns the brightness of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetBrightness</page>\r\n\r\n**Returns:** The brightness of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetColor]
+description = 'Returns the color of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetColor</page>.\r\n\r\n<bug issue="2407">The returned color will not have the color metatable.</bug>\r\n\r\n**Returns:** <page>Color</page>, the color of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'table'
+
+[GetConstantAttenuation]
+description = 'Returns the constant attenuation of the projected texture, which can also be set by <page>ProjectedTexture:SetConstantAttenuation</page>.\r\n\r\n**Returns:** The constant attenuation\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetEnableShadows]
+description = 'Returns whether shadows are enabled for this ProjectedTexture, which was previously set by <page>ProjectedTexture:SetEnableShadows</page>\r\n\r\n**Returns:** Whether shadows are enabled.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'boolean'
+
+[GetFarZ]
+description = 'Returns the projection distance of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetFarZ</page>\r\n\r\n**Returns:** The projection distance of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetHorizontalFOV]
+description = 'Returns the horizontal FOV of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetHorizontalFOV</page> or <page>ProjectedTexture:SetFOV</page>\r\n\r\n**Returns:** The horizontal FOV of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetLinearAttenuation]
+description = 'Returns the linear attenuation of the projected texture, which can also be set by <page>ProjectedTexture:SetLinearAttenuation</page>.\r\n\r\n**Returns:** The linear attenuation.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetNearZ]
+description = 'Returns the NearZ value of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetNearZ</page>\r\n\r\n**Returns:** NearZ of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetOrthographic]
+description = 'Returns the current orthographic settings of the Projected Texture. To set these values, use <page>ProjectedTexture:SetOrthographic</page>.\r\n\r\n**Returns:** Whether or not this projected texture is orthographic. When false, nothing else is returned.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'boolean'
+
+[GetPos]
+description = 'Returns the position of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetPos</page>\r\n\r\n**Returns:** The position of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'Vector'
+
+[GetQuadraticAttenuation]
+description = 'Returns the quadratic attenuation of the projected texture, which can also be set by <page>ProjectedTexture:SetQuadraticAttenuation</page>.\r\n\r\n**Returns:** The quadratic attenuation\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetTexture]
+description = 'Returns the texture of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetTexture</page>\r\n\r\n**Returns:** The texture of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'ITexture'
+
+[GetTextureFrame]
+description = 'Returns the texture frame of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetTextureFrame</page>\r\n\r\n**Returns:** The texture frame.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[GetVerticalFOV]
+description = 'Returns the vertical FOV of the ProjectedTexture, which was previously set by <page>ProjectedTexture:SetVerticalFOV</page> or <page>ProjectedTexture:SetFOV</page>\r\n\r\n**Returns:** The vertical FOV of the ProjectedTexture.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'number'
+
+[IsValid]
+description = 'Returns true if the projected texture is valid (i.e. has not been removed), false otherwise.\r\n\r\nInstead of calling this directly it\'s a good idea to call <page>Global.IsValid</page> in case the variable is nil.\r\n\r\n\r\n```\r\nIsValid( ptexture )\r\n```\r\n\r\n\r\nThis not only checks whether the projected texture is valid - but also checks whether it\'s nil.\r\n\r\n**Returns:** Whether the projected texture is valid.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+[[.returns]]
+type = 'boolean'
+
+[Remove]
+description = 'Removes the projected texture. After calling this, <page>ProjectedTexture:IsValid</page> will return false, and any hooks with the projected texture as the identifier will be automatically deleted.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+
+[SetAngles]
+description = 'Sets the angles (direction) of the projected texture.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'angle'
+type = 'Angle'
+description = ''
+
+[SetBrightness]
+description = 'Sets the brightness of the projected texture.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'brightness'
+type = 'number'
+description = 'The brightness to give the projected texture.'
+
+[SetColor]
+description = 'Sets the color of the projected texture.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'color'
+type = 'table'
+description = 'Must be a <page>Color</page>.\r\n\r\nUnlike other projected textures, this color can only go up to 255.'
+
+[SetConstantAttenuation]
+description = 'Sets the constant attenuation of the projected texture.\r\n\r\nSee also <page>ProjectedTexture:SetLinearAttenuation</page> and <page>ProjectedTexture:SetQuadraticAttenuation</page>.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'constAtten'
+type = 'number'
+description = ''
+
+[SetEnableShadows]
+description = 'Enable or disable shadows cast from the projected texture.\r\n\r\n<note>as with all types of projected textures (including the player\'s flashlight and env_projectedtexture), there can only be 8 projected textures with shadows enabled in total. <br>This limit can be increased with the launch parameter: -numshadowtextures limit<br> where limit is the new limit. Naturally, many projected lights with shadows enabled will drastically decrease framerate.</note>\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'newState'
+type = 'boolean'
+description = ''
+
+[SetFarZ]
+description = 'Sets the distance at which the projected texture ends.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'farZ'
+type = 'number'
+description = ''
+
+[SetFOV]
+description = 'Sets the angle of projection.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'fov'
+type = 'number'
+description = 'Must be higher than 0 and lower than 180'
+
+[SetHorizontalFOV]
+description = 'Sets the horizontal angle of projection without affecting the vertical angle.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'hFOV'
+type = 'number'
+description = 'The new horizontal Field Of View for the projected texture. Must be in range between 0 and 180.'
+
+[SetLinearAttenuation]
+description = 'Sets the linear attenuation of the projected texture.\r\n\r\nSee also <page>ProjectedTexture:SetConstantAttenuation</page> and <page>ProjectedTexture:SetQuadraticAttenuation</page>.\r\n\r\nThe default value of linear attenuation when the projected texture is created is 100. (others are 0, as you are not supposed to mix them)\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'linearAtten'
+type = 'number'
+description = ''
+
+[SetNearZ]
+description = 'Sets the distance at which the projected texture begins its projection.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n<note>Setting this to 0 will disable the projected texture completely! This may be useful if you want to disable a projected texture without actually removing it</note>\r\n\r\n<note>This seems to affect the rendering of shadows - a higher Near Z value will have shadows begin to render closer to their casting object. Comparing a low Near Z value (like 1) with a normal one (12) or high one (1000) is the easiest way to understand this artifact</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'nearZ'
+type = 'number'
+description = ''
+
+[SetOrthographic]
+description = 'Changes the current projected texture between orthographic and perspective projection.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'orthographic'
+type = 'boolean'
+description = 'When false, all other arguments are ignored and the texture is reset to perspective projection.'
+``````````
+name = 'left'
+type = 'number'
+description = 'The amount of units left from the projected texture\'s origin to project.'
+``````````
+name = 'top'
+type = 'number'
+description = 'The amount of units upwards from the projected texture\'s origin to project.'
+``````````
+name = 'right'
+type = 'number'
+description = 'The amount of units right from the projected texture\'s origin to project.'
+``````````
+name = 'bottom'
+type = 'number'
+description = 'The amount of units downwards from the projected texture\'s origin to project.'
+
+[SetPos]
+description = 'Move the Projected Texture to the specified position.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'position'
+type = 'Vector'
+description = ''
+
+[SetQuadraticAttenuation]
+description = 'Sets the quadratic attenuation of the projected texture.\r\n\r\nSee also <page>ProjectedTexture:SetLinearAttenuation</page> and <page>ProjectedTexture:SetConstantAttenuation</page>.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'quadAtten'
+type = 'number'
+description = ''
+
+[SetTexture]
+description = 'Sets the texture to be projected.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'texture'
+type = 'string'
+description = 'The name of the texture. Can also be an <page>ITexture</page>.'
+
+[SetTextureFrame]
+description = 'For animated textures, this will choose which frame in the animation will be projected.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'frame'
+type = 'number'
+description = 'The frame index to use.'
+
+[SetVerticalFOV]
+description = 'Sets the vertical angle of projection without affecting the horizontal angle.\r\n\r\nYou must call <page>ProjectedTexture:Update</page> after using this function for it to take effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+``````````
+name = 'vFOV'
+type = 'number'
+description = 'The new vertical Field Of View for the projected texture. Must be in range between 0 and 180.'
+
+[Update]
+description = 'Updates the Projected Light and applies all previously set parameters.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'ProjectedTexture'
+

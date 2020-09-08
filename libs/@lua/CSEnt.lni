@@ -1,0 +1,15 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CSEnt'
+	},
+}
+
+[Remove]
+description = 'Removes the clientside entity\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CSEnt'
+

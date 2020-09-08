@@ -1,0 +1,99 @@
+[achievements]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'achievements'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'achievements'
+	},
+	2 = {
+		type = 'library',
+		name = 'achievements'
+	}
+}
+
+[BalloonPopped]
+description = '<internal></internal>Adds one to the count of balloons burst. Once this count reaches 1000, the \'Popper\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[Count]
+description = 'Returns the amount of achievements in Garry\'s Mod.\r\n\r\n**Returns:** The amount of achievements available.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[EatBall]
+description = '<internal></internal>Adds one to the count of balls eaten. Once this count reaches 200, the \'Ball Eater\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[GetCount]
+description = 'Retrieves progress of given achievement\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'achievementID'
+type = 'number'
+description = 'The ID of achievement to retrieve progress of. Note: IDs start from 0, not 1.'
+
+[GetDesc]
+description = 'Retrieves description of given achievement\r\n\r\n**Returns:** Description of an achievement\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'achievementID'
+type = 'number'
+description = 'The ID of achievement to retrieve description of. Note: IDs start from 0, not 1.'
+[[.returns]]
+type = 'string'
+
+[GetGoal]
+description = 'Retrieves progress goal of given achievement\r\n\r\n**Returns:** Progress goal of an achievement\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'achievementID'
+type = 'number'
+description = 'The ID of achievement to retrieve goal of. Note: IDs start from 0, not 1.'
+[[.returns]]
+type = 'number'
+
+[GetName]
+description = 'Retrieves name of given achievement\r\n\r\n**Returns:** Name of an achievement\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'achievementID'
+type = 'number'
+description = 'The ID of achievement to retrieve name of. Note: IDs start from 0, not 1.'
+[[.returns]]
+type = 'string'
+
+[IncBaddies]
+description = '<internal></internal>Adds one to the count of baddies killed. Once this count reaches 1000, the \'War Zone\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[IncBystander]
+description = '<internal></internal>Adds one to the count of innocent animals killed. Once this count reaches 1000, the \'Innocent Bystander\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[IncGoodies]
+description = '<internal></internal>Adds one to the count of friendly NPCs killed. Once this count reaches 1000, the \'Bad Friend\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[IsAchieved]
+description = 'Used in GMod 12 in the achievements menu to show the user if they have unlocked certain achievements.\r\n\r\n**Returns:** Returns true if the given achievementID is achieved.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'AchievementID'
+type = 'number'
+description = 'Internal Achievement ID number'
+[[.returns]]
+type = 'boolean'
+
+[Remover]
+description = '<internal></internal>Adds one to the count of things removed. Once this count reaches 5000, the \'Destroyer\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[SpawnedNPC]
+description = '<internal></internal>Adds one to the count of NPCs spawned. Once this count reaches 1000, the \'Procreator\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[SpawnedProp]
+description = '<internal></internal>Adds one to the count of props spawned. Once this count reaches 5000, the \'Creator\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[SpawnedRagdoll]
+description = '<internal></internal>Adds one to the count of ragdolls spawned. Once this count reaches 2000, the \'Dollhouse\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+
+[SpawnMenuOpen]
+description = '<internal></internal>Adds one to the count of how many times the spawnmenu has been opened. Once this count reaches 100,000, the \'Menu User\' achievement is unlocked.\r\n\r\n**Scope:** Client'
+

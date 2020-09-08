@@ -1,0 +1,197 @@
+[input]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'input'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'input'
+	},
+	2 = {
+		type = 'library',
+		name = 'input'
+	}
+}
+
+[CheckKeyTrapping]
+description = 'Returns the last key captured by key trapping.\r\n\r\n**Returns:** The key, see <page>Enums/KEY</page>\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetCursorPos]
+description = 'Returns the cursor\'s position on the screen\r\n\r\n**Returns:** The cursors position on the X axis\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetKeyCode]
+description = 'Gets the button code from a button name. This is opposite of <page>input.GetKeyName</page>.\r\n\r\n**Returns:** The button code, see <page>Enums/BUTTON_CODE</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'button'
+type = 'string'
+description = 'The internal button name, such as <key>E</key> or <key>SHIFT</key>.'
+[[.returns]]
+type = 'number'
+
+[GetKeyName]
+description = 'Gets the button name from a numeric button code. The name needs to be translated with <page>language.GetPhrase</page> before being displayed.\r\n\r\n<note>Despite the name of the function, this also works for the full range of keys in <page>Enums/BUTTON_CODE</page>.</note>\r\n\r\n**Returns:** Button name.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'button'
+type = 'number'
+description = 'The button, see <page>Enums/BUTTON_CODE</page>.'
+[[.returns]]
+type = 'string'
+
+[IsButtonDown]
+description = 'Gets whether the specified button code is down.\r\n\r\nUnlike <page>input.IsKeyDown</page> this can also detect joystick presses from <page>Enums/JOYSTICK</page>\r\n\r\n**Returns:** Is the button down\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'button'
+type = 'number'
+description = 'The button, valid values are in the range of <page>Enums/BUTTON_CODE</page>.'
+[[.returns]]
+type = 'boolean'
+
+[IsControlDown]
+description = 'Returns whether a control key is being pressed\r\n\r\n**Returns:** Is Ctrl key down or not\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[IsKeyDown]
+description = 'Gets whether a key is down.\r\n\r\n**Returns:** Is the key down\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/KEY</page>.'
+[[.returns]]
+type = 'boolean'
+
+[IsKeyTrapping]
+description = 'Returns whether key trapping is activate and the next key press will be captured.\r\n\r\n**Returns:** Whether key trapping active or not\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[IsMouseDown]
+description = 'Gets whether a mouse button is down\r\n\r\n**Returns:** Is the key down\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mouseKey'
+type = 'number'
+description = 'The key, see <page>Enums/MOUSE</page>'
+[[.returns]]
+type = 'boolean'
+
+[IsShiftDown]
+description = 'Gets whether a shift key is being pressed\r\n\r\n**Returns:** isDown\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[LookupBinding]
+description = 'Gets the match uppercase key for the specified binding.\r\n\r\n**Returns:** The first key found with that binding or no value if no key with given binding was found.\r\n\r\nSee also <page>input.GetKeyCode</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'binding'
+type = 'string'
+description = 'The binding name'
+``````````
+name = 'exact'
+type = 'boolean'
+description = 'True if the binding should match exactly'
+[[.returns]]
+type = 'string'
+
+[LookupKeyBinding]
+description = 'Returns the bind string that the given key is bound to.\r\n\r\n**Returns:** The bind string of the given key.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'Key from <page>Enums/BUTTON_CODE</page>'
+[[.returns]]
+type = 'string'
+
+[SelectWeapon]
+description = 'Switches to the provided weapon on the next CUserCmd generation/CreateMove call. Direct binding to [CInput::MakeWeaponSelection](https://github.com/LestaD/SourceEngine2007/blob/43a5c90a5ada1e69ca044595383be67f40b33c61/se2007/game/client/in_main.cpp#L929-L932).\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'weapon'
+type = 'Weapon'
+description = 'The weapon entity to switch to.'
+
+[SetCursorPos]
+description = 'Sets the cursor\'s position on the screen, relative to the topleft corner of the window\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mouseX'
+type = 'number'
+description = 'X coordinate for mouse position'
+``````````
+name = 'mouseY'
+type = 'number'
+description = 'Y coordinate for mouse position'
+
+[StartKeyTrapping]
+description = 'Begins waiting for a key to be pressed so we can save it for <page>input.CheckKeyTrapping</page>. Used by the <page>DBinder</page>.\r\n\r\n**Scope:** Client'
+
+[TranslateAlias]
+description = 'Translates a console command alias, basically reverse of the `alias` console command.\r\n\r\n**Returns:** The command(s) this alias will execute if ran, or nil if the alias doesn\'t exist.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'command'
+type = 'string'
+description = 'The alias to lookup.'
+[[.returns]]
+type = 'string'
+
+[WasKeyPressed]
+description = 'Returns whether a key was initially pressed in the same frame this function was called.\r\n\r\nThis function only works in Move hooks, and will detect key presses even in main menu or when a typing in a text field.\r\n\r\n**Returns:** True if the key was initially pressed the same frame that this function was called, false otherwise.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/KEY</page>.'
+[[.returns]]
+type = 'boolean'
+
+[WasKeyReleased]
+description = 'Returns whether a key was released in the same frame this function was called.\r\n\r\nThis function only works in Move hooks, and will detect key releases even in main menu or when a typing in a text field.\r\n\r\n**Returns:** True if the key was released the same frame that this function was called, false otherwise.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/KEY</page>.'
+[[.returns]]
+type = 'boolean'
+
+[WasKeyTyped]
+description = 'Returns whether the key is being held down or not.\r\n\r\nThis function only works in Move hooks, and will detect key events even in main menu or when a typing in a text field.\r\n\r\n**Returns:** Whether the key is being held down or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key to test, see <page>Enums/KEY</page>'
+[[.returns]]
+type = 'boolean'
+
+[WasMouseDoublePressed]
+description = 'Returns whether a mouse key was double pressed in the same frame this function was called.\r\n\r\n\r\nIf this function returns true, <page>input.WasMousePressed</page> will return false.\r\n\r\nThis function only works in Move hooks, and will detect mouse events even in main menu or when a typing in a text field.\r\n\r\n**Returns:** Whether the mouse key was double pressed or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'button'
+type = 'number'
+description = 'The mouse button to test, see <page>Enums/MOUSE</page>'
+[[.returns]]
+type = 'boolean'
+
+[WasMousePressed]
+description = 'Returns whether a mouse key was initially pressed in the same frame this function was called.\r\n\r\n\r\nIf <page>input.WasMouseDoublePressed</page> returns true, this function will return false.\r\n\r\nThis function only works in Move hooks, and will detect mouse events even in main menu or when a typing in a text field.\r\n\r\n**Returns:** True if the mouse key was initially pressed the same frame that this function was called, false otherwise.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key, see <page>Enums/MOUSE</page>'
+[[.returns]]
+type = 'boolean'
+
+[WasMouseReleased]
+description = 'Returns whether a mouse key was released in the same frame this function was called.\r\n\r\nThis function only works in Move hooks, and will detect mouse events even in main menu or when a typing in a text field.\r\n\r\n**Returns:** True if the mouse key was released the same frame that this function was called, false otherwise.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'key'
+type = 'number'
+description = 'The key to test, see <page>Enums/MOUSE</page>'
+[[.returns]]
+type = 'boolean'
+

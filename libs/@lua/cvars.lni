@@ -1,0 +1,114 @@
+[cvars]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'cvars'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'cvars'
+	},
+	2 = {
+		type = 'library',
+		name = 'cvars'
+	}
+}
+
+[AddChangeCallback]
+description = 'Adds a callback to be called when the named convar changes.\r\n\r\n<bug issue="1440">This does not callback convars in the menu state.</bug>\r\n<bug issue="3503">This does not callback convars on the client with FCVAR_GAMEDLL and convars on the server without FCVAR_GAMEDLL.</bug>\r\n<bug issue="3740">This does not callback convars on the client with FCVAR_REPLICATED.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the convar to add the change callback to.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'The function to be called when the convar changes. The arguments passed are:\r\n* <page>string</page> convar - The name of the convar.\r\n* <page>string</page> oldValue - The old value of the convar.\r\n* <page>string</page> newValue - The new value of the convar.'
+``````````
+name = 'identifier'
+type = 'string'
+description = 'If set, you will be able to remove the callback using <page>cvars.RemoveChangeCallback</page>.'
+
+[Bool]
+description = 'Retrieves console variable as a boolean.\r\n\r\n**Returns:** Retrieved value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'cvar'
+type = 'string'
+description = 'Name of console variable'
+``````````
+name = 'default'
+type = 'boolean'
+description = 'The value to return if the console variable does not exist'
+[[.returns]]
+type = 'boolean'
+
+[GetConVarCallbacks]
+description = 'Returns a table of the given <page>ConVar</page>s callbacks.\r\n\r\n**Returns:** A table of the convar\'s callbacks, or nil if the convar doesn\'t exist.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the <page>ConVar</page>.'
+``````````
+name = 'createIfNotFound'
+type = 'boolean'
+description = 'Whether or not to create the internal callback table for given <page>ConVar</page> if there isn\'t one yet.\r\n\r\n\r\nThis argument is internal and should not be used.'
+[[.returns]]
+type = 'table'
+
+[Number]
+description = 'Retrieves console variable as a number.\r\n\r\n**Returns:** Retrieved value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'cvar'
+type = 'string'
+description = 'Name of console variable'
+``````````
+name = 'default'
+type = 'any'
+description = 'The value to return if the console variable does not exist'
+[[.returns]]
+type = 'number'
+
+[OnConVarChanged]
+description = '<internal>You are probably looking for <page>cvars.AddChangeCallback</page>.</internal>\r\n\r\nCalled by the engine when a convar value changes.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Convar name'
+``````````
+name = 'oldVal'
+type = 'string'
+description = 'The old value of the convar'
+``````````
+name = 'newVal'
+type = 'string'
+description = 'The new value of the convar'
+
+[RemoveChangeCallback]
+description = 'Removes a callback for a convar using the the callback\'s identifier. The identifier should be the third argument specified for <page>cvars.AddChangeCallback</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the convar to remove the callback from.'
+``````````
+name = 'indentifier'
+type = 'string'
+description = 'The callback\'s identifier.'
+
+[String]
+description = 'Retrieves console variable as a string.\r\n\r\n**Returns:** Retrieved value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'cvar'
+type = 'string'
+description = 'Name of console variable'
+``````````
+name = 'default'
+type = 'any'
+description = 'The value to return if the console variable does not exist'
+[[.returns]]
+type = 'string'
+

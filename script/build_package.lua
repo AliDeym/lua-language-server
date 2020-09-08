@@ -6,8 +6,8 @@ local VERSION = "0.14.2"
 local package = {
     name = "lua",
     displayName = "Lua",
-    description = "Lua Language Server coded by Lua",
-    author = "sumneko",
+    description = "Lua Language Server (+GLua)",
+    author = "sumneko, GLua implemented by Ali Deym",
     icon = "images/logo.png",
     license = "MIT",
     repository = {
@@ -142,7 +142,7 @@ local package = {
                 ["Lua.completion.callSnippet"] = {
                     scope = "resource",
                     type = "string",
-                    default = "Disable",
+                    default = "Replace",
                     enum = {
                         "Disable",
                         "Both",
@@ -183,12 +183,6 @@ local package = {
                 --    default = ".vscode/lua-plugin/*.lua",
                 --    markdownDescription = "%config.plugin.path%"
                 --},
-                ["Lua.zzzzzz.cat"] = {
-                    scope = "resource",
-                    type = "boolean",
-                    default = false,
-                    markdownDescription = "%config.zzzzzz.cat%"
-                },
             }
         },
         grammars = {
@@ -198,12 +192,7 @@ local package = {
                 path = "./syntaxes/lua.tmLanguage.json"
             }
         }
-    },
-	__metadata = {
-		id = "3a15b5a7-be12-47e3-8445-88ee3eabc8b2",
-		publisherDisplayName = "sumneko",
-		publisherId = "fb626675-24cf-4881-8c13-b465f29bec2f",
-	},
+    }
 }
 
 local DiagSeverity = package.contributes.configuration.properties["Lua.diagnostics.severity"].properties
@@ -296,7 +285,6 @@ The following example shows loaded files in `C:/lua` and `../lib` ,exclude `../l
     ['config.completion.keywordSnippet.Disable'] = "Only shows `keyword`.",
     ['config.completion.keywordSnippet.Both'] = "Shows `keyword` and `syntax snippet`.",
     ['config.completion.keywordSnippet.Replace'] = "Only shows `syntax snippet`.",
-    ['config.zzzzzz.cat']                 = 'DO NOT TOUCH ME, LET ME SLEEP >_<\n\n(This will enable beta version, which are still in the early stages of development, and all features will fail after enabling this setting.)',
 })
 
 io.save(ROOT:parent_path() / 'package.nls.zh-cn.json', json.encode {
@@ -325,5 +313,4 @@ io.save(ROOT:parent_path() / 'package.nls.zh-cn.json', json.encode {
     ['config.completion.keywordSnippet.Disable'] = "只显示 `关键字`。",
     ['config.completion.keywordSnippet.Both'] = "显示 `关键字` 与 `语法片段`。",
     ['config.completion.keywordSnippet.Replace'] = "只显示 `语法片段`。",
-    ['config.zzzzzz.cat']                 = 'DO NOT TOUCH ME, LET ME SLEEP >_<\n\n（这会启用还处于早期开发阶段的beta版，开启后所有的功能都会失效）',
 })

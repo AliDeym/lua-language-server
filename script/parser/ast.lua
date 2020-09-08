@@ -24,6 +24,7 @@ end
 -- goto 单独处理
 local RESERVED = {
     ['and']      = true,
+    ['continue'] = true,
     ['break']    = true,
     ['do']       = true,
     ['else']     = true,
@@ -183,13 +184,16 @@ local function checkMissEnd(start)
     }
 end
 
+-- Modified for GMOD.
 Exp = {
     {
         ['or'] = true,
+        ['||'] = true,
         binaryForward,
     },
     {
         ['and'] = true,
+        ['&&']  = true,
         binaryForward,
     },
     {
@@ -198,6 +202,7 @@ Exp = {
         ['<']  = true,
         ['>']  = true,
         ['~='] = true,
+        ['!='] = true,
         ['=='] = true,
         binaryForward,
     },
@@ -240,6 +245,7 @@ Exp = {
     },
     {
         ['not'] = true,
+        ['!']   = true,
         ['#']   = true,
         ['~']   = true,
         ['-']   = true,
@@ -315,25 +321,49 @@ local Defs = {
             }
         end
     end,
-    CLongComment = function (start1, finish1, start2, finish2)
-        pushError {
-            type   = 'ERR_C_LONG_COMMENT',
-            start  = start1,
-            finish = finish2 - 1,
-            fix    = {
-                title = 'FIX_C_LONG_COMMENT',
-                {
-                    start  = start1,
-                    finish = finish1 - 1,
-                    text   = '--[[',
+    CLongComment = function (beforeEq, afterEq, str, finish, missPos)
+        State.Comments[#State.Comments+1] = {
+            start  = beforeEq,
+            finish = finish,
+        }
+        if missPos then
+            local endSymbol = '*' .. ('='):rep(afterEq-beforeEq) .. '/'
+            local s, _, w = str:find('(%/*[%=//*%])[%c%s]*$')
+            if not s then
+                pushError {
+                    type   = 'ERR_LCOMMENT_END',
+                    start  = missPos - #str + s - 1,
+                    finish = missPos - #str + s + #w - 2,
+                    info   = {
+                        symbol = endSymbol,
+                    },
+                    fix    = {
+                        title = 'FIX_LCOMMENT_END',
+                        {
+                            start  = missPos - #str + s - 1,
+                            finish = missPos - #str + s + #w - 2,
+                            text   = endSymbol,
+                        }
+                    },
+                }
+            end
+            pushError {
+                type   = 'MISS_SYMBOL',
+                start  = missPos,
+                finish = missPos,
+                info   = {
+                    symbol = endSymbol,
                 },
-                {
-                    start  = start2,
-                    finish = finish2 - 1,
-                    text   =  '--]]'
+                fix    = {
+                    title = 'ADD_LCOMMENT_END',
+                    {
+                        start  = missPos,
+                        finish = missPos,
+                        text   = endSymbol,
+                    }
                 },
             }
-        }
+        end
     end,
     CCommentPrefix = function (start, finish)
         pushError {
@@ -1050,13 +1080,13 @@ local Defs = {
             if not action then
                 return breakChunk
             end
-            if State.Version == 'Lua 5.1' or State.Version == 'LuaJIT' then
+            --if State.Version == 'Lua 5.1' or State.Version == 'LuaJIT' then
                 pushError {
                     type = 'ACTION_AFTER_BREAK',
                     start = finish - #'break',
                     finish = finish - 1,
                 }
-            end
+            --end
             return breakChunk, action
         else
             pushError {
@@ -1079,6 +1109,49 @@ local Defs = {
     end,
     BreakEnd = function ()
         State.Break = State.Break - 1
+    end,
+    -- GMOD CONTINUE
+    Continue = function (finish, ...)
+        if State.Continue > 0 then
+            local continueChunk = {
+                type = 'continue',
+            }
+            if not ... then
+                return continueChunk
+            end
+            local action = select(-1, ...)
+            if not action then
+                return continueChunk
+            end
+            --if State.Version == 'Lua 5.1' or State.Version == 'LuaJIT' then
+                pushError {
+                    type = 'ACTION_AFTER_CONTINUE',
+                    start = finish - #'continue',
+                    finish = finish - 1,
+                }
+            --end
+            return continueChunk, action
+        else
+            pushError {
+                type = 'CONTINUE_OUTSIDE',
+                start = finish - #'continue',
+                finish = finish - 1,
+            }
+            if not ... then
+                return false
+            end
+            local action = select(-1, ...)
+            if not action then
+                return false
+            end
+            return action
+        end
+    end,
+    ContinueStart = function ()
+        State.Continue = State.Continue + 1
+    end,
+    ContinueEnd = function ()
+        State.Continue = State.Continue - 1
     end,
     Return = function (start, exp, finish)
         if not finish then

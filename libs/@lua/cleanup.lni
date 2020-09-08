@@ -1,0 +1,97 @@
+[cleanup]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'cleanup'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'cleanup'
+	},
+	2 = {
+		type = 'library',
+		name = 'cleanup'
+	}
+}
+
+[Add]
+description = 'Adds an entity to a player\'s cleanup list.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pl'
+type = 'Player'
+description = 'Who\'s cleanup list to add the entity to.'
+``````````
+name = 'type'
+type = 'string'
+description = 'The type of cleanup.'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to add to the player\'s cleanup list.'
+
+[CC_AdminCleanup]
+description = '<internal></internal> Called by the `gmod_admin_cleanup` console command. Allows admins to clean up the server.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pl'
+type = 'Player'
+description = 'The player that called the console command.'
+``````````
+name = 'command'
+type = 'string'
+description = 'The console command that called this function.'
+``````````
+name = 'args'
+type = 'table'
+description = 'First and only arg is the cleanup type.'
+
+[CC_Cleanup]
+description = '<internal></internal> Called by the `gmod_cleanup` console command. Allows players to cleanup their own props.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pl'
+type = 'Player'
+description = 'The player that called the console command.'
+``````````
+name = 'command'
+type = 'string'
+description = 'The console command that called this function.'
+``````````
+name = 'args'
+type = 'table'
+description = 'First and only arg is the cleanup type.'
+
+[GetList]
+description = 'Gets the cleanup list.\r\n\r\n**Scope:** Server'
+
+[GetTable]
+description = 'Gets the table of cleanup types.\r\n\r\n**Returns:** cleanup_types\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[Register]
+description = 'Registers a new cleanup type.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'type'
+type = 'string'
+description = 'Name of type.'
+
+[ReplaceEntity]
+description = 'Replaces one entity in the cleanup module with another\r\n\r\n**Returns:** Whether any action was taken.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'from'
+type = 'Entity'
+description = 'Old entity'
+``````````
+name = 'to'
+type = 'Entity'
+description = 'New entity'
+[[.returns]]
+type = 'boolean'
+
+[UpdateUI]
+description = 'Repopulates the clients cleanup menu\r\n\r\n**Scope:** Client'
+

@@ -1,0 +1,58 @@
+[notification]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'notification'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'notification'
+	},
+	2 = {
+		type = 'library',
+		name = 'notification'
+	}
+}
+
+[AddLegacy]
+description = 'Adds a standard notification to your screen.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'text'
+type = 'string'
+description = 'The text to display.'
+``````````
+name = 'type'
+type = 'number'
+description = 'Determines the notification method (e.g. icon) for displaying the notification. See the <page>Enums/NOTIFY</page>.'
+``````````
+name = 'length'
+type = 'number'
+description = 'The number of seconds to display the notification for.'
+
+[AddProgress]
+description = 'Adds a notification with an animated progress bar.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'id'
+type = 'any'
+description = 'Can be any type. It\'s used as an index.'
+``````````
+name = 'strText'
+type = 'string'
+description = 'The text to show'
+``````````
+name = 'frac'
+type = 'number'
+description = 'If set, overrides the progress bar animation with given percentage. Range is 0 to 1.'
+
+[Kill]
+description = 'Removes the notification after 0.8 seconds.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'uid'
+type = 'any'
+description = 'The unique ID of the notification'
+

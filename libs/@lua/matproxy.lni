@@ -1,0 +1,71 @@
+[matproxy]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'matproxy'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'matproxy'
+	},
+	2 = {
+		type = 'library',
+		name = 'matproxy'
+	}
+}
+
+[Add]
+description = 'Adds a material proxy.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'MatProxyData'
+type = 'table'
+description = 'The information about the proxy. See <page>Structures/MatProxyData</page>'
+
+[Call]
+description = 'Called by the engine from OnBind\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'uname'
+type = 'string'
+description = ''
+``````````
+name = 'mat'
+type = 'IMaterial'
+description = ''
+``````````
+name = 'ent'
+type = 'Entity'
+description = ''
+
+[Init]
+description = 'Called by the engine from OnBind\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = ''
+``````````
+name = 'uname'
+type = 'string'
+description = ''
+``````````
+name = 'mat'
+type = 'IMaterial'
+description = ''
+``````````
+name = 'values'
+type = 'table'
+description = ''
+
+[ShouldOverrideProxy]
+description = 'Called by engine, returns true if we\'re overriding a proxy\r\n\r\n**Returns:** Are we overriding it?\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of proxy in question'
+[[.returns]]
+type = 'boolean'
+

@@ -39,7 +39,7 @@ local CompletionItemKind = {
     TypeParameter = 25,
 }
 
-local KEYS = {'and', 'break', 'do', 'else', 'elseif', 'end', 'false', 'for', 'function', 'goto', 'if', 'in', 'local', 'nil', 'not', 'or', 'repeat', 'return', 'then', 'true', 'until', 'while'}
+local KEYS = {'and', 'break', 'continue', 'do', 'else', 'elseif', 'end', 'false', 'for', 'function', 'goto', 'if', 'in', 'local', 'nil', 'not', 'or', 'repeat', 'return', 'then', 'true', 'until', 'while'}
 local KEYMAP = {}
 for _, k in ipairs(KEYS) do
     KEYMAP[k] = true
@@ -144,6 +144,9 @@ local function getKind(cata, value)
             return CompletionItemKind.Function
         end
     end
+    if value:getType() == 'interface' then
+        return CompletionItemKind.Interface
+    end
     if cata == 'field' then
         local literal = value:getLiteral()
         local tp = type(literal)
@@ -194,13 +197,33 @@ local function getFunctionSnip(name, value, source)
     return ('%s(%s)'):format(name, buildSnipArgs(hover.args, hover.rawEnum))
 end
 
-local function getValueData(cata, name, value, pos, source)
+local function getValueData(cata, name, value, pos, source, word)
     local data = {
         documentation = getDucumentation(name, value),
         detail = getDetail(value),
         kind = getKind(cata, value),
         snip = getFunctionSnip(name, value, source),
     }
+    -- Gmod hook update.
+    local lib = value:getLib()
+    
+    if lib then
+        if lib.customsnip then
+            data.snip = lib.customsnip
+
+            local len = string.len(word)
+            local comment = lib.comments or ""
+            
+            data.additionalTextEdits = {
+                {
+                    start = pos - len - 4,
+                    finish = pos - len - 4,
+                    newText = "\n" .. comment .. "\nh"
+                }
+            }
+        end
+    end
+
     if cata == 'field' then
         if not parser:grammar(name, 'Name') then
             if source:get 'simple' and source:get 'simple' [1] ~= source then
@@ -246,7 +269,7 @@ local function searchLocals(vm, source, word, callback, pos)
             and loc:close() >= source.finish
             and matchKey(word, loc:getName())
         then
-            callback(loc:getName(), src, CompletionItemKind.Variable, getValueData('local', loc:getName(), loc:getValue(), pos, source))
+            callback(loc:getName(), src, CompletionItemKind.Variable, getValueData('local', loc:getName(), loc:getValue(), pos, source, word))
         end
     end)
 end
@@ -297,6 +320,35 @@ local function searchFieldsByInfo(parent, word, source, map, srcMap)
     end)
 end
 
+-- Moved function.
+local function getSelect(args, pos)
+    if not args then
+        return 1
+    end
+    for i, arg in ipairs(args) do
+        if arg.start <= pos and arg.finish >= pos - 1 then
+            return i
+        end
+    end
+    return #args + 1
+end
+
+local function isInFunctionOrTable(call, pos)
+    local args = call:bindCall()
+    if not args then
+        return false
+    end
+    local select = getSelect(args, pos)
+    local arg = args[select]
+    if not arg then
+        return false
+    end
+    if arg.type == 'function' or arg.type == 'table' then
+        return true
+    end
+    return false
+end
+
 local function searchFieldsByChild(parent, word, source, map, srcMap)
     parent:eachChild(function (k, v, src)
         if map[k] then
@@ -339,7 +391,7 @@ local function searchFields(vm, source, word, callback, pos)
     end
     searchFieldsByChild(parent, word, source, map, srcMap)
     for k, v in sortPairs(map) do
-        callback(k, srcMap[k], CompletionItemKind.Field, getValueData('field', k, v, pos, source))
+        callback(k, srcMap[k], CompletionItemKind.Field, getValueData('field', k, v, pos, source, word))
     end
 end
 
@@ -411,7 +463,7 @@ local function searchKeyWords(vm, source, word, callback)
                 if snipType ~= 'Disable' then
                     for _, data in ipairs(snippet.key[key]) do
                         callback(data.label, nil, CompletionItemKind.Snippet, {
-                            insertText = data.text,
+                            insertText = data.text
                         })
                     end
                 end
@@ -436,7 +488,7 @@ local function searchGlobals(vm, source, word, callback, pos)
     end
     searchFieldsByChild(global, word, source, map, srcMap)
     for k, v in sortPairs(map) do
-        callback(k, srcMap[k], CompletionItemKind.Field, getValueData('field', k, v, pos, source))
+        callback(k, srcMap[k], CompletionItemKind.Field, getValueData('field', k, v, pos, source, word))
     end
 end
 
@@ -529,6 +581,7 @@ local function searchEmmyClass(vm, source, word, callback)
 end
 
 local function searchEmmyFunctionParam(vm, source, word, callback)
+
     local func = source:get 'emmy function'
     if not func.args then
         return
@@ -704,7 +757,6 @@ local function searchEnumAsLib(vm, source, word, callback, pos, args, lib)
             break
         end
     end
-
     -- 根据参数位置找枚举值
     if lib.args and lib.enums then
         local arg = lib.args[select]
@@ -718,14 +770,14 @@ local function searchEnumAsLib(vm, source, word, callback, pos, args, lib)
                             local data = buildTextEdit(source.start, source.finish, strSource[1], source[2])
                             data.documentation = {
                                 kind  = 'markdown',
-                                value = enum.description,
+                                value = enum.description
                             }
                             callback(enum.enum, nil, CompletionItemKind.EnumMember, data)
                         else
                             callback(enum.enum, nil, CompletionItemKind.EnumMember, {
                                 documentation = {
                                     value = enum.description,
-                                    kind  = 'markdown',
+                                    kind  = 'markdown'
                                 }
                             })
                         end
@@ -734,14 +786,13 @@ local function searchEnumAsLib(vm, source, word, callback, pos, args, lib)
                     callback(enum.enum, nil, CompletionItemKind.EnumMember, {
                         documentation = {
                             value = enum.description,
-                            kind  = 'markdown',
+                            kind  = 'markdown'
                         }
                     })
                 end
             end
         end
     end
-
     -- 搜索特殊函数
     if lib.special == 'require' then
         if select == 1 then
@@ -801,34 +852,6 @@ local function searchEnumAsEmmyParams(vm, source, word, callback, pos, args, fun
     end
 end
 
-local function getSelect(args, pos)
-    if not args then
-        return 1
-    end
-    for i, arg in ipairs(args) do
-        if arg.start <= pos and arg.finish >= pos - 1 then
-            return i
-        end
-    end
-    return #args + 1
-end
-
-local function isInFunctionOrTable(call, pos)
-    local args = call:bindCall()
-    if not args then
-        return false
-    end
-    local select = getSelect(args, pos)
-    local arg = args[select]
-    if not arg then
-        return false
-    end
-    if arg.type == 'function' or arg.type == 'table' then
-        return true
-    end
-    return false
-end
-
 local function searchCallArg(vm, source, word, callback, pos)
     local results = {}
     vm:eachSource(function (src)
@@ -873,6 +896,8 @@ local function searchCallArg(vm, source, word, callback, pos)
         searchEnumAsEmmyParams(vm, source, word, callback, pos, args, func)
         return
     end
+
+    return
 end
 
 local function searchAllWords(vm, source, word, callback, pos)
@@ -988,8 +1013,12 @@ local function makeList(source, pos, word)
             if snipType ~= 'Disable' then
                 local snipData = table.deepCopy(data)
                 snipData.insertText = data.snip
-                snipData.kind = CompletionItemKind.Snippet
-                snipData.label = snipData.label .. '()'
+                snipData.kind = data.kind --CompletionItemKind.Snippet
+                snipData.label = data.label -- snipData.label .. '()'
+                snipData.command = {
+                    command = "editor.action.triggerParameterHints",
+                    title = "triggerParameterHints"
+                }
                 snipData.snip = nil
                 if snipType == 'Both' then
                     list[#list+1] = snipData

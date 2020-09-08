@@ -1,0 +1,36 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'IMesh'
+	},
+}
+
+[BuildFromTriangles]
+description = 'Builds the mesh from a table mesh vertexes.\r\n\r\nSee <page>Global.Mesh</page> and <page>util.GetModelMeshes</page> for examples.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IMesh'
+``````````
+name = 'vertexes'
+type = 'table'
+description = 'A table consisting of <page>Structures/MeshVertex</page>s.'
+
+[Destroy]
+description = 'Deletes the mesh and frees the memory used by it.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IMesh'
+
+[Draw]
+description = 'Renders the mesh with the active matrix.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IMesh'
+
+[IsValid]
+description = 'Returns whether this <page>IMesh</page> is valid or not.\r\n\r\n**Returns:** Whether this <page>IMesh</page> is valid or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'IMesh'
+[[.returns]]
+type = 'boolean'
+

@@ -1,0 +1,74 @@
+[system]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'system'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'system'
+	},
+	2 = {
+		type = 'library',
+		name = 'system'
+	}
+}
+
+[AppTime]
+description = 'Returns the total uptime of the current application as reported by Steam.\r\n\r\nThis will return a similar value to <page>Global.SysTime</page>.\r\n\r\n<note>This function does not work on Dedicated Servers and will instead return no value.</note>\r\n\r\n**Returns:** Seconds of game uptime as an integer.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[BatteryPower]
+description = 'Returns the current battery power.\r\n\r\n**Returns:** 0-100 if a battery (laptop, UPS, etc) is present.\r\n\r\nWill instead return 255 if plugged in without a battery.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[FlashWindow]
+description = 'Flashes the window, turning the border to white briefly\r\n\r\n**Scope:** Client'
+
+[GetCountry]
+description = 'Returns the country code of this computer, determined by the localisation settings of the OS.\r\n\r\n<note>This function does not work on Dedicated Servers and will instead return no value.</note>\r\n\r\n**Returns:** Two-letter country code, using [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) standard.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'string'
+
+[HasFocus]
+description = 'Returns whether or not the game window has focus.\r\n\r\n<note>This function does not work on dedicated servers and will instead return no value.</note>\r\n\r\n<bug issue="2424">This will return true when minimized in windowed-mode.</bug>\r\n\r\n**Returns:** Whether or not the game window has focus.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'boolean'
+
+[IsLinux]
+description = 'Returns whether the current OS is Linux.\r\n\r\n**Returns:** Whether or not the game is running on Linux.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'boolean'
+
+[IsOSX]
+description = 'Returns whether the current OS is OSX.\r\n\r\n**Returns:** Whether or not the game is running on OSX.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'boolean'
+
+[IsWindowed]
+description = 'Returns whether the game is being run in a window or in fullscreen (you can change this by opening the menu, clicking \'Options\', then clicking the \'Video\' tab, and changing the Display Mode using the dropdown menu):\r\n\r\n<img src="DisplayModeDropdown.jpeg">\r\n\r\n**Returns:** Is the game running in a window?\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[IsWindows]
+description = 'Returns whether the current OS is Windows.\r\n\r\n**Returns:** Whether the system the game runs on is Windows or not.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'boolean'
+
+[SteamTime]
+description = 'Returns the synchronized Steam time. This is the number of seconds since the [Unix epoch](http://en.wikipedia.org/wiki/Unix_time).\r\n\r\n<note>This function does not work on Dedicated Servers and will instead return no value.</note>\r\n\r\n**Returns:** Current Steam-synchronized Unix time.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[UpTime]
+description = 'Returns the amount of seconds since the Steam user last moved their mouse.\r\n\r\nThis is a direct binding to ISteamUtils->GetSecondsSinceComputerActive, and is most likely related to Steam\'s automatic "Away" online status.\r\n\r\n<note>This function does not work on Dedicated Servers and will instead return no value.</note>\r\n\r\n**Returns:** The amount of seconds since the Steam user last moved their mouse.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+

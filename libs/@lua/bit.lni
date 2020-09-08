@@ -1,0 +1,165 @@
+[bit]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'bit'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'bit'
+	},
+	2 = {
+		type = 'library',
+		name = 'bit'
+	}
+}
+
+[arshift]
+description = 'Returns the arithmetically shifted value.\r\n\r\n**Returns:** shiftedValue\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be manipulated.'
+``````````
+name = 'shiftCount'
+type = 'number'
+description = 'Amounts of bits to shift.'
+[[.returns]]
+type = 'number'
+
+[band]
+description = 'Performs the bitwise "and" for all values specified.\r\n\r\n**Returns:** Result of bitwise "and" operation.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be manipulated.'
+``````````
+name = 'otherValues'
+type = 'number'
+description = 'Values bit to perform bitwise "and" with. Optional.'
+[[.returns]]
+type = 'number'
+
+[bnot]
+description = 'Returns the bitwise not of the value.\r\n\r\n**Returns:** bitwiseNot\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be inverted.'
+[[.returns]]
+type = 'number'
+
+[bor]
+description = 'Returns the bitwise OR of all values specified.\r\n\r\n**Returns:** The bitwise OR result between all numbers.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value1'
+type = 'number'
+description = 'The first value.'
+``````````
+name = '...'
+type = 'vararg'
+description = 'Extra values to be evaluated. (must all be numbers)'
+[[.returns]]
+type = 'number'
+
+[bswap]
+description = 'Swaps the byte order.\r\n\r\n**Returns:** swapped\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be byte swapped.'
+[[.returns]]
+type = 'number'
+
+[bxor]
+description = 'Returns the bitwise xor of all values specified.\r\n\r\n**Returns:** bitwiseXOr\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be manipulated.'
+``````````
+name = 'otherValues'
+type = 'number'
+description = 'Values bit xor with. Optional.'
+[[.returns]]
+type = 'number'
+
+[lshift]
+description = 'Returns the left shifted value.\r\n\r\n**Returns:** shiftedValue\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be manipulated.'
+``````````
+name = 'shiftCount'
+type = 'number'
+description = 'Amounts of bits to shift left by.'
+[[.returns]]
+type = 'number'
+
+[rol]
+description = 'Returns the left rotated value.\r\n\r\n**Returns:** shiftedValue\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be manipulated.'
+``````````
+name = 'shiftCount'
+type = 'number'
+description = 'Amounts of bits to rotate left by.'
+[[.returns]]
+type = 'number'
+
+[ror]
+description = 'Returns the right rotated value.\r\n\r\n**Returns:** shiftedValue\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be manipulated.'
+``````````
+name = 'shiftCount'
+type = 'number'
+description = 'Amounts of bits to rotate right by.'
+[[.returns]]
+type = 'number'
+
+[rshift]
+description = 'Returns the right shifted value.\r\n\r\n**Returns:** shiftedValue\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be manipulated.'
+``````````
+name = 'shiftCount'
+type = 'number'
+description = 'Amounts of bits to shift right by.'
+[[.returns]]
+type = 'number'
+
+[tobit]
+description = 'Normalizes the specified value and clamps it in the range of a signed 32bit integer.\r\n\r\n**Returns:** swapped\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be normalized.'
+[[.returns]]
+type = 'number'
+
+[tohex]
+description = 'Returns the hexadecimal representation of the number with the specified digits.\r\n\r\n**Returns:** hexString\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'number'
+description = 'The value to be normalized.'
+``````````
+name = 'digits'
+type = 'number'
+description = 'The number of digits. Optional'
+[[.returns]]
+type = 'string'
+

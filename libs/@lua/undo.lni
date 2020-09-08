@@ -1,0 +1,100 @@
+[undo]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'undo'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'undo'
+	},
+	2 = {
+		type = 'library',
+		name = 'undo'
+	}
+}
+
+[AddEntity]
+description = 'Adds an entity to the current undo block\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to add'
+
+[AddFunction]
+description = 'Adds a function to call when the current undo block is undone\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'func'
+type = 'function'
+description = 'The function to call'
+``````````
+name = 'arguments'
+type = 'vararg'
+description = 'Arguments to pass to the function (after the undo info table)'
+
+[Create]
+description = 'Begins a new undo entry\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Name of the undo message to show to players'
+
+[Do_Undo]
+description = 'Processes an undo block (in table form). This is used internally by the undo manager when a player presses Z.\r\n\r\nYou should use `gm_undo` or `gm_undonum *num*` console commands instead of calling this function directly.\r\n\r\n**Returns:** Number of removed entities\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'tab'
+type = 'table'
+description = 'The undo block to process as an <page>Structures/Undo</page>'
+[[.returns]]
+type = 'number'
+
+[Finish]
+description = 'Completes an undo entry, and registers it with the player\'s client\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'NiceText'
+type = 'string'
+description = 'Text that appears in the player\'s undo history'
+
+[GetTable]
+description = 'Serverside, returns a table containing all undo blocks of all players. Clientside, returns a table of the local player\'s undo blocks.\r\n\r\n**Returns:** The undo table.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[MakeUIDirty]
+description = '<internal></internal>\r\nMakes the UI dirty - it will re-create the controls the next time it is viewed.\r\n\r\n**Scope:** Client'
+
+[ReplaceEntity]
+description = 'Replaces any instance of the "from" reference with the "to" reference, in any existing undo block. Returns true if something was replaced\r\n\r\n**Returns:** somethingReplaced\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'from'
+type = 'Entity'
+description = 'The old entity'
+``````````
+name = 'to'
+type = 'Entity'
+description = 'The new entity to replace the old one'
+[[.returns]]
+type = 'boolean'
+
+[SetCustomUndoText]
+description = 'Sets a custom undo text for the current undo block\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'customText'
+type = 'string'
+description = 'The text to display when the undo block is undone'
+
+[SetPlayer]
+description = 'Sets the player which the current undo block belongs to\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player responsible for undoing the block'
+
+[SetupUI]
+description = '<internal></internal>\r\nAdds a hook (CPanelPaint) to the control panel paint function so we can determine when it is being drawn.\r\n\r\n**Scope:** Client'
+

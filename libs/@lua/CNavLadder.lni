@@ -1,0 +1,188 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CNavLadder'
+	},
+}
+
+[ConnectTo]
+description = 'Connects this ladder to a <page>CNavArea</page> with a one way connection. ( From this ladder to the target area ).\r\n\r\nSee <page>CNavArea:ConnectTo</page> for making the connection from area to ladder.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = 'The area this ladder leads to.'
+
+[Disconnect]
+description = 'Disconnects this ladder from given area in a single direction.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> this to disconnect from.'
+
+[GetBottom]
+description = 'Returns the bottom most position of the ladder.\r\n\r\n**Returns:** The bottom most position of the ladder.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'Vector'
+
+[GetBottomArea]
+description = 'Returns the bottom area of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'CNavArea'
+
+[GetID]
+description = 'Returns this <page>CNavLadder</page>s unique ID.\r\n\r\n**Returns:** The unique ID.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'number'
+
+[GetLength]
+description = 'Returns the length of the ladder.\r\n\r\n**Returns:** The length of the ladder.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'number'
+
+[GetNormal]
+description = 'Returns the direction of this <page>CNavLadder</page>. ( The direction in which players back will be facing if they are looking directly at the ladder )\r\n\r\n**Returns:** The direction of this <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'Vector'
+
+[GetPosAtHeight]
+description = 'Returns the world position based on given height relative to the ladder.\r\n\r\n**Returns:** The closest point on the ladder to that height.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'height'
+type = 'number'
+description = 'The Z position in world space coordinates.'
+[[.returns]]
+type = 'Vector'
+
+[GetTop]
+description = 'Returns the topmost position of the ladder.\r\n\r\n**Returns:** The topmost position of the ladder.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'Vector'
+
+[GetTopBehindArea]
+description = 'Returns the top behind <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Returns:** The top behind <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'CNavArea'
+
+[GetTopForwardArea]
+description = 'Returns the top forward <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Returns:** The top forward <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'CNavArea'
+
+[GetTopLeftArea]
+description = 'Returns the top left <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Returns:** The top left <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'CNavArea'
+
+[GetTopRightArea]
+description = 'Returns the top right <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Returns:** The top right <page>CNavArea</page> of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'CNavArea'
+
+[GetWidth]
+description = 'Returns the width of the ladder in Hammer Units.\r\n\r\n**Returns:** The width of the ladder in Hammer Units.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'number'
+
+[IsConnectedAtSide]
+description = 'Returns whether this <page>CNavLadder</page> has an outgoing ( one or two way ) connection **to** given <page>CNavArea</page> in given direction.\r\n\r\n**Returns:** Whether this <page>CNavLadder</page> has an outgoing ( one or two way ) connection **to** given <page>CNavArea</page> in given direction.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'navArea'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> to test against.'
+``````````
+name = 'navDirType'
+type = 'number'
+description = 'The direction, in which to look for the connection. See <page>Enums/NavDir</page>'
+[[.returns]]
+type = 'boolean'
+
+[IsValid]
+description = 'Returns whether this <page>CNavLadder</page> is valid or not.\r\n\r\n**Returns:** Whether this <page>CNavLadder</page> is valid or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+[[.returns]]
+type = 'boolean'
+
+[Remove]
+description = 'Removes the given nav ladder.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+
+[SetBottomArea]
+description = 'Sets the bottom area of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = ''
+
+[SetTopBehindArea]
+description = 'Sets the top behind area of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = ''
+
+[SetTopForwardArea]
+description = 'Sets the top forward area of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = ''
+
+[SetTopLeftArea]
+description = 'Sets the top left area of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = ''
+
+[SetTopRightArea]
+description = 'Sets the top right area of the <page>CNavLadder</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavLadder'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = ''
+

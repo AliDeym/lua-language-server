@@ -1,0 +1,376 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CLuaParticle'
+	},
+}
+
+[GetAirResistance]
+description = 'Returns the air resistance of the particle.\r\n\r\n**Returns:** The air resistance of the particle\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetAngles]
+description = 'Returns the current orientation of the particle.\r\n\r\n**Returns:** The angles of the particle\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'Angle'
+
+[GetAngleVelocity]
+description = 'Returns the angular velocity of the particle\r\n\r\n**Returns:** The angular velocity of the particle\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'Angle'
+
+[GetBounce]
+description = 'Returns the \'bounciness\' of the particle.\r\n\r\n**Returns:** The \'bounciness\' of the particle\r\n\r\n2 means it will gain 100% of its previous velocity,\r\n\r\n\r\n1 means it will not lose velocity,\r\n\r\n\r\n0.5 means it will lose half of its velocity with each bounce.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetColor]
+description = 'Returns the color of the particle.\r\n\r\n**Returns:** Red part of the color\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetDieTime]
+description = 'Returns the amount of time in seconds after which the particle will be destroyed.\r\n\r\n**Returns:** The amount of time in seconds after which the particle will be destroyed\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetEndAlpha]
+description = 'Returns the alpha value that the particle will reach on its death.\r\n\r\n**Returns:** The alpha value the particle will fade to\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetEndLength]
+description = 'Returns the length that the particle will reach on its death.\r\n\r\n**Returns:** The length the particle will reach\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetEndSize]
+description = 'Returns the size that the particle will reach on its death.\r\n\r\n**Returns:** The size the particle will reach\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetGravity]
+description = 'Returns the gravity of the particle.\r\n\r\n**Returns:** The gravity of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'Vector'
+
+[GetLifeTime]
+description = 'Returns the \'life time\' of the particle, how long the particle existed since its creation.\r\n\r\nThis value will always be between 0 and <page>CLuaParticle:GetDieTime</page>.\r\n\r\n\r\nIt changes automatically as time goes.\r\n\r\nIt can be manipulated using <page>CLuaParticle:SetLifeTime</page>.\r\n\r\n\r\nIf the life time of the particle will be more than <page>CLuaParticle:GetDieTime</page>, it will be removed.\r\n\r\n**Returns:** How long the particle existed, in seconds.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetMaterial]
+description = 'Returns the current material of the particle.\r\n\r\n**Returns:** The material.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'IMaterial'
+
+[GetPos]
+description = 'Returns the absolute position of the particle.\r\n\r\n**Returns:** The absolute position of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'Vector'
+
+[GetRoll]
+description = 'Returns the current rotation of the particle in radians, this should only be used for 2D particles.\r\n\r\n**Returns:** The current rotation of the particle in radians\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetRollDelta]
+description = 'Returns the current rotation speed of the particle in radians, this should only be used for 2D particles.\r\n\r\n**Returns:** The current rotation speed of the particle in radians\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetStartAlpha]
+description = 'Returns the alpha value which the particle has when it\'s created.\r\n\r\n**Returns:** The alpha value which the particle has when it\'s created.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetStartLength]
+description = 'Returns the length which the particle has when it\'s created.\r\n\r\n**Returns:** The length which the particle has when it\'s created.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetStartSize]
+description = 'Returns the size which the particle has when it\'s created.\r\n\r\n**Returns:** The size which the particle has when it\'s created.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'number'
+
+[GetVelocity]
+description = 'Returns the current velocity of the particle.\r\n\r\n**Returns:** The current velocity of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+[[.returns]]
+type = 'Vector'
+
+[SetAirResistance]
+description = 'Sets the air resistance of the the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'airResistance'
+type = 'number'
+description = 'New air resistance.'
+
+[SetAngles]
+description = 'Sets the angles of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'New angle.'
+
+[SetAngleVelocity]
+description = 'Sets the angular velocity of the the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'angVel'
+type = 'Angle'
+description = 'New angular velocity.'
+
+[SetBounce]
+description = 'Sets the \'bounciness\' of the the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'bounce'
+type = 'number'
+description = 'New \'bounciness\' of the particle\r\n\r\n2 means it will gain 100% of its previous velocity,\r\n\r\n\r\n1 means it will not lose velocity,\r\n\r\n\r\n0.5 means it will lose half of its velocity with each bounce.'
+
+[SetCollide]
+description = 'Sets the whether the particle should collide with the world or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'shouldCollide'
+type = 'boolean'
+description = 'Whether the particle should collide with the world or not'
+
+[SetCollideCallback]
+description = 'Sets the function that gets called whenever the particle collides with the world.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'collideFunc'
+type = 'function'
+description = 'Collide callback, the arguments are:\r\n\r\n\r\n\r\n\r\n<page>CLuaParticle</page> particle - The particle itself\r\n\r\n<page>Vector</page> hitPos - Position of the collision\r\n\r\n<page>Vector</page> hitNormal - Direction of the collision, perpendicular to the hit surface'
+
+[SetColor]
+description = 'Sets the color of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'r'
+type = 'number'
+description = 'The red component.'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green component.'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue component.'
+
+[SetDieTime]
+description = 'Sets the time where the particle will be removed.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'dieTime'
+type = 'number'
+description = 'The new die time.'
+
+[SetEndAlpha]
+description = 'Sets the alpha value of the particle that it will reach when it dies.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'endAlpha'
+type = 'number'
+description = 'The new alpha value of the particle that it will reach when it dies.'
+
+[SetEndLength]
+description = 'Sets the length of the particle that it will reach when it dies.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'endLength'
+type = 'number'
+description = 'The new length of the particle that it will reach when it dies.'
+
+[SetEndSize]
+description = 'Sets the size of the particle that it will reach when it dies.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'endSize'
+type = 'number'
+description = 'The new size of the particle that it will reach when it dies.'
+
+[SetGravity]
+description = 'Sets the directional gravity aka. acceleration of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'gravity'
+type = 'Vector'
+description = 'The directional gravity.'
+
+[SetLifeTime]
+description = 'Sets the \'life time\' of the particle, how long the particle existed since its creation.\r\n\r\nThis value should always be between 0 and <page>CLuaParticle:GetDieTime</page>.\r\n\r\n\r\nIt changes automatically as time goes.\r\n\r\n\r\nIf the life time of the particle will be more than <page>CLuaParticle:GetDieTime</page>, it will be removed.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'lifeTime'
+type = 'number'
+description = 'The new life time of the particle.'
+
+[SetLighting]
+description = 'Sets whether the particle should be affected by lighting.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'useLighting'
+type = 'boolean'
+description = 'Whether the particle should be affected by lighting.'
+
+[SetMaterial]
+description = 'Sets the material of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'mat'
+type = 'IMaterial'
+description = 'The new material to set. Can also be a string.'
+
+[SetNextThink]
+description = 'Sets when the particles think function should be called next, this uses the synchronized server time returned by <page>Global.CurTime</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'nextThink'
+type = 'number'
+description = 'Next think time.'
+
+[SetPos]
+description = 'Sets the absolute position of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The new particle position.'
+
+[SetRoll]
+description = 'Sets the roll of the particle in radians. This should only be used for 2D particles.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'roll'
+type = 'number'
+description = 'The new rotation of the particle in radians.'
+
+[SetRollDelta]
+description = 'Sets the rotation speed of the particle in radians. This should only be used for 2D particles.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'rollDelta'
+type = 'number'
+description = 'The new rotation speed of the particle in radians.'
+
+[SetStartAlpha]
+description = 'Sets the initial alpha value of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'startAlpha'
+type = 'number'
+description = 'Initial alpha.'
+
+[SetStartLength]
+description = 'Sets the initial length value of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'startLength'
+type = 'number'
+description = 'Initial length.'
+
+[SetStartSize]
+description = 'Sets the initial size value of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'startSize'
+type = 'number'
+description = 'Initial size.'
+
+[SetThinkFunction]
+description = 'Sets the think function of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'thinkFunc'
+type = 'function'
+description = 'Think function. It has only one argument:\r\n\r\n\r\n<page>CLuaParticle</page> particle - The particle the think hook is set on'
+
+[SetVelocity]
+description = 'Sets the velocity of the particle.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'vel'
+type = 'Vector'
+description = 'The new velocity of the particle.'
+
+[SetVelocityScale]
+description = 'Scales the velocity based on the particle speed.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaParticle'
+``````````
+name = 'doScale'
+type = 'boolean'
+description = 'Use velocity scaling.'
+

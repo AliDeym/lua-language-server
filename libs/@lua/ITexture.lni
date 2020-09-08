@@ -1,0 +1,79 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'ITexture'
+	},
+}
+
+[Download]
+description = 'Invokes the generator of the texture. Reloads file based textures from disk and clears render target textures.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+
+[GetColor]
+description = 'Returns the color of the specified pixel, only works for textures created from PNG files.\r\n\r\n<bug issue="2407">The returned color will not have the color metatable.</bug>\r\n\r\n**Returns:** The color of the pixel as a <page>Color</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+``````````
+name = 'x'
+type = 'number'
+description = 'The X coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y coordinate.'
+[[.returns]]
+type = 'table'
+
+[GetMappingHeight]
+description = 'Returns the true unmodified height of the texture.\r\n\r\n**Returns:** height\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+[[.returns]]
+type = 'number'
+
+[GetMappingWidth]
+description = 'Returns the true unmodified width of the texture.\r\n\r\n**Returns:** width\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+[[.returns]]
+type = 'number'
+
+[GetName]
+description = 'Returns the name of the texture, in most cases the path.\r\n\r\n**Returns:** name\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+[[.returns]]
+type = 'string'
+
+[Height]
+description = 'Returns the modified height of the texture, this value may be affected by mipmapping and other factors.\r\n\r\n**Returns:** height\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+[[.returns]]
+type = 'number'
+
+[IsError]
+description = 'Returns whenever the texture is valid. (i.e. was loaded successfully or not)\r\n\r\n<note>The "error" texture is a valid texture, and therefore this function will return false when used on it. Use <page>ITexture:IsErrorTexture</page>, instead.</note>\r\n\r\n**Returns:** Whether the texture was loaded successfully or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+[[.returns]]
+type = 'boolean'
+
+[IsErrorTexture]
+description = 'Returns whenever the texture is the error texture (pink and black checkerboard pattern).\r\n\r\n**Returns:** Whether the texture is the error texture or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+[[.returns]]
+type = 'boolean'
+
+[Width]
+description = 'Returns the modified width of the texture, this value may be affected by mipmapping and other factors.\r\n\r\n**Returns:** width\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'ITexture'
+[[.returns]]
+type = 'number'
+

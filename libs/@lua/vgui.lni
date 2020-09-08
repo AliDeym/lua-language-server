@@ -1,0 +1,154 @@
+[vgui]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'vgui'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'vgui'
+	},
+	2 = {
+		type = 'library',
+		name = 'vgui'
+	}
+}
+
+[Create]
+description = 'Creates a panel by the specified classname.\r\n<note>Custom VGUI elements are not loaded instantly. Use <page>GM:OnGamemodeLoaded</page> to create them on startup.</note>\r\n\r\n**Returns:** panel\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'Classname of the panel to create. Valid classnames are listed at: <page>VGUI Element List</page>.'
+``````````
+name = 'parent'
+type = 'Panel'
+description = 'Parent of the created panel.'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the created panel.'
+[[.returns]]
+type = 'Panel'
+
+[CreateFromTable]
+description = 'Creates a panel from table.\r\n\r\n**Returns:** Created panel\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'metatable'
+type = 'table'
+description = 'Your PANEL table'
+``````````
+name = 'parent'
+type = 'Panel'
+description = 'Which panel to parent the newly created panel to'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of your panel'
+[[.returns]]
+type = 'Panel'
+
+[CreateX]
+description = '<internal></internal> Creates a engine panel.\r\n\r\n**Returns:** Created panel\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'class'
+type = 'string'
+description = 'Class of the panel to create'
+``````````
+name = 'parent'
+type = 'Panel'
+description = 'If specified, parents created panel to given one'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the created panel'
+[[.returns]]
+type = 'Panel'
+
+[CursorVisible]
+description = 'Returns whenever the cursor is currently active and visible.\r\n\r\n**Returns:** isCursorVisible\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[FocusedHasParent]
+description = 'Returns whether the currently focused panel is a child of the given one.\r\n\r\n**Returns:** Whether or not the focused panel is a child of the passed one.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'parent'
+type = 'Panel'
+description = 'The parent panel to check the currently focused one against. This doesn\'t need to be a direct parent (focused panel can be a child of a child and so on).'
+[[.returns]]
+type = 'boolean'
+
+[GetControlTable]
+description = 'Gets the method table of this panel. Does not return parent methods!\r\n\r\n**Returns:** methods\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'Panelname'
+type = 'string'
+description = 'The name of the panel'
+[[.returns]]
+type = 'table'
+
+[GetHoveredPanel]
+description = 'Returns the panel the cursor is hovering above.\r\n\r\n<warning>This returns a cached value that is only updated after rendering and `before` the next VGUI Think/Layout pass.\r\n\r\nie. it lags one frame behind panel layout and is completely unhelpful for <page>PANEL:Paint</page> if your panels are moving around under the mouse a lot every frame.</warning>\r\n\r\n**Returns:** The panel that the user is currently hovering over with their cursor.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'Panel'
+
+[GetKeyboardFocus]
+description = 'Returns the panel which is currently receiving keyboard input.\r\n\r\n**Returns:** The panel with keyboard focus\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'Panel'
+
+[GetWorldPanel]
+description = 'Returns the global world panel which is the parent to all others, except for the HUD panel.\r\n\r\nSee also <page>Global.GetHUDPanel</page>.\r\n\r\n**Returns:** The world panel\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'Panel'
+
+[IsHoveringWorld]
+description = 'Returns whenever the cursor is hovering the world panel.\r\n\r\n**Returns:** isHoveringWorld\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[Register]
+description = 'Registers a panel for later creation.\r\n\r\n**Returns:** The given panel table from second argument\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'Classname of the panel to create.'
+``````````
+name = 'panelTable'
+type = 'table'
+description = 'The table containg the panel information.'
+``````````
+name = 'baseName'
+type = 'string'
+description = 'Name of the base of the panel.'
+[[.returns]]
+type = 'table'
+
+[RegisterFile]
+description = 'Registers a new VGUI panel from a file.\r\n\r\n**Returns:** A table containing info about the panel. Can be supplied to <page>vgui.CreateFromTable</page>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'file'
+type = 'string'
+description = 'The file to register'
+[[.returns]]
+type = 'table'
+
+[RegisterTable]
+description = 'Registers a table to use as a panel. All this function does is assigns Base key to your table and returns the table.\r\n\r\n**Returns:** The PANEL table\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'panel'
+type = 'table'
+description = 'The PANEL table'
+``````````
+name = 'base'
+type = 'string'
+description = 'A base for the panel'
+[[.returns]]
+type = 'table'
+

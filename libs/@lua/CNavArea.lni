@@ -1,0 +1,605 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CNavArea'
+	},
+}
+
+[AddHidingSpot]
+description = 'Adds a hiding spot onto this nav area.\r\n\r\nThere\'s a limit of 255 hiding spots per area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position on the nav area'
+``````````
+name = 'flags'
+type = 'number'
+description = 'Flags describing what kind of hiding spot this is.\r\n* 0 = None (Not recommended)\r\n* 1 = In Cover/basically a hiding spot, in a corner with good hard cover nearby\r\n* 2 = good sniper spot, had at least one decent sniping corridor\r\n* 4 = perfect sniper spot, can see either very far, or a large area, or both\r\n* 8 = exposed, spot in the open, usually on a ledge or cliff\r\n\r\nValues over 255 will be clamped.'
+
+[AddToClosedList]
+description = 'Adds this <page>CNavArea</page> to the closed list, a list of areas that have been checked by A* pathfinding algorithm.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+
+[AddToOpenList]
+description = 'Adds this <page>CNavArea</page> to the Open List.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+
+[ClearSearchLists]
+description = 'Clears the open and closed lists for a new search.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+
+[ComputeAdjacentConnectionHeightChange]
+description = 'Returns the height difference between the edges of two connected navareas.\r\n\r\n**Returns:** The height change\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navarea'
+type = 'CNavArea'
+description = ''
+[[.returns]]
+type = 'number'
+
+[ComputeDirection]
+description = 'Returns the <page>Enums/NavDir</page> direction that the given vector faces on this <page>CNavArea</page>.\r\n\r\n**Returns:** The direction the vector is in relation to this <page>CNavArea</page>. See <page>Enums/NavDir</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position to compute direction towards.'
+[[.returns]]
+type = 'number'
+
+[ComputeGroundHeightChange]
+description = 'Returns the height difference on the Z axis of the two <page>CNavArea</page>s. This is calculated from the center most point on both <page>CNavArea</page>s.\r\n\r\n**Returns:** The ground height change.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navArea'
+type = 'CNavArea'
+description = 'The nav area to test against.'
+[[.returns]]
+type = 'number'
+
+[ConnectTo]
+description = 'Connects this <page>CNavArea</page> to another <page>CNavArea</page> or <page>CNavLadder</page> with a one way connection. ( From this area to the target )\r\n\r\nSee <page>CNavLadder:ConnectTo</page> for making the connection from ladder to area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> or <page>CNavLadder</page> this area leads to.'
+
+[Contains]
+description = 'Returns true if this <page>CNavArea</page> contains the given vector.\r\n\r\n**Returns:** True if the vector was inside and false otherwise.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position to test.'
+[[.returns]]
+type = 'boolean'
+
+[Disconnect]
+description = 'Disconnects this nav area from given area or ladder. (Only disconnects one way)\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> or <page>CNavLadder</page> this to disconnect from.'
+
+[Draw]
+description = 'Draws this navarea on debug overlay.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+
+[DrawSpots]
+description = 'Draws the hiding spots on debug overlay. This includes sniper/exposed spots too!\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+
+[GetAdjacentAreas]
+description = 'Returns a table of all the <page>CNavArea</page>s that have a  ( one and two way ) connection **from** this <page>CNavArea</page>.\r\n\r\nIf an area has a one-way incoming connection to this <page>CNavArea</page>, then it will **not** be returned from this function, use <page>CNavArea:GetIncomingConnections</page> to get all one-way incoming connections.\r\n\r\nSee <page>CNavArea:GetAdjacentAreasAtSide</page> for a function that only returns areas from one side/direction.\r\n\r\n**Returns:** A table of all <page>CNavArea</page> that have a ( one and two way ) connection **from** this <page>CNavArea</page>.\r\n\r\nReturns an empty table if this area has no outgoing connections to any other areas.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'table'
+
+[GetAdjacentAreasAtSide]
+description = 'Returns a table of all the <page>CNavArea</page>s that have a ( one and two way ) connection **from** this <page>CNavArea</page> in given direction.\r\n\r\nIf an area has a one-way incoming connection to this <page>CNavArea</page>, then it will **not** be returned from this function, use <page>CNavArea:GetIncomingConnections</page> to get all incoming connections.\r\n\r\nSee <page>CNavArea:GetAdjacentAreas</page> for a function that returns all areas from all sides/directions.\r\n\r\n**Returns:** A table of all <page>CNavArea</page> that have a ( one and two way ) connection **from** this <page>CNavArea</page> in given direction.\r\n\r\nReturns an empty table if this area has no outgoing connections to any other areas in given direction.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navDir'
+type = 'number'
+description = 'The direction, in which to look for <page>CNavArea</page>s, see <page>Enums/NavDir</page>.'
+[[.returns]]
+type = 'table'
+
+[GetAdjacentCount]
+description = 'Returns the amount of <page>CNavArea</page>s that have a connection ( one and two way ) **from** this <page>CNavArea</page>.\r\n\r\nSee <page>CNavArea:GetAdjacentCountAtSide</page> for a function that only returns area count from one side/direction.\r\n\r\n**Returns:** The amount of <page>CNavArea</page>s that have a connection ( one and two way ) **from** this <page>CNavArea</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'number'
+
+[GetAdjacentCountAtSide]
+description = 'Returns the amount of <page>CNavArea</page>s that have a connection ( one or two way ) **from** this <page>CNavArea</page> in given direction.\r\n\r\nSee <page>CNavArea:GetAdjacentCount</page> for a function that returns <page>CNavArea</page> count from/in all sides/directions.\r\n\r\n**Returns:** The amount of <page>CNavArea</page>s that have a connection ( one or two way ) **from** this <page>CNavArea</page> in given direction.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navDir'
+type = 'number'
+description = 'The direction, in which to look for <page>CNavArea</page>s, see <page>Enums/NavDir</page>.'
+[[.returns]]
+type = 'number'
+
+[GetAttributes]
+description = 'Returns the attribute mask for the given <page>CNavArea</page>.\r\n\r\n**Returns:** Attribute mask for this <page>CNavArea</page>, see <page>Enums/NAV_MESH</page> for the specific flags.\r\n\r\n\r\n<note>A navmesh that was generated with nav_quicksave set to 1 will have all <page>CNavArea</page>s attribute masks set to 0</note>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[GetCenter]
+description = 'Returns the center most vector point for the given <page>CNavArea</page>.\r\n\r\n**Returns:** The center vector.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'Vector'
+
+[GetClosestPointOnArea]
+description = 'Returns the closest point of this Nav Area from the given position.\r\n\r\n**Returns:** The closest position on this Nav Area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The given position, can be outside of the Nav Area bounds.'
+[[.returns]]
+type = 'Vector'
+
+[GetCorner]
+description = 'Returns the vector position of the corner for the given <page>CNavArea</page>.\r\n\r\n**Returns:** The corner position.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'cornerid'
+type = 'number'
+description = 'The target corner to get the position of, takes <page>Enums/NavCorner</page>.'
+[[.returns]]
+type = 'Vector'
+
+[GetCostSoFar]
+description = 'Returns the cost from starting area this area when pathfinding. Set by <page>CNavArea:SetCostSoFar</page>.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Returns:** The cost so far.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'number'
+
+[GetExposedSpots]
+description = 'Returns a table of very bad hiding spots in this area.\r\n\r\nSee also <page>CNavArea:GetHidingSpots</page>.\r\n\r\n**Returns:** A table of <page>Vector</page>s\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'table'
+
+[GetExtentInfo]
+description = 'Returns size info about the nav area.\r\n\r\n**Returns:** Returns a table containing the following keys:\r\n* <page>Vector</page> hi|\r\n* <page>Vector</page> lo|\r\n* <page>number</page> SizeX|\r\n* <page>number</page> SizeY|\r\n* <page>number</page> SizeZ|\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'table'
+
+[GetHidingSpots]
+description = 'Returns a table of good hiding spots in this area.\r\n\r\nSee also <page>CNavArea:GetExposedSpots</page>.\r\n\r\n**Returns:** A table of <page>Vector</page>s\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'type'
+type = 'number'
+description = 'The type of spots to include.\r\n\r\n* 0 = None (Not recommended)\r\n* 1 = In Cover/basically a hiding spot, in a corner with good hard cover nearby\r\n* 2 = good sniper spot, had at least one decent sniping corridor\r\n* 4 = perfect sniper spot, can see either very far, or a large area, or both\r\n* 8 = exposed, spot in the open, usually on a ledge or cliff, same as GetExposedSpots\r\n* Values over 255 and below 0 will be clamped.'
+[[.returns]]
+type = 'table'
+
+[GetID]
+description = 'Returns this <page>CNavArea</page>s unique ID.\r\n\r\n**Returns:** The unique ID.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'number'
+
+[GetIncomingConnections]
+description = 'Returns a table of all the <page>CNavArea</page>s that have a one-way connection **to** this <page>CNavArea</page>.\r\n\r\nIf a <page>CNavArea</page> has a two-way connection **to or from** this <page>CNavArea</page> then it will not be returned from this function, use <page>CNavArea:GetAdjacentAreas</page> to get outgoing ( one and two way ) connections.\r\n\r\nSee <page>CNavArea:GetIncomingConnectionsAtSide</page> for a function that returns one-way incoming connections from  only one side/direction.\r\n\r\n**Returns:** A table of all <page>CNavArea</page>s with one-way connection **to** this <page>CNavArea</page>.\r\n\r\nReturns an empty table if there are no one-way incoming connections **to** this <page>CNavArea</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'table'
+
+[GetIncomingConnectionsAtSide]
+description = 'Returns a table of all the <page>CNavArea</page>s that have a one-way connection **to** this <page>CNavArea</page> from given direction.\r\n\r\nIf a <page>CNavArea</page> has a two-way connection **to or from** this <page>CNavArea</page> then it will not be returned from this function, use <page>CNavArea:GetAdjacentAreas</page> to get outgoing ( one and two way ) connections.\r\n\r\nSee <page>CNavArea:GetIncomingConnections</page> for a function that returns one-way incoming connections from  all sides/directions.\r\n\r\n**Returns:** A table of all <page>CNavArea</page>s with one-way connection **to** this <page>CNavArea</page> from given direction.\r\n\r\nReturns an empty table if there are no one-way incoming connections **to** this <page>CNavArea</page> from given direction.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navDir'
+type = 'number'
+description = 'The direction, from which to look for <page>CNavArea</page>s, see <page>Enums/NavDir</page>.'
+[[.returns]]
+type = 'table'
+
+[GetLadders]
+description = 'Returns all <page>CNavLadder</page>s that have a ( one or two way ) connection **from** this <page>CNavArea</page>.\r\n\r\nSee <page>CNavArea:GetLaddersAtSide</page> for a function that only returns <page>CNavLadder</page>s in given direction.\r\n\r\n**Returns:** The <page>CNavLadder</page>s that have a ( one or two way ) connection **from** this <page>CNavArea</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'table'
+
+[GetLaddersAtSide]
+description = 'Returns all <page>CNavLadder</page>s that have a ( one or two way ) connection **from** ( one and two way ) this <page>CNavArea</page> in given direction.\r\n\r\nSee <page>CNavArea:GetLadders</page> for a function that returns <page>CNavLadder</page> from/in all sides/directions.\r\n\r\n**Returns:** The <page>CNavLadder</page>s that have a ( one or two way ) connection **from** this <page>CNavArea</page> in given direction.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navDir'
+type = 'number'
+description = 'The direction, in which to look for <page>CNavLadder</page>s.\r\n\r\n0 = Up ( LadderDirectionType::LADDER_UP )\r\n1 = Down ( LadderDirectionType::LADDER_DOWN )'
+[[.returns]]
+type = 'table'
+
+[GetParent]
+description = 'Returns the parent <page>CNavArea</page>\r\n\r\n**Returns:** The parent <page>CNavArea</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'CNavArea'
+
+[GetParentHow]
+description = 'Returns how this <page>CNavArea</page> is connected to its parent.\r\n\r\n**Returns:** See <page>Enums/NavTraverseType</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'number'
+
+[GetPlace]
+description = 'Returns the Place of the nav area.\r\n\r\n**Returns:** The place of the nav area, or no value if it doesn\'t have a place set.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'string'
+
+[GetRandomAdjacentAreaAtSide]
+description = 'Returns a random <page>CNavArea</page> that has an outgoing ( one or two way ) connection **from** this <page>CNavArea</page> in given direction.\r\n\r\n**Returns:** The random <page>CNavArea</page> that has an outgoing ( one or two way ) connection **from** this <page>CNavArea</page> in given direction, if any.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navDir'
+type = 'number'
+description = 'The direction, in which to look for <page>CNavArea</page>s, see <page>Enums/NavDir</page>.'
+[[.returns]]
+type = 'CNavArea'
+
+[GetRandomPoint]
+description = 'Returns a random point on the nav area.\r\n\r\n**Returns:** The random point on the nav area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'Vector'
+
+[GetSizeX]
+description = 'Returns the width this Nav Area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'number'
+
+[GetSizeY]
+description = 'Returns the height of this Nav Area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'number'
+
+[GetTotalCost]
+description = 'Returns the total cost when passing from starting area to the goal area through this node. Set by <page>CNavArea:SetTotalCost</page>.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Returns:** The total cost\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'number'
+
+[GetZ]
+description = 'Returns the elevation of this Nav Area at the given position.\r\n\r\n**Returns:** The elevation.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position to get the elevation from, the z value from this position is ignored and only the X and Y values are used to this task.'
+[[.returns]]
+type = 'number'
+
+[HasAttributes]
+description = 'Returns true if the given <page>CNavArea</page> has this attribute flag set.\r\n\r\n**Returns:** True if the <page>CNavArea</page> matches the given mask. False otherwise.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'attribs'
+type = 'number'
+description = 'Attribute mask to check for, see <page>Enums/NAV_MESH</page>'
+[[.returns]]
+type = 'boolean'
+
+[IsBlocked]
+description = 'Returns whether the nav area is blocked or not, i.e. whether it can be walked through or not.\r\n\r\n**Returns:** Whether the area is blocked or not\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'teamID'
+type = 'number'
+description = 'The team ID to test, -2 = any team.\r\n\r\nOnly 2 actual teams are available, 0 and 1.'
+``````````
+name = 'ignoreNavBlockers'
+type = 'boolean'
+description = 'Whether to ignore [func_nav_blocker](https://developer.valvesoftware.com/wiki/Func_nav_blocker) entities.'
+[[.returns]]
+type = 'boolean'
+
+[IsClosed]
+description = 'Returns whether this node is in the Closed List.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Returns:** Whether this node is in the Closed List.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[IsCompletelyVisible]
+description = 'Returns whether this <page>CNavArea</page> can completely (i.e. all corners of this area can see all corners of the given area) see the given <page>CNavArea</page>.\r\n\r\n**Returns:** Whether the given area is visible from this area\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> to test.'
+[[.returns]]
+type = 'boolean'
+
+[IsConnected]
+description = 'Returns whether this <page>CNavArea</page> has an outgoing ( one or two way ) connection **to** given <page>CNavArea</page>.\r\n\r\nSee <page>CNavArea:IsConnectedAtSide</page> for a function that only checks for outgoing connections in one direction.\r\n\r\n**Returns:** Whether this <page>CNavArea</page> has an outgoing ( one or two way ) connection **to** given <page>CNavArea</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navArea'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> to test against.'
+[[.returns]]
+type = 'boolean'
+
+[IsConnectedAtSide]
+description = 'Returns whether this <page>CNavArea</page> has an outgoing ( one or two way ) connection **to** given <page>CNavArea</page> in given direction.\r\n\r\nSee <page>CNavArea:IsConnected</page> for a function that checks all sides.\r\n\r\n**Returns:** Whether this <page>CNavArea</page> has an outgoing ( one or two way ) connection **to** given <page>CNavArea</page> in given direction.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navArea'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> to test against.'
+``````````
+name = 'navDirType'
+type = 'number'
+description = 'The direction, in which to look for the connection. See <page>Enums/NavDir</page>'
+[[.returns]]
+type = 'boolean'
+
+[IsCoplanar]
+description = 'Returns whether this Nav Area is in the same plane as the given one.\r\n\r\n**Returns:** Whether we\'re coplanar or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navArea'
+type = 'CNavArea'
+description = 'The Nav Area to test.'
+[[.returns]]
+type = 'boolean'
+
+[IsFlat]
+description = 'Returns whether this Nav Area is flat within the tolerance of the **nav_coplanar_slope_limit_displacement** and **nav_coplanar_slope_limit** convars.\r\n\r\n**Returns:** Whether this CNavArea is mostly flat.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[IsOpen]
+description = 'Returns whether this area is in the Open List.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Returns:** Whether this area is in the Open List.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[IsOpenListEmpty]
+description = 'Returns whether the Open List is empty or not.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Returns:** Whether the Open List is empty or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[IsOverlapping]
+description = 'Returns if this position overlaps the Nav Area within the given tolerance.\r\n\r\n**Returns:** Whether the given position overlaps the Nav Area or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The overlapping position to test.'
+``````````
+name = 'tolerance'
+type = 'number'
+description = 'The tolerance of the overlapping, set to 0 for no tolerance.'
+[[.returns]]
+type = 'boolean'
+
+[IsOverlappingArea]
+description = 'Returns true if this <page>CNavArea</page> is overlapping the given <page>CNavArea</page>.\r\n\r\n**Returns:** True if the given <page>CNavArea</page> overlaps this <page>CNavArea</page> at any point.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'navArea'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> to test against.'
+[[.returns]]
+type = 'boolean'
+
+[IsPartiallyVisible]
+description = 'Returns whether this <page>CNavArea</page> can see given position.\r\n\r\n**Returns:** Whether the given position is visible from this area\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position to test.'
+``````````
+name = 'ignoreEnt'
+type = 'Entity'
+description = 'If set, the given entity will be ignored when doing LOS tests'
+[[.returns]]
+type = 'boolean'
+
+[IsPotentiallyVisible]
+description = 'Returns whether this <page>CNavArea</page> can potentially see the given <page>CNavArea</page>.\r\n\r\n**Returns:** Whether the given area is visible from this area\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'area'
+type = 'CNavArea'
+description = 'The <page>CNavArea</page> to test.'
+[[.returns]]
+type = 'boolean'
+
+[IsRoughlySquare]
+description = 'Returns if we\'re shaped like a square.\r\n\r\n**Returns:** If we\'re a square or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[IsUnderwater]
+description = 'Whether this Nav Area is placed underwater.\r\n\r\n**Returns:** Whether we\'re underwater or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[IsValid]
+description = 'Returns whether this <page>CNavArea</page> is valid or not.\r\n\r\n**Returns:** Whether this <page>CNavArea</page> is valid or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'boolean'
+
+[IsVisible]
+description = 'Returns whether we can be seen from the given position.\r\n\r\n**Returns:** Whether we can be seen or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position to check.'
+[[.returns]]
+type = 'boolean'
+
+[PlaceOnGround]
+description = 'Drops a corner or all corners of a <page>CNavArea</page> to the ground below it.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'corner'
+type = 'number'
+description = 'The corner(s) to drop, uses <page>Enums/NavCorner</page>'
+
+[PopOpenList]
+description = 'Removes a CNavArea from the Open List with the lowest cost to traverse to from the starting node, and returns it.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Returns:** The CNavArea from the Open List with the lowest cost to traverse to from the starting node.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+[[.returns]]
+type = 'CNavArea'
+
+[Remove]
+description = 'Removes the given nav area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+
+[RemoveFromClosedList]
+description = 'Removes this node from the Closed List.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+
+[SetAttributes]
+description = 'Sets the attributes for given CNavArea.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'attribs'
+type = 'number'
+description = 'The attribute bitflag. See <page>Enums/NAV_MESH</page>'
+
+[SetCorner]
+description = 'Sets the position of a corner of a nav area.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'corner'
+type = 'number'
+description = 'The corner to set, uses <page>Enums/NavCorner</page>'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The new position to set.'
+
+[SetCostSoFar]
+description = 'Sets the cost from starting area this area when pathfinding.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'cost'
+type = 'number'
+description = 'The cost so far'
+
+[SetParent]
+description = 'Sets the new parent of this <page>CNavArea</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'parent'
+type = 'CNavArea'
+description = 'The new parent to set'
+
+[SetPlace]
+description = 'Sets the Place of the nav area.\r\n\r\nThere is a limit of 256 Places per nav file.\r\n\r\n**Returns:** Returns true of operation succeeded, false otherwise.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'place'
+type = 'string'
+description = 'Set to "" to remove place from the nav area.'
+[[.returns]]
+type = 'boolean'
+
+[SetTotalCost]
+description = 'Sets the total cost when passing from starting area to the goal area through this node.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+``````````
+name = 'cost'
+type = 'number'
+description = 'The total cost of the path to set.\r\n\r\nMust be above or equal 0.'
+
+[UpdateOnOpenList]
+description = 'Moves this open list to appropriate position based on its <page>CNavArea:GetTotalCost</page> compared to the total cost of other areas in the open list.\r\n\r\nUsed in pathfinding via the [A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\r\n\r\n\r\nMore information can be found on the <page>Simple Pathfinding</page> page.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CNavArea'
+

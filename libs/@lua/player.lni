@@ -1,0 +1,95 @@
+[player]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'player'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'player'
+	},
+	2 = {
+		type = 'library',
+		name = 'player'
+	}
+}
+
+[CreateNextBot]
+description = 'Similar to the serverside command "bot", this function creates a new Player bot with the given name. This bot will not obey to the usual "bot_*" commands, and it\'s the same bot base used in TF2 and CS:S.\r\n\r\nThe best way to control the behaviour of a Player bot right now is to use the <page>GM:StartCommand</page> hook and modify its input serverside.\r\n\r\n<note>Despite this Player being fake, it has to be removed from the server by using <page>Player:Kick</page> and **NOT** <page>Entity:Remove</page>.\r\nAlso keep in mind that these bots still use player slots, so you won\'t be able to spawn them in singleplayer!</note>\r\n\r\n<note>Any Bot created using this method will be considered UnAuthed by Garry\'s Mod</note>\r\n\r\n**Returns:** The newly created Player bot. Returns NULL if there\'s no Player slots available to host it.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'botName'
+type = 'string'
+description = 'The name of the bot, using an already existing name will append brackets at the end of it with a number pertaining it.\r\n\r\nExample: "Bot name test", "Bot name test(1)".'
+[[.returns]]
+type = 'Player'
+
+[GetAll]
+description = 'Gets all the current players in the server (not including connecting clients).\r\n\r\n<note>This function returns bots as well as human players. See <page>player.GetBots</page> and  <page>player.GetHumans</page>.</note>\r\n<note>This function returns a sequential table, meaning it should be looped with <page>Global.ipairs</page> instead of <page>Global.pairs</page> for efficiency reasons.</note>\r\n\r\n**Returns:** All <page>Player</page>s currently in the server.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[GetBots]
+description = 'Returns a table of all bots on the server.\r\n\r\n**Returns:** A table only containing bots ( AI / non human players )\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[GetByAccountID]
+description = 'Gets the player with the specified AccountID.\r\n\r\n**Returns:** Player if one is found, false otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'accountID'
+type = 'number'
+description = 'The <page>Player:AccountID</page> to find the player by.'
+[[.returns]]
+type = 'Player'
+
+[GetByID]
+description = 'Gets the player with the specified connection ID.\r\n\r\nConnection ID can be retrieved via <page>gameevent.Listen</page> events.\r\n\r\nFor a function that returns a player based on their <page>Entity:EntIndex</page>, see <page>Global.Entity</page>.\r\n\r\n\r\nFor a function that returns a player based on their <page>Player:UserID</page>, see <page>Global.Player</page>.\r\n\r\n**Returns:** Player if one is found, nil otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'connectionID'
+type = 'number'
+description = 'The connection ID to find the player by.'
+[[.returns]]
+type = 'Player'
+
+[GetBySteamID]
+description = 'Gets the player with the specified SteamID.\r\n\r\n**Returns:** Player if one is found, false otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'steamID'
+type = 'string'
+description = 'The <page>Player:SteamID</page> to find the player by.'
+[[.returns]]
+type = 'Player'
+
+[GetBySteamID64]
+description = 'Gets the player with the specified SteamID64.\r\n\r\n**Returns:** Player if one is found, false otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'steamID64'
+type = 'string'
+description = 'The <page>Player:SteamID64</page> to find the player by. Also accepts numbers.'
+[[.returns]]
+type = 'Player'
+
+[GetByUniqueID]
+description = 'Gets the player with the specified uniqueID (not recommended way to identify players).\r\n\r\n<warning>It is highly recommended to use <page>player.GetByAccountID</page>, <page>player.GetBySteamID</page> or <page>player.GetBySteamID64</page> instead as this function can have collisions ( be same for different people ) while SteamID is guaranteed to unique to each player.</warning>\r\n\r\n**Returns:** Player if one is found, false otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'uniqueID'
+type = 'string'
+description = 'The <page>Player:UniqueID</page> to find the player by.'
+[[.returns]]
+type = 'Player'
+
+[GetCount]
+description = 'Gives you the player count. Similar to **#**<page>player.GetAll</page> but with much better performance.\r\n\r\n**Returns:** Number of players\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[GetHumans]
+description = 'Returns a table of all human ( non bot/AI ) players.\r\n\r\nUnlike <page>player.GetAll</page>, this does not include bots.\r\n\r\n**Returns:** A table of all human ( non bot/AI ) players.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+

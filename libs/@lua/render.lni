@@ -1,0 +1,1311 @@
+[render]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'render'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'render'
+	},
+	2 = {
+		type = 'library',
+		name = 'render'
+	}
+}
+
+[AddBeam]
+description = 'Adds a beam segment to the beam started by <page>render.StartBeam</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'startPos'
+type = 'Vector'
+description = 'Beam start position.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the beam.'
+``````````
+name = 'textureEnd'
+type = 'number'
+description = 'The end coordinate of the texture used.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color to be used. Uses the <page>Color</page>.'
+
+[BlurRenderTarget]
+description = 'Blurs the render target ( or a given texture )\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'rendertarget'
+type = 'ITexture'
+description = 'The texture to blur'
+``````````
+name = 'blurx'
+type = 'number'
+description = 'Horizontal amount of blur'
+``````````
+name = 'blury'
+type = 'number'
+description = 'Vertical amount of blur'
+``````````
+name = 'passes'
+type = 'number'
+description = 'Amount of passes to go through'
+
+[BrushMaterialOverride]
+description = 'This function overrides the brush material for next render operations. It can be used with <page>Entity:DrawModel</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mat'
+type = 'IMaterial'
+description = ''
+
+[Capture]
+description = 'Captures a part of the current render target and returns the data as a binary string in the given format.\r\n\r\nSince the pixel buffer clears itself every frame, this will return a black screen outside of . To capture the user\'s final view, use <page>GM:PostRender</page>. This will not capture the Steam overlay or third-party injections (such as the Discord overlay, Overwolf, and advanced cheats) on the user\'s screen.\r\n\r\n<bug issue="2571">This sets the alpha channel incorrectly in PNG mode, causing the foreground to be rendered almost completely transparent.</bug>\r\n\r\n**Returns:** binaryData\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'captureData'
+type = 'table'
+description = 'Parameters of the capture. See <page>Structures/RenderCaptureData</page>.'
+[[.returns]]
+type = 'string'
+
+[CapturePixels]
+description = 'Dumps the current render target and allows the pixels to be accessed by <page>render.ReadPixel</page>.\r\n\r\n**Scope:** Client'
+
+[Clear]
+description = 'Clears the current render target and the specified buffers.\r\n\r\n<bug issue="2085">This sets the alpha incorrectly for <page>surface</page> draw calls for render targets.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'Red component to clear to.'
+``````````
+name = 'g'
+type = 'number'
+description = 'Green component to clear to.'
+``````````
+name = 'b'
+type = 'number'
+description = 'Blue component to clear to.'
+``````````
+name = 'a'
+type = 'number'
+description = 'Alpha component to clear to.'
+``````````
+name = 'clearDepth'
+type = 'boolean'
+description = 'Clear the depth.'
+``````````
+name = 'clearStencil'
+type = 'boolean'
+description = 'Clear the stencil.'
+
+[ClearBuffersObeyStencil]
+description = 'Clears the current rendertarget for obeying the current stencil buffer conditions.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'Value of the red channel to clear the current rt with.'
+``````````
+name = 'g'
+type = 'number'
+description = 'Value of the green channel to clear the current rt with.'
+``````````
+name = 'b'
+type = 'number'
+description = 'Value of the blue channel to clear the current rt with.'
+``````````
+name = 'a'
+type = 'number'
+description = 'Value of the alpha channel to clear the current rt with.'
+``````````
+name = 'depth'
+type = 'boolean'
+description = 'Clear the depth buffer.'
+
+[ClearDepth]
+description = 'Resets the depth buffer.\r\n\r\n<bug issue="3317">This function also clears the stencil buffer. Use <page>render.Clear</page> in the meantime.</bug>\r\n\r\n**Scope:** Client'
+
+[ClearRenderTarget]
+description = 'Clears a render target\r\n\r\nIt uses <page>render.Clear</page> then <page>render.SetRenderTarget</page> on the modified render target.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'texture'
+type = 'ITexture'
+description = ''
+``````````
+name = 'color'
+type = 'table'
+description = 'The color, see <page>Color</page>'
+
+[ClearStencil]
+description = 'Resets all values in the stencil buffer to zero.\r\n\r\n**Scope:** Client'
+
+[ClearStencilBufferRectangle]
+description = 'Sets the stencil value in a specified rect.\r\n\r\nThis is **not** affected by <page>render.SetStencilWriteMask</page>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'originX'
+type = 'number'
+description = 'X origin of the rectangle.'
+``````````
+name = 'originY'
+type = 'number'
+description = 'Y origin of the rectangle.'
+``````````
+name = 'endX'
+type = 'number'
+description = 'The end X coordinate of the rectangle.'
+``````````
+name = 'endY'
+type = 'number'
+description = 'The end Y coordinate of the rectangle.'
+``````````
+name = 'stencilValue'
+type = 'number'
+description = 'Value to set cleared stencil buffer to.'
+
+[ComputeDynamicLighting]
+description = 'Calculates the lighting caused by dynamic lights for the specified surface.\r\n\r\n**Returns:** A vector representing the light at that point.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'The position to sample from.'
+``````````
+name = 'normal'
+type = 'Vector'
+description = 'The normal of the surface.'
+[[.returns]]
+type = 'Vector'
+
+[ComputeLighting]
+description = 'Calculates the light color of a certain surface.\r\n\r\n**Returns:** A vector representing the light at that point.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'The position of the surface to get the light from.'
+``````````
+name = 'normal'
+type = 'Vector'
+description = 'The normal of the surface to get the light from.'
+[[.returns]]
+type = 'Vector'
+
+[CopyRenderTargetToTexture]
+description = 'Copies the currently active Render Target to the specified texture.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'Target'
+type = 'ITexture'
+description = 'The texture to copy to'
+
+[CopyTexture]
+description = 'Copies the contents of one texture to another. Only works with rendertargets.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'texture_from'
+type = 'ITexture'
+description = ''
+``````````
+name = 'texture_to'
+type = 'ITexture'
+description = ''
+
+[CullMode]
+description = 'Changes the cull mode.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'cullMode'
+type = 'number'
+description = 'Cullmode, see <page>Enums/MATERIAL_CULLMODE</page>'
+
+[DepthRange]
+description = 'Set\'s the depth range of the upcoming render.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'depthmin'
+type = 'number'
+description = 'The minimum depth of the upcoming render. 0.0 = render normally; 1.0 = render nothing'
+``````````
+name = 'depthmax'
+type = 'number'
+description = 'The maximum depth of the upcoming render. 0.0 = render everything (through walls); 1.0 = render normally'
+
+[DrawBeam]
+description = 'Draws textured beam.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'startPos'
+type = 'Vector'
+description = 'Beam start position.'
+``````````
+name = 'endPos'
+type = 'Vector'
+description = 'Beam end position.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the beam.'
+``````````
+name = 'textureStart'
+type = 'number'
+description = 'The start coordinate of the texture used.'
+``````````
+name = 'textureEnd'
+type = 'number'
+description = 'The end coordinate of the texture used.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color to be used. Uses the <page>Color</page>.'
+
+[DrawBox]
+description = 'Draws a box in 3D space.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Origin of the box.'
+``````````
+name = 'angles'
+type = 'Angle'
+description = 'Orientation of the box.'
+``````````
+name = 'mins'
+type = 'Vector'
+description = 'Start position of the box, relative to origin.'
+``````````
+name = 'maxs'
+type = 'Vector'
+description = 'End position of the box, relative to origin.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>.'
+
+[DrawLine]
+description = 'Draws a line in 3D space.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'startPos'
+type = 'Vector'
+description = 'Line start position in world coordinates.'
+``````````
+name = 'endPos'
+type = 'Vector'
+description = 'Line end position in world coordinates.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color to be used. Uses the <page>Color</page>.'
+``````````
+name = 'writeZ'
+type = 'boolean'
+description = 'Whether or not to consider the Z buffer. If false, the line will be drawn over everything currently drawn, if true, the line will be drawn with depth considered, as if it were a regular object in 3D space.\r\n\r\n<bug issue="1086">Enabling this option will cause the line to ignore the color\'s alpha.</bug>'
+
+[DrawQuad]
+description = 'Draws 2 connected triangles. Expects material to be set by <page>render.SetMaterial</page>.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'vert1'
+type = 'Vector'
+description = 'First vertex.'
+``````````
+name = 'vert2'
+type = 'Vector'
+description = 'The second vertex.'
+``````````
+name = 'vert3'
+type = 'Vector'
+description = 'The third vertex.'
+``````````
+name = 'vert4'
+type = 'Vector'
+description = 'The fourth vertex.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the quad. See <page>Global.Color</page>'
+
+[DrawQuadEasy]
+description = 'Draws a quad.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Origin of the sprite.'
+``````````
+name = 'normal'
+type = 'Vector'
+description = 'The face direction of the quad.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the quad.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The height of the quad.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the quad. Uses the <page>Color</page>.'
+``````````
+name = 'rotation'
+type = 'number'
+description = 'The rotation of the quad counter-clockwise in degrees around the normal axis. In other words, the quad will always face the same way but this will rotate its corners.'
+
+[DrawScreenQuad]
+description = 'Draws the current material set by <page>render.SetMaterial</page> to the whole screen. The color cannot be customized.\r\n\r\nSee also <page>render.DrawScreenQuadEx</page>.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'applyPoster'
+type = 'boolean'
+description = 'If set to true, when rendering a poster the quad will be properly drawn in parts in the poster. This is used internally by some Post Processing effects. Certain special textures (frame buffer like textures) do not need this adjustment.'
+
+[DrawScreenQuadEx]
+description = 'Draws the the current material set by <page>render.SetMaterial</page> to the area specified. Color cannot be customized.\r\n\r\nSee also <page>render.DrawScreenQuad</page>.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'startX'
+type = 'number'
+description = 'X start position of the rect.'
+``````````
+name = 'startY'
+type = 'number'
+description = 'Y start position of the rect.'
+``````````
+name = 'width'
+type = 'number'
+description = 'Width of the rect.'
+``````````
+name = 'height'
+type = 'number'
+description = 'Height of the rect.'
+
+[DrawSphere]
+description = 'Draws a sphere in 3D space. The material previously set with <page>render.SetMaterial</page> will be applied the sphere\'s surface.\r\n\r\nSee also <page>render.DrawWireframeSphere</page> for a wireframe equivalent.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Position of the sphere.'
+``````````
+name = 'radius'
+type = 'number'
+description = 'Radius of the sphere. Negative radius will make the sphere render inwards rather than outwards.'
+``````````
+name = 'longitudeSteps'
+type = 'number'
+description = 'The number of longitude steps. This controls the quality of the sphere. Higher quality will lower performance significantly. 50 is a good number to start with.'
+``````````
+name = 'latitudeSteps'
+type = 'number'
+description = 'The number of latitude steps. This controls the quality of the sphere. Higher quality will lower performance significantly. 50 is a good number to start with.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the sphere. Uses the <page>Color</page>.'
+
+[DrawSprite]
+description = 'Draws a sprite in 3D space.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Position of the sprite.'
+``````````
+name = 'width'
+type = 'number'
+description = 'Width of the sprite.'
+``````````
+name = 'height'
+type = 'number'
+description = 'Height of the sprite.'
+``````````
+name = 'color'
+type = 'table'
+description = 'Color of the sprite. Uses the <page>Color</page>.'
+
+[DrawTextureToScreen]
+description = 'Draws a texture over the whole screen.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tex'
+type = 'ITexture'
+description = 'The texture to draw'
+
+[DrawTextureToScreenRect]
+description = 'Draws a textured rectangle.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tex'
+type = 'ITexture'
+description = 'The texture to draw'
+``````````
+name = 'x'
+type = 'number'
+description = 'The x coordinate of the rectangle to draw.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The y coordinate of the rectangle to draw.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the rectangle to draw.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The height of the rectangle to draw.'
+
+[DrawWireframeBox]
+description = 'Draws a wireframe box in 3D space.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Position of the box.'
+``````````
+name = 'angle'
+type = 'Angle'
+description = 'Angles of the box.'
+``````````
+name = 'mins'
+type = 'Vector'
+description = 'The lowest corner of the box.'
+``````````
+name = 'maxs'
+type = 'Vector'
+description = 'The highest corner of the box.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the box. Uses the <page>Color</page>.'
+``````````
+name = 'writeZ'
+type = 'boolean'
+description = 'Sets whenever to write to the zBuffer.'
+
+[DrawWireframeSphere]
+description = 'Draws a wireframe sphere in 3d space.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Position of the sphere.'
+``````````
+name = 'radius'
+type = 'number'
+description = 'The size of the sphere.'
+``````````
+name = 'longitudeSteps'
+type = 'number'
+description = 'The amount of longitude steps.\r\nThe larger this number is, the smoother the sphere is.'
+``````````
+name = 'latitudeSteps'
+type = 'number'
+description = 'The amount of latitude steps.\r\nThe larger this number is, the smoother the sphere is.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the wireframe. Uses the <page>Color</page>.'
+``````````
+name = 'writeZ'
+type = 'boolean'
+description = 'Whether or not to consider the Z buffer. If false, the wireframe will be drawn over everything currently drawn. If true, it will be drawn with depth considered, as if it were a regular object in 3D space.'
+
+[EnableClipping]
+description = 'Sets the status of the clip renderer, returning previous state.\r\n\r\n<warning>To prevent unintended rendering behavior of other mods/the game, you must reset the clipping state to its previous value.</warning>\r\n\r\n<bug issue="3105">Reloading the map does not reset the previous value of this function.</bug>\r\n\r\n**Returns:** Previous clipping state.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'state'
+type = 'boolean'
+description = 'New clipping state.'
+[[.returns]]
+type = 'boolean'
+
+[EndBeam]
+description = 'Ends the beam mesh of a beam started with <page>render.StartBeam</page>.\r\n\r\n**Scope:** Client'
+
+[FogColor]
+description = 'Sets the color of the fog.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'red'
+type = 'number'
+description = 'Red channel of the fog color, 0 - 255.'
+``````````
+name = 'green'
+type = 'number'
+description = 'Green channel of the fog color, 0 - 255.'
+``````````
+name = 'blue'
+type = 'number'
+description = 'Blue channel of the fog color, 0 - 255.'
+
+[FogEnd]
+description = 'Sets the at which the fog reaches its max density.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'distance'
+type = 'number'
+description = 'The distance at which the fog reaches its max density.\r\n\r\n<note>If used in <page>GM:SetupSkyboxFog</page>, this value **must** be scaled by the first argument of the hook</note>'
+
+[FogMaxDensity]
+description = 'Sets the maximum density of the fog.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'maxDensity'
+type = 'number'
+description = 'The maximum density of the fog, 0-1.'
+
+[FogMode]
+description = 'Sets the mode of fog.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'fogMode'
+type = 'number'
+description = 'Fog mode, see <page>Enums/MATERIAL_FOG</page>.'
+
+[FogStart]
+description = 'Sets the distance at which the fog starts showing up.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'fogStart'
+type = 'number'
+description = 'The distance at which the fog starts showing up.\r\n<note>If used in <page>GM:SetupSkyboxFog</page>, this value **must** be scaled by the first argument of the hook</note>'
+
+[GetAmbientLightColor]
+description = 'Returns the ambient color of the map.\r\n\r\n**Returns:** color\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'Vector'
+
+[GetBlend]
+description = 'Returns the current alpha blending.\r\n\r\n**Returns:** blend\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetBloomTex0]
+description = '\r\n\r\n**Returns:** The bloom texture\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetBloomTex1]
+description = '\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetColorModulation]
+description = 'Returns the current color modulation values as normals.\r\n\r\n**Returns:** r\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetDXLevel]
+description = 'Returns the maximum available directX version.\r\n\r\n**Returns:** dxLevel\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetFogColor]
+description = 'Returns the current fog color.\r\n\r\n**Returns:** Red part of the color.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetFogDistances]
+description = 'Returns the fog start and end distance.\r\n\r\n**Returns:** Fog start distance set by <page>render.FogStart</page>\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetFogMode]
+description = 'Returns the fog mode.\r\n\r\n**Returns:** Fog mode, see <page>Enums/MATERIAL_FOG</page>\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetFullScreenDepthTexture]
+description = 'Returns the _rt_FullFrameDepth texture. Alias of _rt_PowerOfTwoFB\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetLightColor]
+description = 'Gets the light exposure on the specified position.\r\n\r\n**Returns:** lightColor\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'The position of the surface to get the light from.'
+[[.returns]]
+type = 'Vector'
+
+[GetMoBlurTex0]
+description = '\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetMoBlurTex1]
+description = '\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetMorphTex0]
+description = '\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetMorphTex1]
+description = '\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetPowerOfTwoTexture]
+description = 'Returns the render target\'s power of two texture.\r\n\r\n**Returns:** The power of two texture, which is **_rt_poweroftwofb** by default.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetRefractTexture]
+description = 'Alias of <page>render.GetPowerOfTwoTexture</page>.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetRenderTarget]
+description = 'Returns the currently active render target.\r\n\r\nInstead of saving the current render target using this function and restoring to it later, it is generally better practice to use <page>render.PushRenderTarget</page> and <page>render.PopRenderTarget</page>.\r\n\r\n**Returns:** The currently active Render Target\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetResolvedFullFrameDepth]
+description = 'Returns the _rt_ResolvedFullFrameDepth texture for SSAO depth.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetScreenEffectTexture]
+description = 'Obtain an <page>ITexture</page> of the screen. You must call <page>render.UpdateScreenEffectTexture</page> in order to update this texture with the currently rendered scene.\r\n\r\nThis texture is mainly used within <page>GM:RenderScreenspaceEffects</page>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'textureIndex'
+type = 'number'
+description = 'Max index is 3, but engine only creates the first two for you.'
+[[.returns]]
+type = 'ITexture'
+
+[GetSmallTex0]
+description = '\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetSmallTex1]
+description = '\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetSuperFPTex]
+description = 'Returns a floating point texture the same resolution as the screen.\r\n\r\n<note>The <page>gmodscreenspace</page> doesn\'t behave as expected when drawing a floating-point texture to an integer texture (e.g. the default render target). Use an UnlitGeneric material instead</note>\r\n\r\n**Returns:** Render target named "__rt_supertexture1"\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetSuperFPTex2]
+description = 'See <page>render.GetSuperFPTex</page>\r\n\r\n**Returns:** Render target named "__rt_supertexture2"\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[GetSurfaceColor]
+description = 'Performs a render trace and returns the color of the surface hit, this uses a low res version of the texture.\r\n\r\n**Returns:** color\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'startPos'
+type = 'Vector'
+description = 'The start position to trace from.'
+``````````
+name = 'endPos'
+type = 'Vector'
+description = 'The end position of the trace.'
+[[.returns]]
+type = 'Vector'
+
+[GetToneMappingScaleLinear]
+description = 'Returns a vector representing linear tone mapping scale.\r\n\r\n**Returns:** The vector representing linear tone mapping scale.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'Vector'
+
+[MaterialOverride]
+description = 'Sets the render material override for all next calls of <page>Entity:DrawModel</page>. Also overrides <page>render.MaterialOverrideByIndex</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'material'
+type = 'IMaterial'
+description = 'The material to use as override, use nil to disable.'
+
+[MaterialOverrideByIndex]
+description = 'Similar to <page>render.MaterialOverride</page>, but overrides the materials per index.\r\n\r\n<page>render.MaterialOverride</page> overrides effects of this function.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Starts with 0, the index of the material to override'
+``````````
+name = 'material'
+type = 'IMaterial'
+description = 'The material to override with'
+
+[MaxTextureHeight]
+description = 'Returns the maximum texture height the renderer can handle.\r\n\r\n**Returns:** maxTextureHeight\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[MaxTextureWidth]
+description = 'Returns the maximum texture width the renderer can handle.\r\n\r\n**Returns:** maxTextureWidth\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[Model]
+description = 'Creates a new <page>Global.ClientsideModel</page>, renders it at the specified pos/ang, and removes it. Can also be given an existing <page>CSEnt</page> to reuse instead.\r\n\r\n<note>This function is only meant to be used in a single render pass kind of scenario, if you need to render a model continuously, use a cached <page>Global.ClientsideModel</page> and provide it as a second argument.</note>\r\n\r\n<bug issue="3307">Using this with a map model (<page>game.GetWorld</page>():<page text="GetModel">Entity:GetModel</page>()) crashes the game.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'settings'
+type = 'table'
+description = 'Requires:\r\n* <page>string</page> model - The model to draw\r\n* <page>Vector</page> pos - The position to draw the model at\r\n* <page>Angle</page> angle - The angles to draw the model at'
+``````````
+name = 'ent'
+type = 'CSEnt'
+description = 'If provided, this entity will be reused instead of creating a new one with <page>Global.ClientsideModel</page>. Note that the ent\'s model, position and angles will be changed, and <page>Entity:SetNoDraw</page> will be set to true.'
+
+[ModelMaterialOverride]
+description = 'Sets a material to override a model\'s default material. Similar to <page>Entity:SetMaterial</page> except it uses an <page>IMaterial</page> argument and it can be used to change materials on models which are part of the world geometry.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'material'
+type = 'IMaterial'
+description = 'The material override.'
+
+[OverrideAlphaWriteEnable]
+description = 'Overrides the write behaviour of all next rendering operations towards the alpha channel of the current render target.\r\n\r\nSee also <page>render.OverrideBlend</page>.\r\n\r\n<note>Doing <page>surface</page> draw calls with alpha set to 0 is a no-op and will never have any effect.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enable'
+type = 'boolean'
+description = 'Enable or disable the override.'
+``````````
+name = 'shouldWrite'
+type = 'boolean'
+description = 'If the previous argument is true, sets whether the next rendering operations should write to the alpha channel or not. Has no effect if the previous argument is false.'
+
+[OverrideBlend]
+description = 'Overrides the internal graphical functions used to determine the final color and alpha of a rendered texture.\r\n\r\nSee also <page>render.OverrideAlphaWriteEnable</page>.\r\n\r\n<note>Doing <page>surface</page> draw calls with alpha set to 0 is a no-op and won\'t have an effect.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enabled'
+type = 'boolean'
+description = 'true to enable, false to disable. No other arguments are required when disabling.'
+``````````
+name = 'srcBlend'
+type = 'number'
+description = 'The source color blend function <page>Enums/BLEND</page>. Determines how a rendered texture\'s final color should be calculated.'
+``````````
+name = 'destBlend'
+type = 'number'
+description = 'The destination color blend function <page>Enums/BLEND</page>.'
+``````````
+name = 'blendFunc'
+type = 'number'
+description = 'The blend mode used for drawing the color layer <page>Enums/BLENDFUNC</page>.'
+``````````
+name = 'srcBlendAlpha'
+type = 'number'
+description = 'The source alpha blend function <page>Enums/BLEND</page>. Determines how a rendered texture\'s final alpha should be calculated.'
+``````````
+name = 'destBlendAlpha'
+type = 'number'
+description = 'The destination alpha blend function <page>Enums/BLEND</page>.'
+``````````
+name = 'blendFuncAlpha'
+type = 'number'
+description = 'The blend mode used for drawing the alpha layer <page>Enums/BLENDFUNC</page>.'
+
+[OverrideBlendFunc]
+description = '<deprecated>Use <page>render.OverrideBlend</page> instead.</deprecated>\r\n\r\nOverrides the internal graphical functions used to determine the final color and alpha of a rendered texture.\r\n\r\nSee also <page>render.OverrideAlphaWriteEnable</page>.\r\n\r\n<note>Doing <page>surface</page> draw calls with alpha set to 0 is a no-op and will never have any effect.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enabled'
+type = 'boolean'
+description = 'true to enable, false to disable. No other arguments are required when disabling.'
+``````````
+name = 'srcBlend'
+type = 'number'
+description = 'The source color blend function <page>Enums/BLEND</page>. Determines how a rendered texture\'s final color should be calculated.'
+``````````
+name = 'destBlend'
+type = 'number'
+description = ''
+``````````
+name = 'srcBlendAlpha'
+type = 'number'
+description = 'The source alpha blend function <page>Enums/BLEND</page>. Determines how a rendered texture\'s final alpha should be calculated.'
+``````````
+name = 'destBlendAlpha'
+type = 'number'
+description = ''
+
+[OverrideColorWriteEnable]
+description = 'Overrides the write behaviour of all next rendering operations towards the color channel of the current render target.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enable'
+type = 'boolean'
+description = 'Enable or disable the override.'
+``````````
+name = 'shouldWrite'
+type = 'boolean'
+description = 'If the previous argument is true, sets whether the next rendering operations should write to the color channel or not. Has no effect if the previous argument is false.'
+
+[OverrideDepthEnable]
+description = 'Overrides the write behaviour of all next rendering operations towards the depth buffer.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enable'
+type = 'boolean'
+description = 'Enable or disable the override.'
+``````````
+name = 'shouldWrite'
+type = 'boolean'
+description = 'If the previous argument is true, sets whether the next rendering operations should write to the depth buffer or not. Has no effect if the previous argument is false.'
+
+[PerformFullScreenStencilOperation]
+description = '\r\n\r\n**Scope:** Client'
+
+[PopCustomClipPlane]
+description = 'Removes the current active clipping plane from the clip plane stack.\r\n\r\n**Scope:** Client'
+
+[PopFilterMag]
+description = 'Pops the current texture magnification filter from the filter stack.\r\n\r\nSee <page>render.PushFilterMag</page>\r\n\r\n**Scope:** Client'
+
+[PopFilterMin]
+description = 'Pops the current texture minification filter from the filter stack.\r\n\r\nSee <page>render.PushFilterMin</page>\r\n\r\n**Scope:** Client'
+
+[PopFlashlightMode]
+description = 'Pops the current flashlight mode from the flashlight mode stack.\r\n\r\n**Scope:** Client'
+
+[PopRenderTarget]
+description = 'Pops the last render target and viewport from the RT stack and sets them as the current render target and viewport.\r\n\r\nThis is should be called to restore the previous render target and viewport after a call to <page>render.PushRenderTarget</page>.\r\n\r\n**Scope:** Client'
+
+[PushCustomClipPlane]
+description = 'Pushes a new clipping plane of the clip plane stack and sets it as active.\r\n\r\n<note>A max of 2 clip planes are supported on Linux/POSIX, and 6 on Windows.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'normal'
+type = 'Vector'
+description = 'The normal of the clipping plane.'
+``````````
+name = 'distance'
+type = 'number'
+description = 'The distance of the plane from the world origin. You can use <page>Vector:Dot</page> between the normal and any point on the plane to find this.'
+
+[PushFilterMag]
+description = 'Pushes a texture filter onto the magnification texture filter stack.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'texFilterType'
+type = 'number'
+description = 'The texture filter type, see <page>Enums/TEXFILTER</page>'
+
+[PushFilterMin]
+description = 'Pushes a texture filter onto the minification texture filter stack.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'texFilterType'
+type = 'number'
+description = 'The texture filter type, see <page>Enums/TEXFILTER</page>'
+
+[PushFlashlightMode]
+description = 'Enables the flashlight projection for the upcoming rendering.\r\n\r\n<bug issue="3029">This will leave models lit under specific conditions.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enable'
+type = 'boolean'
+description = 'Whether the flashlight mode should be enabled or disabled.'
+
+[PushRenderTarget]
+description = 'Pushes the current render target and viewport to the RT stack then sets a new current render target and viewport. If the viewport is not specified, the dimensions of the render target are used instead.\r\n\r\nThis is similar to a call to <page>render.SetRenderTarget</page> and <page>render.SetViewPort</page> where the current render target and viewport have been saved beforehand, except the viewport isn\'t clipped to screen bounds.\r\n\r\nSee also <page>render.PopRenderTarget</page>.\r\n\r\n<note>If you want to render to the render target in 2d mode and it is not the same size as the screen, use <page>cam.Start2D</page> and <page>cam.End2D</page>.</note>\r\n<note>If the render target is bigger than the screen, rendering done with the surface library will be clipped to the screen bounds unless you call <page>Global.DisableClipping</page></note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'texture'
+type = 'ITexture'
+description = 'The new render target to be used.'
+``````````
+name = 'x'
+type = 'number'
+description = 'X origin of the viewport.'
+``````````
+name = 'y'
+type = 'number'
+description = 'Y origin of the viewport.'
+``````````
+name = 'w'
+type = 'number'
+description = 'Width of the viewport.'
+``````````
+name = 'h'
+type = 'number'
+description = 'Height of the viewport'
+
+[ReadPixel]
+description = 'Reads the color of the specified pixel from the RenderTarget sent by <page>render.CapturePixels</page>\r\n\r\n**Returns:** r\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The x coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The y coordinate.'
+[[.returns]]
+type = 'number'
+
+[RedownloadAllLightmaps]
+description = 'This applies the changes made to map lighting using <page>engine.LightStyle</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'DoStaticProps'
+type = 'boolean'
+description = 'When true, this will also apply lighting changes to static props. This is really slow on large maps.'
+``````````
+name = 'UpdateStaticLighting'
+type = 'boolean'
+description = 'Next update. Forces all props to update their static lighting. Can be slow.'
+
+[RenderHUD]
+description = 'Renders the HUD on the screen.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'X position for the HUD draw origin.'
+``````````
+name = 'y'
+type = 'number'
+description = 'Y position for the HUD draw origin.'
+``````````
+name = 'w'
+type = 'number'
+description = 'Width of the HUD draw.'
+``````````
+name = 'h'
+type = 'number'
+description = 'Height of the HUD draw.'
+
+[RenderView]
+description = 'Renders the scene with the specified viewData to the current active render target.\r\n\r\n<bug issue="1330">Static props and LODs are rendered improperly due to incorrectly perceived distance.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'view'
+type = 'table'
+description = 'The view data to be used in the rendering. See <page>Structures/ViewData</page>. Any missing value is assumed to be that of the current view. Similarly, you can make a normal render by simply not passing this table at all.'
+
+[ResetModelLighting]
+description = 'Resets the model lighting to the specified color.\r\n\r\nCalls <page>render.SetModelLighting</page> for every direction with given color.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'The red part of the color, 0-1'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green part of the color, 0-1'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue part of the color, 0-1'
+
+[ResetToneMappingScale]
+description = 'Resets the HDR tone multiplier to the specified value.\r\n\r\nThis will only work on HDR maps, and the value will automatically fade to what it was ( or whatever <page>render.SetGoalToneMappingScale</page> is ) if called only once.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'scale'
+type = 'number'
+description = 'The value which should be used as multiplier.'
+
+[SetAmbientLight]
+description = 'Sets the ambient lighting for any upcoming render operation.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'The red part of the color, 0-1.'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green part of the color, 0-1.'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue part of the color, 0-1.'
+
+[SetBlend]
+description = 'Sets the alpha blending for every upcoming render operation.\r\n\r\n<bug issue="3166">This does not affect non-model render.Draw* functions.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'blending'
+type = 'number'
+description = 'Blending value from 0-1.'
+
+[SetColorMaterial]
+description = 'Sets the current drawing material to "color".\r\n\r\nThe material is defined as:\r\n```\r\n\r\n"UnlitGeneric"\r\n{\r\n"$basetexture" "color/white"\r\n"$model" 		1\r\n"$translucent" 	1\r\n"$vertexalpha" 	1\r\n"$vertexcolor" 	1\r\n}\r\n```\r\n\r\n**Scope:** Client'
+
+[SetColorMaterialIgnoreZ]
+description = 'Sets the current drawing material to "color_ignorez".\r\n\r\nThe material is defined as:\r\n```\r\n\r\n"UnlitGeneric"\r\n{\r\n"$basetexture" "color/white"\r\n"$model" 		1\r\n"$translucent" 	1\r\n"$vertexalpha" 	1\r\n"$vertexcolor" 	1\r\n"$ignorez"		1\r\n}\r\n```\r\n\r\n**Scope:** Client'
+
+[SetColorModulation]
+description = 'Sets the color modulation.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'The red channel multiplier normal ranging from 0-1.'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green channel multiplier normal ranging from 0-1.'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue channel multiplier normal ranging from 0-1.'
+
+[SetFogZ]
+description = 'If the fog mode is set to <page text="MATERIAL_FOG_LINEAR_BELOW_FOG_Z">Enums/MATERIAL_FOG</page>, the fog will only be rendered below the specified height.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'fogZ'
+type = 'number'
+description = 'The fog Z.'
+
+[SetGoalToneMappingScale]
+description = 'Sets the goal HDR tone mapping scale.\r\n\r\nUse this in a rendering/think hook as it is reset every frame.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'scale'
+type = 'number'
+description = 'The target scale.'
+
+[SetLightingMode]
+description = 'Sets lighting mode when rendering something.\r\n\r\n<note>**Do not forget to restore the default value** to avoid unexpected behavior, like the world and the HUD/UI being affected</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'Mode'
+type = 'number'
+description = 'Lighting render mode\r\n\r\nPossible values are:\r\n* 0 - Default\r\n* 1 - Total fullbright, similar to `mat_fullbright 1` but excluding some weapon view models\r\n* 2 - Increased brightness(?), models look fullbright'
+
+[SetLightingOrigin]
+description = 'Sets the lighting origin.\r\n\r\n<bug issue="2804">This does not work for prop_physics.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'lightingOrigin'
+type = 'Vector'
+description = 'The position from which the light should be "emitted".'
+
+[SetLightmapTexture]
+description = 'Sets the texture to be used as the lightmap in upcoming rendering operations. This is required when rendering meshes using a material with a lightmapped shader such as LightmappedGeneric.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tex'
+type = 'ITexture'
+description = 'The texture to be used as the lightmap.'
+
+[SetLocalModelLights]
+description = 'Sets up the local lighting for any upcoming render operation. Up to 4 local lights can be defined, with one of three different types (point, directional, spot).\r\n\r\nDisables all local lights if called with no arguments.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'lights'
+type = 'table'
+description = 'A table containing up to 4 tables for each light source that should be set up. Each of these tables should contain the properties of its associated light source, see <page>Structures/LocalLight</page>.'
+
+[SetMaterial]
+description = 'Sets the material to be used in any upcoming render operation using the <page>render</page>.\r\n\r\nNot to be confused with <page>surface.SetMaterial</page>.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mat'
+type = 'IMaterial'
+description = 'The material to be used.'
+
+[SetModelLighting]
+description = 'Sets up the ambient lighting for any upcoming render operation. Ambient lighting can be seen as a cube enclosing the object to be drawn, each of its faces representing a directional light source that shines towards the object. Thus, there is a total of six different light sources that can be configured separately.\r\n\r\nLight color components are not restricted to a specific range (i.e. 0-255), instead, higher values will result in a brighter light.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'lightDirection'
+type = 'number'
+description = 'The light source to edit, see <page>Enums/BOX</page>.'
+``````````
+name = 'red'
+type = 'number'
+description = 'The red component of the light color.'
+``````````
+name = 'green'
+type = 'number'
+description = 'The green component of the light color.'
+``````````
+name = 'blue'
+type = 'number'
+description = 'The blue component of the light color.'
+
+[SetRenderTarget]
+description = 'Sets the render target to the specified rt.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'texture'
+type = 'ITexture'
+description = 'The new render target to be used.'
+
+[SetRenderTargetEx]
+description = 'Sets the render target with the specified index to the specified rt.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'rtIndex'
+type = 'number'
+description = 'The index of the rt to set.'
+``````````
+name = 'texture'
+type = 'ITexture'
+description = 'The new render target to be used.'
+
+[SetScissorRect]
+description = 'Sets a scissoring rect which limits the drawing area.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'startX'
+type = 'number'
+description = 'X start coordinate of the scissor rect.'
+``````````
+name = 'startY'
+type = 'number'
+description = 'Y start coordinate of the scissor rect.'
+``````````
+name = 'endX'
+type = 'number'
+description = 'X end coordinate of the scissor rect.'
+``````````
+name = 'endY'
+type = 'number'
+description = 'Y end coordinate of the scissor rect.'
+``````````
+name = 'enable'
+type = 'boolean'
+description = 'Enable or disable the scissor rect.'
+
+[SetShadowColor]
+description = 'Sets the shadow color.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'red'
+type = 'number'
+description = 'The red channel of the shadow color.'
+``````````
+name = 'green'
+type = 'number'
+description = 'The green channel of the shadow color.'
+``````````
+name = 'blue'
+type = 'number'
+description = 'The blue channel of the shadow color.'
+
+[SetShadowDirection]
+description = 'Sets the shadow projection direction.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'shadowDirections'
+type = 'Vector'
+description = 'The new shadow direction.'
+
+[SetShadowDistance]
+description = 'Sets the maximum shadow projection range.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'shadowDistance'
+type = 'number'
+description = 'The new maximum shadow distance.'
+
+[SetShadowsDisabled]
+description = 'Sets whether any future render operations will ignore shadow drawing.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'newState'
+type = 'boolean'
+description = ''
+
+[SetStencilCompareFunction]
+description = 'Sets the compare function of the stencil.\r\n\r\nPixels which fail the stencil comparison function are not written to the render target. The operation to be performed on the stencil buffer values for these pixels can be set using <page>render.SetStencilFailOperation</page>.\r\n\r\nPixels which pass the stencil comparison function are written to the render target unless they fail the depth buffer test (where applicable). The operation to perform on the stencil buffer values for these pixels can be set using <page>render.SetStencilPassOperation</page> and <page>render.SetStencilZFailOperation</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'compareFunction'
+type = 'number'
+description = 'Compare function, see <page>Enums/STENCILCOMPARISONFUNCTION</page>, and <page>Enums/STENCIL</page> for short.'
+
+[SetStencilEnable]
+description = 'Sets whether stencil tests are carried out for each rendered pixel.\r\n\r\nOnly pixels passing the stencil test are written to the render target.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'newState'
+type = 'boolean'
+description = 'The new state.'
+
+[SetStencilFailOperation]
+description = 'Sets the operation to be performed on the stencil buffer values if the compare function was not successful.\r\nNote that this takes place **before** depth testing.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'failOperation'
+type = 'number'
+description = 'Fail operation function, see <page>Enums/STENCILOPERATION</page>'
+
+[SetStencilPassOperation]
+description = 'Sets the operation to be performed on the stencil buffer values if the compare function was successful.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'passOperation'
+type = 'number'
+description = 'Pass operation function, see <page>Enums/STENCILOPERATION</page>'
+
+[SetStencilReferenceValue]
+description = 'Sets the reference value which will be used for all stencil operations. This is an unsigned integer.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'referenceValue'
+type = 'number'
+description = 'Reference value.'
+
+[SetStencilTestMask]
+description = 'Sets the unsigned 8-bit test bitflag mask to be used for any stencil testing.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mask'
+type = 'number'
+description = 'The mask bitflag.'
+
+[SetStencilWriteMask]
+description = 'Sets the unsigned 8-bit write bitflag mask to be used for any writes to the stencil buffer.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mask'
+type = 'number'
+description = 'The mask bitflag.'
+
+[SetStencilZFailOperation]
+description = 'Sets the operation to be performed on the stencil buffer values if the stencil test is passed but the depth buffer test fails.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'zFailOperation'
+type = 'number'
+description = 'Z fail operation function, see <page>Enums/STENCILOPERATION</page>'
+
+[SetToneMappingScaleLinear]
+description = '\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'vec'
+type = 'Vector'
+description = ''
+
+[SetViewPort]
+description = 'Changes the view port position and size. The values will be clamped to the game\'s screen resolution.\r\n\r\nIf you are looking to render something to a texture (render target), you should use <page>render.PushRenderTarget</page>.\r\n\r\n<note>This function will override values of <page>Global.ScrW</page> and <page>Global.ScrH</page> with the ones you set.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'X origin of the view port.'
+``````````
+name = 'y'
+type = 'number'
+description = 'Y origin of the view port.'
+``````````
+name = 'w'
+type = 'number'
+description = 'Width of the view port.'
+``````````
+name = 'h'
+type = 'number'
+description = 'Height of the view port.'
+
+[SetWriteDepthToDestAlpha]
+description = 'Sets the internal parameter **INT_RENDERPARM_WRITE_DEPTH_TO_DESTALPHA**\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'enable'
+type = 'boolean'
+description = ''
+
+[Spin]
+description = 'Swaps the frame buffers/cycles the frame. In other words, this updates the screen.\r\n\r\nIf you take a really long time during a single frame render, it is a good idea to use this and let the user know that the game isn\'t stuck.\r\n\r\n**Scope:** Client'
+
+[StartBeam]
+description = 'Start a new beam draw operation.\r\n\r\n<rendercontext hook="false" type="3D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'segmentCount'
+type = 'number'
+description = 'Amount of beam segments that are about to be drawn.'
+
+[SupportsHDR]
+description = 'Returns whether the game supports HDR, i.e. if the DirectX level is higher than or equal to 8.\r\n\r\n**Returns:** supportsHDR\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[SupportsPixelShaders_1_4]
+description = 'Returns if the current settings and the system allow the usage of pixel shaders 1.4.\r\n\r\n**Returns:** Whether Pixel Shaders 1.4 are supported or not.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[SupportsPixelShaders_2_0]
+description = 'Returns if the current settings and the system allow the usage of pixel shaders 2.0.\r\n\r\n**Returns:** Whether Pixel Shaders 2.0 are supported or not.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[SupportsVertexShaders_2_0]
+description = 'Returns if the current settings and the system allow the usage of vertex shaders 2.0.\r\n\r\n**Returns:** Whether Vertex Shaders 2.0 are supported or not.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[SuppressEngineLighting]
+description = 'Suppresses or enables any engine lighting for any upcoming render operation.\r\n\r\n<bug issue="4070">This does not affect <page>IMesh</page>es.</bug>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'suppressLighting'
+type = 'boolean'
+description = 'True to suppress false to enable.'
+
+[TurnOnToneMapping]
+description = 'Enables HDR tone mapping which influences the brightness.\r\n\r\n**Scope:** Client'
+
+[UpdateFullScreenDepthTexture]
+description = 'Updates the texture returned by <page>render.GetFullScreenDepthTexture</page>.\r\n\r\nSilently fails if <page>render.SupportsPixelShaders_2_0</page> returns false.\r\n\r\n**Scope:** Client'
+
+[UpdatePowerOfTwoTexture]
+description = 'Updates the power of two texture.\r\n\r\n**Returns:** Returns <page>render.GetPowerOfTwoTexture</page>.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'ITexture'
+
+[UpdateRefractTexture]
+description = 'Pretty much alias of <page>render.UpdatePowerOfTwoTexture</page> but does not return the texture.\r\n\r\n**Scope:** Client'
+
+[UpdateScreenEffectTexture]
+description = 'Copies the entire screen to the screen effect texture, which can be acquired via <page>render.GetScreenEffectTexture</page>. This function is mainly intended to be used in <page>GM:RenderScreenspaceEffects</page>\r\n\r\n**Scope:** Client'
+

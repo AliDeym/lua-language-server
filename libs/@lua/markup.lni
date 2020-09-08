@@ -1,0 +1,34 @@
+[markup]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'markup'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'markup'
+	},
+	2 = {
+		type = 'library',
+		name = 'markup'
+	}
+}
+
+[Parse]
+description = 'Parses markup into a <page>MarkupObject</page>. Currently, this only supports fonts and colors as demonstrated in the example.\r\n\r\n**Returns:** The parsed markup object ready to be drawn.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'markup'
+type = 'string'
+description = 'The markup to be parsed.'
+``````````
+name = 'maxWidth'
+type = 'number'
+description = 'The max width of the output'
+[[.returns]]
+type = 'MarkupObject'
+

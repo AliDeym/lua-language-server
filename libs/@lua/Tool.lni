@@ -1,0 +1,279 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Tool'
+	},
+}
+
+[Allowed]
+description = 'Checks whether the tool is allowed on the server. This will always return true clientside and will not be affected by <page>SANDBOX:CanTool</page>.\r\n\r\nThis function uses **TOOL.AllowedCVar** which is a <page>ConVar</page> object pointing to  **toolmode_allow_`*toolname***` convar.\r\n\r\n**Returns:** Returns true if the tool is allowed.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'boolean'
+
+[BuildConVarList]
+description = 'Builds a list of all ConVars set via the ClientConVar variable on the <page>Structures/TOOL</page> and their default values. This is used for the preset system.\r\n\r\n**Returns:** A list of all convars and their default values.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'table'
+
+[CheckObjects]
+description = '<internal>This is called automatically for most toolgun actions so you shouldn\'t need to use it.</internal>\r\n\r\nChecks all added objects to see if they\'re still valid, if not, clears the list of objects.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+
+[ClearObjects]
+description = 'Clears all objects previously set with <page>Tool:SetObject</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+
+[Create]
+description = '<internal>This is called automatically for all tools.</internal>\r\nInitializes the tool object\r\n\r\n**Returns:** The created tool object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'Tool'
+
+[CreateConVars]
+description = '<internal>This is called automatically for all tools.</internal>\r\n\r\nCreates clientside ConVars based on the ClientConVar table specified in the tool structure. Also creates the \'toolmode_allow_X\' ConVar.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+
+[GetBone]
+description = 'Retrieves a physics bone number previously stored using <page>Tool:SetObject</page>.\r\n\r\n**Returns:** Associated physics bone with given id.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'id'
+type = 'number'
+description = 'The id of the object which was set in <page>Tool:SetObject</page>.'
+[[.returns]]
+type = 'number'
+
+[GetClientInfo]
+description = 'Attempts to grab a clientside tool <page>ConVar</page>.\r\n\r\n**Returns:** The value of the requested <page>ConVar</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the convar to retrieve. The function will automatically add the "mytoolfilename_" part to it.'
+[[.returns]]
+type = 'string'
+
+[GetClientNumber]
+description = 'Attempts to grab a clientside tool <page>ConVar</page>.\r\n\r\n**Returns:** The value of the requested <page>ConVar</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the convar to retrieve. The function will automatically add the "mytoolfilename_" part to it.'
+``````````
+name = 'default'
+type = 'number'
+description = 'The default value to return in case the lookup fails.'
+[[.returns]]
+type = 'number'
+
+[GetEnt]
+description = 'Retrieves an Entity previously stored using <page>Tool:SetObject</page>.\r\n\r\n**Returns:** Associated Entity with given id.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'id'
+type = 'number'
+description = 'The id of the object which was set in <page>Tool:SetObject</page>.'
+[[.returns]]
+type = 'Entity'
+
+[GetHelpText]
+description = 'Returns a language key based on this tool\'s name and the current stage it is on.\r\n\r\n**Returns:** The returned language key, for example `"#tool.weld.1"`\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'string'
+
+[GetLocalPos]
+description = 'Retrieves an local vector previously stored using <page>Tool:SetObject</page>.\r\nSee also <page>Tool:GetPos</page>.\r\n\r\n**Returns:** Associated local vector with given id.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'id'
+type = 'number'
+description = 'The id of the object which was set in <page>Tool:SetObject</page>.'
+[[.returns]]
+type = 'Vector'
+
+[GetMode]
+description = 'Returns the name of the current tool mode.\r\n\r\n**Returns:** The current tool mode.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'string'
+
+[GetNormal]
+description = 'Retrieves an normal vector previously stored using <page>Tool:SetObject</page>.\r\n\r\n**Returns:** Associated normal vector with given id.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'id'
+type = 'number'
+description = 'The id of the object which was set in <page>Tool:SetObject</page>.'
+[[.returns]]
+type = 'Vector'
+
+[GetOperation]
+description = 'Returns the current operation of the tool set by <page>Tool:SetOperation</page>.\r\n\r\n**Returns:** The current operation the tool is at.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'number'
+
+[GetOwner]
+description = 'Returns the owner of this tool.\r\n\r\n**Returns:** Player using the tool\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'Entity'
+
+[GetPhys]
+description = 'Retrieves an <page>PhysObj</page> previously stored using <page>Tool:SetObject</page>.\r\nSee also <page>Tool:GetEnt</page>.\r\n\r\n**Returns:** Associated PhysObj with given id. If it wasn\'t specified, returns current <page>PhysObj</page> of associated Entity\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'id'
+type = 'number'
+description = 'The id of the object which was set in <page>Tool:SetObject</page>.'
+[[.returns]]
+type = 'PhysObj'
+
+[GetPos]
+description = 'Retrieves an vector previously stored using <page>Tool:SetObject</page>. See also <page>Tool:GetLocalPos</page>.\r\n\r\n**Returns:** Associated vector with given id. The vector is converted from <page>Tool:GetLocalPos</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'id'
+type = 'number'
+description = 'The id of the object which was set in <page>Tool:SetObject</page>.'
+[[.returns]]
+type = 'Vector'
+
+[GetServerInfo]
+description = 'Attempts to grab a serverside tool <page>ConVar</page>.\r\nThis will not do anything on client, despite the function being defined shared.\r\n\r\n**Returns:** The value of the requested <page>ConVar</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of the convar to retrieve. The function will automatically add the "mytoolfilename_" part to it.'
+[[.returns]]
+type = 'string'
+
+[GetStage]
+description = 'Returns the current stage of the tool set by <page>Tool:SetStage</page>.\r\n\r\n**Returns:** The current stage of the current operation the tool is at.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'number'
+
+[MakeGhostEntity]
+description = 'Initializes the ghost entity with the given model. Removes any old ghost entity if called multiple times.\r\n\r\nThe ghost is a regular prop_physics entity in singleplayer games, and a clientside prop in multiplayer games.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'model'
+type = 'string'
+description = 'The model of the new ghost entity'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'Position to initialize the ghost entity at, usually not needed since this is updated in <page>Tool:UpdateGhostEntity</page>.'
+``````````
+name = 'angle'
+type = 'Angle'
+description = 'Angle to initialize the ghost entity at, usually not needed since this is updated in <page>Tool:UpdateGhostEntity</page>.'
+
+[NumObjects]
+description = 'Returns the amount of stored objects ( <page>Entity</page>s ) the tool has.\r\n<validate>Are TOOLs limited to 4 entities?</validate>\r\n\r\n**Returns:** The amount of stored objects, or <page>Tool:GetStage</page> clientide.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+[[.returns]]
+type = 'number'
+
+[ReleaseGhostEntity]
+description = 'Removes any ghost entity created for this tool.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+
+[SetObject]
+description = 'Stores an <page>Entity</page> for later use in the tool.\r\n\r\nThe stored values can be retrieved by <page>Tool:GetEnt</page>, <page>Tool:GetPos</page>, <page>Tool:GetLocalPos</page>, <page>Tool:GetPhys</page>, <page>Tool:GetBone</page> and <page>Tool:GetNormal</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'id'
+type = 'number'
+description = 'The id of the object to store.'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to store.'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position to store. <br> <note>this position is in **global space** and is internally converted to **local space** relative to the object, so when you retrieve it later it will be corrected to the object\'s new position</note>'
+``````````
+name = 'phys'
+type = 'PhysObj'
+description = 'The physics object to store.'
+``````````
+name = 'bone'
+type = 'number'
+description = 'The hit bone to store.'
+``````````
+name = 'normal'
+type = 'Vector'
+description = 'The hit normal to store.'
+
+[SetOperation]
+description = 'Sets the current operation of the tool. Does nothing clientside. See also <page>Tool:SetStage</page>.\r\n\r\nOperations and stages work as follows:\r\n* Operation 1\r\n* * Stage 1\r\n* * Stage 2\r\n* * Stage 3\r\n* Operation 2\r\n* * Stage 1\r\n* * Stage 2\r\n* * Stage ...\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'operation'
+type = 'number'
+description = 'The new operation ID to set.'
+
+[SetStage]
+description = 'Sets the current stage of the tool. Does nothing clientside.\r\n\r\nSee also <page>Tool:SetOperation</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'stage'
+type = 'number'
+description = 'The new stage to set.'
+
+[StartGhostEntity]
+description = 'Initializes the ghost entity based on the supplied entity.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to copy ghost parameters off'
+
+[UpdateData]
+description = '<internal>Called on deploy automatically</internal>\r\n\r\nSets the tool\'s stage to how many stored objects the tool has.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+
+[UpdateGhostEntity]
+description = 'Updates the position and orientation of the ghost entity based on where the toolgun owner is looking along with data from object with id 1 set by <page>Tool:SetObject</page>.\r\n\r\nThis should be called in the tool\'s <page>TOOL:Think</page> hook.\r\n\r\nThis command is only used for tools that move props, such as easy weld, axis and motor. If you want to update a ghost like the thruster tool does it for example, check its [source code](https://github.com/Facepunch/garrysmod/blob/master/garrysmod/gamemodes/sandbox/entities/weapons/gmod_tool/stools/thruster.lua#L179).\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Tool'
+

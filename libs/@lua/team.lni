@@ -1,0 +1,213 @@
+[team]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'team'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'team'
+	},
+	2 = {
+		type = 'library',
+		name = 'team'
+	}
+}
+
+[AddScore]
+description = 'Increases the score of the given team\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+``````````
+name = 'increment'
+type = 'number'
+description = 'Amount to increase the team\'s score by'
+
+[BestAutoJoinTeam]
+description = 'Returns the team index of the team with the least players. Falls back to TEAM_UNASSIGNED\r\n\r\n**Returns:** Team index\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[GetAllTeams]
+description = 'Returns a table consisting of information on every defined team\r\n\r\n**Returns:** Team info\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[GetClass]
+description = 'Returns the selectable classes for the given team. This can be added to with <page>team.SetClass</page>\r\n\r\n**Returns:** Selectable classes\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+[[.returns]]
+type = 'table'
+
+[GetColor]
+description = 'Returns the team\'s color.\r\n\r\n**Returns:** The team\'s color as a <page>Color</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+[[.returns]]
+type = 'table'
+
+[GetName]
+description = 'Returns the name of the team.\r\n\r\n**Returns:** The team name. If the team is not defined, returns an empty string.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+[[.returns]]
+type = 'string'
+
+[GetPlayers]
+description = 'Returns a table with all player of the specified team.\r\n\r\n**Returns:** A table of <page>Player</page>s that belong to the requested team.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+[[.returns]]
+type = 'table'
+
+[GetScore]
+description = 'Returns the score of the team.\r\n\r\n**Returns:** score\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+[[.returns]]
+type = 'number'
+
+[GetSpawnPoint]
+description = 'Returns a table of valid spawnpoint classes the team can use. These are set with <page>team.SetSpawnPoint</page>.\r\n\r\n**Returns:** Valid spawnpoint classes\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+[[.returns]]
+type = 'table'
+
+[GetSpawnPoints]
+description = 'Returns a table of valid spawnpoint entities the team can use. These are set with  <page>team.SetSpawnPoint</page>.\r\n\r\n**Returns:** Valid spawnpoint entities\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+[[.returns]]
+type = 'table'
+
+[Joinable]
+description = 'Returns if a team is joinable or not. This is set in <page>team.SetUp</page>.\r\n\r\n**Returns:** True if the team is joinable. False otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'The index of the team.'
+[[.returns]]
+type = 'boolean'
+
+[NumPlayers]
+description = 'Returns the amount of players in a team.\r\n\r\n**Returns:** playerCount\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+[[.returns]]
+type = 'number'
+
+[SetClass]
+description = 'Sets valid classes for use by a team. Classes can be created using <page>player_manager.RegisterClass</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+``````````
+name = 'classes'
+type = 'any'
+description = 'A class ID or table of class IDs'
+
+[SetColor]
+description = 'Sets the team\'s color.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The team\'s new color as a <page>Color</page>.'
+
+[SetScore]
+description = 'Sets the score of the given team\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+``````````
+name = 'score'
+type = 'number'
+description = 'The team\'s new score'
+
+[SetSpawnPoint]
+description = 'Sets valid spawnpoint classes for use by a team.\r\n\r\n<note>GM.TeamBased must be set to true for this to work</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+``````````
+name = 'classes'
+type = 'any'
+description = 'A spawnpoint classname or table of spawnpoint classnames'
+
+[SetUp]
+description = 'Creates a new team.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+``````````
+name = 'teamName'
+type = 'string'
+description = 'The team name.'
+``````````
+name = 'teamColor'
+type = 'table'
+description = 'The team color. Uses the <page>Color</page>.'
+``````````
+name = 'isJoinable'
+type = 'boolean'
+description = 'Whether the team is joinable or not.'
+
+[TotalDeaths]
+description = 'Returns the sum of deaths of all players of the team.\r\n\r\n**Returns:** deathCount\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'teamIndex'
+type = 'number'
+description = 'The team index.'
+[[.returns]]
+type = 'number'
+
+[TotalFrags]
+description = 'Get\'s the total frags in a team.\r\n\r\n**Returns:** index\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'Entity or number'
+type = 'Entity'
+description = 'Entity or number.'
+[[.returns]]
+type = 'number'
+
+[Valid]
+description = 'Returns true if the given team index is valid\r\n\r\n**Returns:** Is valid\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'index'
+type = 'number'
+description = 'Index of the team'
+[[.returns]]
+type = 'boolean'
+

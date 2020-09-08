@@ -1,0 +1,53 @@
+[frame_blend]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'frame_blend'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'frame_blend'
+	},
+	2 = {
+		type = 'library',
+		name = 'frame_blend'
+	}
+}
+
+[AddFrame]
+description = '<internal></internal>\r\n\r\nAdds a frame to the blend. Calls <page>frame_blend.CompleteFrame</page> once enough frames have passed since last <page>frame_blend.CompleteFrame</page> call.\r\n\r\n**Scope:** Client'
+
+[BlendFrame]
+description = '<internal></internal>\r\n\r\nBlends the frame(s).\r\n\r\n**Scope:** Client'
+
+[CompleteFrame]
+description = '<internal></internal>\r\n\r\nRenders the frame onto internal render target.\r\n\r\n**Scope:** Client'
+
+[DrawPreview]
+description = '<internal></internal>\r\n\r\nActually draws the frame blend effect.\r\n\r\n**Scope:** Client'
+
+[IsActive]
+description = 'Returns whether frame blend post processing effect is enabled or not.\r\n\r\n**Returns:** Is frame blend enabled or not\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[IsLastFrame]
+description = '<internal></internal>\r\n\r\n\r\nReturns whether the current frame is the last frame?\r\n\r\n**Returns:** Whether the current frame is the last frame?\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[RenderableFrames]
+description = '<internal></internal>\r\n\r\nReturns amount of frames needed to render?\r\n\r\n**Returns:** Amount of frames needed to render?\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[ShouldSkipFrame]
+description = 'Returns whether we should skip frame or not\r\n\r\n**Returns:** Should the frame be skipped or not\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+

@@ -95,7 +95,7 @@ end
 
 function mt:runFunction(func)
     func:run(self)
-
+    
     if not func:getSource() then
         return
     end
@@ -187,7 +187,8 @@ function mt:tryRequireOne(str, strValue, mode)
             uri = ws:searchPath(self:getUri(), str)
         elseif mode == 'loadfile' then
             uri = ws:loadPath(self:getUri(), str)
-        elseif mode == 'dofile' then
+            -- Gmod include.
+        elseif mode == 'dofile' or mode == 'include' then
             uri = ws:loadPath(self:getUri(), str)
         end
         if not uri then
@@ -286,7 +287,8 @@ function mt:callLibrary(func, values, source, lib)
             self:callRequire(func, values)
         elseif lib.special == 'loadfile' then
             self:callLoadFile(func, values)
-        elseif lib.special == 'dofile' then
+            -- GMod include.
+        elseif lib.special == 'dofile' or lib.special == 'include' then
             self:callDoFile(func, values)
         elseif lib.special == 'module' then
             self:callModuel(func, values)
@@ -571,13 +573,13 @@ function mt:getBinary(exp)
     v2 = self:getFirstInMulti(v2) or valueMgr.create('nil', exp[2])
     local op = exp.op
     -- TODO 搜索元方法
-    if     op == 'or' then
+    if     op == 'or' or op == '||' then
         if self:isTrue(v1) then
             return v1
         else
             return v2
         end
-    elseif op == 'and' then
+    elseif op == 'and' or op == '&&' then
         if self:isTrue(v1) then
             return v2
         else
@@ -594,6 +596,7 @@ function mt:getBinary(exp)
         v2:setType('string', 0.1)
         return self:createValue('boolean', exp)
     elseif op == '~='
+        or op == '!='
         or op == '=='
     then
         return self:createValue('boolean', exp)
@@ -676,7 +679,7 @@ function mt:getUnary(exp)
     v1 = self:getFirstInMulti(v1) or self:createValue('nil', exp[1])
     local op = exp.op
     -- TODO 搜索元方法
-    if     op == 'not' then
+    if     op == 'not' or op == '!' then
         return self:createValue('boolean', exp)
     elseif op == '#' then
         v1:setType('table', 0.5)
@@ -1068,6 +1071,8 @@ function mt:doAction(action)
     if     tp == 'do' then
         self:doDo(action)
     elseif tp == 'break' then
+    -- GMOD CONTINUE BELOW.
+    elseif tp == 'continue' then
     elseif tp == 'return' then
         self:doReturn(action)
     elseif tp == 'label' then

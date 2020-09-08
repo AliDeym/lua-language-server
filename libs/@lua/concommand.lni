@@ -1,0 +1,90 @@
+[concommand]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'concommand'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'concommand'
+	},
+	2 = {
+		type = 'library',
+		name = 'concommand'
+	}
+}
+
+[Add]
+description = 'Creates a console command that runs a function in lua with optional autocompletion function and help text.\r\n\r\n<bug issue="1183">This will fail if the concommand was previously removed with <page>concommand.Remove</page> in a different realm (creating a command on the client that was removed from the server and vice-versa).</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The command name to be used in console.\r\n\r\nThis cannot be a name of existing console command or console variable. It will silently fail if it is.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'The function to run when the concommand is executed. Arguments passed are:\r\n* <page>Player</page> ply - The player that ran the concommand. NULL entity if command was entered with the dedicated server console.\r\n* <page>string</page> cmd - The concommand string (if one callback is used for several concommands).\r\n* <page>table</page> args - A table of all string arguments.\r\n* <page>string</page> argStr - The arguments as a string.'
+``````````
+name = 'autoComplete'
+type = 'function'
+description = 'The function to call which should return a table of options for autocompletion. (<page text="Autocompletion Tutorial">Autocomplete_Tutorial</page>)\r\n\r\nThis only properly works on the client since it is **not** networked. Arguments passed are:\r\n* <page>string</page> cmd - The concommand this autocompletion is for.\r\n* <page>string</page> args - The arguments typed so far.'
+``````````
+name = 'helpText'
+type = 'string'
+description = 'The text to display should a user run \'help cmdName\'.'
+``````````
+name = 'flags'
+type = 'number'
+description = 'Concommand modifier flags. See <page>Enums/FCVAR</page>.'
+
+[AutoComplete]
+description = '<internal></internal> Used by the engine to call the autocomplete function for a console command, and retrieve returned options.\r\n\r\n**Returns:** Possibilities for auto-completion. This is the return value of the auto-complete callback.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'command'
+type = 'string'
+description = 'Name of command'
+``````````
+name = 'arguments'
+type = 'string'
+description = 'Arguments given to the command'
+[[.returns]]
+type = 'table'
+
+[GetTable]
+description = 'Returns the tables of all console command callbacks, and autocomplete functions, that were added to the game with <page>concommand.Add</page>.\r\n\r\n**Returns:** Table of command callback functions.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[Remove]
+description = 'Removes a console command.\r\n\r\n<bug issue="1183">This will not always remove the command from auto-complete.</bug>\r\n<bug issue="1183"><page>concommand.Add</page> will fail if the concommand was previously removed with this function in a different realm (creating a command on the client that was removed from the server and vice-versa).</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the command to be removed.'
+
+[Run]
+description = '<internal>You might be looking for <page>Global.RunConsoleCommand</page> or <page>Player:ConCommand</page>.</internal>\r\n\r\nUsed by the engine to run a console command\'s callback function. This will only be called for commands that were added with <page>Global.AddConsoleCommand</page>, which <page>concommand.Add</page> calls internally. An error is sent to the player\'s chat if no callback is found.\r\n\r\nThis will still be called for concommands removed with <page>concommand.Remove</page> but will return false.\r\n\r\n**Returns:** `true` if the console command with the given name exists, and `false` if it doesn\'t.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'Player to run concommand on'
+``````````
+name = 'cmd'
+type = 'string'
+description = 'Command name'
+``````````
+name = 'args'
+type = 'any'
+description = 'Command arguments.\r\nCan be table or string'
+``````````
+name = 'argumentString'
+type = 'string'
+description = 'string of all arguments sent to the command'
+[[.returns]]
+type = 'boolean'
+

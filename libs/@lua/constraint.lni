@@ -1,0 +1,968 @@
+[constraint]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'constraint'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'constraint'
+	},
+	2 = {
+		type = 'library',
+		name = 'constraint'
+	}
+}
+
+[AddConstraintTable]
+description = 'Stores information about constraints in an entity\'s table.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent1'
+type = 'Entity'
+description = 'The entity to store the information on.'
+``````````
+name = 'constrt'
+type = 'Entity'
+description = 'The constraint to store in the entity\'s table.'
+``````````
+name = 'ent2'
+type = 'Entity'
+description = 'Optional. If different from `ent1`, the info will also be stored in the table for this entity.'
+``````````
+name = 'ent3'
+type = 'Entity'
+description = 'Optional. Same as `ent2`.'
+``````````
+name = 'ent4'
+type = 'Entity'
+description = 'Optional. Same as `ent2`.'
+
+[AddConstraintTableNoDelete]
+description = 'Stores info about the constraints on the entity\'s table. The only difference between this and <page>constraint.AddConstraintTable</page> is that the constraint does not get deleted when the entity is removed.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent1'
+type = 'Entity'
+description = 'The entity to store the information on.'
+``````````
+name = 'constrt'
+type = 'Entity'
+description = 'The constraint to store in the entity\'s table.'
+``````````
+name = 'ent2'
+type = 'Entity'
+description = 'Optional. If different from `ent1`, the info will also be stored in the table for this entity.'
+``````````
+name = 'ent3'
+type = 'Entity'
+description = 'Optional. Same as `ent2`.'
+``````````
+name = 'ent4'
+type = 'Entity'
+description = 'Optional. Same as `ent2`.'
+
+[AdvBallsocket]
+description = 'Creates an advanced ballsocket (ragdoll) constraint.\r\n\r\nUses a https://developer.valvesoftware.com/wiki/Phys_ragdollconstraint\r\n\r\n**Returns:** A phys_ragdollconstraint entity. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = 'Position on the first entity, in its local space coordinates.'
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = 'Position on the second entity, in its local space coordinates.'
+``````````
+name = 'forcelimit'
+type = 'number'
+description = 'Amount of force until it breaks (0 = unbreakable)'
+``````````
+name = 'torquelimit'
+type = 'number'
+description = 'Amount of torque (rotation speed) until it breaks (0 = unbreakable)'
+``````````
+name = 'xmin'
+type = 'number'
+description = 'Minimum angle in rotations around the X axis local to the constraint.'
+``````````
+name = 'ymin'
+type = 'number'
+description = 'Minimum angle in rotations around the Y axis local to the constraint.'
+``````````
+name = 'zmin'
+type = 'number'
+description = 'Minimum angle in rotations around the Z axis local to the constraint.'
+``````````
+name = 'xmax'
+type = 'number'
+description = 'Maximum angle in rotations around the X axis local to the constraint.'
+``````````
+name = 'ymax'
+type = 'number'
+description = 'Maximum angle in rotations around the Y axis local to the constraint.'
+``````````
+name = 'zmax'
+type = 'number'
+description = 'Maximum angle in rotations around the Z axis local to the constraint.'
+``````````
+name = 'xfric'
+type = 'number'
+description = 'Rotational friction in the X axis local to the constraint.'
+``````````
+name = 'yfric'
+type = 'number'
+description = 'Rotational friction in the Y axis local to the constraint.'
+``````````
+name = 'zfric'
+type = 'number'
+description = 'Rotational friction in the Z axis local to the constraint.'
+``````````
+name = 'onlyrotation'
+type = 'number'
+description = 'Only limit rotation, free movement.'
+``````````
+name = 'nocollide'
+type = 'number'
+description = 'Whether the entities should be no-collided.'
+[[.returns]]
+type = 'Entity'
+
+[Axis]
+description = 'Creates an axis constraint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = 'Position on the first entity, in its local space coordinates.'
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = 'Position on the second entity, in its local space coordinates.'
+``````````
+name = 'forcelimit'
+type = 'number'
+description = 'Amount of force until it breaks (0 = unbreakable)'
+``````````
+name = 'torquelimit'
+type = 'number'
+description = 'Amount of torque (rotational force) until it breaks (0 = unbreakable)'
+``````````
+name = 'friction'
+type = 'number'
+description = 'Constraint friction.'
+``````````
+name = 'nocollide'
+type = 'number'
+description = 'Whether the entities should be no-collided.'
+``````````
+name = 'LocalAxis'
+type = 'Vector'
+description = 'If you include the LocalAxis then LPos2 will not be used in the final constraint. However, LPos2 is still a required argument.'
+``````````
+name = 'DontAddTable'
+type = 'boolean'
+description = 'Whether or not to add the constraint info on the entity table. See <page>constraint.AddConstraintTable</page>.'
+[[.returns]]
+type = 'Entity'
+
+[Ballsocket]
+description = 'Creates a ballsocket joint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'LocalPos'
+type = 'Vector'
+description = 'Centerposition of the joint, relative to the **second** entity.'
+``````````
+name = 'forcelimit'
+type = 'number'
+description = 'Amount of force until it breaks (0 = unbreakable)'
+``````````
+name = 'torquelimit'
+type = 'number'
+description = 'Amount of torque (rotation speed) until it breaks (0 = unbreakable)'
+``````````
+name = 'nocollide'
+type = 'number'
+description = 'Whether the entities should be nocollided'
+[[.returns]]
+type = 'Entity'
+
+[CanConstrain]
+description = 'Basic checks to make sure that the specified entity and bone are valid. Returns false if we should not be constraining the entity.\r\n\r\n**Returns:** shouldConstrain\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+``````````
+name = 'bone'
+type = 'number'
+description = 'The bone of the entity to check (use 0 for mono boned ents)'
+[[.returns]]
+type = 'boolean'
+
+[CreateKeyframeRope]
+description = 'Creates a rope without any constraint.\r\n\r\n**Returns:** rope\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'Starting position of the rope.'
+``````````
+name = 'width'
+type = 'number'
+description = 'Width of the rope.'
+``````````
+name = 'material'
+type = 'string'
+description = 'Material of the rope.'
+``````````
+name = 'Constraint'
+type = 'Entity'
+description = 'Constraint for the rope.'
+``````````
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = 'Position of first end of the rope. Local to Ent1.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = 'Position of second end of the rope. Local to Ent2.'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'kv'
+type = 'table'
+description = '(Optional) Any additional key/values to be set on the rope.'
+[[.returns]]
+type = 'Entity'
+
+[CreateStaticAnchorPoint]
+description = 'Creates an invisible, non-moveable anchor point in the world to which things can be attached.\r\n\r\n**Returns:** anchor\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The position to spawn the anchor at'
+[[.returns]]
+type = 'Entity'
+
+[Elastic]
+description = 'Creates an elastic constraint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = 'Position of first end of the rope. Local to Ent1.'
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = 'Position of second end of the rope. Local to Ent2.'
+``````````
+name = 'constant'
+type = 'number'
+description = ''
+``````````
+name = 'damping'
+type = 'number'
+description = ''
+``````````
+name = 'rdamping'
+type = 'number'
+description = ''
+``````````
+name = 'material'
+type = 'string'
+description = 'The material of the rope.'
+``````````
+name = 'width'
+type = 'number'
+description = 'Width of rope.'
+``````````
+name = 'stretchonly'
+type = 'boolean'
+description = ''
+[[.returns]]
+type = 'Entity'
+
+[Find]
+description = 'Returns the constraint of a specified type between two entities, if it exists\r\n\r\n**Returns:** constraint\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent1'
+type = 'Entity'
+description = 'The first entity to check'
+``````````
+name = 'ent2'
+type = 'Entity'
+description = 'The second entity to check'
+``````````
+name = 'type'
+type = 'string'
+description = 'The type of constraint, case sensitive. List of default constrains is as follows:\r\n* `Weld`\r\n* `Axis`\r\n* `AdvBallsocket`\r\n* `Rope`\r\n* `Elastic`\r\n* `NoCollide`\r\n* `Motor`\r\n* `Pulley`\r\n* `Ballsocket`\r\n* `Winch`\r\n* `Hydraulic`\r\n* `Muscle`\r\n* `Keepupright`\r\n* `Slider`'
+``````````
+name = 'bone1'
+type = 'number'
+description = 'The bone number for the first entity (0 for monoboned entities)'
+``````````
+name = 'bone2'
+type = 'number'
+description = 'The bone number for the second entity'
+[[.returns]]
+type = 'Entity'
+
+[FindConstraint]
+description = 'Returns the first constraint of a specific type directly connected to the entity found\r\n\r\n**Returns:** The constraint table, set with <page>constraint.AddConstraintTable</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+``````````
+name = 'type'
+type = 'string'
+description = 'The type of constraint, case sensitive. List of default constrains is as follows:\r\n* `Weld`\r\n* `Axis`\r\n* `AdvBallsocket`\r\n* `Rope`\r\n* `Elastic`\r\n* `NoCollide`\r\n* `Motor`\r\n* `Pulley`\r\n* `Ballsocket`\r\n* `Winch`\r\n* `Hydraulic`\r\n* `Muscle`\r\n* `Keepupright`\r\n* `Slider`'
+[[.returns]]
+type = 'table'
+
+[FindConstraintEntity]
+description = 'Returns the other entity involved in the first constraint of a specific type directly connected to the entity\r\n\r\n**Returns:** The other entity.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+``````````
+name = 'type'
+type = 'string'
+description = 'The type of constraint, case sensitive. List of default constrains is as follows:\r\n* `Weld`\r\n* `Axis`\r\n* `AdvBallsocket`\r\n* `Rope`\r\n* `Elastic`\r\n* `NoCollide`\r\n* `Motor`\r\n* `Pulley`\r\n* `Ballsocket`\r\n* `Winch`\r\n* `Hydraulic`\r\n* `Muscle`\r\n* `Keepupright`\r\n* `Slider`'
+[[.returns]]
+type = 'Entity'
+
+[FindConstraints]
+description = 'Returns a table of all constraints of a specific type directly connected to the entity\r\n\r\n**Returns:** All the constraints of this entity.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+``````````
+name = 'type'
+type = 'string'
+description = 'The type of constraint, case sensitive. List of default constrains is as follows:\r\n* `Weld`\r\n* `Axis`\r\n* `AdvBallsocket`\r\n* `Rope`\r\n* `Elastic`\r\n* `NoCollide`\r\n* `Motor`\r\n* `Pulley`\r\n* `Ballsocket`\r\n* `Winch`\r\n* `Hydraulic`\r\n* `Muscle`\r\n* `Keepupright`\r\n* `Slider`'
+[[.returns]]
+type = 'table'
+
+[ForgetConstraints]
+description = 'Make this entity forget any constraints it knows about. Note that this will not actually remove the constraints.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity that will forget its constraints.'
+
+[GetAllConstrainedEntities]
+description = 'Returns a table of all entities recursively constrained to an entitiy.\r\n\r\n**Returns:** A table containing all of the constrained entities. This includes all entities constrained to entities constrained to the supplied entity, etc.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+``````````
+name = 'ResultTable'
+type = 'table'
+description = 'Table used to return result. Optional.'
+[[.returns]]
+type = 'table'
+
+[GetTable]
+description = 'Returns a table of all constraints directly connected to the entity\r\n\r\n**Returns:** A list of all constraints connected to the entity.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+[[.returns]]
+type = 'table'
+
+[HasConstraints]
+description = 'Returns true if the entity has constraints attached to it\r\n\r\n**Returns:** Whether the entity has any constraints or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+[[.returns]]
+type = 'boolean'
+
+[Hydraulic]
+description = 'Creates a Hydraulic constraint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pl'
+type = 'Player'
+description = 'The player that will be used to call <page>numpad.OnDown</page>.'
+``````````
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls),'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls).'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = ''
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = ''
+``````````
+name = 'Length1'
+type = 'number'
+description = ''
+``````````
+name = 'Length2'
+type = 'number'
+description = ''
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the rope.'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key binding, corresponding to an <page>Enums/KEY</page>'
+``````````
+name = 'fixed'
+type = 'number'
+description = 'Whether the hydraulic is fixed.'
+``````````
+name = 'speed'
+type = 'number'
+description = ''
+``````````
+name = 'material'
+type = 'string'
+description = 'The material of the rope.'
+[[.returns]]
+type = 'Entity'
+
+[Keepupright]
+description = 'Creates a keep upright constraint.\r\n\r\n<note>This function only works on prop_physics or prop_ragdoll.</note>\r\n\r\n**Returns:** The created constraint, if any or false if the constraint failed to set\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to keep upright'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'The angle defined as "upright"'
+``````````
+name = 'bone'
+type = 'number'
+description = 'The bone of the entity to constrain (0 for boneless)'
+``````````
+name = 'angularLimit'
+type = 'number'
+description = 'Basically, the strength of the constraint'
+[[.returns]]
+type = 'Entity'
+
+[Motor]
+description = 'Creates a motor constraint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = ''
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = ''
+``````````
+name = 'friction'
+type = 'number'
+description = ''
+``````````
+name = 'torque'
+type = 'number'
+description = ''
+``````````
+name = 'forcetime'
+type = 'number'
+description = ''
+``````````
+name = 'nocollide'
+type = 'number'
+description = 'Whether the entities should be no-collided.'
+``````````
+name = 'toggle'
+type = 'number'
+description = 'Whether the constraint is on toggle.'
+``````````
+name = 'pl'
+type = 'Player'
+description = 'The player that will be used to call <page>numpad.OnDown</page> and <page>numpad.OnUp</page>.'
+``````````
+name = 'forcelimit'
+type = 'number'
+description = 'Amount of force until it breaks (0 = unbreakable)'
+``````````
+name = 'numpadkey_fwd'
+type = 'number'
+description = 'The key binding for "forward", corresponding to an <page>Enums/KEY</page>'
+``````````
+name = 'numpadkey_bwd'
+type = 'number'
+description = 'The key binding for "backwards", corresponding to an <page>Enums/KEY</page>'
+``````````
+name = 'direction'
+type = 'number'
+description = ''
+``````````
+name = 'LocalAxis'
+type = 'Vector'
+description = ''
+[[.returns]]
+type = 'Entity'
+
+[Muscle]
+description = 'Creates a muscle constraint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pl'
+type = 'Player'
+description = 'The player that will be used to call <page>numpad.OnDown</page>.'
+``````````
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = ''
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = ''
+``````````
+name = 'Length1'
+type = 'number'
+description = ''
+``````````
+name = 'Length2'
+type = 'number'
+description = ''
+``````````
+name = 'width'
+type = 'number'
+description = 'Width of the rope.'
+``````````
+name = 'key'
+type = 'number'
+description = 'The key binding, corresponding to an <page>Enums/KEY</page>'
+``````````
+name = 'fixed'
+type = 'number'
+description = 'Whether the constraint is fixed.'
+``````````
+name = 'period'
+type = 'number'
+description = ''
+``````````
+name = 'amplitude'
+type = 'number'
+description = ''
+``````````
+name = 'starton'
+type = 'boolean'
+description = ''
+``````````
+name = 'material'
+type = 'string'
+description = 'Material of the rope.'
+[[.returns]]
+type = 'Entity'
+
+[NoCollide]
+description = 'Creates an no-collide "constraint". Disables collision between two entities.\r\n<note>Does not work with players.</note>\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls).'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls).'
+[[.returns]]
+type = 'Entity'
+
+[Pulley]
+description = 'Creates a pulley constraint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = ''
+``````````
+name = 'Ent4'
+type = 'Entity'
+description = ''
+``````````
+name = 'Bone1'
+type = 'number'
+description = ''
+``````````
+name = 'Bone4'
+type = 'number'
+description = ''
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = ''
+``````````
+name = 'LPos4'
+type = 'Vector'
+description = ''
+``````````
+name = 'WPos2'
+type = 'Vector'
+description = ''
+``````````
+name = 'WPos3'
+type = 'Vector'
+description = ''
+``````````
+name = 'forcelimit'
+type = 'number'
+description = 'Amount of force until it breaks (0 = unbreakable)'
+``````````
+name = 'rigid'
+type = 'boolean'
+description = 'Whether the constraint is rigid.'
+``````````
+name = 'width'
+type = 'number'
+description = 'Width of the rope.'
+``````````
+name = 'material'
+type = 'string'
+description = 'Material of the rope.'
+[[.returns]]
+type = 'Entity'
+
+[RemoveAll]
+description = 'Attempts to remove all constraints associated with an entity\r\n\r\n**Returns:** Whether any constraints were removed\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to remove constraints from'
+[[.returns]]
+type = 'boolean'
+
+[RemoveConstraints]
+description = 'Attempts to remove all constraints of a specified type associated with an entity\r\n\r\n**Returns:** Whether we removed any constraints or not\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to check'
+``````````
+name = 'type'
+type = 'string'
+description = 'The constraint type to remove (eg. "Weld", "Elastic", "NoCollide")'
+[[.returns]]
+type = 'boolean'
+
+[Rope]
+description = 'Creates a rope constraint - with rope!\r\n\r\n**Returns:** Constraint. Will be a keyframe_rope if you roping to the same bone on the same entity. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls)'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls)'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = 'Position of first end of the rope. Local to Ent1.'
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = 'Position of second end of the rope. Local to Ent2.'
+``````````
+name = 'length'
+type = 'number'
+description = 'Length of the rope.'
+``````````
+name = 'addlength'
+type = 'number'
+description = 'Amount to add to the length of the rope. Works as it does in the Rope tool.'
+``````````
+name = 'forcelimit'
+type = 'number'
+description = 'Amount of force until it breaks (0 = unbreakable).'
+``````````
+name = 'width'
+type = 'number'
+description = 'Width of the rope.'
+``````````
+name = 'material'
+type = 'string'
+description = 'Material of the rope.'
+``````````
+name = 'rigid'
+type = 'boolean'
+description = 'Whether the constraint is rigid.'
+[[.returns]]
+type = 'Entity'
+
+[Slider]
+description = 'Creates a slider constraint.\r\n\r\n**Returns:** Constraint. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls),'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls).'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = ''
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = ''
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the rope.'
+``````````
+name = 'material'
+type = 'string'
+description = 'The material of the rope.'
+[[.returns]]
+type = 'Entity'
+
+[Weld]
+description = 'Creates a weld constraint\r\n\r\n**Returns:** constraint\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent1'
+type = 'Entity'
+description = 'The first entity'
+``````````
+name = 'ent2'
+type = 'Entity'
+description = 'The second entity'
+``````````
+name = 'bone1'
+type = 'number'
+description = 'The bonenumber of the first entity (0 for monoboned entities)\r\n\r\nPhysObj number for ragdolls, see: <page>Entity:TranslateBoneToPhysBone</page>.'
+``````````
+name = 'bone2'
+type = 'number'
+description = 'The bonenumber of the second entity'
+``````````
+name = 'forcelimit'
+type = 'number'
+description = 'The amount of force appliable to the constraint before it will break (0 is never)'
+``````````
+name = 'nocollide'
+type = 'boolean'
+description = 'Should ent1 be nocollided to ent2 via this constraint'
+``````````
+name = 'deleteent1onbreak'
+type = 'boolean'
+description = 'If true, when ent2 is removed, ent1 will also be removed'
+[[.returns]]
+type = 'Entity'
+
+[Winch]
+description = 'Creates a Winch constraint.\r\n\r\n**Returns:** Constraint. Can return nil. Will return false if the constraint could not be created.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'pl'
+type = 'Player'
+description = 'The player that will be used to call <page>numpad.OnDown</page> and <page>numpad.OnUp</page>.'
+``````````
+name = 'Ent1'
+type = 'Entity'
+description = 'First entity.'
+``````````
+name = 'Ent2'
+type = 'Entity'
+description = 'Second entity.'
+``````````
+name = 'Bone1'
+type = 'number'
+description = 'Bone of first entity (0 for non-ragdolls),'
+``````````
+name = 'Bone2'
+type = 'number'
+description = 'Bone of second entity (0 for non-ragdolls).'
+``````````
+name = 'LPos1'
+type = 'Vector'
+description = ''
+``````````
+name = 'LPos2'
+type = 'Vector'
+description = ''
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the rope.'
+``````````
+name = 'fwd_bind'
+type = 'number'
+description = 'The key binding for "forward", corresponding to an <page>Enums/KEY</page>'
+``````````
+name = 'bwd_bind'
+type = 'number'
+description = 'The key binding for "backwards", corresponding to an <page>Enums/KEY</page>'
+``````````
+name = 'fwd_speed'
+type = 'number'
+description = 'Forward speed.'
+``````````
+name = 'bwd_speed'
+type = 'number'
+description = 'Backwards speed.'
+``````````
+name = 'material'
+type = 'string'
+description = 'The material of the rope.'
+``````````
+name = 'toggle'
+type = 'boolean'
+description = 'Whether the winch should be on toggle.'
+[[.returns]]
+type = 'Entity'
+

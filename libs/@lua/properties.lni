@@ -1,0 +1,80 @@
+[properties]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'properties'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'properties'
+	},
+	2 = {
+		type = 'library',
+		name = 'properties'
+	}
+}
+
+[Add]
+description = 'Add properties to the properties module\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'A unique name used to identify the property'
+``````````
+name = 'propertyData'
+type = 'table'
+description = 'A table that defines the property. Uses the <page>Structures/PropertyAdd</page>.'
+
+[CanBeTargeted]
+description = 'Returns true if given entity can be targeted by the player via the properties system.\r\n\r\nThis should be used serverside in your properties to prevent abuse by clientside scripting.\r\n\r\n**Returns:** True if entity can be targeted, false otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to test'
+``````````
+name = 'ply'
+type = 'Player'
+description = 'If given, will also perform a distance check based on the entity\'s Orientated Bounding Box.'
+[[.returns]]
+type = 'boolean'
+
+[GetHovered]
+description = 'Returns an entity player is hovering over with his cursor.\r\n\r\n**Returns:** The hovered entity\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'Eye position of local player, <page>Entity:EyePos</page>'
+``````````
+name = 'aimVec'
+type = 'Vector'
+description = 'Aim vector of local player, <page>Player:GetAimVector</page>'
+[[.returns]]
+type = 'Entity'
+
+[OnScreenClick]
+description = 'Checks if player hovers over any entities and open a properties menu for it.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'eyepos'
+type = 'Vector'
+description = 'The eye pos of a player'
+``````````
+name = 'eyevec'
+type = 'Vector'
+description = 'The aim vector of a player'
+
+[OpenEntityMenu]
+description = 'Opens properties menu for given entity.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to open menu for'
+``````````
+name = 'tr'
+type = 'table'
+description = 'The trace that is passed as second argument to Action callback of a property'
+

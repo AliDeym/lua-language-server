@@ -1,0 +1,185 @@
+[mesh]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'mesh'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'mesh'
+	},
+	2 = {
+		type = 'library',
+		name = 'mesh'
+	}
+}
+
+[AdvanceVertex]
+description = 'Pushes the new vertex data onto the render stack.\r\n\r\n**Scope:** Client'
+
+[Begin]
+description = 'Starts a new dynamic mesh. If an <page>IMesh</page> is passed, it will use that mesh instead.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'mesh'
+type = 'IMesh'
+description = 'Mesh to build. This argument can be removed if you wish to build a "dynamic" mesh. See examples below.'
+``````````
+name = 'primitiveType'
+type = 'number'
+description = 'Primitive type, see <page>Enums/MATERIAL</page>.'
+``````````
+name = 'primiteCount'
+type = 'number'
+description = 'The amount of primitives.'
+
+[Color]
+description = 'Sets the color to be used for the next vertex.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'Red component.'
+``````````
+name = 'g'
+type = 'number'
+description = 'Green component.'
+``````````
+name = 'b'
+type = 'number'
+description = 'Blue component.'
+``````````
+name = 'a'
+type = 'number'
+description = 'Alpha component.'
+
+[End]
+description = 'Ends the mesh and renders it.\r\n\r\n**Scope:** Client'
+
+[Normal]
+description = 'Sets the normal to be used for the next vertex.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'normal'
+type = 'Vector'
+description = 'The normal of the vertex.'
+
+[Position]
+description = 'Sets the position to be used for the next vertex.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'The position of the vertex.'
+
+[Quad]
+description = 'Draws a quad using 4 vertices.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'vertex1'
+type = 'Vector'
+description = 'The first vertex.'
+``````````
+name = 'vertex2'
+type = 'Vector'
+description = 'The second vertex.'
+``````````
+name = 'vertex3'
+type = 'Vector'
+description = 'The third vertex.'
+``````````
+name = 'vertex4'
+type = 'Vector'
+description = 'The fourth vertex.'
+
+[QuadEasy]
+description = 'Draws a quad using a position, a normal and the size.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'The center of the quad.'
+``````````
+name = 'normal'
+type = 'Vector'
+description = 'The normal of the quad.'
+``````````
+name = 'sizeX'
+type = 'number'
+description = 'X size in pixels.'
+``````````
+name = 'sizeY'
+type = 'number'
+description = 'Y size in pixels.'
+
+[Specular]
+description = 'Sets the specular map values.\r\n\r\nThis function actually does nothing.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'The red channel multiplier of the specular map.'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green channel multiplier of the specular map.'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue channel multiplier of the specular map.'
+``````````
+name = 'a'
+type = 'number'
+description = 'The alpha channel multiplier of the specular map.'
+
+[TangentS]
+description = 'Sets the s tangent to be used.\r\n\r\nThis function actually does nothing.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'sTanger'
+type = 'Vector'
+description = 'The s tangent.'
+
+[TangentT]
+description = 'Sets the T tangent to be used.\r\n\r\nThis function actually does nothing.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tTanger'
+type = 'Vector'
+description = 'The t tangent.'
+
+[TexCoord]
+description = 'Sets the texture coordinates for the next vertex.\r\n\r\nNon-zero values of stage require the currently bound material to support it. For example, any LightmappedGeneric material supports stages 1 and 2 (lightmap texture coordinates).\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'stage'
+type = 'number'
+description = 'The stage of the texture coordinate.'
+``````````
+name = 'u'
+type = 'number'
+description = 'U coordinate.'
+``````````
+name = 'v'
+type = 'number'
+description = 'V coordinate.'
+
+[UserData]
+description = '<note>It is recommended to use <page>IMesh:BuildFromTriangles</page> instead of the mesh library.</note>\r\n\r\nA table of four numbers. This is used by most shaders in Source to hold tangent information of the vertex ( tangentX, tangentY, tangentZ, tangentHandedness ).\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tangentX'
+type = 'number'
+description = ''
+``````````
+name = 'tangentY'
+type = 'number'
+description = ''
+``````````
+name = 'tangentZ'
+type = 'number'
+description = ''
+``````````
+name = 'tangentHandedness'
+type = 'number'
+description = ''
+
+[VertexCount]
+description = 'Returns the amount of vertex that have yet been pushed.\r\n\r\n**Returns:** vertexCount\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+

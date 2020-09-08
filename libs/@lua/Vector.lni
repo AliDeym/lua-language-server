@@ -1,0 +1,271 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Vector'
+	},
+}
+
+[Add]
+description = 'Adds the values of the argument vector to the orignal vector. This functions the same as vector1 + vector2 without creating a new vector object, skipping object construction and garbage collection.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'vector'
+type = 'Vector'
+description = 'The vector to add.'
+
+[Angle]
+description = 'Returns an angle representing the normal of the vector.\r\n\r\n**Returns:** The angle/direction of the vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'Angle'
+
+[AngleEx]
+description = 'Returns the angle of the vector, but instead of assuming that up is <page>Global.Vector</page>( 0, 0, 1 ) (Like <page>Vector:Angle</page> does) you can specify which direction is \'up\' for the angle.\r\n\r\n**Returns:** The angle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'up'
+type = 'Vector'
+description = 'The up direction vector'
+[[.returns]]
+type = 'Angle'
+
+[Cross]
+description = 'Calculates the cross product of this vector and the passed one.\r\n\r\nThe cross product of two vectors is a 3-dimensional vector with a direction perpendicular (at right angles) to both of them (according to the right-hand rule), and magnitude equal to the area of parallelogram they span. This is defined as the product of the magnitudes, the sine of the angle between them, and unit (normal) vector `n` defined by the right-hand rule:\r\n:**a** × **b** = |**a**| |**b**| sin(θ) **n̂**\r\nwhere **a** and **b** are vectors, and **n̂** is a unit vector (magnitude of 1) perpendicular to both.\r\n\r\n**Returns:** The cross product of the two vectors.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'otherVector'
+type = 'Vector'
+description = 'Vector to calculate the cross product with.'
+[[.returns]]
+type = 'Vector'
+
+[Distance]
+description = 'Returns the euclidean distance between the vector and the other vector.\r\n\r\n<warning>This is a relatively expensive process since it uses the square root. It is recommended that you use <page>Vector:DistToSqr</page> whenever possible. (Benchmarking shows <page>Vector:DistToSqr</page> was at most 153 nanoseconds faster.)</warning>\r\n\r\n**Returns:** Distance between the vectors.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'otherVector'
+type = 'Vector'
+description = 'The vector to get the distance to.'
+[[.returns]]
+type = 'number'
+
+[DistToSqr]
+description = 'Returns the squared distance of 2 vectors, this is faster than <page>Vector:Distance</page> as calculating the square root is an expensive process.\r\n\r\n**Returns:** Squared distance to the vector\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'otherVec'
+type = 'Vector'
+description = 'The vector to calculate the distance to.'
+[[.returns]]
+type = 'number'
+
+[Div]
+description = 'Divide the vector by the given number, that means x, y and z are divided by that value. This will change the value of the original vector, see example 2 for division without changing the value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'divisor'
+type = 'number'
+description = 'The value to divide the vector with.'
+
+[Dot]
+description = 'Returns the [dot product](https://en.wikipedia.org/wiki/Dot_product#Geometric_definition)  of this vector and the passed one.\r\n\r\nThe dot product of two vectors is the product of their magnitudes (lengths), and the cosine of the angle between them:<br><br>\r\n**a · b** = |**a**| |**b**| cos(θ) <br><br>\r\nwhere **a** and **b** are vectors.<br><br>\r\nSee <page>Vector:Length</page> for obtaining magnitudes.\r\n\r\nA dot product returns just the cosine of the angle if both vectors are normalized, and zero if the vectors are at right angles to each other.\r\n\r\n**Returns:** The dot product between the two vectors\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'otherVector'
+type = 'Vector'
+description = 'The vector to calculate the dot product with'
+[[.returns]]
+type = 'number'
+
+[DotProduct]
+description = '<deprecated>This is an alias of <page>Vector:Dot</page>. Use that instead.</deprecated>Returns the dot product of the two vectors.\r\n\r\n**Returns:** Dot Product\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'Vector'
+type = 'Vector'
+description = 'The other vector.'
+[[.returns]]
+type = 'number'
+
+[GetNormal]
+description = '<deprecated>Use <page>Vector:GetNormalized</page> instead.</deprecated>\r\n\r\nReturns a normalized version of the vector. This is a alias of <page>Vector:GetNormalized</page>.\r\n\r\n**Returns:** Normalized version of the vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'Vector'
+
+[GetNormalized]
+description = 'Returns a normalized version of the vector. Normalized means vector with same direction but with length of 1.\r\n\r\nThis does not affect the vector you call it on; to do this, use <page>Vector:Normalize</page>.\r\n\r\n**Returns:** Normalized version of the vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'Vector'
+
+[IsEqualTol]
+description = 'Returns if the vector is equal to another vector with the given tolerance.\r\n\r\n**Returns:** Are the vectors equal or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'compare'
+type = 'Vector'
+description = 'The vector to compare to.'
+``````````
+name = 'tolerance'
+type = 'number'
+description = 'The tolerance range.'
+[[.returns]]
+type = 'boolean'
+
+[IsZero]
+description = 'Checks whenever all fields of the vector are 0.\r\n\r\n**Returns:** Do all fields of the vector equal 0 or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'boolean'
+
+[Length]
+description = 'Returns the Euclidean length of the vector: √x² + y² + z²\r\n\r\n**Returns:** Length of the vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'number'
+
+[Length2D]
+description = 'Returns the length of the vector in two dimensions, without the Z axis.\r\n\r\n**Returns:** Length of the vector in two dimensions, √(x² + y²)\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'number'
+
+[Length2DSqr]
+description = 'Returns the squared length of the vectors x and y value, x² + y².\r\n\r\nThis is faster than <page>Vector:Length2D</page> as calculating the square root is an expensive process.\r\n\r\n**Returns:** Squared length of the vector in two dimensions\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'number'
+
+[LengthSqr]
+description = 'Returns the squared length of the vector, x² + y² + z².\r\n\r\nThis is faster than <page>Vector:Length</page> as calculating the square root is an expensive process.\r\n\r\n**Returns:** Squared length of the vector\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'number'
+
+[Mul]
+description = 'Scales the vector by the given number, that means x, y and z are multiplied by that value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'multiplier'
+type = 'number'
+description = 'The value to scale the vector with.'
+
+[Normalize]
+description = 'Normalizes the given vector. This changes the vector you call it on, if you want to return a normalized copy without affecting the original, use <page>Vector:GetNormalized</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+
+[Rotate]
+description = 'Rotates a vector by the given angle.\r\nDoesn\'t return anything, but rather changes the original vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'rotation'
+type = 'Angle'
+description = 'The angle to rotate the vector by.'
+
+[Set]
+description = 'Copies the values from the second vector to the first vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'vector'
+type = 'Vector'
+description = 'The vector to copy from.'
+
+[SetUnpacked]
+description = 'Sets the x, y, and z of the vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'x'
+type = 'number'
+description = 'The x component'
+``````````
+name = 'y'
+type = 'number'
+description = 'The y component'
+``````````
+name = 'z'
+type = 'number'
+description = 'The z component'
+
+[Sub]
+description = 'Substracts the values of the second vector from the orignal vector, this function can be used to avoid garbage collection.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'vector'
+type = 'Vector'
+description = 'The other vector.'
+
+[ToColor]
+description = 'Translates the <page>Vector</page> (values ranging from 0 to 1) into a <page>Color</page>. This will also range the values from 0 - 1 to 0 - 255.\r\n\r\nx * 255 -> r<br>\r\ny * 255 -> g<br>\r\nz * 255 -> b\r\n\r\nThis is the opposite of <page>Color:ToVector</page>\r\n\r\n**Returns:** The created <page>Color</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'table'
+
+[ToScreen]
+description = 'Returns where on the screen the specified position vector would appear. A related function is <page>gui.ScreenToVector</page>, which converts a 2D coordinate to a 3D direction.\r\n\r\n<note>Should be called from a 3D rendering environment or after <page>cam.Start3D</page> or it may not work correctly.</note>\r\n\r\n<bug issue="462">Errors in a render hook can make this value incorrect until the player restarts their game.</bug>\r\n\r\n<bug issue="1404"><page>cam.Start3D</page> or 3D context <page>cam.Start</page> with non-default parameters incorrectly sets the reference FOV for this function, causing incorrect return values. This can be fixed by creating and ending a default 3D context (<page>cam.Start3D</page> with no arguments).</bug>\r\n\r\n**Returns:** The created <page>Structures/ToScreenData</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'table'
+
+[ToTable]
+description = 'Returns the vector as a table with three elements.\r\n\r\n**Returns:** The table with elements 1 = x, 2 = y, 3 = z.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'table'
+
+[Unpack]
+description = 'Returns the x, y, and z of the vector.\r\n\r\n**Returns:** x or Vector[1].\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+[[.returns]]
+type = 'number'
+
+[WithinAABox]
+description = 'Returns whenever the given vector is in a box created by the 2 other vectors.\r\n\r\n**Returns:** Is the vector in the box or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+``````````
+name = 'boxStart'
+type = 'Vector'
+description = 'The first vector.'
+``````````
+name = 'boxEnd'
+type = 'Vector'
+description = 'The second vector.'
+[[.returns]]
+type = 'boolean'
+
+[Zero]
+description = 'Sets x, y and z to 0.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vector'
+

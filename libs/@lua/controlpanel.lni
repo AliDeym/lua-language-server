@@ -1,0 +1,33 @@
+[controlpanel]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'controlpanel'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'controlpanel'
+	},
+	2 = {
+		type = 'library',
+		name = 'controlpanel'
+	}
+}
+
+[Clear]
+description = 'Clears ALL the control panels ( for tools )\r\n\r\n**Scope:** Client'
+
+[Get]
+description = 'Returns (or creates if not exists) a controlpanel.\r\n\r\n**Returns:** ControlPanel\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the panel.'
+[[.returns]]
+type = 'Panel'
+

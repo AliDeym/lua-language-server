@@ -1,0 +1,58 @@
+[gamemode]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'gamemode'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'gamemode'
+	},
+	2 = {
+		type = 'library',
+		name = 'gamemode'
+	}
+}
+
+[Call]
+description = 'Called by the engine to call a hook within the loaded gamemode.\r\n\r\nThe supplied event \'name\' must be defined in the active gamemode. Otherwise, nothing will happen - not even hooks added with <page>hook.Add</page> will be called.\r\n\r\nThis is similar to <page>hook.Run</page> and <page>hook.Call</page>, except the hook library will call hooks created with hook.Add even if there is no corresponding gamemode function.\r\n\r\n**Returns:** The result of the hook function - can be up to 6 values. Returns false if the gamemode function doesn\'t exist (i.e. nothing happened), but remember - a hook can also return false.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the hook to call.'
+``````````
+name = 'args'
+type = 'vararg'
+description = 'The arguments'
+[[.returns]]
+type = 'any'
+
+[Get]
+description = '<internal></internal> This returns the internally stored gamemode table.\r\n\r\n**Returns:** The gamemode\'s table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the gamemode you want to get'
+[[.returns]]
+type = 'table'
+
+[Register]
+description = '<internal></internal>Called by the engine when a gamemode is being loaded.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'gm'
+type = 'table'
+description = 'Your GM table'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of your gamemode, lowercase, no spaces.'
+``````````
+name = 'derived'
+type = 'string'
+description = 'The gamemode name that your gamemode is derived from'
+

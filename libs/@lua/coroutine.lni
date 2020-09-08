@@ -9,104 +9,74 @@ name = 'coroutine'
 <default>
 type = 'function'
 parent = {
-    1 = {
-        type = 'global',
-        name = 'coroutine',
-    },
-    2 = {
-        type = 'library',
-        name = 'coroutine',
-    }
+	1 = {
+		type = 'global',
+		name = 'coroutine'
+	},
+	2 = {
+		type = 'library',
+		name = 'coroutine'
+	}
 }
 
 [create]
+description = 'Creates a coroutine of the given function.\r\n\r\n**Returns:** coroutine\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'f'
+name = 'func'
 type = 'function'
+description = 'The function for the coroutine to use.'
 [[.returns]]
-name = 'coroutine'
 type = 'thread'
-
-[isyieldable]
-[[.returns]]
-type = 'boolean'
-
-['isyieldable Lua 5.4']
-name = isyieldable
-version = 'Lua 5.4'
-[[.args]]
-name = co
-type = thread
-optional = after
-[[.returns]]
-type = boolean
-
-[close]
-version = 'Lua 5.4'
-[[.args]]
-name = 'co'
-type = 'thread'
-[[.returns]]
-name = 'noerror'
-type = 'boolean'
-`````````
-name = 'errorobject'
-type = 'any'
 
 [resume]
+description = 'Resumes the given coroutine and passes the given vararg to either the function arguments or the <page>coroutine.yield</page> that is inside that function and returns whatever yield is called with the next time or by the final return in the function.\r\n\r\n**Returns:** If the executed thread code had no errors occur within it.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'co'
+name = 'coroutine'
 type = 'thread'
+description = 'Coroutine to resume.'
 ``````````
-name = 'val1'
-optional = 'after'
-``````````
-type = '...'
+name = 'args'
+type = 'vararg'
+description = 'Arguments to be returned by <page>coroutine.yield</page>.'
 [[.returns]]
-name = 'success'
 type = 'boolean'
-``````````
-name = 'result'
-``````````
-type = '...'
 
 [running]
+description = 'Returns the active coroutine or nil if we are not within a coroutine.\r\n\r\n**Returns:** coroutine\r\n\r\n**Scope:** Shared'
 [[.returns]]
-name = 'running_co'
 type = 'thread'
-``````````
-name = 'is_main'
-type = 'boolean'
 
 [status]
+description = 'Returns the status of the coroutine passed to it, the possible statuses are "suspended", "running", and "dead".\r\n\r\n**Returns:** status\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'co'
+name = 'coroutine'
 type = 'thread'
+description = 'Coroutine to check the status of.'
 [[.returns]]
-name = 'status'
 type = 'string'
-[[.enums]]
-name = 'status'
-enum = '"running"'
-``````````
-name = 'status'
-enum = '"suspended"'
-``````````
-name = 'status'
-enum = '"normal"'
-``````````
-name = 'status'
-enum = '"dead"'
+
+[wait]
+description = 'Yields the coroutine for the given duration before continuing.\r\n\r\nThis only works inside a coroutine.\r\n\r\nThis function uses <page>Global.CurTime</page> instead of <page>Global.RealTime</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'duration'
+type = 'number'
+description = 'The number of seconds to wait'
 
 [wrap]
+description = 'Returns a function which calling is equivalent with calling <page>coroutine.resume</page> with the coroutine and all extra parameters.\r\n\r\nThe values returned by the returned function only contain the values passed to the inner <page>coroutine.yield</page> call and do not include the *no error* status that <page>coroutine.resume</page> provides. In case of failure, an error is thrown instead.\r\n\r\n**Returns:** func\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'f'
+name = 'coroutine'
 type = 'function'
+description = 'Coroutine to resume.'
 [[.returns]]
-type = '...'
+type = 'function'
 
 [yield]
+description = 'Pauses the active coroutine and passes all additional variables to the call of <page>coroutine.resume</page> that resumed the coroutine last time, and returns all additional variables that were passed to the previous call of resume.\r\n\r\n**Returns:** Arguments that were set previously by <page>coroutine.resume</page>\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = '...'
+name = 'returnValue'
+type = 'vararg'
+description = 'Arguments to be returned by the last call of <page>coroutine.resume</page>'
 [[.returns]]
-type = '...'
+type = 'vararg'
+

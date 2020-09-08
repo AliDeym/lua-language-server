@@ -1,0 +1,112 @@
+[umsg]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'umsg'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'umsg'
+	},
+	2 = {
+		type = 'library',
+		name = 'umsg'
+	}
+}
+
+[Angle]
+description = 'Writes an angle to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'angle'
+type = 'Angle'
+description = 'The angle to be sent.'
+
+[Bool]
+description = 'Writes a bool to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'bool'
+type = 'boolean'
+description = 'The bool to be sent.'
+
+[Char]
+description = 'Writes a signed char to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'char'
+type = 'number'
+description = 'The char to be sent.'
+
+[End]
+description = 'Dispatches the usermessage to the client(s).\r\n\r\n**Scope:** Server'
+
+[Entity]
+description = 'Writes an entity object to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'entity'
+type = 'Entity'
+description = 'The entity to be sent.'
+
+[Float]
+description = 'Writes a float to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'float'
+type = 'number'
+description = 'The float to be sent.'
+
+[Long]
+description = 'Writes a signed int (32 bit) to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'int'
+type = 'number'
+description = 'The int to be sent.'
+
+[PoolString]
+description = '<deprecated>Inferior version of <page>util.AddNetworkString</page></deprecated>\r\n\r\nThe string specified will be networked to the client and receive a identifying number, which will be sent instead of the string to optimize networking.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'string'
+type = 'string'
+description = 'The string to be pooled.'
+
+[Short]
+description = 'Writes a signed short (16 bit) to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'short'
+type = 'number'
+description = 'The short to be sent.'
+
+[Start]
+description = '<deprecated>You should be using <page>net</page> instead</deprecated>\r\n\r\nStarts a new usermessage.\r\n\r\n<warning>Usermessages have a limit of only 256 bytes!</warning>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the message to be sent.'
+``````````
+name = 'filter'
+type = 'Player'
+description = 'If passed a player object, it will only be sent to the player, if passed a <page>CRecipientFilter</page> of players, it will be sent to all specified players, if passed nil (or another invalid value), the message will be sent to all players.'
+
+[String]
+description = 'Writes a null terminated string to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'string'
+type = 'string'
+description = 'The string to be sent.'
+
+[Vector]
+description = 'Writes a Vector to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'vector'
+type = 'Vector'
+description = 'The vector to be sent.'
+
+[VectorNormal]
+description = 'Writes a vector normal to the usermessage.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'normal'
+type = 'Vector'
+description = 'The vector normal to be sent.'
+

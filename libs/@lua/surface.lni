@@ -1,0 +1,363 @@
+[surface]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'surface'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'surface'
+	},
+	2 = {
+		type = 'library',
+		name = 'surface'
+	}
+}
+
+[CreateFont]
+description = 'Creates a new font.\r\n\r\nTo prevent the font from displaying incorrectly when using the "outline" setting, set "antialias" to false. This will ensure the text properly fills out the entire outline.\r\n\r\nBe sure to check the <page text="List of Default Fonts">Default_Fonts</page> first! Those fonts can be used without using this function.\r\n\r\nSee Also: <page>Finding the Font Name</page>.\r\n\r\n<warning>Due to the static nature of fonts, do **NOT** create the font more than once. You should only be creating them once, it is recommended to create them at the top of your script. Do not use this function within <page>GM:HUDPaint</page> or any other hook!</warning>\r\n<warning>Define fonts that you will actually use, as fonts are very taxing on performance and will cause crashes! Do not create fonts for every size.</warning>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'fontName'
+type = 'string'
+description = 'The new font name.'
+``````````
+name = 'fontData'
+type = 'table'
+description = 'The font properties. See the <page>Structures/FontData</page>.'
+
+[DisableClipping]
+description = '<deprecated><br>Alias of <page>Global.DisableClipping</page> so use that instead.</deprecated>\r\n\r\nEnables or disables the clipping used by the VGUI that limits the drawing operations to a panels bounds.\r\n\r\nIdentical to <page>Global.DisableClipping</page>. See also <page>Panel:NoClipping</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'disable'
+type = 'boolean'
+description = 'True to disable, false to enable the clipping'
+
+[DrawCircle]
+description = 'Draws a hollow circle, made of dots. For a filled circle, see examples for <page>surface.DrawPoly</page>.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'originX'
+type = 'number'
+description = 'The center x integer coordinate.'
+``````````
+name = 'originY'
+type = 'number'
+description = 'The center y integer coordinate.'
+``````````
+name = 'radius'
+type = 'number'
+description = 'The radius of the circle.'
+``````````
+name = 'r'
+type = 'number'
+description = 'The red value of the color to draw the circle with, or a <page>Color</page>.'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green value of the color to draw the circle with. Unused if a <page>Color</page> was given.'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue value of the color to draw the circle with. Unused if a <page>Color</page> was given.'
+``````````
+name = 'a'
+type = 'number'
+description = 'The alpha value of the color to draw the circle with. Unused if a <page>Color</page> was given.'
+
+[DrawLine]
+description = 'Draws a line from one point to another.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'startX'
+type = 'number'
+description = 'The start x integer coordinate.'
+``````````
+name = 'startY'
+type = 'number'
+description = 'The start y integer coordinate.'
+``````````
+name = 'endX'
+type = 'number'
+description = 'The end x integer coordinate.'
+``````````
+name = 'endY'
+type = 'number'
+description = 'The end y integer coordinate.'
+
+[DrawOutlinedRect]
+description = 'Draws a hollow box with a border width of 1 px.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The start x integer coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The start y integer coordinate.'
+``````````
+name = 'w'
+type = 'number'
+description = 'The integer width.'
+``````````
+name = 'h'
+type = 'number'
+description = 'The integer height.'
+
+[DrawPoly]
+description = 'Draws a textured polygon (secretly a triangle fan) with a maximum of 256 vertices.\r\nOnly works properly with convex polygons. You may try to render concave polygons, but there is no guarantee that things wont get messed up.\r\n\r\nUnlike most surface library functions, non-integer coordinates are not rounded.\r\n\r\n<warning>You must reset the drawing color and texture before calling the function to ensure consistent results. See examples below.</warning>\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'vertices'
+type = 'table'
+description = 'A table containing integer vertices. See the <page>Structures/PolygonVertex</page>.\r\n\r\n**The vertices must be in clockwise order.**'
+
+[DrawRect]
+description = 'Draws a solid rectangle on the screen.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X integer co-ordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y integer co-ordinate.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The integer width of the rectangle.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The integer height of the rectangle.'
+
+[DrawText]
+description = 'Draw the specified text on the screen, using the previously set position, font and color.\r\n\r\n<note>This function does not handle newlines properly</note>\r\n<note>This function sets new text position at the end of the previous drawn text length - this can be used to change text properties (such as font or color) without recalculating and resetting text position. See example #2 for example use of this behavior.</note>\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'text'
+type = 'string'
+description = 'The text to be rendered.'
+
+[DrawTexturedRect]
+description = 'Draw a textured rectangle with the given position and dimensions on the screen, using the current active texture set with <page>surface.SetMaterial</page>. It is also affected by <page>surface.SetDrawColor</page>.\r\n\r\nSee also <page>render.SetMaterial</page> and <page>render.DrawScreenQuadEx</page>.\r\n<br>\r\nSee also <page>surface.DrawTexturedRectUV</page>.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X integer co-ordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y integer co-ordinate.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The integer width of the rectangle.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The integer height of the rectangle.'
+
+[DrawTexturedRectRotated]
+description = 'Draw a textured rotated rectangle with the given position and dimensions and angle on the screen, using the current active texture.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X integer co-ordinate, representing the center of the rectangle.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y integer co-ordinate, representing the center of the rectangle.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The integer width of the rectangle.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The integer height of the rectangle.'
+``````````
+name = 'rotation'
+type = 'number'
+description = 'The rotation of the rectangle, in degrees.'
+
+[DrawTexturedRectUV]
+description = 'Draws a textured rectangle with a repeated or partial texture.\r\n\r\nu and v refer to texture coordinates.\r\n* (u, v) = (0, 0) is the top left\r\n* (u, v) = (1, 0) is the top right\r\n* (u, v) = (1, 1) is the bottom right\r\n* (u, v) = (0, 1) is the bottom left\r\n\r\nUsing a start point of (1, 0) and an end point to (0, 1), you can draw an image flipped horizontally, same goes with other directions. Going above 1 will tile the texture. Negative values are allowed as well.\r\n\r\nHere\'s a helper image:\r\n<upload src="70c/8d7bba248dc08bd.png" size="183359" name="image.png">\r\n\r\n<note>If you are using a .png image, you need supply the "noclamp" flag as second parameter for <page>Global.Material</page> if you intend to use tiling.</note>\r\n\r\n<note>If you find that surface.DrawTexturedRectUV is getting your texture coordinates (u0, v0), (u1, v1) wrong and you\'re rendering with a material created with <page>Global.CreateMaterial</page>, try adjusting them with the following code:\r\n\r\n```\r\nlocal du = 0.5 / 32 -- half pixel anticorrection\r\nlocal dv = 0.5 / 32 -- half pixel anticorrection\r\nlocal u0, v0 = (u0 - du) / (1 - 2 * du), (v0 - dv) / (1 - 2 * dv)\r\nlocal u1, v1 = (u1 - du) / (1 - 2 * du), (v1 - dv) / (1 - 2 * dv)\r\n```\r\n\r\n\r\n**Explanation:**\r\nsurface.DrawTexturedRectUV tries to correct the texture coordinates by half a pixel (something to do with sampling) and computes the correction using IMaterial::GetMappingWidth()/GetMappingHeight(). If the material was created without a $basetexture, then GetMappingWidth()/GetMappingHeight() uses the width and height of the error material (which is 32x32).</note>\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n<bug issue="3173">The UV offsets might require (sub-)pixel correction for accurate tiling results.</bug>\r\n</upload>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X integer coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y integer coordinate.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The integer width of the rectangle.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The integer height of the rectangle.'
+``````````
+name = 'startU'
+type = 'number'
+description = 'The U texture mapping of the rectangle origin.'
+``````````
+name = 'startV'
+type = 'number'
+description = 'The V texture mapping of the rectangle origin.'
+``````````
+name = 'endU'
+type = 'number'
+description = 'The U texture mapping of the rectangle end.'
+``````````
+name = 'endV'
+type = 'number'
+description = 'The V texture mapping of the rectangle end.'
+
+[GetAlphaMultiplier]
+description = 'Returns the current alpha multiplier affecting drawing operations.\r\n\r\n**Returns:** The multiplier ranging from 0 to 1.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[GetDrawColor]
+description = 'Returns the current color affecting draw operations.\r\n\r\n<bug issue="2407">The returned color will not have the color metatable.</bug>\r\n\r\n**Returns:** The color that drawing operations will use as a <page>Color</page>.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetHUDTexture]
+description = 'Gets the [HUD icon](https://github.com/Facepunch/garrysmod/blob/master/garrysmod/scripts/hud_textures.txt) TextureID with the specified name.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the texture.'
+[[.returns]]
+type = 'number'
+
+[GetTextColor]
+description = 'Returns the current color affecting text draw operations.\r\n\r\n<bug issue="2407">The returned color will not have the color metatable.</bug>\r\n\r\n**Returns:** The color that text drawing operations will use as a <page>Color</page>.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetTextSize]
+description = 'Returns the width and height (in pixels) of the given text, but only if the font has been set with <page>surface.SetFont</page>.\r\n\r\n**Returns:** Width of the provided text\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'text'
+type = 'string'
+description = 'The string to check the size of.'
+[[.returns]]
+type = 'number'
+
+[GetTextureID]
+description = 'Returns the texture id of the material with the given name/path.\r\n\r\n<note>This function will not work with .png or .jpg images. For that, see <page>Global.Material</page></note>\r\n\r\n**Returns:** The texture ID\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name/path'
+type = 'string'
+description = 'Name or path of the texture.'
+[[.returns]]
+type = 'number'
+
+[GetTextureSize]
+description = 'Returns the size of the texture with the associated texture ID.\r\n\r\nFor `.png/.jpg` textures loaded with <page>Global.Material</page> you can use the `$realheight` and `$realwidth` material parameters (<page>IMaterial:GetInt</page>) to get the size of the image.\r\n\r\n**Returns:** The texture width.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'textureID'
+type = 'number'
+description = 'The texture ID, returned by <page>surface.GetTextureID</page>.'
+[[.returns]]
+type = 'number'
+
+[PlaySound]
+description = 'Play a sound file directly on the client (such as UI sounds, etc).\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'soundfile'
+type = 'string'
+description = 'The path to the sound file, which must be relative to the sound/ folder.'
+
+[ScreenHeight]
+description = '<deprecated>You should use <page>Global.ScrH</page> instead.</deprecated>\r\nReturns the height of the current client\'s screen.\r\n\r\n**Returns:** screenHeight\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[ScreenWidth]
+description = '<deprecated>You should use <page>Global.ScrW</page> instead.</deprecated>\r\nReturns the width of the current client\'s screen.\r\n\r\n**Returns:** screenWidth\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'number'
+
+[SetAlphaMultiplier]
+description = 'Sets the alpha multiplier that will influence all upcoming drawing operations.\r\nSee also <page>render.SetBlend</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'multiplier'
+type = 'number'
+description = 'The multiplier ranging from 0 to 1.'
+
+[SetDrawColor]
+description = 'Set the color of any future shapes to be drawn, can be set by either using R, G, B, A as separate values or by a <page>Color</page>. Using a color structure is not recommended to be created procedurally.\r\n<note>Providing a <page>Color</page> structure is slower than providing four numbers. You may use <page>Color:Unpack</page> for this.</note>\r\n<note>The alpha value may not work properly if you\'re using a material without `$vertexalpha`.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'The red value of color, or a <page>Color</page>.'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green value of color. Unused if a <page>Color</page> was given.'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue value of color. Unused if a <page>Color</page> was given.'
+``````````
+name = 'a'
+type = 'number'
+description = 'The alpha value of color. Unused if a <page>Color</page> was given.'
+
+[SetFont]
+description = 'Set the current font to be used for text operations later.\r\n\r\nThe fonts must first be created with <page>surface.CreateFont</page> or be one of the <page>Default Fonts</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'fontName'
+type = 'string'
+description = 'The name of the font to use.'
+
+[SetMaterial]
+description = 'Sets the material to be used in all upcoming draw operations using the surface library.\r\n\r\nNot to be confused with <page>render.SetMaterial</page>.\r\n\r\nSee also <page>surface.SetTexture</page>.\r\n\r\nIf you need to unset the texture, use the <page>draw.NoTexture</page> convenience function.\r\n\r\n<warning><page>Global.Material</page> function calls are expensive to be done inside this function or inside rendering context, you should be caching the results of <page>Global.Material</page> calls</warning>\r\n<note>When using <page>render.PushRenderTarget</page> or <page>render.SetRenderTarget</page>, `material` should have the `$ignorez` flag set to make it visible. If the material is not used in 3D rendering, it is probably safe to add it with this code:\r\n```lua\r\nmaterial:SetInt( "$flags", bit.bor( material:GetInt( "$flags" ), 32768 ) )\r\n```\r\n</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'material'
+type = 'IMaterial'
+description = 'The material to be used.'
+
+[SetTextColor]
+description = 'Set the color of any future text to be drawn, can be set by either using R, G, B, A as separate numbers or by a <page>Color</page>.\r\n\r\nUsing a color structure is not recommended to be created procedurally.\r\n<note>Providing a <page>Color</page> structure is slower than providing four numbers. You may use <page>Color:Unpack</page> for this.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'r'
+type = 'number'
+description = 'The red value of color, or a <page>Color</page>.'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green value of color'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue value of color'
+``````````
+name = 'a'
+type = 'number'
+description = 'The alpha value of color'
+
+[SetTextPos]
+description = 'Set the top-left position to draw any future text at.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'x'
+type = 'number'
+description = 'The X integer co-ordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y integer co-ordinate.'
+
+[SetTexture]
+description = 'Sets the texture to be used in all upcoming draw operations using the surface library.\r\n\r\nSee also <page>surface.SetMaterial</page> for an <page>IMaterial</page> alternative.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'textureID'
+type = 'number'
+description = 'The ID of the texture to draw with returned by <page>surface.GetTextureID</page>.'
+

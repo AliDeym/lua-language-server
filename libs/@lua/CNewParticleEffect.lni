@@ -1,0 +1,251 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CNewParticleEffect'
+	},
+}
+
+[AddControlPoint]
+description = 'Adds a control point to the particle system.\r\n\r\n<note>This function will not work if the <page>CNewParticleEffect:GetOwner</page> entity is not valid</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'cpID'
+type = 'number'
+description = 'The control point ID, 0 to 63.'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to attach the control point to.'
+``````````
+name = 'partAttachment'
+type = 'number'
+description = 'See <page>Enums/PATTACH</page>.'
+``````````
+name = 'entAttachment'
+type = 'number'
+description = 'The attachment ID on the entity to attach the particle system to'
+``````````
+name = 'offset'
+type = 'Vector'
+description = 'The offset from the <page>Entity:GetPos</page> of the entity we are attaching this CP to.'
+
+[GetAutoUpdateBBox]
+description = '\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+[[.returns]]
+type = 'boolean'
+
+[GetEffectName]
+description = 'Returns the name of the particle effect this system is set to emit.\r\n\r\n**Returns:** The name of the particle effect.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+[[.returns]]
+type = 'string'
+
+[GetHighestControlPoint]
+description = 'Returns the highest control point number for given particle system.\r\n\r\n**Returns:** The highest control point number for given particle system, 0 to 63.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+[[.returns]]
+type = 'boolean'
+
+[GetOwner]
+description = 'Returns the owner of the particle system, the entity the particle system is attached to.\r\n\r\n**Returns:** The owner of the particle system.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+[[.returns]]
+type = 'Entity'
+
+[IsFinished]
+description = 'Returns whether the particle system has finished emitting particles or not.\r\n\r\n**Returns:** Whether the particle system has finished emitting particles or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+[[.returns]]
+type = 'boolean'
+
+[IsValid]
+description = 'Returns whether the particle system is valid or not.\r\n\r\n**Returns:** Whether the particle system is valid or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+[[.returns]]
+type = 'boolean'
+
+[IsViewModelEffect]
+description = 'Returns whether the particle system is intended to be used on a view model?\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+[[.returns]]
+type = 'boolean'
+
+[Render]
+description = 'Forces the particle system to render using current rendering context.\r\n\r\nCan be used to render the particle system in vgui panels, etc.\r\n\r\nUsed in conjunction with <page>CNewParticleEffect:SetShouldDraw</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+
+[Restart]
+description = 'Forces the particle system to restart emitting particles.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+
+[SetControlPoint]
+description = 'Sets a value for given control point.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'cpID'
+type = 'number'
+description = 'The control point ID, 0 to 63.'
+``````````
+name = 'value'
+type = 'Vector'
+description = 'The value to set for given control point.'
+
+[SetControlPointEntity]
+description = 'Essentially makes child control point follow the parent entity.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'child'
+type = 'number'
+description = 'The child control point ID, 0 to 63.'
+``````````
+name = 'parent'
+type = 'Entity'
+description = 'The parent entity to follow.'
+
+[SetControlPointForwardVector]
+description = 'Sets the forward direction for given control point.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'cpID'
+type = 'number'
+description = 'The control point ID, 0 to 63.'
+``````````
+name = 'forward'
+type = 'Vector'
+description = 'The forward direction for given control point'
+
+[SetControlPointOrientation]
+description = 'Sets the orientation for given control point.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'cpID'
+type = 'number'
+description = 'The control point ID, 0 to 63.'
+``````````
+name = 'forward'
+type = 'Vector'
+description = 'The forward direction for given control point'
+``````````
+name = 'right'
+type = 'Vector'
+description = 'The right direction for given control point'
+``````````
+name = 'up'
+type = 'Vector'
+description = 'The up direction for given control point'
+
+[SetControlPointParent]
+description = 'Essentially makes child control point follow the parent control point.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'child'
+type = 'number'
+description = 'The child control point ID, 0 to 63.'
+``````````
+name = 'parent'
+type = 'number'
+description = 'The parent control point ID, 0 to 63.'
+
+[SetControlPointRightVector]
+description = 'Sets the right direction for given control point.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'cpID'
+type = 'number'
+description = 'The control point ID, 0 to 63.'
+``````````
+name = 'right'
+type = 'Vector'
+description = 'The right direction for given control point.'
+
+[SetControlPointUpVector]
+description = 'Sets the upward direction for given control point.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'cpID'
+type = 'number'
+description = 'The control point ID, 0 to 63.'
+``````````
+name = 'upward'
+type = 'Vector'
+description = 'The upward direction for given control point'
+
+[SetIsViewModelEffect]
+description = '\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'isViewModel'
+type = 'boolean'
+description = ''
+
+[SetShouldDraw]
+description = 'Forces the particle system to stop automatically rendering.\r\n\r\nUsed in conjunction with <page>CNewParticleEffect:Render</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'should'
+type = 'boolean'
+description = 'Whether to automatically draw the particle effect or not.'
+
+[SetSortOrigin]
+description = 'Sets the sort origin for given particle system. This is used as a helper to determine which particles are in front of which.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'origin'
+type = 'Vector'
+description = 'The new sort origin.'
+
+[StartEmission]
+description = 'Starts the particle emission.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'infiniteOnly'
+type = 'boolean'
+description = ''
+
+[StopEmission]
+description = 'Stops the particle emission.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+``````````
+name = 'infiniteOnly'
+type = 'boolean'
+description = ''
+``````````
+name = 'removeAllParticles'
+type = 'boolean'
+description = ''
+``````````
+name = 'wakeOnStop'
+type = 'boolean'
+description = ''
+
+[StopEmissionAndDestroyImmediately]
+description = 'Stops particle emission and destroys all particles instantly. Also detaches the particle effect from the entity it was attached to.\r\n\r\n<note>This function will work identically to <page>CNewParticleEffect:StopEmission</page>( false, true ) if  <page>CNewParticleEffect:GetOwner</page> entity is not valid.</note>\r\n\r\nConsider using <page>CNewParticleEffect:StopEmission</page>( false, true ) instead, which has same effect, but doesn\'t require owner entity, and does\'t detach the particle system from its entity.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CNewParticleEffect'
+

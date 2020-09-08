@@ -1,0 +1,26 @@
+[gmod]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'gmod'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'gmod'
+	},
+	2 = {
+		type = 'library',
+		name = 'gmod'
+	}
+}
+
+[GetGamemode]
+description = 'Returns <page>GAMEMODE</page>.\r\n\r\n**Returns:** GAMEMODE\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+

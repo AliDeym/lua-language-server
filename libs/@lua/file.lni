@@ -1,151 +1,167 @@
+[file]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'file'
+
 <default>
 type = 'function'
 parent = {
-    1 = {
-        type = 'object',
-        name = 'FILE*',
-    },
+	1 = {
+		type = 'global',
+		name = 'file'
+	},
+	2 = {
+		type = 'library',
+		name = 'file'
+	}
 }
 
-[close]
+[Append]
+description = 'Appends a file relative to the `data` folder.\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = 'FILE*'
+name = 'name'
+type = 'string'
+description = 'The file\'s name.'
+``````````
+name = 'content'
+type = 'string'
+description = 'The content which should be appended to the file.'
+
+[CreateDir]
+description = 'Creates a directory that is relative to the `data` folder.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The directory\'s name.'
+
+[Delete]
+description = 'Deletes a file or `empty` folder that is relative to the **data** folder.\r\nYou can\'t remove any files outside of **data** folder.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The file name'
+
+[Exists]
+description = 'Returns a boolean of whether the file or directory exists or not.\r\n\r\n**Returns:** Returns true if the file exists and false if it does not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The file or directory\'s name.'
+``````````
+name = 'path'
+type = 'string'
+description = 'The path of where to look for the file.\r\n\r\n* "GAME" Structured like base folder (garrysmod/), searches all the mounted content (main folder, addons, mounted games etc)\r\n* "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons\r\n* "DATA" Data folder (garrysmod/data)\r\n* "MOD" Strictly the game folder (garrysmod/), ignores mounting.'
 [[.returns]]
-name = 'suc'
 type = 'boolean'
-default = true
-optional = 'after'
-``````````
-name = 'type'
+
+[Find]
+description = 'Returns a list of files and directories inside a single folder.\r\n\r\n**Returns:** A table of found files, or nil if the path is invalid\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
 type = 'string'
+description = 'The wildcard to search for. "models/*.mdl" will list .mdl files in the models/ folder.'
 ``````````
-name = 'code'
-[[.enums]]
-name = 'type'
-enum = '"exit"'
+name = 'path'
+type = 'string'
+description = 'The path to look for the files and directories in. See <page text="this list">File_Search_Paths</page> for a list of valid paths.'
 ``````````
-name = 'type'
-enum = '"signal"'
-
-[flush]
-[[.args]]
-type = 'FILE*'
-
-[lines]
-[[.args]]
-type = 'FILE*'
-``````````
-name = 'mode'
-type = '...'
+name = 'sorting'
+type = 'string'
+description = 'The sorting to be used, optional.\r\n\r\n* "nameasc" sort the files ascending by name\r\n* "namedesc" sort the files descending by name\r\n* "dateasc" sort the files ascending by date\r\n* "datedesc" sort the files descending by date'
 [[.returns]]
-type = 'function'
-returns = {
-    1 = {
-        name = 'c',
-        type = {'string', 'number'},
-    }
-}
-[[.enums]]
-name = 'mode'
-enum = '"n"'
-``````````
-name = 'mode'
-enum = '"a"'
-``````````
-name = 'mode'
-enum = '"l"'
-default = true
-``````````
-name = 'mode'
-enum = '"L"'
-``````````
-name = 'mode'
-code = 'number'
+type = 'table'
 
-[read]
+[IsDir]
+description = 'Returns whether the given file is a directory or not.\r\n\r\n**Returns:** True if the given path is a directory or false if it is a file.\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = 'FILE*'
+name = 'fileName'
+type = 'string'
+description = 'The file or directory\'s name.'
 ``````````
-name = 'mode'
-type = '...'
+name = 'path'
+type = 'string'
+description = 'The path of where to look for the file.\r\n\r\n* "GAME" Structured like base folder (garrysmod/), searches all the mounted content (main folder, addons, mounted games etc)\r\n* "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons\r\n* "DATA" Data folder (garrysmod/data)\r\n* "MOD" Strictly the game folder (garrysmod/), ignores mounting.'
 [[.returns]]
-type = {'string', 'number'}
-``````````
-type = '...'
-[[.enums]]
-name = 'mode'
-enum = '"n"'
-``````````
-name = 'mode'
-enum = '"a"'
-``````````
-name = 'mode'
-enum = '"l"'
-default = true
-``````````
-name = 'mode'
-enum = '"L"'
-``````````
-name = 'mode'
-code = 'number'
+type = 'boolean'
 
-[seek]
+[Open]
+description = 'Attempts to open a file with the given mode.\r\n\r\n**Returns:** The opened file object, or nil if it failed to open due to it not existing or being used by another process.\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = 'FILE*'
-``````````
-name = 'whence'
+name = 'fileName'
 type = 'string'
-optional = 'after'
+description = 'The files name. See <page>file.Write</page> for details on filename restrictions when writing to files.'
 ``````````
-name = 'offset'
-type = 'integer'
-default = 0
-optional = 'self'
+name = 'fileMode'
+type = 'string'
+description = 'The mode to open the file in. Possible values are:\r\n* **r** - read mode\r\n* **w** - write mode\r\n* **a** - append mode\r\n* **rb** - binary read mode\r\n* **wb** - binary write mode\r\n* **ab** - binary append mode'
+``````````
+name = 'path'
+type = 'string'
+description = 'The path type. See <page>File Search Paths</page>\r\n\r\nCommon paths are:\r\n* "GAME" - Structured like base folder (garrysmod/), searches all the mounted content (main folder, addons, mounted games etc)\r\n* "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons\r\n* "DATA" - Local to Data folder, has write access (garrysmod/data)\r\n* "MOD" - Strictly the game folder (garrysmod/), ignores mounting.'
 [[.returns]]
-name = 'offset'
-type = 'integer'
-``````````
-name = 'errmsg'
-type = 'string'
-optional = 'self'
-[[.enums]]
-name = 'whence'
-enum = '"set"'
-``````````
-name = 'whence'
-enum = '"cur"'
-default = true
-``````````
-name = 'whence'
-enum = '"end"'
+type = 'File'
 
-[setvbuf]
+[Read]
+description = 'Returns the content of a file.\r\n\r\nBeware of casing -- some filesystems are case-sensitive. SRCDS on Linux seems to force file/directory creation to lowercase, but will not modify read operations.\r\n\r\n**Returns:** The data from the file as a string, or nil if the file isn\'t found\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = 'FILE*'
-``````````
-name = 'mode'
+name = 'fileName'
 type = 'string'
+description = 'The name of the file.'
 ``````````
-name = 'size'
-type = 'integer'
-[[.enums]]
-name = 'mode'
-enum = '"no"'
-``````````
-name = 'mode'
-enum = '"full"'
-``````````
-name = 'mode'
-enum = '"line"'
-
-[write]
-[[.args]]
-type = 'FILE*'
-``````````
-type = '...'
+name = 'path'
+type = 'string'
+description = 'The path used to look up the file.\r\n* `GAME` Structured like base folder (garrysmod/), searches all the mounted content (main folder, addons, mounted games etc)\r\n* `LUA` or `lsv` - All Lua folders (lua/) including gamesmodes and addons\r\n* `DATA` Data folder (garrysmod/data)\r\n* `MOD` Strictly the game folder (garrysmod/), ignores mounting.\r\n\r\nIt can also be a boolean:\r\n* true = `GAME`\r\n* false = `DATA`'
 [[.returns]]
-type = 'FILE*'
-``````````
-name = 'errmsg'
 type = 'string'
-optional = 'self'
+
+[Rename]
+description = 'Attempts to rename a file with the given name to another given name.\r\n\r\nThis function is constrained to the data/ folder.\r\n\r\n**Returns:** True on success, false otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'orignalFileName'
+type = 'string'
+description = 'The original file or folder name. See <page>file.Write</page> for details on filename restrictions when writing to files.\r\n\r\nThis argument will be forced lowercase.'
+``````````
+name = 'targetFileName'
+type = 'string'
+description = 'The target file or folder name. See <page>file.Write</page> for details on filename restrictions when writing to files.\r\n\r\nThis argument will be forced lowercase.'
+[[.returns]]
+type = 'boolean'
+
+[Size]
+description = 'Returns the file\'s size in bytes. If the file is not found, returns -1.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'fileName'
+type = 'string'
+description = 'The file\'s name.'
+``````````
+name = 'path'
+type = 'string'
+description = 'The path type.\r\n\r\n* "GAME" Structured like base folder (garrysmod/), searches all the mounted content (main folder, addons, mounted games etc)\r\n* "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons\r\n* "DATA" Data folder (garrysmod/data)\r\n* "MOD" Strictly the game folder (garrysmod/), ignores mounting.'
+
+[Time]
+description = 'Returns when the file or folder was lasted modified in Unix time.\r\n\r\n**Returns:** Seconds passed since Unix epoch.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'path'
+type = 'string'
+description = 'The **file** or **folder** path.'
+``````````
+name = 'gamePath'
+type = 'string'
+description = 'The game path to be used.\r\n\r\n* "GAME" Structured like base folder (garrysmod/), searches all the mounted content (main folder, addons, mounted games etc)\r\n* "LUA" or "lsv" - All Lua folders (lua/) including gamesmodes and addons\r\n* "DATA" Data folder (garrysmod/data)\r\n* "MOD" Strictly the game folder (garrysmod/), ignores mounting.'
+[[.returns]]
+type = 'number'
+
+[Write]
+description = 'Writes the given string to a file. Erases all previous data in the file. To add data without deleting previous data, use <page>file.Append</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'fileName'
+type = 'string'
+description = 'The name of the file being written into. The path is relative to the **data/** folder.\r\n\r\nThis argument will be forced lowercase.\r\n\r\nThe filename **must** end with one of the following:\r\n* .txt\r\n* .jpg\r\n* .png\r\n* .vtf\r\n* .dat\r\n* .json\r\n* .vmt (as of June 2020 update)\r\n\r\n\r\nRestricted symbols are: ```" : ```'
+``````````
+name = 'content'
+type = 'string'
+description = 'The content that will be written into the file.'
+

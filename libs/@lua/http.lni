@@ -1,0 +1,63 @@
+[http]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'http'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'http'
+	},
+	2 = {
+		type = 'library',
+		name = 'http'
+	}
+}
+
+[Fetch]
+description = 'Launches a GET request.\r\n<note>HTTP-requests on private networks don\'t work.<br> To enable HTTP-requests on private networks use <page>Command Line Parameters</page> `-allowlocalhttp`</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'url'
+type = 'string'
+description = 'The URL of the website to fetch.'
+``````````
+name = 'onSuccess'
+type = 'function'
+description = 'Function to be called on success. Arguments are\r\n* <page>string</page> body\r\n* <page>string</page> size - equal to <page>string.len</page>(body)\r\n* <page>table</page> headers\r\n* <page>number</page> code - The HTTP success code'
+``````````
+name = 'onFailure'
+type = 'function'
+description = 'Function to be called on failure. Arguments are\r\n* <page>string</page> error - The error message'
+``````````
+name = 'headers'
+type = 'table'
+description = 'KeyValue table for headers'
+
+[Post]
+description = 'Sends an asynchronous POST request to a HTTP server.\r\n\r\nHTTP requests returning a status code >= 400 are still considered a success and will call the onSuccess callback.\r\n\r\nThe onFailure callback is usually only called on DNS or TCP errors (e.g. the website is unavailable or the domain does not exist)\r\n<note>HTTP-requests on private networks don\'t work. To enable HTTP-requests on private networks use <page>Command Line Parameters</page> `-allowlocalhttp`</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'url'
+type = 'string'
+description = 'The url to of the website to fetch.'
+``````````
+name = 'parameters'
+type = 'table'
+description = 'The post parameters to be send to the server. `\'Keys and values `must\'\' be strings.'
+``````````
+name = 'onSuccess'
+type = 'function'
+description = 'The function called on success: function( string responseText, number contentLength, table responseHeaders, number statusCode )'
+``````````
+name = 'onFailure'
+type = 'function'
+description = 'The function called on failure: function( string errorMessage )'
+``````````
+name = 'headers'
+type = 'table'
+description = 'KeyValue table for headers'
+

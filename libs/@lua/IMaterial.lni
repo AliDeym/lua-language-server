@@ -1,0 +1,281 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'IMaterial'
+	},
+}
+
+[GetColor]
+description = 'Returns the color of the specified pixel of the $basetexture, only works for materials created from PNG files.\r\n\r\nBasically identical to <page>ITexture:GetColor</page> used on <page>IMaterial:GetTexture</page>( "$basetexture" ).\r\n\r\n<bug issue="2407">The returned color will not have the color metatable.</bug>\r\n\r\n**Returns:** The color of the pixel as a <page>Color</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'x'
+type = 'number'
+description = 'The X coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y coordinate.'
+[[.returns]]
+type = 'table'
+
+[GetFloat]
+description = 'Returns the specified material value as a float, or nil if the value is not set.\r\n\r\n**Returns:** float\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialFloat'
+type = 'string'
+description = 'The name of the material value.'
+[[.returns]]
+type = 'number'
+
+[GetInt]
+description = 'Returns the specified material value as a int, rounds the value if its a float, or nil if the value is not set.\r\n\r\n<note>Please note that certain material flags such as `$model` are stored in the `$flags` variable and cannot be directly retrieved with this function. See the full list here: <page>Material Flags</page></note>\r\n\r\n**Returns:** The retrieved value as an integer\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialInt'
+type = 'string'
+description = 'The name of the material integer.'
+[[.returns]]
+type = 'number'
+
+[GetKeyValues]
+description = 'Gets all the key values defined for the material.\r\n\r\n**Returns:** The material\'s key values.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+[[.returns]]
+type = 'table'
+
+[GetMatrix]
+description = 'Returns the specified material matrix as a int, or nil if the value is not set or is not a matrix.\r\n\r\n**Returns:** matrix\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialMatrix'
+type = 'string'
+description = 'The name of the material matrix.'
+[[.returns]]
+type = 'VMatrix'
+
+[GetName]
+description = 'Returns the name of the material, in most cases the path.\r\n\r\n**Returns:** Material name/path\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+[[.returns]]
+type = 'string'
+
+[GetShader]
+description = 'Returns the name of the materials shader.\r\n\r\n<bug issue="3256">This function does not work serverside on Linux SRCDS.</bug>\r\n\r\n**Returns:** shaderName\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+[[.returns]]
+type = 'string'
+
+[GetString]
+description = 'Returns the specified material string, or nil if the value is not set or if the value can not be converted to a string.\r\n\r\n**Returns:** The value as a string\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialString'
+type = 'string'
+description = 'The name of the material string.'
+[[.returns]]
+type = 'string'
+
+[GetTexture]
+description = 'Returns an <page>ITexture</page> based on the passed shader parameter.\r\n\r\n**Returns:** The value of the shader parameter. Returns nothing if the param doesn\'t exist.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'param'
+type = 'string'
+description = 'The [shader parameter](https://developer.valvesoftware.com/wiki/Category:List_of_Shader_Parameters) to retrieve. This should normally be `$basetexture`.'
+[[.returns]]
+type = 'ITexture'
+
+[GetVector]
+description = 'Returns the specified material vector, or nil if the value is not set.\r\n\r\nSee also <page>IMaterial:GetVectorLinear</page>\r\n\r\n**Returns:** The color vector\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialVector'
+type = 'string'
+description = 'The name of the material vector.'
+[[.returns]]
+type = 'Vector'
+
+[GetVector4D]
+description = 'Returns the specified material vector as a 4 component vector.\r\n\r\n**Returns:** The x component of the vector.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'name'
+type = 'string'
+description = 'The name of the material vector to retrieve.'
+[[.returns]]
+type = 'number'
+
+[GetVectorLinear]
+description = 'Returns the specified material linear color vector, or nil if the value is not set.\r\n\r\nSee https://en.wikipedia.org/wiki/Gamma_correction\r\n\r\nSee also <page>IMaterial:GetVector</page>\r\n\r\n**Returns:** The linear color vector\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialVector'
+type = 'string'
+description = 'The name of the material vector.'
+[[.returns]]
+type = 'Vector'
+
+[Height]
+description = 'Returns the height of the member texture set for $basetexture.\r\n\r\n**Returns:** height\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+[[.returns]]
+type = 'number'
+
+[IsError]
+description = 'Returns whenever the material is valid, i.e. whether it was not loaded successfully from disk or not.\r\n\r\n**Returns:** Is this material the error material? (___error)\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+[[.returns]]
+type = 'boolean'
+
+[Recompute]
+description = 'Recomputes the material\'s snapshot. This needs to be called if you have changed variables on your material and it isn\'t changing.\r\n\r\nBe careful though - this function is slow - so try to call it only when needed!\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+
+[SetFloat]
+description = 'Sets the specified material float to the specified float, does nothing on a type mismatch.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialFloat'
+type = 'string'
+description = 'The name of the material float.'
+``````````
+name = 'float'
+type = 'number'
+description = 'The new float value.'
+
+[SetInt]
+description = 'Sets the specified material value to the specified int, does nothing on a type mismatch.\r\n\r\n<note>Please note that certain material flags such as `$model` are stored in the `$flags` variable and cannot be directly set with this function. See the full list here: <page>Material Flags</page></note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialInt'
+type = 'string'
+description = 'The name of the material int.'
+``````````
+name = 'int'
+type = 'number'
+description = 'The new int value.'
+
+[SetMatrix]
+description = 'Sets the specified material value to the specified matrix, does nothing on a type mismatch.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialMatrix'
+type = 'string'
+description = 'The name of the material int.'
+``````````
+name = 'matrix'
+type = 'VMatrix'
+description = 'The new matrix.'
+
+[SetShader]
+description = '<deprecated>This function does nothing</deprecated>The functionality of this function was removed due to the amount of crashes it caused.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'shaderName'
+type = 'string'
+description = 'Name of the shader'
+
+[SetString]
+description = 'Sets the specified material value to the specified string, does nothing on a type mismatch.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialString'
+type = 'string'
+description = 'The name of the material string.'
+``````````
+name = 'string'
+type = 'string'
+description = 'The new string.'
+
+[SetTexture]
+description = 'Sets the specified material texture to the specified texture, does nothing on a type mismatch.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialTexture'
+type = 'string'
+description = 'The name of the keyvalue on the material to store the texture on.'
+``````````
+name = 'texture'
+type = 'ITexture'
+description = 'The new texture. This can also be a string, the name of the new texture.'
+
+[SetUndefined]
+description = 'Unsets the value for the specified material value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'materialValueName'
+type = 'string'
+description = 'The name of the material value to be unset.'
+
+[SetVector]
+description = 'Sets the specified material vector to the specified vector, does nothing on a type mismatch.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'MaterialVector'
+type = 'string'
+description = 'The name of the material vector.'
+``````````
+name = 'vec'
+type = 'Vector'
+description = 'The new vector.'
+
+[SetVector4D]
+description = 'Sets the specified material vector to the specified 4 component vector, does nothing on a type mismatch.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+``````````
+name = 'name'
+type = 'string'
+description = 'The name of the material vector.'
+``````````
+name = 'x'
+type = 'number'
+description = 'The x component of the new vector.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The y component of the new vector.'
+``````````
+name = 'z'
+type = 'number'
+description = 'The z component of the new vector.'
+``````````
+name = 'w'
+type = 'number'
+description = 'The w component of the new vector.'
+
+[Width]
+description = 'Returns the width of the member texture set for $basetexture.\r\n\r\n**Returns:** width\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'IMaterial'
+[[.returns]]
+type = 'number'
+

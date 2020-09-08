@@ -1,0 +1,134 @@
+[saverestore]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'saverestore'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'saverestore'
+	},
+	2 = {
+		type = 'library',
+		name = 'saverestore'
+	}
+}
+
+[AddRestoreHook]
+description = 'Adds a restore/load hook for the Half-Life 2 save system.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'The unique identifier for this hook.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'The function to be called when an engine save is being loaded. It has one argument:\r\n\r\n\r\n<page>IRestore</page> save - The restore object to be used to read data from save file that is being loaded\r\n\r\n\r\n\r\n\r\n\r\nYou can also use those functions to read data:\r\n\r\n\r\n<page>saverestore.ReadVar</page>\r\n\r\n\r\n<page>saverestore.ReadTable</page>\r\n\r\n\r\n<page>saverestore.LoadEntity</page>'
+
+[AddSaveHook]
+description = 'Adds a save hook for the Half-Life 2 save system. You can this to carry data through level transitions in Half-Life 2.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'The unique identifier for this hook.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'The function to be called when an engine save is being saved. It has one argument:\r\n\r\n\r\n<page>ISave</page> save - The save object to be used to write data to the save file that is being saved\r\n\r\n\r\n\r\n\r\n\r\nYou can also use those functions to save data:\r\n\r\n\r\n<page>saverestore.WriteVar</page>\r\n\r\n\r\n<page>saverestore.WriteTable</page>\r\n\r\n\r\n<page>saverestore.SaveEntity</page>'
+
+[LoadEntity]
+description = 'Loads <page>Entity:GetTable</page> from the save game file that is being loaded and merges it with the given entitys <page>Entity:GetTable</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity which will receive the loaded values from the save.'
+``````````
+name = 'save'
+type = 'IRestore'
+description = 'The restore object to read the <page>Entity:GetTable</page> from.'
+
+[LoadGlobal]
+description = '<internal></internal>\r\n\r\nCalled by engine when a save is being loaded.\r\n\r\nThis handles loading gamemode and calls all of the hooks added with <page>saverestore.AddRestoreHook</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'save'
+type = 'IRestore'
+description = 'The restore object to read data from the save file with.'
+
+[PreRestore]
+description = '<internal></internal>\r\n\r\nCalled by the engine just before <page>saverestore.LoadGlobal</page> is.\r\n\r\n**Scope:** Shared'
+
+[PreSave]
+description = '<internal></internal>\r\n\r\nCalled by the engine just before <page>saverestore.SaveGlobal</page> is.\r\n\r\n**Scope:** Shared'
+
+[ReadTable]
+description = 'Reads a table from the save game file that is being loaded.\r\n\r\n**Returns:** The table that has been read, if any\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'save'
+type = 'IRestore'
+description = 'The restore object to read the table from.'
+[[.returns]]
+type = 'table'
+
+[ReadVar]
+description = 'Loads a variable from the save game file that is being loaded.\r\n\r\nVariables will be read in the save order you have saved them.\r\n\r\n**Returns:** The variable that was read, if any.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'save'
+type = 'IRestore'
+description = 'The restore object to read variables from.'
+[[.returns]]
+type = 'any'
+
+[SaveEntity]
+description = 'Saves entitys <page>Entity:GetTable</page> to the save game file that is being saved.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity to save <page>Entity:GetTable</page> of.'
+``````````
+name = 'save'
+type = 'ISave'
+description = 'The save object to save <page>Entity:GetTable</page> to.'
+
+[SaveGlobal]
+description = '<internal></internal>\r\n\r\nCalled by engine when a save is being saved.\r\n\r\nThis handles saving gamemode and calls all of the hooks added with <page>saverestore.AddSaveHook</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'save'
+type = 'ISave'
+description = 'The save object to write data into the save file.'
+
+[WritableKeysInTable]
+description = 'Returns how many writable keys are in the given table.\r\n\r\n**Returns:** The number of keys that can be written with <page>saverestore.WriteTable</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'table'
+type = 'table'
+description = 'The table to test.'
+[[.returns]]
+type = 'number'
+
+[WriteTable]
+description = 'Write a table to a save game file that is being saved.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'table'
+type = 'table'
+description = 'The table to write'
+``````````
+name = 'save'
+type = 'ISave'
+description = 'The save object to write the table to.'
+
+[WriteVar]
+description = 'Writes a variable to the save game file that is being saved.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'value'
+type = 'any'
+description = 'The value to save.\r\n\r\nIt can be one of the following types: <page>number</page>, <page>boolean</page>, <page>string</page>, <page>Entity</page>, <page>Angle</page>, <page>Vector</page> or <page>table</page>.'
+``````````
+name = 'save'
+type = 'ISave'
+description = 'The save object to write the variable to.'
+

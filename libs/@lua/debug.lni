@@ -9,289 +9,226 @@ name = 'debug'
 <default>
 type = 'function'
 parent = {
-    1 = {
-        type = 'global',
-        name = 'debug',
-    },
-    2 = {
-        type = 'library',
-        name = 'debug',
-    }
+	1 = {
+		type = 'global',
+		name = 'debug'
+	},
+	2 = {
+		type = 'library',
+		name = 'debug'
+	}
 }
 
-["debug.debug"]
-name = 'debug'
+[debug]
+description = 'Enters an interactive mode with the user, running each string that the user enters. Using simple commands and other debug facilities, the user can inspect global and local variables, change their values, evaluate expressions, and so on. A line containing only the word cont finishes this function, so that the caller continues its execution.\r\n\r\n* Commands for debug.debug are not lexically nested within any function, and so have no direct access to local variables.\r\n* This only works on the source dedicated server.\r\n* To exit this interactive mode, you can press Ctrl + Z then Enter OR type the word \'cont\' on a single line and press enter.\r\n\r\n**Scope:** Shared'
 
 [getfenv]
-version = {'Lua 5.1', 'LuaJIT'}
+description = 'Returns the environment of the passed object. This can be set with <page>debug.setfenv</page>\r\n\r\n**Returns:** Environment\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = o
+name = 'object'
+type = 'table'
+description = 'Object to get environment of'
 [[.returns]]
-type = table
+type = 'table'
 
 [gethook]
+description = 'Returns the current hook settings of the passed thread. The thread argument can be omitted. This is unrelated to . More information on hooks can be found at http://www.lua.org/pil/23.2.html\r\n\r\n**Returns:** Hook function\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'thread'
 type = 'thread'
-optional = 'self'
+description = 'Which thread to retrieve its hook from'
 [[.returns]]
-name = 'hook'
 type = 'function'
-``````````
-name = 'mask'
-type = 'string'
-``````````
-name = 'count'
-type = 'integer'
 
 [getinfo]
+description = 'Returns debug information about a function.\r\n\r\n**Returns:** A table as a <page>Structures/DebugInfo</page> containing information about the function you passed. Can return nil if the stack level didn\'t point to a valid stack frame.\r\n\r\n**Scope:** Shared'
 [[.args]]
-type = 'thread'
-optional = 'self'
+name = 'funcOrStackLevel'
+type = 'function'
+description = 'Takes either a function or a number representing the stack level as an argument. Stack level 0 always corresponds to the debug.getinfo call, 1 would be the function calling debug.getinfo, and so on.\r\n\r\nReturns useful information about that function in a table.'
 ``````````
-name = 'f'
-type = {'integer', 'function'}
-``````````
-name = 'what'
+name = 'fields'
 type = 'string'
-optional = 'self'
+description = 'A string whose characters specify the information to be retrieved.\r\n\r\n* f - Populates the func field.\r\n* l - Populates the currentline field.\r\n* L - Populates the activelines field.\r\n* n - Populates the name and namewhat fields - only works if stack level is passed rather than function pointer.\r\n* S - Populates the location fields (lastlinedefined, linedefined, short_src, source and what).\r\n* u - Populates the argument and upvalue fields (isvararg, nparams, nups)'
 [[.returns]]
-name = 'info'
 type = 'table'
-[[.enums]]
-name = 'what'
-enum = '"n"'
-``````````
-name = 'what'
-enum = '"S"'
-``````````
-name = 'what'
-enum = '"l"'
-``````````
-name = 'what'
-enum = '"t"'
-``````````
-name = 'what'
-enum = '"u"'
-``````````
-name = 'what'
-enum = '"f"'
-``````````
-name = 'what'
-enum = '"L"'
-
-['getinfo Lua 5.1':getinfo]
-name = 'getinfo'
-version = 'Lua 5.1'
 
 [getlocal]
-name = 'getlocal'
+description = 'Gets the name and value of a local variable indexed from the level.\r\n<warning>When a function has a tailcall return, you cannot access the locals of this function.</warning>\r\n\r\n**Returns:** The name of the variable.\r\n\r\nSometimes this will be `(*temporary)` if the local variable had no name.\r\n\r\n<note>Variables with names starting with **(** are **internal variables**.</note>\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'thread'
 type = 'thread'
-optional = 'self'
-``````````
-name = 'f'
-type = {'integer', 'function'}
-``````````
-name = 'local'
-type = 'integer'
-
-['getlocal Lua 5.1']
-name = 'getlocal'
-version = 'Lua 5.1'
-[[.args]]
-type = 'thread'
-optional = 'self'
+description = 'The thread'
 ``````````
 name = 'level'
-type = 'integer'
+type = 'number'
+description = 'The level above the thread.\r\n* 0 = the function that was called (most always this function)\'s arguments\r\n* 1 = the thread that had called this function.\r\n* 2 = the thread that had called the function that started the thread that called this function.\r\n\r\nA function defined in Lua can also be passed as the level. The index will specify the parameter\'s name to be returned (a parameter will have a value of nil).'
 ``````````
-name = 'local'
-type = 'integer'
+name = 'index'
+type = 'number'
+description = 'The variable\'s index you want to get.\r\n* 1 = the first local defined in the thread\r\n* 2 = the second local defined in the thread\r\n* etc...'
+[[.returns]]
+type = 'string'
 
 [getmetatable]
+description = 'Returns the metatable of an object. This function ignores the metatable\'s __metatable field.\r\n\r\n**Returns:** The metatable of the given object.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'value'
+name = 'object'
+type = 'any'
+description = 'The object to retrieve the metatable from.'
 [[.returns]]
-name = 'metatable'
 type = 'table'
 
 [getregistry]
+description = 'Returns the internal Lua registry table.\r\n\r\nThe Lua registry is used by the engine and binary modules to create references to Lua values. Avoid creating entries into the registry with a number as the key, as they are reserved for the reference system.\r\n\r\n<warning>Improper editing of the registry can result in unintended side effects, including crashing of the game.</warning>\r\n\r\n**Returns:** The Lua registry\r\n\r\n**Scope:** Shared'
 [[.returns]]
 type = 'table'
 
 [getupvalue]
+description = 'Used for getting variable values in an index from the passed function. This does nothing for C functions.\r\n\r\n**Returns:** Name of the upvalue. Will be nil if the index was out of range (< 1 or > <page>debug.getinfo</page>.nups), or the function was defined in C.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'f'
+name = 'func'
 type = 'function'
+description = 'Function to get the upvalue indexed from.'
 ``````````
-name = 'up'
-type = 'integer'
+name = 'index'
+type = 'number'
+description = 'The index in the upvalue array. The max number of entries can be found in <page>debug.getinfo</page>\'s "<page text="nups">Structures/DebugInfo</page>" key.'
 [[.returns]]
-name = 'name'
 type = 'string'
-``````````
-name = 'value'
-
-[getuservalue]
-[[.args]]
-name = 'u'
-type = 'userdata'
-[[.returns]]
-
-["getuservalue Lua 5.4"]
-name = 'getuservalue'
-version = 'Lua 5.4'
-[[.args]]
-name = 'u'
-type = 'userdata'
-``````````
-name = 'n'
-type = 'integer'
-[[.returns]]
-type = 'any'
-``````````
-type = 'boolean'
-
-[setcstacklimit]
-version = 'Lua 5.4'
-[[.args]]
-name = 'limit'
-type = 'integer'
-[[.returns]]
-type = {'interger', 'boolean'}
 
 [setfenv]
-version = {'Lua 5.1', 'LuaJIT'}
+description = 'Sets the environment of the passed object.\r\n\r\n**Returns:** The object\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'object'
-``````````
 type = 'table'
+description = 'Object to set environment of'
+``````````
+name = 'env'
+type = 'table'
+description = 'Environment to set'
 [[.returns]]
-name = 'object'
+type = 'table'
 
 [sethook]
+description = 'Sets the given function as a Lua hook. This is completely different to gamemode hooks. The thread argument can be completely omitted and calling this function with no arguments will remove the current hook. This is used by default for infinite loop detection. More information on hooks can be found at http://www.lua.org/pil/23.2.html\r\n\r\nHooks are not always ran when code that has been compiled by LuaJIT\'s JIT compiler is being executed. This means that relying on them for infinite loop protection is unwise.\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'thread'
 type = 'thread'
-optional = 'self'
+description = 'Thread to set the hook on. This argument can be omited'
 ``````````
 name = 'hook'
 type = 'function'
+description = 'Function for the hook to call'
 ``````````
 name = 'mask'
 type = 'string'
+description = 'The hook\'s mask'
 ``````````
 name = 'count'
-type = 'integer'
-optional = 'self'
-[[.enums]]
-name = 'mask'
-enum = '"c"'
-``````````
-name = 'mask'
-enum = '"r"'
-``````````
-name = 'mask'
-enum = '"l"'
+type = 'number'
+description = 'How often to call the hook (in instructions). 0 for every instruction'
 
 [setlocal]
+description = '<removed>This function was removed due to security concerns.</removed>\r\n\r\nSets a local variable\'s value.\r\n\r\n**Returns:** The name of the local variable if the local at the index exists, otherwise nil is returned.\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'thread'
 type = 'thread'
-optional = 'self'
+description = 'The thread'
 ``````````
 name = 'level'
-type = 'integer'
+type = 'number'
+description = 'The level above the thread.\r\n0 is the function that was called (most always this function)\'s arguments\r\n\r\n1 is the thread that had called this function.\r\n\r\n2 is the thread that had called the function that started the thread that called this function.'
 ``````````
-name = 'local'
-type = 'integer'
+name = 'index'
+type = 'number'
+description = 'The variable\'s index you want to get.\r\n\r\n1 = the first local defined in the thread\r\n\r\n2 = the second local defined in the thread'
 ``````````
 name = 'value'
+type = 'any'
+description = 'The value to set the local to'
 [[.returns]]
-name = 'name'
 type = 'string'
 
 [setmetatable]
+description = 'Sets the object\'s metatable. Unlike <page>Global.setmetatable</page>, this function works regardless of whether the first object passed is a valid table or not; this function even works on primitive datatypes such as numbers, functions, and even nil.\r\n\r\n**Returns:** true if the object\'s metatable was set successfully.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'value'
+name = 'object'
+type = 'any'
+description = 'Object to set the metatable for.'
 ``````````
+name = 'metatable'
 type = 'table'
+description = 'The metatable to set for the object.\r\nIf this argument is nil, then the object\'s metatable is removed.'
 [[.returns]]
-name = 'value'
+type = 'boolean'
 
 [setupvalue]
+description = '<removed>This function was removed due to security concerns.</removed>\r\n\r\nSets the variable indexed from func\r\n\r\n**Returns:** Returns nil if there is no upvalue with the given index, otherwise it returns the upvalue\'s name.\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'f'
+name = 'func'
 type = 'function'
+description = 'The function to index the upvalue from'
 ``````````
-name = 'up'
-type = 'integer'
+name = 'index'
+type = 'number'
+description = 'The index from func'
 ``````````
-name = 'value'
+name = 'val'
+type = 'any'
+description = 'The value to set the upvalue to.'
 [[.returns]]
-name = 'name'
 type = 'string'
 
-[setuservalue]
-[[.args]]
-name = 'udata'
-type = 'userdata'
-``````````
-name = 'value'
-[[.returns]]
-name = 'udata'
-type = 'userdata'
-
-["setuservalue Lua 5.4"]
-name = 'setuservalue'
-version = 'Lua 5.4'
-[[.args]]
-name = 'udata'
-type = 'userdata'
-``````````
-name = 'value'
-``````````
-name = 'n'
-type = 'integer'
-[[.returns]]
-name = 'udata'
-type = 'userdata'
+[Trace]
+description = 'Prints out the lua function call stack to the console.\r\n\r\n**Scope:** Shared'
 
 [traceback]
+description = 'Returns a full execution stack trace.\r\n\r\n**Returns:** A dump of the execution stack.\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'thread'
 type = 'thread'
-optional = 'self'
+description = 'Thread (ie. error object from xpcall error handler) to build traceback for.'
 ``````````
 name = 'message'
-optional = 'after'
+type = 'string'
+description = 'Appended at the beginning of the traceback.'
 ``````````
 name = 'level'
-optional = 'self'
-default = 1
+type = 'number'
+description = 'Which level to start the traceback.'
 [[.returns]]
-name = 'message'
+type = 'string'
 
 [upvalueid]
-version = {'Lua 5.2', 'Lua 5.3', 'Lua 5.4', 'LuaJIT'}
+description = '<removed>This function was removed due to security concerns.</removed>\r\n\r\nReturns an unique identifier for the upvalue indexed from func\r\n\r\n**Returns:** A unique identifier\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 'f'
+name = 'func'
 type = 'function'
+description = 'The function to index the upvalue from'
 ``````````
-name = 'n'
-type = 'integer'
+name = 'index'
+type = 'number'
+description = 'The index from func'
 [[.returns]]
-name = 'id'
-type = 'userdata'
+type = 'number'
 
 [upvaluejoin]
-version = {'Lua 5.2', 'Lua 5.3', 'Lua 5.4', 'LuaJIT'}
+description = '<removed>This function was removed due to security concerns.</removed>\r\n\r\nMake the n1-th upvalue of the Lua closure f1 refer to the n2-th upvalue of the Lua closure f2.\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'f1'
 type = 'function'
+description = ''
 ``````````
 name = 'n1'
-type = 'integer'
+type = 'number'
+description = ''
 ``````````
 name = 'f2'
 type = 'function'
+description = ''
 ``````````
 name = 'n2'
-type = 'integer'
+type = 'number'
+description = ''
+

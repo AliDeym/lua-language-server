@@ -1,0 +1,161 @@
+[drive]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'drive'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'drive'
+	},
+	2 = {
+		type = 'library',
+		name = 'drive'
+	}
+}
+
+[CalcView]
+description = '<internal></internal>\r\nOptionally alter the view.\r\n\r\n**Returns:** true if succeeded\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+``````````
+name = 'view'
+type = 'table'
+description = 'The view, see <page>Structures/ViewData</page>'
+[[.returns]]
+type = 'boolean'
+
+[CreateMove]
+description = '<internal></internal>\r\nClientside, the client creates the cmd (usercommand) from their input device (mouse, keyboard) and then it\'s sent to the server. Restrict view angles here.\r\n\r\n**Returns:** true if succeeded\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'cmd'
+type = 'CUserCmd'
+description = 'The user command'
+[[.returns]]
+type = 'boolean'
+
+[DestroyMethod]
+description = '<internal></internal>\r\nDestroys players current driving method.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player to affect'
+
+[End]
+description = 'Player has stopped driving the entity.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity'
+
+[FinishMove]
+description = '<internal></internal>\r\nThe move is finished. Copy mv back into the target.\r\n\r\n**Returns:** true if succeeded\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+``````````
+name = 'mv'
+type = 'CMoveData'
+description = 'The move data'
+[[.returns]]
+type = 'boolean'
+
+[GetMethod]
+description = '<internal></internal>\r\nReturns ( or creates if inexistent ) a driving method.\r\n\r\n**Returns:** A method object.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+[[.returns]]
+type = 'table'
+
+[Move]
+description = '<internal></internal>\r\nThe move is executed here.\r\n\r\n**Returns:** true if succeeded\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+``````````
+name = 'mv'
+type = 'CMoveData'
+description = 'The move data'
+[[.returns]]
+type = 'boolean'
+
+[PlayerStartDriving]
+description = 'Starts driving for the player.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player to affect'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to drive'
+``````````
+name = 'mode'
+type = 'string'
+description = 'The driving mode'
+
+[PlayerStopDriving]
+description = 'Stops the player from driving anything. ( For example a prop in sandbox )\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player to affect'
+
+[Register]
+description = 'Registers a new entity drive.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the drive.'
+``````````
+name = 'data'
+type = 'table'
+description = 'The data required to create the drive. This includes the functions used by the drive.'
+``````````
+name = 'base'
+type = 'string'
+description = 'The base of the drive.'
+
+[Start]
+description = 'Called when the player first starts driving this entity\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity'
+
+[StartMove]
+description = '<internal></internal>\r\nThe user command is received by the server and then converted into a move. This is also run clientside when in multiplayer, for prediction to work.\r\n\r\n**Returns:** true if succeeded\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player'
+``````````
+name = 'mv'
+type = 'CMoveData'
+description = 'The move data'
+``````````
+name = 'cmd'
+type = 'CUserCmd'
+description = 'The user command'
+[[.returns]]
+type = 'boolean'
+

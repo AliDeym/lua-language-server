@@ -1,0 +1,45 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'SurfaceInfo'
+	},
+}
+
+[GetMaterial]
+description = 'Returns the brush surface\'s material.\r\n\r\n**Returns:** Material of one portion of a brush model.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'SurfaceInfo'
+[[.returns]]
+type = 'IMaterial'
+
+[GetVertices]
+description = 'Returns a list of vertices the brush surface is built from.\r\n\r\n**Returns:** A list of <page>Vector</page> points. This will usually be 4 corners of a quadrilateral in counter-clockwise order.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'SurfaceInfo'
+[[.returns]]
+type = 'table'
+
+[IsNoDraw]
+description = 'Checks if the brush surface is a nodraw surface, meaning it will not be drawn by the engine.\r\n\r\n<note>This internally checks the SURFDRAW_NODRAW flag.</note>\r\n\r\n**Returns:** Returns true if this surface won\'t be drawn.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'SurfaceInfo'
+[[.returns]]
+type = 'boolean'
+
+[IsSky]
+description = 'Checks if the brush surface is displaying the skybox.\r\n\r\n<note>This internally checks the SURFDRAW_SKY flag.</note>\r\n\r\n**Returns:** Returns true if the surface is the sky.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'SurfaceInfo'
+[[.returns]]
+type = 'boolean'
+
+[IsWater]
+description = 'Checks if the brush surface is water.\r\n\r\n<note>This internally checks the SURFDRAW_WATER flag.</note>\r\n\r\n**Returns:** Returns true if the surface is water.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'SurfaceInfo'
+[[.returns]]
+type = 'boolean'
+

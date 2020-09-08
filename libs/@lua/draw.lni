@@ -1,0 +1,268 @@
+[draw]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'draw'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'draw'
+	},
+	2 = {
+		type = 'library',
+		name = 'draw'
+	}
+}
+
+[DrawText]
+description = 'Simple draw text at position, but this will expand newlines and tabs.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\nSee also <page>MarkupObject</page> for limited width and markup support.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'text'
+type = 'string'
+description = 'Text to be drawn.'
+``````````
+name = 'font'
+type = 'string'
+description = 'Name of font to draw the text in. See <page>surface.CreateFont</page> to create your own, or <page>Default Fonts</page> for a list of default fonts.'
+``````````
+name = 'x'
+type = 'number'
+description = 'The X Coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y Coordinate.'
+``````````
+name = 'color'
+type = 'table'
+description = 'Color to draw the text in. Uses the <page>Color</page>.'
+``````````
+name = 'xAlign'
+type = 'number'
+description = 'Where to align the text horizontally. Uses the <page>Enums/TEXT_ALIGN</page>.'
+
+[GetFontHeight]
+description = 'Returns the height of the specified font in pixels.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Returns:** The font height\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'font'
+type = 'string'
+description = 'Name of the font to get the height of.'
+[[.returns]]
+type = 'number'
+
+[NoTexture]
+description = 'Sets drawing texture to a default white texture (vgui/white) via <page>surface.SetMaterial</page>. Useful for resetting the drawing texture.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+
+[RoundedBox]
+description = 'Draws a rounded rectangle.\r\n<note>If you intend to draw a non-rounded rectangle, then it\'s more efficient to use <page>surface.DrawRect</page>.</note>\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'cornerRadius'
+type = 'number'
+description = 'Radius of the rounded corners, works best with a multiple of 2.'
+``````````
+name = 'x'
+type = 'number'
+description = 'The x coordinate of the top left of the rectangle.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The y coordinate of the top left of the rectangle.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the rectangle.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The height of the rectangle.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color to fill the rectangle with. Uses the <page>Color</page>.'
+
+[RoundedBoxEx]
+description = 'Draws a rounded rectangle. This function also lets you specify which corners are drawn rounded.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'cornerRadius'
+type = 'number'
+description = 'Radius of the rounded corners, works best with a power of 2 number.'
+``````````
+name = 'x'
+type = 'number'
+description = 'The x coordinate of the top left of the rectangle.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The y coordinate of the top left of the rectangle.'
+``````````
+name = 'width'
+type = 'number'
+description = 'The width of the rectangle.'
+``````````
+name = 'height'
+type = 'number'
+description = 'The height of the rectangle.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color to fill the rectangle with. Uses the <page>Color</page>.'
+``````````
+name = 'roundTopLeft'
+type = 'boolean'
+description = 'Whether the top left corner should be rounded.'
+``````````
+name = 'roundTopRight'
+type = 'boolean'
+description = 'Whether the top right corner should be rounded.'
+``````````
+name = 'roundBottomLeft'
+type = 'boolean'
+description = 'Whether the bottom left corner should be rounded.'
+``````````
+name = 'roundBottomRight'
+type = 'boolean'
+description = 'Whether the bottom right corner should be rounded.'
+
+[SimpleText]
+description = 'Draws text on the screen.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Returns:** The width of the text. Same value as if you were calling <page>surface.GetTextSize</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'text'
+type = 'string'
+description = 'The text to be drawn.'
+``````````
+name = 'font'
+type = 'string'
+description = 'The font. See <page>surface.CreateFont</page> to create your own, or see <page>Default Fonts</page> for a list of default fonts.'
+``````````
+name = 'x'
+type = 'number'
+description = 'The X Coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y Coordinate.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the text. Uses the <page>Color</page>.'
+``````````
+name = 'xAlign'
+type = 'number'
+description = 'The alignment of the X coordinate using <page>Enums/TEXT_ALIGN</page>.'
+``````````
+name = 'yAlign'
+type = 'number'
+description = 'The alignment of the Y coordinate using <page>Enums/TEXT_ALIGN</page>.'
+[[.returns]]
+type = 'number'
+
+[SimpleTextOutlined]
+description = 'Creates a simple line of text that is outlined.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Returns:** The width of the text. Same value as if you were calling <page>surface.GetTextSize</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'Text'
+type = 'string'
+description = 'The text to draw.'
+``````````
+name = 'font'
+type = 'string'
+description = 'The font name to draw with. See <page>surface.CreateFont</page> to create your own, or <page text="here">Default_Fonts</page> for a list of default fonts.'
+``````````
+name = 'x'
+type = 'number'
+description = 'The X Coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y Coordinate.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the text. Uses the <page>Color</page>.'
+``````````
+name = 'xAlign'
+type = 'number'
+description = 'The alignment of the X Coordinate using <page>Enums/TEXT_ALIGN</page>.'
+``````````
+name = 'yAlign'
+type = 'number'
+description = 'The alignment of the Y Coordinate using <page>Enums/TEXT_ALIGN</page>.'
+``````````
+name = 'outlinewidth'
+type = 'number'
+description = 'Width of the outline.'
+``````````
+name = 'outlinecolor'
+type = 'table'
+description = 'Color of the outline. Uses the <page>Color</page>.'
+[[.returns]]
+type = 'number'
+
+[Text]
+description = 'Works like <page>draw.SimpleText</page> but uses a table structure instead.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Returns:** Width of drawn text\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'textdata'
+type = 'table'
+description = 'The text properties. See the <page>Structures/TextData</page>'
+[[.returns]]
+type = 'number'
+
+[TextShadow]
+description = 'Works like <page>draw.Text</page>, but draws the text as a shadow.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'textdata'
+type = 'table'
+description = 'The text properties. See <page>Structures/TextData</page>'
+``````````
+name = 'distance'
+type = 'number'
+description = 'How far away the shadow appears.'
+``````````
+name = 'alpha'
+type = 'number'
+description = 'How visible the shadow is (0-255).'
+
+[TexturedQuad]
+description = 'Draws a texture with a table structure.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'texturedata'
+type = 'table'
+description = 'The texture properties. See <page>Structures/TextureData</page>'
+
+[WordBox]
+description = 'Draws a rounded box with text in it.\r\n\r\n<rendercontext hook="false" type="2D"></rendercontext>\r\n\r\n**Returns:** The width of the word box.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'bordersize'
+type = 'number'
+description = 'Size of border, should be multiple of 2. Ideally this will be 8 or 16.'
+``````````
+name = 'x'
+type = 'number'
+description = 'The X Coordinate.'
+``````````
+name = 'y'
+type = 'number'
+description = 'The Y Coordinate.'
+``````````
+name = 'text'
+type = 'string'
+description = 'Text to draw.'
+``````````
+name = 'font'
+type = 'string'
+description = 'Font to draw in. See <page>surface.CreateFont</page> to create your own, or <page text="here">Default_Fonts</page> for a list of default fonts.'
+``````````
+name = 'boxcolor'
+type = 'table'
+description = 'The box color. Uses the <page>Color</page>.'
+``````````
+name = 'textcolor'
+type = 'table'
+description = 'The text color. Uses the <page>Color</page>.'
+[[.returns]]
+type = 'number'
+

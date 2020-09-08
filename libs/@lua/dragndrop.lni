@@ -1,0 +1,78 @@
+[dragndrop]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'dragndrop'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'dragndrop'
+	},
+	2 = {
+		type = 'library',
+		name = 'dragndrop'
+	}
+}
+
+[CallReceiverFunction]
+description = '<internal></internal>\r\nCalls the receiver function of hovered panel.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'bDoDrop'
+type = 'boolean'
+description = 'true if the mouse was released, false if we right clicked.'
+``````````
+name = 'command'
+type = 'number'
+description = 'The command value. This should be the ID of the clicked dropdown menu ( if right clicked, or nil )'
+``````````
+name = 'mx'
+type = 'number'
+description = 'The local to the panel mouse cursor X position when the click happened.'
+``````````
+name = 'my'
+type = 'number'
+description = 'The local to the panel  mouse cursor Y position when the click happened.'
+
+[Clear]
+description = 'Clears all the internal drag\'n\'drop variables.\r\n\r\n**Scope:** Client'
+
+[Drop]
+description = '<internal></internal>Handles the drop action of drag\'n\'drop library.\r\n\r\n**Scope:** Client'
+
+[GetDroppable]
+description = 'Returns a table of currently dragged panels.\r\n\r\n**Returns:** A table of all panels that are being currently dragged, if any.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'If set, the function will return only the panels with this <page>Panel:Droppable</page> name.'
+[[.returns]]
+type = 'table'
+
+[HandleDroppedInGame]
+description = 'If returns true, calls <page>dragndrop.StopDragging</page> in <page>dragndrop.Drop</page>. Seems to be broken and does nothing. Is it for override?\r\n\r\n**Scope:** Client'
+
+[HoverThink]
+description = '<internal></internal>\r\nHandles the hover think. Called from <page>dragndrop.Think</page>.\r\n\r\n**Scope:** Client'
+
+[IsDragging]
+description = 'Returns whether the user is dragging something with the drag\'n\'drop system.\r\n\r\n**Returns:** True if the user is dragging something with the drag\'n\'drop system.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[StartDragging]
+description = '<internal></internal>\r\nStarts the drag\'n\'drop.\r\n\r\n**Scope:** Client'
+
+[StopDragging]
+description = 'Stops the drag\'n\'drop and calls <page>dragndrop.Clear</page>.\r\n\r\n**Scope:** Client'
+
+[Think]
+description = '<internal></internal>\r\nHandles all the drag\'n\'drop processes. Calls <page>dragndrop.UpdateReceiver</page> and <page>dragndrop.HoverThink</page>.\r\n\r\n**Scope:** Client'
+
+[UpdateReceiver]
+description = '<internal></internal>\r\nUpdates the receiver to drop the panels onto. Called from <page>dragndrop.Think</page>.\r\n\r\n**Scope:** Client'
+

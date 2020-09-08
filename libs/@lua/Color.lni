@@ -1,0 +1,66 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Color'
+	},
+}
+
+[SetUnpacked]
+description = 'Sets the red, green, blue, and alpha of the color.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Color'
+``````````
+name = 'r'
+type = 'number'
+description = 'The red component'
+``````````
+name = 'g'
+type = 'number'
+description = 'The green component'
+``````````
+name = 'b'
+type = 'number'
+description = 'The blue component'
+``````````
+name = 'a'
+type = 'number'
+description = 'The alpha component'
+
+[ToHSL]
+description = 'Converts a <page>Color</page> into HSL color space. This calls <page>Global.ColorToHSL</page> internally.\r\n\r\n**Returns:** The hue in degrees [0, 360).\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Color'
+[[.returns]]
+type = 'number'
+
+[ToHSV]
+description = 'Converts a <page>Color</page> into HSV color space. This calls <page>Global.ColorToHSV</page> internally.\r\n\r\n**Returns:** The hue in degrees [0, 360).\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Color'
+[[.returns]]
+type = 'number'
+
+[ToTable]
+description = 'Returns the color as a table with four elements.\r\n\r\n**Returns:** The table with elements 1 = r, 2 = g, 3 = b, 4 = a.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Color'
+[[.returns]]
+type = 'table'
+
+[ToVector]
+description = 'Translates the <page>Color</page> into a <page>Vector</page>, losing the alpha channel.\r\nThis will also range the values from 0 - 255 to 0 - 1\r\n\r\nr / 255 -> x<br>\r\ng / 255 -> y<br>\r\nb / 255 -> z\r\n\r\nThis is the opposite of <page>Vector:ToColor</page>\r\n\r\n**Returns:** The created <page>Vector</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Color'
+[[.returns]]
+type = 'Vector'
+
+[Unpack]
+description = 'Returns the red, green, blue, and alpha of the color.\r\n\r\n**Returns:** Red\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Color'
+[[.returns]]
+type = 'number'
+

@@ -1,0 +1,52 @@
+[usermessage]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'usermessage'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'usermessage'
+	},
+	2 = {
+		type = 'library',
+		name = 'usermessage'
+	}
+}
+
+[GetTable]
+description = 'Returns a table of every usermessage hook\r\n\r\n**Returns:** hooks\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[Hook]
+description = '<deprecated>You should be using <page>net</page> instead</deprecated>\r\n\r\nSets a hook for the specified to be called when a usermessage with the specified name arrives.\r\n\r\n<warning>Usermessages have a limit of only 256 bytes!</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The message name to hook to.'
+``````````
+name = 'callback'
+type = 'function'
+description = 'The function to be called if the specified message was received.\r\nParameters (Optional):\r\n* <page>bf_read</page> msg\r\n* <page>vararg</page> preArgs'
+``````````
+name = 'preArgs'
+type = 'vararg'
+description = 'Arguments that are passed to the callback function when the hook is called. *ring ring*'
+
+[IncomingMessage]
+description = '<internal></internal>\r\nCalled by the engine when a usermessage arrives, this method calls the hook function specified by <page>usermessage.Hook</page> if any.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The message name.'
+``````````
+name = 'msg'
+type = 'bf_read'
+description = 'The message.'
+

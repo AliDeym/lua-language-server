@@ -1,0 +1,85 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'bf_read'
+	},
+}
+
+[ReadAngle]
+description = 'Reads an returns an angle object from the bitstream.\r\n\r\n**Returns:** The read angle\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'Angle'
+
+[ReadBool]
+description = 'Reads 1 bit an returns a bool representing the bit.\r\n\r\n**Returns:** bit\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'boolean'
+
+[ReadChar]
+description = 'Reads a signed char and returns a number from -127 to 127 representing the ascii value of that char.\r\n\r\n**Returns:** asciiVal\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'number'
+
+[ReadEntity]
+description = 'Reads a short representing an entity index and returns the matching entity handle.\r\n\r\n**Returns:** ent\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'Entity'
+
+[ReadFloat]
+description = 'Reads a 4 byte float from the bitstream and returns it.\r\n\r\n**Returns:** float\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'number'
+
+[ReadLong]
+description = 'Reads a 4 byte long from the bitstream and returns it.\r\n\r\n**Returns:** int\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'number'
+
+[ReadShort]
+description = 'Reads a 2 byte short from the bitstream and returns it.\r\n\r\n**Returns:** short\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'number'
+
+[ReadString]
+description = 'Reads a null terminated string from the bitstream.\r\n\r\n**Returns:** str\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'string'
+
+[ReadVector]
+description = 'Reads a special encoded vector from the bitstream and returns it, this function is not suitable to send normals.\r\n\r\n**Returns:** vec\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'Vector'
+
+[ReadVectorNormal]
+description = 'Reads a special encoded vector normal from the bitstream and returns it, this function is not suitable to send vectors that represent a position.\r\n\r\n**Returns:** normal\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+[[.returns]]
+type = 'Vector'
+
+[Reset]
+description = 'Rewinds the bitstream so it can be read again.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'bf_read'
+

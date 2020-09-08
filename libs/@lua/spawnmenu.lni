@@ -1,0 +1,278 @@
+[spawnmenu]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'spawnmenu'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'spawnmenu'
+	},
+	2 = {
+		type = 'library',
+		name = 'spawnmenu'
+	}
+}
+
+[ActivateTool]
+description = 'Activates a tool, opens context menu and brings up the tool gun.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tool'
+type = 'string'
+description = 'Tool class/file name'
+
+[ActivateToolPanel]
+description = 'Activates tools context menu in specified tool tab.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tab'
+type = 'number'
+description = 'The tabID of the tab to open the context menu in'
+``````````
+name = 'cp'
+type = 'Panel'
+description = 'The control panel to open'
+
+[ActiveControlPanel]
+description = 'Returns currently opened control panel of a tool, post process effect or some other menu in spawnmenu.\r\n\r\n**Returns:** The currently opened control panel, if any.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'Panel'
+
+[AddContentType]
+description = 'Registers a new content type that is saveable into spawnlists.\r\nCreated/called by <page>spawnmenu.CreateContentIcon</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'An unique name of the content type.'
+``````````
+name = 'constructor'
+type = 'function'
+description = 'A function that is called whenever we need create a new panel for this content type.\r\n\r\nIt has two arguments:\r\n\r\n\r\n<page>Panel</page> container - The container/parent of the new panel\r\n\r\n\r\n<page>table</page> data - Data for the content type passed from <page>spawnmenu.CreateContentIcon</page>'
+
+[AddCreationTab]
+description = 'Inserts a new tab into the CreationMenus table, which will be used by the creation menu to generate its tabs (Spawnlists, Weapons, Entities, etc.)\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'What text will appear on the tab (I.E Spawnlists).'
+``````````
+name = 'function'
+type = 'function'
+description = 'The function called to generate the content of the tab.'
+``````````
+name = 'material'
+type = 'string'
+description = 'Path to the material that will be used as an icon on the tab.'
+``````````
+name = 'order'
+type = 'number'
+description = 'The order in which this tab should be shown relative to the other tabs on the creation menu.'
+``````````
+name = 'tooltip'
+type = 'string'
+description = 'The tooltip to be shown for this tab.'
+
+[AddPropCategory]
+description = 'Used to add addon spawnlists to the spawnmenu tree. This function should be called within <page>SANDBOX:PopulatePropMenu</page>.\r\n\r\nAddon spawnlists will not save to disk if edited.\r\n\r\n<warning>You should never try to modify player customized spawnlists!</warning>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'A unique classname of the list.'
+``````````
+name = 'name'
+type = 'string'
+description = 'The name of the category displayed to the player, e.g. `Comic Props`.'
+``````````
+name = 'contents'
+type = 'table'
+description = 'A table of entries for the spawn menu. It must be numerically indexed.\r\n\r\nEach member of the table is a sub-table containing a type member, and other members depending on the type.\r\n\r\n| <page>string</page> type | Description | Other members |\r\n| ------------- | ---------- | ----------------- |\r\n| "header" | a simple header for organization | <page>string</page> text - The text that the header will display |\r\n| "model" | spawns a model where the player is looking | <page>string</page> model - The path to the model file <br>	 <page>number</page> skin - The skin for the model to use (optional) <br> <page>string</page> body - The bodygroups for the model (optional) <br> <page>number</page> wide - The width of the spawnicon (optional) <br> <page>number</page> tall - The height of the spawnicon (optional) |\r\n| "entity" | spawns an entity where the player is looking<br>(appears in the Entities tab by default) | <page>string</page> spawnname - The filename of the entity, for example "sent_ball" <br> <page>string</page> nicename - The name of the entity to display <br> <page>string</page> material - The icon to display, this should be set to "entities/<sent_name>.png" <br>	<page>boolean</page> admin - Whether the entity is only spawnable by admins (optional) |\r\n| "vehicle" | spawns a vehicle where the player is looking <br> (appears in the Vehicles tab by default) | <page>string</page> spawnname - The filename of the vehicle <br> <page>string</page> nicename - The name of the vehicle to display <br> <page>string</page> material - The icon to display <br> <page>boolean</page> admin - Whether the vehicle is only spawnable by admins (optional) |\r\n| "npc" | spawns an NPC where the player is looking <br> (appears in the NPCs tab by default) | <page>string</page> spawnname - The spawn name of the NPC <br>	<page>string</page> nicename - The name to display <br> <page>string</page> material - The icon to display <br> <page>table</page> weapon - A table of potential weapons (each a string) to give to the NPC.<br> When spawned, one of these will be chosen randomly each time. <br> <page>boolean</page> admin - Whether the NPC is only spawnable by admins (optional) |\r\n| "weapon" | When clicked, gives the player a weapon; <br> When middle-clicked, spawns a weapon where the player is looking <br> (appears in the Weapons tab by default) |<page>string</page> spawnname - The spawn name of the weapon <br> <page>string</page> nicename - The name to display <br> <page>string</page> material - The icon to display <br> <page>boolean</page> admin - Whether the weapon is only spawnable by admins (optional) |\r\n</sent_name>'
+``````````
+name = 'icon'
+type = 'string'
+description = 'The icon to use in the tree.'
+``````````
+name = 'id'
+type = 'number'
+description = 'The unique ID number for the spawnlist category. Used to make sub categories. See "parentID" parameter below. If not set, it will be automatically set to ever increasing number, starting with 1000.'
+``````````
+name = 'parentID'
+type = 'number'
+description = 'The unique ID of the parent category. This will make the created category a subcategory of category with given unique ID. `0` makes this a base category (such as `Builder`).'
+``````````
+name = 'needsApp'
+type = 'string'
+description = 'The needed game for this prop category, if one is needed. If the specified game is not mounted, the category isn\'t shown. This uses the shortcut name, e.g. `cstrike`, and not the Steam AppID.'
+
+[AddToolCategory]
+description = 'Used to create a new category in the list inside of a spawnmenu ToolTab.\r\n\r\nYou must call this function from <page>SANDBOX:AddToolMenuCategories</page> for it to work properly.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tab'
+type = 'string'
+description = 'The ToolTab name, as created with <page>spawnmenu.AddToolTab</page>.\r\n\r\nYou can also use the default ToolTab names "Main" and "Utilities".'
+``````````
+name = 'RealName'
+type = 'string'
+description = 'The identifier name'
+``````````
+name = 'PrintName'
+type = 'string'
+description = 'The displayed name'
+
+[AddToolMenuOption]
+description = 'Adds an option to the right side of the spawnmenu\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tab'
+type = 'string'
+description = 'The spawnmenu tab to add into (for example "Utilities")'
+``````````
+name = 'category'
+type = 'string'
+description = 'The category to add into (for example "Admin")'
+``````````
+name = 'class'
+type = 'string'
+description = 'Unique identifier of option to add'
+``````````
+name = 'name'
+type = 'string'
+description = 'The nice name of item'
+``````````
+name = 'cmd'
+type = 'string'
+description = 'Command to execute when the item is selected'
+``````````
+name = 'config'
+type = 'string'
+description = 'Config name, used in older versions to load tool settings UI from a file. No longer works.\r\n\r\n<deprecated>Category=No</deprecated>'
+``````````
+name = 'cpanel'
+type = 'function'
+description = 'A function to build the context panel. The function has one argument:\r\n* <page>Panel</page> pnl - A <page>DForm</page> that will be shown in the context menu'
+``````````
+name = 'table'
+type = 'table'
+description = 'Allows to override the table that will be added to the tool list. Some of the fields will be overwritten by this function.'
+
+[AddToolTab]
+description = 'Adds a new tool tab to the right side of the spawnmenu via the <page>SANDBOX:AddToolMenuTabs</page> hook.\r\n\r\nThis function is a inferior duplicate of <page>spawnmenu.GetToolMenu</page>, just without its return value.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The internal name of the tab. This is used for sorting.'
+``````````
+name = 'label'
+type = 'string'
+description = 'The \'nice\' name of the tab (Tip: <page>language.Add</page>)'
+``````````
+name = 'icon'
+type = 'string'
+description = 'The filepath to the icon of the tab. Should be a .png'
+
+[ClearToolMenus]
+description = 'Clears all the tools from the different tool categories and the categories itself, if ran at the correct place.\r\n\r\nSeems to only work when ran at initialization.\r\n\r\n**Scope:** Client'
+
+[CreateContentIcon]
+description = 'Creates a new content icon.\r\n\r\n**Returns:** The created content icon, if it was returned by <page>spawnmenu.AddContentType</page>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'type'
+type = 'string'
+description = 'The type of the content icon.'
+``````````
+name = 'parent'
+type = 'Panel'
+description = 'The parent to add the content icon to.'
+``````````
+name = 'data'
+type = 'table'
+description = 'The data to send to the content icon in <page>spawnmenu.AddContentType</page>'
+[[.returns]]
+type = 'Panel'
+
+[DoSaveToTextFiles]
+description = '<internal></internal>\r\n\r\nCalls <page>spawnmenu.SaveToTextFiles</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'spawnlists'
+type = 'table'
+description = 'A table containing spawnlists.'
+
+[GetContentType]
+description = 'Returns the function to create an vgui element for a specified content type\r\n\r\n**Returns:** The panel creation function\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'contentType'
+type = 'string'
+description = ''
+[[.returns]]
+type = 'function'
+
+[GetCreationTabs]
+description = 'Gets the CreationMenus table, which was filled with creation menu tabs from <page>spawnmenu.AddCreationTab</page>.\r\n\r\n**Returns:** The CreationMenus table. See the <page>Structures/CreationMenus</page>.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetCustomPropTable]
+description = 'Similar to <page>spawnmenu.GetPropTable</page>, but only returns spawnlists created by addons via <page>spawnmenu.AddPropCategory</page>.\r\n\r\nThese spawnlists are shown in a separate menu in-game.\r\n\r\n**Returns:** See <page>spawnmenu.GetPropTable</page> for table format.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetPropTable]
+description = 'Returns a table of all prop categories and their props in the spawnmenu.\r\n\r\nNote that if the spawnmenu has not been populated, this will return an empty table.\r\n\r\nThis will not return spawnlists created by addons, see  <page>spawnmenu.GetCustomPropTable</page> for that.\r\n\r\n**Returns:** Table of all the prop categories and props in the following format:\r\n\r\n```\r\n{\r\n["settings/spawnlist/001-construction props.txt"] = {\r\nname = "Construction Props",\r\nicon = "icon16/page.png",\r\nid = 1,\r\nparentid = 0,\r\nneedsapp = "",\r\ncontents = {\r\n{\r\nmodel = "models/Cranes/crane_frame.mdl",\r\ntype = "model"\r\n}\r\n-- etc.\r\n},\r\n}\r\n-- etc.\r\n}\r\n```\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetToolMenu]
+description = 'Adds a new tool tab (or returns an existing one by name) to the right side of the spawnmenu via the <page>SANDBOX:AddToolMenuTabs</page> hook.\r\n\r\n**Returns:** A table of tables representing categories and items in the left part of the tab. See example below to example structure.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The internal name of the tab. This is used for sorting.'
+``````````
+name = 'label'
+type = 'string'
+description = 'The \'nice\' name of the tab'
+``````````
+name = 'icon'
+type = 'string'
+description = 'The filepath to the icon of the tab. Should be a .png'
+[[.returns]]
+type = 'table'
+
+[GetTools]
+description = 'Gets a table of tools on the client.\r\n\r\n**Returns:** A table with groups of tools, along with information on each tool.\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[PopulateFromEngineTextFiles]
+description = '<internal></internal>\r\n\r\nCalls <page>spawnmenu.PopulateFromTextFiles</page>.\r\n\r\n**Scope:** Client'
+
+[PopulateFromTextFiles]
+description = 'Loads spawnlists from text files.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'callback'
+type = 'function'
+description = 'The function to call. Arguments are ( strFilename, strName, tabContents, icon, id, parentid, needsapp )'
+
+[SaveToTextFiles]
+description = '<internal></internal>\r\n\r\nSaves a table of spawnlists to files.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'spawnlists'
+type = 'table'
+description = 'A table containing spawnlists.'
+
+[SetActiveControlPanel]
+description = 'Sets currently active control panel to be returned by <page>spawnmenu.ActiveControlPanel</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'pnl'
+type = 'Panel'
+description = 'The panel to set.'
+
+[SwitchToolTab]
+description = '<deprecated></deprecated>\r\n\r\nSupposed to open specified tool tab in spawnmenu, in reality does nothing.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'The tab ID to open'
+

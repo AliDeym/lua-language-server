@@ -1,0 +1,49 @@
+[search]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'search'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'search'
+	},
+	2 = {
+		type = 'library',
+		name = 'search'
+	}
+}
+
+[AddProvider]
+description = 'Adds a search result provider. For examples, see gamemodes/sandbox/gamemode/cl_search_models.lua\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'provider'
+type = 'function'
+description = 'Provider function. It has one argument: <page>string</page> searchQuery\r\nYou must return a list of tables structured like this:\r\n* <page>string</page> text - Text to "Copy to clipboard"\r\n* <page>function</page> func - Function to use/spawn the item\r\n* <page>Panel</page> icon - A panel to add to spawnmenu\r\n* <page>table</page> words - A table of words?'
+``````````
+name = 'id'
+type = 'string'
+description = 'If provided, ensures that only one provider exists with the given ID at a time.'
+
+[GetResults]
+description = 'Retrieves search results.\r\n\r\n**Returns:** A table of results\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'query'
+type = 'string'
+description = 'Search query'
+``````````
+name = 'types'
+type = 'string'
+description = 'If set, only searches given provider type(s), instead of everything. For example `"tool"` will only search tools in Sandbox. Can be a table for multiple types.'
+``````````
+name = 'maxResults'
+type = 'number'
+description = 'How many results to stop at'
+[[.returns]]
+type = 'table'
+

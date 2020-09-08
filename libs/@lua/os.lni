@@ -9,168 +9,53 @@ name = 'os'
 <default>
 type = 'function'
 parent = {
-    1 = {
-        type = 'global',
-        name = 'os',
-    },
-    2 = {
-        type = 'library',
-        name = 'os',
-    }
+	1 = {
+		type = 'global',
+		name = 'os'
+	},
+	2 = {
+		type = 'library',
+		name = 'os'
+	}
 }
 
 [clock]
+description = 'Returns the approximate cpu time the application ran.\r\nSee also <page>Global.SysTime</page>\r\n<note>This function has different precision on Linux (1/100).</note>\r\n\r\n**Returns:** runtime\r\n\r\n**Scope:** Shared'
 [[.returns]]
 type = 'number'
 
 [date]
+description = 'Returns the date/time as a formatted string or in a table.\r\n\r\n**Returns:** Formatted date\r\n<note>This will be a <page>Structures/DateData</page> if the first argument equals to `*t` or `!*t`</note>\r\n\r\n**Scope:** Shared'
 [[.args]]
 name = 'format'
 type = 'string'
-optional = 'after'
+description = 'The format string.\r\n\r\nIf this is equal to `*t` or `!*t` then this function will return a <page>Structures/DateData</page>, otherwise it will return a string.\r\n\r\nIf this starts with an `!`, the returned data will use the UTC timezone rather than the local timezone.\r\n\r\nSee http://www.mkssoftware.com/docs/man3/strftime.3.asp for available format flags.\r\n\r\n<bug issue="329">**Not all flags are available on all operating systems** and the result of using an invalid flag is undefined. This currently crashes the game on Windows. Most or all flags are available on OS X and Linux but considerably fewer are available on Windows. See http://msdn.microsoft.com/en-us/library/fe06s4ak.aspx for a list of available flags on Windows. Note that the **#** flags also crashes the game on Windows.</bug>\r\n\r\nKnown formats that work on all platforms:\r\n\r\n| Format | Description | Example of the output |\r\n|:------:|:-----------:|:---------------------:|\r\n| `%a` | Abbreviated weekday name | `Wed` |\r\n| `%A` | Full weekday name | `Wednesday` |\r\n| `%b` | Abbreviated month name | `Sep` |\r\n| `%B` | Full month name | `September` |\r\n| `%c` | Date and time | `09/16/98 23:48:10` |\r\n| `%d` | Day of the month [01-31] | `16` |\r\n| `%H` | Hour, using a 24-hour clock [00-23] | `23` |\r\n| `%I` | Hour, using a 12-hour clock [01-12] | `11` |\r\n| `%j` | Day of the year [001-365] | `259` |\r\n| `%m` | Month [01-12] | `09` |\r\n| `%M` | Minute [00-59] | `48` |\r\n| `%p` | Either `am` or `pm` | `pm` |\r\n| `%S` | Second [00-60] | `10` |\r\n| `%w` | Weekday [0-6 = Sunday-Saturday] | `3` |\r\n| `%W` | Week of the year [00-53] | `37` |\r\n| `%x` | Date | `09/16/98` |\r\n| `%X` | Time | `24:48:10` |\r\n| `%y` | Two-digit year [00-99] | `98` |\r\n| `%Y` | Full year | `1998` |\r\n| `%z` | Timezone | `-0300` |\r\n| `%%` | A percent sign | `%` |'
 ``````````
 name = 'time'
-type = 'integer'
-optional = 'self'
+type = 'number'
+description = 'Time to use for the format.'
 [[.returns]]
 type = 'string'
 
 [difftime]
+description = 'Subtracts the second from the first value and rounds the result.\r\n\r\n**Returns:** diffTime\r\n\r\n**Scope:** Shared'
 [[.args]]
-name = 't2'
-type = 'integer'
+name = 'timeA'
+type = 'number'
+description = 'The first value.'
 ``````````
-name = 't1'
-type = 'integer'
+name = 'timeB'
+type = 'number'
+description = 'The value to subtract.'
 [[.returns]]
-type = 'integer'
-
-[execute]
-[[.args]]
-name = 'command'
-type = 'string'
-optional = 'self'
-[[.returns]]
-name = 'suc'
-type = 'boolean'
-default = 'true'
-optional = 'after'
-``````````
-name = 'type'
-type = 'string'
-``````````
-name = 'code'
-type = 'integer'
-[[.enums]]
-type = 'type'
-enum = '"exit"'
-``````````
-type = 'type'
-enum = '"signal"'
-
-['execute Lua 5.1']
-name = 'execute'
-version = {'Lua 5.1', 'LuaJIT'}
-[[.args]]
-name = 'command'
-type = 'string'
-optional = 'self'
-[[.returns]]
-name = 'code'
-type = 'integer'
-
-[exit]
-[[.args]]
-name = 'code'
-type = {'boolean', 'integer'}
-optional = 'after'
-default = true
-``````````
-name = 'close'
-type = 'boolean'
-optional = 'self'
-
-['exit Lua 5.1']
-name = 'exit'
-version = 'Lua 5.1'
-[[.args]]
-name = 'code'
-type = 'integer'
-optional = 'after'
-default = 0
-
-[getenv]
-[[.args]]
-name = 'varname'
-type = 'string'
-[[.returns]]
-type = 'string'
-
-[remove]
-[[.args]]
-name = 'filename'
-type = 'string'
-[[.returns]]
-name = 'suc'
-type = 'boolean'
-``````````
-name = 'errmsg'
-type = 'string'
-optional = 'self'
-
-[rename]
-[[.args]]
-name = 'oldname'
-type = 'string'
-``````````
-name = 'newname'
-type = 'string'
-[[.returns]]
-name = 'suc'
-type = 'boolean'
-``````````
-name = 'errmsg'
-type = 'string'
-optional = 'self'
-
-[setlocale]
-[[.args]]
-name = 'locale'
-type = {'string', 'nil'}
-``````````
-name = 'category'
-type = 'string'
-optional = 'self'
-[[.returns]]
-name = 'locale'
-type = 'string'
-[[.enums]]
-name = 'category'
-enum = '"all"'
-default = true
-``````````
-name = 'category'
-enum = '"collate"'
-``````````
-name = 'category'
-enum = '"ctype"'
-``````````
-name = 'category'
-enum = '"monetary"'
-``````````
-name = 'category'
-enum = '"numeric"'
-``````````
-name = 'category'
-enum = '"time"'
+type = 'number'
 
 [time]
+description = 'Returns the system time in seconds past the unix epoch. If a table is supplied, the function attempts to build a system time with the specified table members.\r\n\r\n**Returns:** Seconds passed since Unix epoch\r\n\r\n**Scope:** Shared'
 [[.args]]
+name = 'dateData'
 type = 'table'
-optional = 'self'
+description = 'Table to generate the time from. This table\'s data is interpreted as being in the local timezone. See <page>Structures/DateData</page>'
 [[.returns]]
-type = 'integer'
+type = 'number'
 
-[tmpname]
-[[.returns]]
-type = 'string'

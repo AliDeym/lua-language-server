@@ -1,0 +1,116 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CLuaEmitter'
+	},
+}
+
+[Add]
+description = 'Creates a new <page>CLuaParticle</page> with the given material and position.\r\n\r\n**Returns:** The created particle, if any.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+``````````
+name = 'material'
+type = 'string'
+description = 'The particles material. Can also be an <page>IMaterial</page>.'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The position to spawn the particle on.'
+[[.returns]]
+type = 'CLuaParticle'
+
+[Draw]
+description = 'Manually renders all particles the emitter has created.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+
+[Finish]
+description = 'Removes the emitter, making it no longer usable from Lua. If particles remain, the emitter will be removed when all particles die.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+
+[GetNumActiveParticles]
+description = 'Returns the amount of active particles of this emitter.\r\n\r\n**Returns:** The amount of active particles of this emitter\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+[[.returns]]
+type = 'number'
+
+[GetPos]
+description = 'Returns the position of this emitter. This is set when creating the emitter with <page>Global.ParticleEmitter</page>.\r\n\r\n**Returns:** Position of this particle emitter.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+[[.returns]]
+type = 'Vector'
+
+[Is3D]
+description = 'Returns whether this emitter is 3D or not. This is set when creating the emitter with <page>Global.ParticleEmitter</page>.\r\n\r\n**Returns:** Whether this emitter is 3D or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+[[.returns]]
+type = 'boolean'
+
+[IsValid]
+description = 'Returns whether this <page>CLuaEmitter</page> is valid or not.\r\n\r\n**Returns:** Whether this <page>CLuaEmitter</page> is valid or not.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+[[.returns]]
+type = 'boolean'
+
+[SetBBox]
+description = 'Sets the bounding box for this emitter.\r\n\r\nUsually the bounding box is automatically determined by the particles, but this function overrides it.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+``````````
+name = 'mins'
+type = 'Vector'
+description = 'The minimum position of the box'
+``````````
+name = 'maxs'
+type = 'Vector'
+description = 'The maximum position of the box'
+
+[SetNearClip]
+description = 'This function sets the the distance between the render camera and the emitter at which the particles should start fading and at which distance fade ends ( alpha becomes 0 ).\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+``````````
+name = 'distanceMin'
+type = 'number'
+description = 'Min distance where the alpha becomes 0.'
+``````````
+name = 'distanceMax'
+type = 'number'
+description = 'Max distance where the alpha starts fading.'
+
+[SetNoDraw]
+description = 'Prevents all particles of the emitter from automatically drawing.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+``````````
+name = 'noDraw'
+type = 'boolean'
+description = 'Whether we should draw the particles ( false ) or not ( true )'
+
+[SetParticleCullRadius]
+description = 'The function name has not much in common with its actual function, it applies a radius to every particles that affects the building of the bounding box, as it, usually is constructed by the particle that has the lowest x, y and z and the highest x, y and z, this function just adds/subtracts the radius and inflates the bounding box.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+``````````
+name = 'radius'
+type = 'number'
+description = 'Particle radius.'
+
+[SetPos]
+description = 'Sets the position of the particle emitter.\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'CLuaEmitter'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'New position.'
+

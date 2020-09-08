@@ -1,0 +1,446 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Vehicle'
+	},
+}
+
+[BoostTimeLeft]
+description = 'Returns the remaining boosting time left.\r\n\r\n**Returns:** The remaining boosting time left\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[CheckExitPoint]
+description = 'Tries to find an Exit Point for leaving vehicle, if one is unobstructed in the direction given.\r\n\r\n**Returns:** Returns the vector for exit position or nil if cannot exit that way.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'yaw'
+type = 'number'
+description = 'Yaw/roll from vehicle angle to check for exit'
+``````````
+name = 'distance'
+type = 'number'
+description = 'Distance from origin to drop player'
+[[.returns]]
+type = 'Vector'
+
+[EnableEngine]
+description = 'Sets whether the engine is enabled or disabled, i.e. can be started or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'enable'
+type = 'boolean'
+description = 'Enable or disable the engine'
+
+[GetAmmo]
+description = 'Returns information about the ammo of the vehicle\r\n\r\n**Returns:** Ammo type of the vehicle ammo\r\n\r\n**Scope:** Client'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetCameraDistance]
+description = 'Returns third person camera distance.\r\n\r\n**Returns:** Camera distance\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetDriver]
+description = 'Gets the driver of the vehicle, returns NULL if no driver is present.\r\n\r\n**Returns:** The driver of the vehicle\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'Entity'
+
+[GetHLSpeed]
+description = 'Returns the current speed of the vehicle in Half-Life Hammer Units (in/s). Same as <page>Entity:GetVelocity</page> + <page>Vector:Length</page>.\r\n\r\n**Returns:** The speed of the vehicle\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetMaxSpeed]
+description = 'Returns the max speed of the vehicle in MPH.\r\n\r\n**Returns:** The max speed of the vehicle in MPH\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetOperatingParams]
+description = 'Returns some info about the vehicle.\r\n\r\n**Returns:** The operating params. See <page>Structures/OperatingParams</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'table'
+
+[GetPassenger]
+description = 'Gets the passenger of the vehicle, returns NULL if no drivers is present.\r\n\r\n**Returns:** The passenger\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'passenger'
+type = 'number'
+description = 'The index of the passenger'
+[[.returns]]
+type = 'Entity'
+
+[GetPassengerSeatPoint]
+description = 'Returns the seat position and angle of a given passenger seat.\r\n\r\n**Returns:** The seat position\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'role'
+type = 'number'
+description = 'The passenger role. ( 1 is the driver )'
+[[.returns]]
+type = 'Vector'
+
+[GetRPM]
+description = 'Returns the current RPM of the vehicle. This value is fake and doesn\'t actually affect the vehicle movement.\r\n\r\n**Returns:** The RPM.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetSpeed]
+description = 'Returns the current speed of the vehicle in MPH.\r\n\r\n**Returns:** The speed of the vehicle in MPH\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetSteering]
+description = 'Returns the current steering of the vehicle.\r\n\r\n**Returns:** The current steering of the vehicle.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetSteeringDegrees]
+description = 'Returns the maximum steering degree of the vehicle\r\n\r\n**Returns:** The maximum steering degree of the vehicle\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetThirdPersonMode]
+description = 'Returns if vehicle has thirdperson mode enabled or not.\r\n\r\n**Returns:** Returns true if third person mode enabled, false otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[GetThrottle]
+description = 'Returns the current throttle of the vehicle.\r\n\r\n**Returns:** The current throttle of the vehicle\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetVehicleClass]
+description = 'Returns the vehicle class name. This is only useful for Sandbox spawned vehicles or any vehicle that properly sets the vehicle class with <page>Vehicle:SetVehicleClass</page>.\r\n\r\n**Returns:** The class name of the vehicle.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'string'
+
+[GetVehicleParams]
+description = 'Returns the vehicle parameters of given vehicle.\r\n\r\n**Returns:** The vehicle parameters. See <page>Structures/VehicleParams</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'table'
+
+[GetVehicleViewPosition]
+description = 'Returns the view position and forward angle of a given passenger seat.\r\n\r\n**Returns:** The view position, will be 0, 0, 0 on failure\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'role'
+type = 'number'
+description = 'The passenger role. 0 is the driver. This parameter seems to be ignored by the game engine and is therefore optional.'
+[[.returns]]
+type = 'Vector'
+
+[GetWheel]
+description = 'Returns the <page>PhysObj</page> of given wheel.\r\n\r\n**Returns:** The wheel\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'wheel'
+type = 'number'
+description = 'The wheel to retrieve'
+[[.returns]]
+type = 'PhysObj'
+
+[GetWheelBaseHeight]
+description = 'Returns the base wheel height.\r\n\r\n**Returns:** The base wheel height.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'wheel'
+type = 'number'
+description = 'The wheel to get the base wheel height of.'
+[[.returns]]
+type = 'number'
+
+[GetWheelContactPoint]
+description = 'Returns the wheel contact point.\r\n\r\n**Returns:** The contact position\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'wheel'
+type = 'number'
+description = 'The wheel to check'
+[[.returns]]
+type = 'Vector'
+
+[GetWheelCount]
+description = 'Returns the wheel count of the vehicle\r\n\r\n**Returns:** The amount of wheels\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'number'
+
+[GetWheelTotalHeight]
+description = 'Returns the total wheel height.\r\n\r\n**Returns:** The total wheel height.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'wheel'
+type = 'number'
+description = 'The wheel to get the base wheel height of.'
+[[.returns]]
+type = 'number'
+
+[HasBoost]
+description = 'Returns whether this vehicle has boost at all.\r\n\r\n**Returns:** Whether this vehicle has boost at all.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[HasBrakePedal]
+description = 'Returns whether this vehicle has a brake pedal. See <page>Vehicle:SetHasBrakePedal</page>.\r\n\r\n**Returns:** Whether this vehicle has a brake pedal or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[IsBoosting]
+description = 'Returns whether this vehicle is currently boosting or not.\r\n\r\n**Returns:** Whether this vehicle is currently boosting or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[IsEngineEnabled]
+description = 'Returns whether the engine is enabled or not, i.e. whether it can be started.\r\n\r\n**Returns:** Whether the engine is enabled\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[IsEngineStarted]
+description = 'Returns whether the engine is started or not.\r\n\r\n**Returns:** Whether the engine is started or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[IsValidVehicle]
+description = 'Returns true if the vehicle object is a valid or not. This will return false when <page>Vehicle</page> functions are not usable on the vehicle.\r\n\r\n**Returns:** Is the vehicle a valid vehicle or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[IsVehicleBodyInWater]
+description = 'Returns whether this vehicle\'s engine is underwater or not. ( Internally the attachment point "engine" or "vehicle_engine" is checked )\r\n\r\n**Returns:** Whether this vehicle\'s engine is underwater or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+[[.returns]]
+type = 'boolean'
+
+[ReleaseHandbrake]
+description = 'Releases the vehicle\'s handbrake (Jeep) so it can roll without any passengers.\r\n\r\nThis will be overwritten if the vehicle has a driver. Same as <page>Vehicle:SetHandbrake</page>( false )\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+
+[SetBoost]
+description = 'Sets the boost. It is possible that this function does not work while the vehicle has a valid driver in it.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'boost'
+type = 'number'
+description = 'The new boost value'
+
+[SetCameraDistance]
+description = 'Sets the third person camera distance of the vehicle.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'distance'
+type = 'number'
+description = 'Camera distance to set to'
+
+[SetHandbrake]
+description = 'Turns on or off the Jeep handbrake so it can roll without a driver inside.\r\n\r\nDoes nothing while the vehicle has a driver in it.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'handbrake'
+type = 'boolean'
+description = 'true to turn on, false to turn off.'
+
+[SetHasBrakePedal]
+description = 'Sets whether this vehicle has a brake pedal.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'brakePedal'
+type = 'boolean'
+description = 'Whether this vehicle has a brake pedal'
+
+[SetMaxReverseThrottle]
+description = 'Sets maximum reverse throttle\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'maxRevThrottle'
+type = 'number'
+description = 'The new maximum throttle. This number must be negative.'
+
+[SetMaxThrottle]
+description = 'Sets maximum forward throttle\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'maxThrottle'
+type = 'number'
+description = 'The new maximum throttle.'
+
+[SetSpringLength]
+description = 'Sets spring length of given wheel\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'wheel'
+type = 'number'
+description = 'The wheel to change spring length of'
+``````````
+name = 'length'
+type = 'number'
+description = 'The new spring length'
+
+[SetSteering]
+description = 'Sets the steering of the vehicle.\r\n<validate>The correct range, 0 to 1 or -1 to 1</validate>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'front'
+type = 'number'
+description = 'Angle of the front wheels (-1 to 1)'
+``````````
+name = 'rear'
+type = 'number'
+description = 'Angle of the rear wheels (-1 to 1)'
+
+[SetSteering]
+description = 'Sets the steering of the vehicle.\r\n<validate>The correct range, 0 to 1 or -1 to 1</validate>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'front'
+type = 'number'
+description = 'Angle of the front wheels (-1 to 1)'
+``````````
+name = 'rear'
+type = 'number'
+description = 'Angle of the rear wheels (-1 to 1)'
+
+[SetSteeringDegrees]
+description = 'Sets the maximum steering degrees of the vehicle\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'steeringDegrees'
+type = 'number'
+description = 'The new maximum steering degree'
+
+[SetThirdPersonMode]
+description = 'Sets the third person mode state.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'enable'
+type = 'boolean'
+description = 'Enable or disable the third person mode for this vehicle'
+
+[SetThrottle]
+description = 'Sets the throttle of the vehicle. It is possible that this function does not work with a valid driver in it.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'throttle'
+type = 'number'
+description = 'The new throttle.'
+
+[SetVehicleClass]
+description = '<internal></internal>Sets the vehicle class name.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'class'
+type = 'string'
+description = 'The vehicle class name to set'
+
+[SetVehicleEntryAnim]
+description = 'Sets whether the entry or exit camera animation should be played or not.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'bOn'
+type = 'boolean'
+description = 'Whether the entry or exit camera animation should be played or not.'
+
+[SetVehicleParams]
+description = 'Sets the vehicle parameters for given vehicle.\r\n\r\n<note>Not all variables from the <page>Structures/VehicleParams</page> can be set.</note>\r\n\r\n<bug issue="2625">Because this method uses miles per hour but <page>Vehicle:GetVehicleParams</page> returns Hammer units per second, this method incorrectly modifies the vehicle engine\'s "boostMaxSpeed", "maxRevSpeed" and "maxSpeed" even when not explicitly set in a call to this method.\r\n\r\n**Workaround**: In order to retain the original values for these fields, call <page>Vehicle:GetVehicleParams</page> yourself, convert the mentioned fields from Hammer units per second to miles per hour (1 MPH ≈ 17.6 HU/s in this case) and add them to the table passed into the call to this setter. Avoid doing this repeatedly to avoid floating point inaccuracies over time (store the ready-calculated value for next time if possible).</bug>\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'params'
+type = 'table'
+description = 'The new new vehicle parameters. See <page>Structures/VehicleParams</page>'
+
+[SetWheelFriction]
+description = 'Sets friction of given wheel.  This function may be broken.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'wheel'
+type = 'number'
+description = 'The wheel to change the friction of'
+``````````
+name = 'friction'
+type = 'number'
+description = 'The new friction to set'
+
+[StartEngine]
+description = 'Starts or stops the engine.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Vehicle'
+``````````
+name = 'start'
+type = 'boolean'
+description = 'True to start, false to stop.'
+

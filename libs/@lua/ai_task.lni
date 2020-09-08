@@ -1,0 +1,26 @@
+[ai_task]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'ai_task'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'ai_task'
+	},
+	2 = {
+		type = 'library',
+		name = 'ai_task'
+	}
+}
+
+[New]
+description = 'Create a new empty task. Used by <page>Schedule:AddTask</page> and <page>Schedule:EngTask</page>.\r\n\r\n**Returns:** The new task object.\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'Task'
+

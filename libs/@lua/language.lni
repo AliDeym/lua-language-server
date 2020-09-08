@@ -1,0 +1,41 @@
+[language]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'language'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'language'
+	},
+	2 = {
+		type = 'library',
+		name = 'language'
+	}
+}
+
+[Add]
+description = 'Adds a language item. Language placeholders preceded with "#" are replaced with full text in Garry\'s Mod once registered with this function.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'placeholder'
+type = 'string'
+description = 'The key for this phrase, without the preceding "#".'
+``````````
+name = 'fulltext'
+type = 'string'
+description = 'The phrase that should be displayed whenever this key is used.'
+
+[GetPhrase]
+description = 'Retrieves the translated version of inputted string. Useful for concentrating multiple translated strings.\r\n\r\n**Returns:** The translated phrase, or the input string if no translation was found\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'phrase'
+type = 'string'
+description = 'The phrase to translate'
+[[.returns]]
+type = 'string'
+

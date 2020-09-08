@@ -1,0 +1,214 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CUserCmd'
+	},
+}
+
+[ClearButtons]
+description = 'Removes all keys from the command.\r\n\r\n<note>If you are looking to affect player movement, you may need to use <page>CUserCmd:ClearMovement</page> instead of clearing the buttons.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+
+[ClearMovement]
+description = 'Clears the movement from the command.\r\n\r\nSee also <page>CUserCmd:SetForwardMove</page>, <page>CUserCmd:SetSideMove</page> and  <page>CUserCmd:SetUpMove</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+
+[CommandNumber]
+description = 'Returns an increasing number representing the index of the user cmd.\r\n\r\n<warning>The value returned is occasionally 0 inside <page>GM:CreateMove</page> and <page>GM:StartCommand</page>. It is advised to check for a non-zero value if you wish to get the correct number.</warning>\r\n\r\n**Returns:** The command number\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetButtons]
+description = 'Returns a bitflag indicating which buttons are pressed.\r\n\r\n**Returns:** Pressed buttons, see <page>Enums/IN</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetForwardMove]
+description = 'The speed the client wishes to move forward with, negative if the clients wants to move backwards.\r\n\r\n**Returns:** The desired speed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetImpulse]
+description = 'Gets the current impulse from the client, usually 0.\r\n\r\n**Returns:** The impulse\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetMouseWheel]
+description = 'Returns the scroll delta as whole number.\r\n\r\n**Returns:** Scroll delta\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetMouseX]
+description = 'Returns the delta of the angular horizontal mouse movement of the player.\r\n\r\n**Returns:** xDelta\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetMouseY]
+description = 'Returns the delta of the angular vertical mouse movement of the player.\r\n\r\n**Returns:** yDelta\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetSideMove]
+description = 'The speed the client wishes to move sideways with, positive if it wants to move right, negative if it wants to move left.\r\n\r\n**Returns:** requestSpeed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetUpMove]
+description = 'The speed the client wishes to move up with, negative if the clients wants to move down.\r\n\r\n**Returns:** requestSpeed\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+
+[GetViewAngles]
+description = 'Gets the direction the player is looking in.\r\n\r\n**Returns:** requestDir\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'Angle'
+
+[IsForced]
+description = 'When players are not sending usercommands to the server (often due to lag), their last usercommand will be executed multiple times as a backup. This function returns true if that is happening.\r\n\r\nThis will never return true clientside.\r\n\r\n**Returns:** isForced\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'boolean'
+
+[KeyDown]
+description = 'Returns true if the specified button(s) is pressed.\r\n\r\n**Returns:** Is key down or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'key'
+type = 'number'
+description = 'Bitflag representing which button to check, see <page>Enums/IN</page>.'
+[[.returns]]
+type = 'boolean'
+
+[RemoveKey]
+description = 'Removed a key bit from the current key bitflag.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'button'
+type = 'number'
+description = 'Bitflag to be removed from the key bitflag, see <page>Enums/IN</page>.'
+
+[SelectWeapon]
+description = 'Forces the associated player to select a weapon. This is used internally in the default HL2 weapon selection HUD.\r\n\r\nThis may not work immediately if the current command is in prediction. Use <page>input.SelectWeapon</page> to switch the weapon from the client when the next available command can do so.\r\n\r\n<note>This is the ideal function to use to create a custom weapon selection HUD, as it allows prediction to run properly for <page>WEAPON:Deploy</page> and <page>GM:PlayerSwitchWeapon</page></note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'weapon'
+type = 'Weapon'
+description = 'The weapon entity to select.'
+
+[SetButtons]
+description = 'Sets the buttons as a bitflag. See also <page>CUserCmd:GetButtons</page>.\r\n\r\n<note>If you are looking to affect player movement, you may need to use <page>CUserCmd:SetForwardMove</page> instead of setting the keys.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'buttons'
+type = 'number'
+description = 'Bitflag representing which buttons are "down", see <page>Enums/IN</page>.'
+
+[SetForwardMove]
+description = 'Sets speed the client wishes to move forward with, negative if the clients wants to move backwards.\r\n\r\nSee also <page>CUserCmd:ClearMovement</page>, <page>CUserCmd:SetSideMove</page> and <page>CUserCmd:SetUpMove</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'speed'
+type = 'number'
+description = 'The new speed to request. The client will not be able to move faster than their set walk/sprint speed.'
+
+[SetImpulse]
+description = 'Sets the impulse command to be sent to the server.\r\n\r\nHere are a few examples of impulse numbers:\r\n- `100` toggles their flashlight\r\n- `101` gives the player all Half-Life 2 weapons with `sv_cheats` set to `1`\r\n- `200` toggles holstering / restoring the current weapon\r\nWhen holstered, the `EF_NODRAW` flag is set on the active weapon.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'speed'
+type = 'number'
+description = 'The impulse to send.'
+
+[SetMouseWheel]
+description = 'Sets the scroll delta.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'speed'
+type = 'number'
+description = 'The scroll delta.'
+
+[SetMouseX]
+description = 'Sets the delta of the angular horizontal mouse movement of the player.\r\n\r\nSee also <page>CUserCmd:SetMouseY</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'speed'
+type = 'number'
+description = 'Angular horizontal move delta.'
+
+[SetMouseY]
+description = 'Sets the delta of the angular vertical mouse movement of the player.\r\n\r\nSee also <page>CUserCmd:SetMouseX</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'speed'
+type = 'number'
+description = 'Angular vertical move delta.'
+
+[SetSideMove]
+description = 'Sets speed the client wishes to move sidewards with, positive to move right, negative to move left.\r\n\r\nSee also <page>CUserCmd:SetForwardMove</page> and  <page>CUserCmd:SetUpMove</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'speed'
+type = 'number'
+description = 'The new speed to request.'
+
+[SetUpMove]
+description = 'Sets speed the client wishes to move upwards with, negative to move down.\r\n\r\nSee also <page>CUserCmd:SetSideMove</page> and  <page>CUserCmd:SetForwardMove</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'speed'
+type = 'number'
+description = 'The new speed to request.'
+
+[SetViewAngles]
+description = 'Sets the direction the client wants to move in.\r\n\r\n<note>The pitch (vertical) angle should be clamped to +/- 89° to prevent the player\'s view from glitching.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+``````````
+name = 'viewAngle'
+type = 'Angle'
+description = 'New view angles.'
+
+[TickCount]
+description = 'Returns tick count since joining the server.\r\n\r\n<note>This will always return 0 for bots.</note>\r\n\r\n<note>Returns 0 clientside during prediction calls. If you are trying to use CUserCmd:Set*() on the client in a movement or command hook, keep doing so till TickCount returns a non-zero number to maintain prediction.</note>\r\n\r\n**Returns:** The amount of ticks passed since joining the server.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CUserCmd'
+[[.returns]]
+type = 'number'
+

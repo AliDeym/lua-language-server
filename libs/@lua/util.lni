@@ -1,0 +1,928 @@
+[util]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'util'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'util'
+	},
+	2 = {
+		type = 'library',
+		name = 'util'
+	}
+}
+
+[AddNetworkString]
+description = 'Adds the specified string to a string table, which will cache it and network it to all clients automatically.<br>\r\nWhenever you want to create a net message with <page>net.Start</page>, you must add the name of that message as a networked string via this function.\r\n\r\nIf the passed string already exists, nothing will happen and the ID of the existing item will be returned.\r\n\r\n<note>Each unique network name needs to be pooled once - do not put this function call into any other functions if you\'re using a constant string. Preferable place for this function is in a serverside lua file, or in a shared file with the <page>net.Receive</page> function.</note>\r\n<note>The string table used for this function does not interfere with the engine string tables and has 2048 slots.</note>\r\n\r\n**Returns:** The id of the string that was added to the string table.<br>\r\nSame as calling <page>util.NetworkStringToID</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'str'
+type = 'string'
+description = 'Adds the specified string to the string table.'
+[[.returns]]
+type = 'number'
+
+[AimVector]
+description = 'Function used to calculate aim vector from 2D screen position. It is used in SuperDOF calculate Distance.\r\n\r\nEssentially a generic version of <page>gui.ScreenToVector</page>.\r\n\r\n**Returns:** Calculated aim vector\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ViewAngles'
+type = 'Angle'
+description = 'View angles'
+``````````
+name = 'ViewFOV'
+type = 'number'
+description = 'View Field of View'
+``````````
+name = 'x'
+type = 'number'
+description = 'Mouse X position'
+``````````
+name = 'y'
+type = 'number'
+description = 'Mouse Y position'
+``````````
+name = 'scrWidth'
+type = 'number'
+description = 'Screen width'
+``````````
+name = 'scrHeight'
+type = 'number'
+description = 'Screen height'
+[[.returns]]
+type = 'Vector'
+
+[Base64Decode]
+description = 'Decodes the specified string from base64.\r\n\r\n**Returns:** The raw bytes of the decoded string.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'str'
+type = 'string'
+description = 'String to decode.'
+[[.returns]]
+type = 'string'
+
+[Base64Encode]
+description = 'Encodes the specified string to base64.\r\n\r\n**Returns:** Base 64 encoded string.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'str'
+type = 'string'
+description = 'String to encode.'
+[[.returns]]
+type = 'string'
+
+[BlastDamage]
+description = 'Applies explosion damage to all entities in the specified radius.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'inflictor'
+type = 'Entity'
+description = 'The entity that caused the damage.'
+``````````
+name = 'attacker'
+type = 'Entity'
+description = 'The entity that attacked.'
+``````````
+name = 'damageOrigin'
+type = 'Vector'
+description = 'The center of the explosion'
+``````````
+name = 'damageRadius'
+type = 'number'
+description = 'The radius in which entities will be damaged.'
+``````````
+name = 'damage'
+type = 'number'
+description = 'The amount of damage to be applied.'
+
+[BlastDamageInfo]
+description = 'Applies spherical damage based on damage info to all entities in the specified radius.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'dmg'
+type = 'CTakeDamageInfo'
+description = 'The information about the damage'
+``````````
+name = 'damageOrigin'
+type = 'Vector'
+description = 'Center of the spherical damage'
+``````````
+name = 'damageRadius'
+type = 'number'
+description = 'The radius in which entities will be damaged.'
+
+[Compress]
+description = 'Compresses the given string using the [LZMA](https://en.wikipedia.org/wiki/LZMA) algorithm.\r\n\r\nUse with <page>net.WriteData</page> and <page>net.ReadData</page> for networking and  <page>util.Decompress</page> to decompress the data.\r\n\r\n**Returns:** The compressed string, or nil if the input string was zero length ("").\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'str'
+type = 'string'
+description = 'String to compress.'
+[[.returns]]
+type = 'string'
+
+[CRC]
+description = 'Generates the [CRC Checksum](https://en.wikipedia.org/wiki/Cyclic_redundancy_check) of the specified string.\r\n\r\n**Returns:** The unsigned 32 bit checksum.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'stringToHash'
+type = 'string'
+description = 'The string to calculate the checksum of.'
+[[.returns]]
+type = 'string'
+
+[DateStamp]
+description = 'Returns the current date formatted like \'2012-10-31 18-00-00\'\r\n\r\n**Returns:** date\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'string'
+
+[Decal]
+description = 'Performs a trace and paints a decal to the surface hit.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the decal to paint.'
+``````````
+name = 'start'
+type = 'Vector'
+description = 'The start of the trace.'
+``````````
+name = 'end'
+type = 'Vector'
+description = 'The end of the trace.'
+``````````
+name = 'filter'
+type = 'Entity'
+description = 'If set, the decal will not be able to be placed on given entity. Can also be a table of entities.'
+
+[DecalEx]
+description = 'Performs a trace and paints a decal to the surface hit.\r\n\r\n<note>This function has trouble spanning across multiple brushes on the map.</note>\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'material'
+type = 'IMaterial'
+description = 'The name of the decal to paint. Can be retrieved with <page>util.DecalMaterial</page>.'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to apply the decal to'
+``````````
+name = 'position'
+type = 'Vector'
+description = 'The position of the decal.'
+``````````
+name = 'normal'
+type = 'Vector'
+description = 'The direction of the decal.'
+``````````
+name = 'color'
+type = 'table'
+description = 'The color of the decal. Uses the <page>Color</page>.\r\n\r\nThis only works when used on a brush model and only if the decal material has set **$vertexcolor** to 1.'
+``````````
+name = 'w'
+type = 'number'
+description = 'The width scale of the decal.'
+``````````
+name = 'h'
+type = 'number'
+description = 'The height scale of the decal.'
+
+[DecalMaterial]
+description = 'Gets the full material path by the decal name. Used with <page>util.DecalEx</page>.\r\n\r\n**Returns:** Material path of the decal.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'decalName'
+type = 'string'
+description = 'Name of the decal.'
+[[.returns]]
+type = 'string'
+
+[Decompress]
+description = 'Decompresses the given string using [LZMA](https://en.wikipedia.org/wiki/LZMA) algorithm. Used to decompress strings previously compressed with <page>util.Compress</page>.\r\n\r\n**Returns:** The original, decompressed string or an empty string on failure or invalid input.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'compressedString'
+type = 'string'
+description = 'The compressed string to decompress.'
+``````````
+name = 'maxSize'
+type = 'number'
+description = 'The maximal size in bytes it will decompress.'
+[[.returns]]
+type = 'string'
+
+[DistanceToLine]
+description = 'Gets the distance between a line and a point in 3d space.\r\n\r\n**Returns:** Distance from line.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'lineStart'
+type = 'Vector'
+description = 'Start of the line.'
+``````````
+name = 'lineEnd'
+type = 'Vector'
+description = 'End of the line.'
+``````````
+name = 'pointPos'
+type = 'Vector'
+description = 'The position of the point.'
+[[.returns]]
+type = 'number'
+
+[Effect]
+description = 'Creates an effect with the specified data.\r\n\r\nYou can find a list of built-in engine effects <page text="here">Effects</page>. You can create your own. Example effects can be found [here](https://github.com/garrynewman/garrysmod/tree/master/garrysmod/gamemodes/sandbox/entities/effects) and [here](https://github.com/garrynewman/garrysmod/tree/master/garrysmod/gamemodes/base/entities/effects).\r\n\r\n<note>When dispatching an effect from the server, some values may be clamped for networking optimizations. Visit the Set accessors on <page>CEffectData</page> to see which ones are affected.</note>\r\n<note>You will need to couple this function with <page>Global.IsFirstTimePredicted</page> if you want to use it in <page text="predicted hook">Prediction</page>.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'effectName'
+type = 'string'
+description = 'The name of the effect to create.'
+``````````
+name = 'effectData'
+type = 'CEffectData'
+description = 'The effect data describing the effect.'
+``````````
+name = 'allowOverride'
+type = 'boolean'
+description = 'Whether Lua-defined effects should override engine-defined effects with the same name for this/single function call.'
+``````````
+name = 'ignorePredictionOrRecipientFilter'
+type = 'any'
+description = 'Can either be a boolean to ignore the prediction filter or a <page>CRecipientFilter</page>.\r\n\r\nSet this to true if you wish to call this function in multiplayer from server.'
+
+[GetModelInfo]
+description = 'Returns a table containing the info about the model.\r\n\r\n<note>This function will silently fail if used on models with following strings in them:\r\n* _shared\r\n* _anims\r\n* _gestures\r\n* _anim\r\n* _postures\r\n* _gst\r\n* _pst\r\n* _shd\r\n* _ss\r\n* _anm\r\n* _include</note>\r\n\r\n**Returns:** The model info as a table with the following keys:\r\n* <page>number</page> SkinCount - Identical to <page>Entity:SkinCount</page>.\r\n* <page>string</page> KeyValues - Valve key-value formatted info about the model\'s physics (Constraint Info, etc). This is limited to 4096 characters.\r\n* <page>string</page> ModelKeyValues - Valve key-value formatted info about the model ($keyvalues command in the .qc of the model), if present\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'mdl'
+type = 'string'
+description = 'Model path'
+[[.returns]]
+type = 'table'
+
+[GetModelMeshes]
+description = 'Returns a table of visual meshes of given model.\r\n\r\n<note>This does not work on brush models (`*number` models)</note>\r\n\r\nSee also <page>ENTITY:GetRenderMesh</page>.\r\n\r\n**Returns:** A table of tables with the following format:\r\n* <page>string</page> material - The material of the specific mesh\r\n* <page>table</page> triangles - A table of <page>Structures/MeshVertex</page>es ready to be fed into <page>IMesh:BuildFromTriangles</page>\r\n* <page>table</page> verticies - A table of <page>Structures/MeshVertex</page>es representing all the vertexes of the mesh. This table is used internally to generate the "triangles" table.\r\n\r\nEach <page>Structures/MeshVertex</page> returned also has an extra table of tables field called "weights" with the following data:\r\n* <page>number</page> boneID - The bone this vertex is attached to\r\n* <page>number</page> weight - How "strong" this vertex is attached to the bone. A vertex can be attached to multiple bones at once.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'model'
+type = 'string'
+description = 'The full path to a model to get the visual meshes of.'
+``````````
+name = 'lod'
+type = 'number'
+description = ''
+``````````
+name = 'bodygroupMask'
+type = 'number'
+description = ''
+[[.returns]]
+type = 'table'
+
+[GetPData]
+description = 'Gets PData of an offline player using their SteamID\r\n<warning>This function internally uses <page>Player:UniqueID</page>, which can cause collisions (two or more players sharing the same PData entry). It\'s recommended that you don\'t use it. See the related wiki page for more information.</warning>\r\n\r\n**Returns:** The stored value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'steamID'
+type = 'string'
+description = 'SteamID of the player'
+``````````
+name = 'name'
+type = 'string'
+description = 'Variable name to get the value of'
+``````````
+name = 'default'
+type = 'string'
+description = 'The default value, in case there\'s nothing stored'
+[[.returns]]
+type = 'string'
+
+[GetPixelVisibleHandle]
+description = 'Creates a new PixVis handle. See <page>util.PixelVisible</page>.\r\n\r\n**Returns:** PixVis\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'pixelvis handle t'
+
+[GetPlayerTrace]
+description = 'Utility function to quickly generate a trace table that starts at the players view position, and ends `32768` units along a specified direction.\r\n\r\n**Returns:** The trace data. See <page>Structures/Trace</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ply'
+type = 'Player'
+description = 'The player the trace should be based on'
+``````````
+name = 'dir'
+type = 'Vector'
+description = 'The direction of the trace'
+[[.returns]]
+type = 'table'
+
+[GetSunInfo]
+description = 'Gets information about the sun position and obstruction or nil if there is no sun.\r\n\r\n**Returns:** The sun info. See <page>Structures/SunInfo</page>\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'table'
+
+[GetSurfaceData]
+description = 'Returns data of a surface property at given ID.\r\n\r\n**Returns:** The data or no value if there is no valid surface property at given index.\r\n\r\nSee <page>Structures/SurfacePropertyData</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Surface property ID. You can get it from <page>Structures/TraceResult</page>.'
+[[.returns]]
+type = 'table'
+
+[GetSurfaceIndex]
+description = 'Returns the matching surface property index for the given surface property name.\r\n\r\nSee also <page>util.GetSurfaceData</page> and <page>util.GetSurfacePropName</page> for opposite function.\r\n\r\n**Returns:** The surface property index, or -1 if name doesn\'t correspond to a valid surface property.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'surfaceName'
+type = 'string'
+description = 'The name of the surface.'
+[[.returns]]
+type = 'number'
+
+[GetSurfacePropName]
+description = 'Returns the name of a surface property at given ID.\r\n\r\nSee also <page>util.GetSurfaceData</page> and <page>util.GetSurfaceIndex</page> for opposite function.\r\n\r\n**Returns:** The name or an empty string if there is no valid surface property at given index.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Surface property ID. You can get it from <page>Structures/TraceResult</page>.'
+[[.returns]]
+type = 'string'
+
+[GetUserGroups]
+description = 'Returns a table of all SteamIDs that have a usergroup.\r\n\r\n<note>This returns the original usergroups table, changes done to this table are not retroactive and will only affect newly connected users</note>\r\n\r\n**Returns:** The table of users. The table consists of SteamID-Table pairs, where the table has 2 fields:\r\n<page>string</page> name - Players name\r\n<page>string</page> group - The players user group\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'table'
+
+[IntersectRayWithOBB]
+description = 'Performs a "ray" box intersection and returns position, normal and the fraction.\r\n\r\n**Returns:** Hit position, nil if not hit.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'rayStart'
+type = 'Vector'
+description = 'Origin/start position of the ray.'
+``````````
+name = 'rayDelta'
+type = 'Vector'
+description = 'The ray vector itself. This can be thought of as: the ray end point relative to the start point.\r\n\r\nNote that in this implementation, the ray is not infinite - it\'s only a segment.'
+``````````
+name = 'boxOrigin'
+type = 'Vector'
+description = 'The center of the box.'
+``````````
+name = 'boxAngles'
+type = 'Angle'
+description = 'The angles of the box.'
+``````````
+name = 'boxMins'
+type = 'Vector'
+description = 'The min position of the box.'
+``````````
+name = 'boxMaxs'
+type = 'Vector'
+description = 'The max position of the box.'
+[[.returns]]
+type = 'Vector'
+
+[IntersectRayWithPlane]
+description = 'Performs a [ray-plane intersection](https://en.wikipedia.org/wiki/Line%E2%80%93plane_intersection) and returns the hit position or nil.\r\n\r\n**Returns:** The position of intersection, nil if not hit.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'rayOrigin'
+type = 'Vector'
+description = 'Origin/start position of the ray.'
+``````````
+name = 'rayDirection'
+type = 'Vector'
+description = 'The direction of the ray.'
+``````````
+name = 'planePosition'
+type = 'Vector'
+description = 'Any position of the plane.'
+``````````
+name = 'planeNormal'
+type = 'Vector'
+description = 'The normal vector of the plane.'
+[[.returns]]
+type = 'Vector'
+
+[IsInWorld]
+description = 'Checks if a certain position is within the world bounds.\r\n\r\n**Returns:** Whether the vector is in world.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Position to check.'
+[[.returns]]
+type = 'boolean'
+
+[IsModelLoaded]
+description = 'Checks if the model is loaded in the game.\r\n\r\n**Returns:** Returns true if the model is loaded in the game; otherwise false.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'modelName'
+type = 'string'
+description = 'Name/Path of the model to check.'
+[[.returns]]
+type = 'boolean'
+
+[IsSkyboxVisibleFromPoint]
+description = 'Check whether the skybox is visibile from the point specified.\r\n\r\n<note>This will always return true in fullbright maps</note>\r\n\r\n**Returns:** Whether the skybox is visible from the position.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'The position to check the skybox visibility from.'
+[[.returns]]
+type = 'boolean'
+
+[IsValidModel]
+description = 'Checks if the specified model is valid.\r\n\r\nA model is considered invalid in following cases:\r\n* Starts with a space or **maps**\r\n* Doesn\'t start with **models**\r\n* Contains any of the following:\r\n* * _gestures\r\n* * _animations\r\n* * _postures\r\n* * _gst\r\n* * _pst\r\n* * _shd\r\n* * _ss\r\n* * _anm\r\n* * .bsp\r\n* * cs_fix\r\n* On server: If the model isn\'t precached, if the model file doesn\'t exist on the disk\r\n* If precache failed\r\n* Model is the error model\r\n\r\n**Returns:** Whether the model is valid or not. Returns false clientside if the model is not precached by the server.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'modelName'
+type = 'string'
+description = 'Name/Path of the model to check.'
+[[.returns]]
+type = 'boolean'
+
+[IsValidPhysicsObject]
+description = 'Checks if given numbered physics object of given entity is valid or not. Most useful for ragdolls.\r\n\r\n**Returns:** true is valid, false otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity'
+``````````
+name = 'physobj'
+type = 'number'
+description = 'Number of the physics object to test'
+[[.returns]]
+type = 'boolean'
+
+[IsValidProp]
+description = 'Checks if the specified prop is valid.\r\n\r\n**Returns:** Returns true if the specified prop is valid; otherwise false.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'modelName'
+type = 'string'
+description = 'Name/Path of the model to check.'
+[[.returns]]
+type = 'boolean'
+
+[IsValidRagdoll]
+description = 'Checks if the specified model name points to a valid ragdoll.\r\n\r\n**Returns:** Returns true if the specified model name points to a valid ragdoll; otherwise false.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ragdollName'
+type = 'string'
+description = 'Name/Path of the ragdoll model to check.'
+[[.returns]]
+type = 'boolean'
+
+[JSONToTable]
+description = 'Converts a JSON string to a Lua table.\r\n\r\n<warning>This function converts keys to numbers whenever possible. It also has a limit of 15000 keys total.</warning>\r\n<bug issue="3561">This will attempt cast the string keys "inf", "nan", "true", and "false" to their respective Lua values. This completely ignores nulls in arrays.</bug>\r\n<bug issue="2407">Colors will not have the color metatable.</bug>\r\n\r\n**Returns:** The table containing converted information. Returns nothing on failure.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'json'
+type = 'string'
+description = 'The JSON string to convert.'
+[[.returns]]
+type = 'table'
+
+[KeyValuesToTable]
+description = 'Converts a KeyValue string to a Lua table.\r\n\r\n<note>Table keys will not repeat, see <page>util.KeyValuesToTablePreserveOrder</page>.</note>\r\n\r\n**Returns:** The converted table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'keyValues'
+type = 'string'
+description = 'The KeyValue string to convert.'
+``````````
+name = 'usesEscapeSequences'
+type = 'boolean'
+description = 'If set to true, will replace \t, \n, \" and \\ in the input text with their escaped variants'
+``````````
+name = 'preserveKeyCase'
+type = 'boolean'
+description = 'Whether we should preserve key case (may fail) or not (always lowercase)'
+[[.returns]]
+type = 'table'
+
+[KeyValuesToTablePreserveOrder]
+description = 'Similar to <page>util.KeyValuesToTable</page> but it also preserves order of keys.\r\n\r\n**Returns:** The output table\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'keyvals'
+type = 'string'
+description = 'The key value string'
+``````````
+name = 'usesEscapeSequences'
+type = 'boolean'
+description = 'If set to true, will replace \t, \n, \" and \\ in the input text with their escaped variants'
+``````````
+name = 'preserveKeyCase'
+type = 'boolean'
+description = 'Whether we should preserve key case (may fail) or not (always lowercase)'
+[[.returns]]
+type = 'table'
+
+[LocalToWorld]
+description = 'Returns a vector in world coordinates based on an entity and local coordinates\r\n\r\n**Returns:** wpos\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'The entity lpos is local to'
+``````````
+name = 'lpos'
+type = 'Vector'
+description = 'Coordinates local to the ent'
+``````````
+name = 'bonenum'
+type = 'number'
+description = 'The bonenumber of the ent lpos is local to'
+[[.returns]]
+type = 'Vector'
+
+[NetworkIDToString]
+description = 'Returns the networked string associated with the given ID from the string table.\r\n\r\n**Returns:** The networked string, or nil if it wasn\'t found.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'stringTableID'
+type = 'number'
+description = 'ID to get the associated string from.'
+[[.returns]]
+type = 'string'
+
+[NetworkStringToID]
+description = 'Returns the networked ID associated with the given string from the string table.\r\n\r\n**Returns:** The networked ID of the string, or 0 if it hasn\'t been networked with <page>util.AddNetworkString</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'networkString'
+type = 'string'
+description = 'String to get the associated networked ID from.'
+[[.returns]]
+type = 'number'
+
+[NiceFloat]
+description = 'Formats a float by stripping off extra 0\'s and .\'s\r\n\r\n**Returns:** Formatted float\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'float'
+type = 'number'
+description = 'The float to format'
+[[.returns]]
+type = 'string'
+
+[ParticleTracer]
+description = 'Creates a tracer effect with the given parameters.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the tracer effect.'
+``````````
+name = 'startPos'
+type = 'Vector'
+description = 'The start position of the tracer.'
+``````````
+name = 'endPos'
+type = 'Vector'
+description = 'The end position of the tracer.'
+``````````
+name = 'doWhiz'
+type = 'boolean'
+description = 'Play the hit miss(whiz) sound.'
+
+[ParticleTracerEx]
+description = 'Creates a tracer effect with the given parameters.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the tracer effect.'
+``````````
+name = 'startPos'
+type = 'Vector'
+description = 'The start position of the tracer.'
+``````````
+name = 'endPos'
+type = 'Vector'
+description = 'The end position of the tracer.'
+``````````
+name = 'doWhiz'
+type = 'boolean'
+description = 'Play the hit miss(whiz) sound.'
+``````````
+name = 'entityIndex'
+type = 'number'
+description = 'Entity index of the emitting entity.'
+``````````
+name = 'attachmentIndex'
+type = 'number'
+description = 'Attachment index to be used as origin.'
+
+[PixelVisible]
+description = 'Returns the visibility of a sphere in the world.\r\n\r\n**Returns:** Visibility, ranges from `0-1`. `0` when none of the area is visible, `1` when all of it is visible.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'The center of the visibility test.'
+``````````
+name = 'radius'
+type = 'number'
+description = 'The radius of the sphere to check for visibility.'
+``````````
+name = 'PixVis'
+type = 'pixelvis handle t'
+description = 'The PixVis handle created with <page>util.GetPixelVisibleHandle</page>.\r\n<warning>Don\'t use the same handle twice per tick or it will give unpredictable results.</warning>'
+[[.returns]]
+type = 'number'
+
+[PointContents]
+description = 'Returns the contents of the position specified.\r\n\r\n**Returns:** Contents bitflag, see <page>Enums/CONTENTS</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'position'
+type = 'Vector'
+description = 'Position to get the contents sample from.'
+[[.returns]]
+type = 'number'
+
+[PrecacheModel]
+description = 'Precaches a model for later use. Model is cached after being loaded once.\r\n<warning>\r\nModelprecache is limited to 4096 unique models. When it reaches the limit the game will crash.\r\n</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'modelName'
+type = 'string'
+description = 'The model to precache.'
+
+[PrecacheSound]
+description = 'Precaches a sound for later use. Sound is cached after being loaded once.\r\n<note>Soundcache is limited to 16384 unique sounds.</note>\r\n\r\n<bug>Positively broken on purpose because it fills stringtables</bug>\r\n<bug>Ultimately does nothing on client, and only works with sound scripts, not direct paths</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'soundName'
+type = 'string'
+description = 'The sound to precache.'
+
+[QuickTrace]
+description = 'Performs a trace with the given origin, direction and filter.\r\n\r\n**Returns:** Trace result. See <page>Structures/TraceResult</page>.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'origin'
+type = 'Vector'
+description = 'The origin of the trace.'
+``````````
+name = 'endpos'
+type = 'Vector'
+description = 'The end point of the trace, relative to the start.\r\nThis is the direction of the trace times the distance of the trace.'
+``````````
+name = 'filter'
+type = 'Entity'
+description = 'Entity which should be ignored by the trace. Can also be a table of entities or a function - see <page>Structures/Trace</page>.'
+[[.returns]]
+type = 'table'
+
+[RelativePathToFull]
+description = 'Returns the absolute system path the file relative to /garrysmod/.\r\n\r\n**Returns:** absolutePath\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'file'
+type = 'string'
+description = 'The file to get the absolute path of.'
+[[.returns]]
+type = 'string'
+
+[RemovePData]
+description = 'Removes PData of offline player using his SteamID.\r\n\r\n<warning>This function internally uses <page>Player:UniqueID</page>, which can cause collisions (two or more players sharing the same PData entry). It\'s recommended that you don\'t use it. See the related wiki page for more information.</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'steamID'
+type = 'string'
+description = 'SteamID of the player'
+``````````
+name = 'name'
+type = 'string'
+description = 'Variable name to remove'
+
+[ScreenShake]
+description = 'Makes the screen shake\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'pos'
+type = 'Vector'
+description = 'The origin of the effect.\r\n\r\n<note>Does nothing on client.</note>'
+``````````
+name = 'amplitude'
+type = 'number'
+description = 'The strength of the effect'
+``````````
+name = 'frequency'
+type = 'number'
+description = 'The frequency of the effect in hz'
+``````````
+name = 'duration'
+type = 'number'
+description = 'The duration of the effect in seconds'
+``````````
+name = 'radius'
+type = 'number'
+description = 'The range from the origin within which views will be affected, in Hammer Units\r\n\r\n<note>Does nothing on client.</note>'
+
+[SetPData]
+description = 'Sets PData for offline player using his SteamID\r\n<warning>This function internally uses <page>Player:UniqueID</page>, which can cause collisions (two or more players sharing the same PData entry). It\'s recommended that you don\'t use it. See the related wiki page for more information.</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'steamID'
+type = 'string'
+description = 'SteamID of the player'
+``````````
+name = 'name'
+type = 'string'
+description = 'Variable name to store the value in'
+``````````
+name = 'value'
+type = 'any'
+description = 'The value to store'
+
+[SharedRandom]
+description = 'Generates a random float value that should be the same on client and server.\r\n\r\n<note>This function is best used in a Predicted Hook</note>\r\n\r\n**Returns:** The random float value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'uniqueName'
+type = 'string'
+description = 'The seed for the random value'
+``````````
+name = 'min'
+type = 'number'
+description = 'The minimum value of the random range'
+``````````
+name = 'max'
+type = 'number'
+description = 'The maximum value of the random range'
+``````````
+name = 'additionalSeed'
+type = 'number'
+description = 'The additional seed'
+[[.returns]]
+type = 'number'
+
+[SpriteTrail]
+description = 'Adds a trail to the specified entity.\r\n\r\n**Returns:** Entity of created trail ([env_spritetrail](https://developer.valvesoftware.com/wiki/Env_spritetrail))\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'Entity to attach trail to'
+``````````
+name = 'attachmentID'
+type = 'number'
+description = 'Attachment ID of the entities model to attach trail to. If you are not sure, set this to 0'
+``````````
+name = 'color'
+type = 'table'
+description = 'Color of the trail, use <page>Global.Color</page>'
+``````````
+name = 'additive'
+type = 'boolean'
+description = 'Should the trail be additive or not'
+``````````
+name = 'startWidth'
+type = 'number'
+description = 'Start width of the trail'
+``````````
+name = 'endWidth'
+type = 'number'
+description = 'End width of the trail'
+``````````
+name = 'lifetime'
+type = 'number'
+description = 'How long it takes to transition from startWidth to endWidth'
+``````````
+name = 'textureRes'
+type = 'number'
+description = 'The resolution of trails texture. A good value can be calculated using this formula: 1 / ( startWidth + endWidth ) * 0.5'
+``````````
+name = 'texture'
+type = 'string'
+description = 'Path to the texture to use as a trail.'
+[[.returns]]
+type = 'Entity'
+
+[Stack]
+description = 'Returns a new <page>Stack</page> object\r\n\r\n**Returns:** A brand new stack object\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'Stack'
+
+[SteamIDFrom64]
+description = 'Given a 64bit SteamID will return a STEAM_0: style Steam ID\r\n\r\n**Returns:** STEAM_0 style Steam ID\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'string'
+description = 'The 64 bit Steam ID'
+[[.returns]]
+type = 'string'
+
+[SteamIDTo64]
+description = 'Given a STEAM_0 style Steam ID will return a 64bit Steam ID\r\n\r\n**Returns:** 64bit Steam ID\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'string'
+description = 'The STEAM_0 style id'
+[[.returns]]
+type = 'string'
+
+[StringToType]
+description = 'Converts a string to the specified type.\r\n\r\nThis can be useful when dealing with ConVars.\r\n\r\n**Returns:** The result of the conversion, or nil if a bad type is specified.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'str'
+type = 'string'
+description = 'The string to convert'
+``````````
+name = 'typename'
+type = 'string'
+description = 'The type to attempt to convert the string to. This can be vector, angle, float, int, bool, or string (case insensitive).'
+[[.returns]]
+type = 'any'
+
+[TableToJSON]
+description = 'Converts a table to a JSON string.\r\n<warning>All integers will be converted to decimals (5 -> 5.0).</warning>\r\n<warning>All keys are strings in the JSON format, so all keys will be converted to strings!</warning>\r\n<bug issue="3561">This will produce invalid JSON if the provided table contains nan or inf values.</bug>\r\n\r\n**Returns:** A JSON formatted string containing the serialized data\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'table'
+type = 'table'
+description = 'Table to convert.'
+``````````
+name = 'prettyPrint'
+type = 'boolean'
+description = 'Format and indent the JSON.'
+[[.returns]]
+type = 'string'
+
+[TableToKeyValues]
+description = 'Converts the given table into a key value string.\r\n\r\n**Returns:** KeyValueString\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'table'
+type = 'table'
+description = 'The table to convert.'
+``````````
+name = 'parentKey'
+type = 'string'
+description = 'The parent key.'
+[[.returns]]
+type = 'string'
+
+[Timer]
+description = 'Creates a timer object.\r\n\r\n**Returns:** A timer object. It has next methods:\r\n;Reset() - Resets the timer to nothing\r\n;Start( time ) - Starts the timer, call with end time\r\n;Started() - Returns true if the timer has been started\r\n;Elapsed() - Returns true if the time has elapsed\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'startdelay'
+type = 'number'
+description = 'How long you want the timer to be.'
+[[.returns]]
+type = 'table'
+
+[TimerCycle]
+description = 'Returns the time since this function has been last called\r\n\r\n**Returns:** Time since this function has been last called in ms\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[tobool]
+description = '<deprecated>You should use <page>Global.tobool</page> instead.</deprecated>\r\n\r\nConverts string or a number to a bool, if possible. Alias of <page>Global.tobool</page>.\r\n\r\n**Returns:** False if the input is equal to the string or boolean "false", if the input is equal to the string or number "0", or if the input is nil. Returns true otherwise.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'input'
+type = 'any'
+description = 'A string or a number to convert.'
+[[.returns]]
+type = 'boolean'
+
+[TraceEntity]
+description = 'Runs a trace using the entity\'s collisionmodel between two points. This does not take the entity\'s angles into account and will trace its unrotated collisionmodel.\r\n\r\n<note>Clientside entities will not be hit by traces.</note>\r\n\r\n**Returns:** Trace result. See <page>Structures/TraceResult</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'tracedata'
+type = 'table'
+description = 'Trace data. See <page>Structures/Trace</page>'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to use'
+[[.returns]]
+type = 'table'
+
+[TraceEntityHull]
+description = '<deprecated>This function is broken and returns the same values all the time</deprecated>\r\nTraces from one entity to another.\r\n\r\n**Returns:** Trace result. See <page>Structures/TraceResult</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent1'
+type = 'Entity'
+description = 'The first entity to trace from'
+``````````
+name = 'ent2'
+type = 'Entity'
+description = 'The second entity to trace to'
+[[.returns]]
+type = 'table'
+
+[TraceHull]
+description = 'Performs an AABB hull (axis-aligned bounding box, aka not rotated) trace with the given trace data.\r\n\r\n<note>Clientside entities will not be hit by traces.</note>\r\n\r\n<note>This function may not always give desired results clientside due to certain physics mechanisms not existing on the client. Use it serverside for accurate results.</note>\r\n\r\n**Returns:** Trace result. See <page>Structures/TraceResult</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'TraceData'
+type = 'table'
+description = 'The trace data to use. See <page>Structures/HullTrace</page>'
+[[.returns]]
+type = 'table'
+
+[TraceLine]
+description = 'Performs a trace with the given trace data.\r\n\r\n<note>Clientside entities will not be hit by traces.</note>\r\n\r\n**Returns:** Trace result. See <page>Structures/TraceResult</page>.\r\n\r\nCan return nil if <page>game.GetWorld</page> or its <page text="physics object">Entity:GetPhysicsObject</page> is invalid. This will be the case for any traces done before <page>GM:InitPostEntity</page> is called.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'TraceData'
+type = 'table'
+description = 'The trace data to use. See <page>Structures/Trace</page>'
+[[.returns]]
+type = 'table'
+
+[TypeToString]
+description = 'Converts a type to a (nice, but still parsable) string\r\n\r\n**Returns:** Converted string\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'input'
+type = 'any'
+description = 'What to convert'
+[[.returns]]
+type = 'string'
+
+[Active]
+description = 'Returns if the user is currently picking an entity.\r\n\r\n**Returns:** Is world picking\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[Finish]
+description = '<internal></internal>\r\n\r\nFinishes the world picking. This is called when a user presses their mouse after calling <page>util.worldpicker.Start</page>.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'tr'
+type = 'table'
+description = '<page>Structures/TraceResult</page> from the mouse press'
+
+[Start]
+description = 'Starts picking an entity in the world. This will suppress the next mouse click, and instead use it as a direction in the trace sent to the callback.\r\n\r\n**Scope:** Client'
+[[.args]]
+name = 'callback'
+type = 'function'
+description = 'Function to call after an entity choice has been made. Argument is:\r\n<page>table</page> tr - <page>TraceResult from the mouse press. tr.Entity will return the entity clicked</page>'
+

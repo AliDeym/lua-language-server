@@ -1,0 +1,216 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'File'
+	},
+}
+
+[Close]
+description = 'Dumps the file changes to disk and closes the file handle which makes the handle useless.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+
+[EndOfFile]
+description = 'Returns whether the <page>File</page> object has reached the end of file or not.\r\n\r\n**Returns:** Whether the file has reached end or not.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'boolean'
+
+[Flush]
+description = 'Dumps the file changes to disk and saves the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+
+[Read]
+description = 'Reads the specified amount of chars and returns them as a binary string.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'length'
+type = 'number'
+description = 'Reads the specified amount of chars.'
+[[.returns]]
+type = 'string'
+
+[ReadBool]
+description = 'Reads one byte of the file and returns whether that byte was not 0.\r\n\r\n**Returns:** val\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'boolean'
+
+[ReadByte]
+description = 'Reads one unsigned 8-bit integer from the file.\r\n\r\n**Returns:** The unsigned 8-bit integer from the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[ReadDouble]
+description = 'Reads 8 bytes from the file converts them to a double and returns them.\r\n\r\n**Returns:** value\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[ReadFloat]
+description = 'Reads 4 bytes from the file converts them to a float and returns them.\r\n\r\n**Returns:** The read value\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[ReadLine]
+description = 'Returns the contents of the file from the current position up until the end of the current line.\r\n\r\n<note>This function will look specifically for `Line Feed` characters `\n` and will **completely ignore `Carriage Return` characters** `\r`.</note>\r\n<note>This function will not return more than 8192 characters.</note>\r\n\r\n**Returns:** The string of data from the read line.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'string'
+
+[ReadLong]
+description = 'Reads a signed 32-bit integer from the file.\r\n\r\n**Returns:** A signed 32-bit integer\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[ReadShort]
+description = 'Reads a signed 16-bit integer from the file.\r\n\r\n**Returns:** int16\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[ReadULong]
+description = 'Reads a unsigned 32-bit integer from the file.\r\n\r\n**Returns:** An unsigned 32-bit integer\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[ReadUShort]
+description = 'Reads a unsigned 16-bit integer from the file.\r\n\r\n**Returns:** The 16-bit integer\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[Seek]
+description = 'Sets the file pointer to the specified position.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'pos'
+type = 'number'
+description = 'Pointer position.'
+
+[Size]
+description = 'Returns the size of the file in bytes.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[Skip]
+description = 'Moves the file pointer by the specified amount of chars.\r\n\r\n**Returns:** amount\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'amount'
+type = 'number'
+description = 'The amount of chars to skip, can be negative to skip backwards.'
+[[.returns]]
+type = 'number'
+
+[Tell]
+description = 'Returns the current position of the file pointer.\r\n\r\n**Returns:** pos\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+[[.returns]]
+type = 'number'
+
+[Write]
+description = 'Writes the given string into the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'data'
+type = 'string'
+description = 'Binary data to write to the file.'
+
+[WriteBool]
+description = 'Writes a boolean value to the file as one **byte**.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'bool'
+type = 'boolean'
+description = 'The bool to be written to the file.'
+
+[WriteByte]
+description = 'Write an 8-bit unsigned integer to the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'uint8'
+type = 'number'
+description = 'The 8-bit unsigned integer to be written to the file.'
+
+[WriteDouble]
+description = 'Writes a 8byte floating point double to the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'double'
+type = 'number'
+description = 'The double to be written to the file.'
+
+[WriteFloat]
+description = 'Writes a 4byte float to the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'float'
+type = 'number'
+description = 'The float to be written to the file.'
+
+[WriteLong]
+description = 'Writes a 32-bit signed integer to the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'int32'
+type = 'number'
+description = 'The 32-bit signed integer to be written to the file.'
+
+[WriteShort]
+description = 'Writes a 16-bit signed integer to the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'int16'
+type = 'number'
+description = 'The 16-bit signed integer to be written to the file.'
+
+[WriteULong]
+description = 'Writes an unsigned 32-bit integer to the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'uint32'
+type = 'number'
+description = 'The unsigned 32-bit integer to be written to the file.'
+
+[WriteUShort]
+description = 'Writes an unsigned 16-bit integer to the file.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'File'
+``````````
+name = 'uint16'
+type = 'number'
+description = 'The unsigned 16-bit integer to the file.'
+

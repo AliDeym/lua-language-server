@@ -1,0 +1,266 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CEffectData'
+	},
+}
+
+[GetAngles]
+description = 'Returns the angles of the effect.\r\n\r\n**Returns:** The angles of the effect\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'Angle'
+
+[GetAttachment]
+description = 'Returns the attachment ID for the effect.\r\n\r\n**Returns:** The attachment ID of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetColor]
+description = 'Returns byte which represents the color of the effect.\r\n\r\n**Returns:** The color of the effect\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetDamageType]
+description = 'Returns the damage type of the effect\r\n\r\n**Returns:** Damage type of the effect, see <page>Enums/DMG</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetEntIndex]
+description = 'Returns the entity index of the entity set for the effect.\r\n\r\n**Returns:** The entity index of the entity set for the effect.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetEntity]
+description = 'Returns the entity assigned to the effect.\r\n\r\n**Returns:** The entity assigned to the effect\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'Entity'
+
+[GetFlags]
+description = 'Returns the flags of the effect.\r\n\r\n**Returns:** The flags of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetHitBox]
+description = 'Returns the hit box ID of the effect.\r\n\r\n**Returns:** The hit box ID of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetMagnitude]
+description = 'Returns the magnitude of the effect.\r\n\r\n**Returns:** The magnitude of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetMaterialIndex]
+description = 'Returns the material ID of the effect.\r\n\r\n**Returns:** The material ID of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetNormal]
+description = 'Returns the normalized direction vector of the effect.\r\n\r\n**Returns:** The normalized direction vector of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'Vector'
+
+[GetOrigin]
+description = 'Returns the origin position of the effect.\r\n\r\n**Returns:** The origin position of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'Vector'
+
+[GetRadius]
+description = 'Returns the radius of the effect.\r\n\r\n**Returns:** The radius of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetScale]
+description = 'Returns the scale of the effect.\r\n\r\n**Returns:** The scale of the effect\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[GetStart]
+description = 'Returns the start position of the effect.\r\n\r\n**Returns:** The start position of the effect\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'Vector'
+
+[GetSurfaceProp]
+description = 'Returns the surface property index of the effect.\r\n\r\n**Returns:** The surface property index of the effect\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+[[.returns]]
+type = 'number'
+
+[SetAngles]
+description = 'Sets the angles of the effect.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'ang'
+type = 'Angle'
+description = 'The new angles to be set.'
+
+[SetAttachment]
+description = 'Sets the attachment id of the effect to be created with this effect data.\r\n\r\n<note>This is internally stored as an integer, but only the first 5 bits will be networked, effectively limiting this function to 0-31 range.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'attachment'
+type = 'number'
+description = 'New attachment ID of the effect.'
+
+[SetColor]
+description = 'Sets the color of the effect.\r\n<note>Internally stored as an integer, but only first 8 bits are networked, effectively limiting this function to 0-255 range.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'color'
+type = 'number'
+description = 'Color represented by a byte.'
+
+[SetDamageType]
+description = 'Sets the damage type of the effect to be created with this effect data.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'damageType'
+type = 'number'
+description = 'Damage type, see <page>Enums/DMG</page>.'
+
+[SetEntIndex]
+description = 'Sets the entity of the effect via its index.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'entIndex'
+type = 'number'
+description = 'The entity index to be set.'
+
+[SetEntity]
+description = 'Sets the entity of the effect to be created with this effect data.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'entity'
+type = 'Entity'
+description = 'Entity of the effect, mostly used for parenting.'
+
+[SetFlags]
+description = 'Sets the flags of the effect.\r\n\r\n<note>Internally stored as an integer, but only first 8 bits are networked, effectively limiting this function to 0-255 range.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'flags'
+type = 'number'
+description = 'The flags of the effect. Each effect has their own flags.'
+
+[SetHitBox]
+description = 'Sets the hit box index of the effect.\r\n\r\n<note>Internally stored as an integer, but only first 11 bits are networked, effectively limiting this function to 0-2047 range.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'hitBoxIndex'
+type = 'number'
+description = 'The hit box index of the effect.'
+
+[SetMagnitude]
+description = 'Sets the magnitude of the effect.\r\n<note>Internally stored as a float with 12 bit precision for networking purposes, limited to range of 0-1023.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'magnitude'
+type = 'number'
+description = 'The magnitude of the effect.'
+
+[SetMaterialIndex]
+description = 'Sets the material index of the effect.\r\n\r\n<note>Internally stored as an integer, but only first 12 bits are networked, effectively limiting this function to 0-4095 range.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'materialIndex'
+type = 'number'
+description = 'The material index of the effect.'
+
+[SetNormal]
+description = 'Sets the normalized (length=1) direction vector of the effect to be created with this effect data. This **must** be a normalized vector for networking purposes.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'normal'
+type = 'Vector'
+description = 'The normalized direction vector of the effect.'
+
+[SetOrigin]
+description = 'Sets the origin of the effect to be created with this effect data.\r\n<note>Limited to world bounds (+-16386 on every axis) and has horrible networking precision. (17 bit float per component)</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'origin'
+type = 'Vector'
+description = 'Origin of the effect.'
+
+[SetRadius]
+description = 'Sets the radius of the effect to be created with this effect data.\r\n\r\n<note>Internally stored as a float, but networked as a 10bit float, and is clamped to 0-1023 range.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'radius'
+type = 'number'
+description = 'Radius of the effect.'
+
+[SetScale]
+description = 'Sets the scale of the effect to be created with this effect data.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'scale'
+type = 'number'
+description = 'Scale of the effect.'
+
+[SetStart]
+description = 'Sets the start of the effect to be created with this effect data.\r\n<note>Limited to world bounds (+-16386 on every axis) and has horrible networking precision. (17 bit float per component)</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'start'
+type = 'Vector'
+description = 'Start of the effect.'
+
+[SetSurfaceProp]
+description = 'Sets the surface property index of the effect.\r\n<note>Internally stored as an integer, but only first 8 bits are networked, effectively limiting this function to `-1`-`254` range.(yes, that\'s not a mistake)</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CEffectData'
+``````````
+name = 'surfaceProperties'
+type = 'number'
+description = 'The surface property index of the effect.'
+

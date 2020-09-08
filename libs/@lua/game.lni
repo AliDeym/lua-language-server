@@ -1,0 +1,286 @@
+[game]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'game'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'game'
+	},
+	2 = {
+		type = 'library',
+		name = 'game'
+	}
+}
+
+[AddAmmoType]
+description = 'Adds a new ammo type to the game.\r\n\r\nYou can find a list of default ammo types <page text="here">Default_Ammo_Types</page>.\r\n\r\n<warning>This function must be called shared or you will have unexpected problems.</warning>\r\n<note>This function must be called in <page>GM:Initialize</page>.</note>\r\n<note>There is a limit of 128 ammo types, including the default ones.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ammoData'
+type = 'table'
+description = 'The attributes of the ammo. See the <page>Structures/AmmoData</page>.'
+
+[AddDecal]
+description = 'Registers a new decal.\r\n\r\n<warning>There\'s a rather low limit of around 256 for decal materials that may be registered and they are not cleared on map load.</warning>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'decalName'
+type = 'string'
+description = 'The name of the decal.'
+``````````
+name = 'materialName'
+type = 'string'
+description = 'The material to be used for the decal. May also be a list of material names, in which case a random material from that list will be chosen every time the decal is placed.'
+
+[AddParticles]
+description = 'Loads a particle file.\r\n\r\n<note>You will still need to call this function clientside regardless if you create the particle effects serverside.</note>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'particleFileName'
+type = 'string'
+description = 'The path of the file to add. Must be (file).pcf.'
+
+[BuildAmmoTypes]
+description = '<internal>Consider using <page>game.GetAmmoTypes</page> and <page>game.GetAmmoData</page> instead.</internal>\r\nCalled by the engine to retrieve the ammo types.\r\n\r\n**Returns:** All ammo types registered via <page>game.AddAmmoType</page>, sorted by its name value.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[CleanUpMap]
+description = 'If called serverside it will remove ALL entities which were not created by the map(not players or weapons held by players).\r\n\r\nOn the client it will remove decals, sounds, gibs, dead NPCs, and entities created via <page>ents.CreateClientProp</page>.\r\n\r\nThis function calls <page>GM:PreCleanupMap</page> before cleaning up the map and <page>GM:PostCleanupMap</page> after cleaning up the map.\r\n\r\n<bug issue="1142">Calling this in a <page>ENTITY:StartTouch</page> or <page>ENTITY:Touch</page> hook will crash the game.</bug>\r\n\r\n<bug issue="2874">Calling this destroys all BASS streams.</bug>\r\n\r\n<bug issue="3637">This can crash when removing _firesmoke entities.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'dontSendToClients'
+type = 'boolean'
+description = 'If set to true, don\'t run this functions on all clients.'
+``````````
+name = 'ExtraFilters'
+type = 'table'
+description = 'Entity classes not to reset during cleanup.'
+
+[ConsoleCommand]
+description = 'Runs a console command.\r\nMake sure to add a newline ("\n") at the end of the command.\r\n\r\n<warning>If you use data that were received from a client, you should avoid using this function because newline and semicolon (at least) allow the client to run arbitrary commands!\r\n\r\nFor safety, you are urged to prefer using <page>Global.RunConsoleCommand</page> in this case.</warning>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'stringCommand'
+type = 'string'
+description = 'String containing the command and arguments to be ran.'
+
+[GetAmmoDamageType]
+description = 'Returns the damage type of given ammo type.\r\n\r\n**Returns:** See <page>Enums/DMG</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Ammo ID to retrieve the damage type of. Starts from 1.'
+[[.returns]]
+type = 'number'
+
+[GetAmmoData]
+description = 'Returns the <page>Structures/AmmoData</page> for given ID.\r\n\r\n**Returns:** The <page>Structures/AmmoData</page> containing all ammo data\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'ID of the ammo type to look up the data for'
+[[.returns]]
+type = 'table'
+
+[GetAmmoForce]
+description = 'Returns the ammo bullet force that is applied when an entity is hit by a bullet of given ammo type.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Ammo ID to retrieve the force of. Starts from 1.'
+[[.returns]]
+type = 'number'
+
+[GetAmmoID]
+description = 'Returns the ammo type ID for given ammo type name.\r\n\r\nSee <page>game.GetAmmoName</page> for reverse.\r\n\r\n**Returns:** The ammo type ID of given ammo type name, or -1 if not found\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Name of the ammo type to look up ID of'
+[[.returns]]
+type = 'number'
+
+[GetAmmoMax]
+description = 'Returns the real maximum amount of ammo of given ammo ID.\r\n\r\n<note>Currently all ammo types have overridden maximum value of reserve ammo set to 9999.</note>\r\n\r\n**Returns:** The maximum amount of reserve ammo a player can hold of this ammo type.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Ammo type ID'
+[[.returns]]
+type = 'number'
+
+[GetAmmoName]
+description = 'Returns the ammo name for given ammo type ID.\r\n\r\nSee <page>game.GetAmmoID</page> for reverse.\r\n\r\n**Returns:** The name of given ammo type ID or nil if ammo type ID is invalid.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Ammo ID to retrieve the name of. Starts from 1.'
+[[.returns]]
+type = 'string'
+
+[GetAmmoNPCDamage]
+description = 'Returns the damage given ammo type should do to NPCs.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Ammo ID to retrieve the damage info of. Starts from 1.'
+[[.returns]]
+type = 'number'
+
+[GetAmmoPlayerDamage]
+description = 'Returns the damage given ammo type should do to players.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'id'
+type = 'number'
+description = 'Ammo ID to retrieve the damage info of. Starts from 1.'
+[[.returns]]
+type = 'number'
+
+[GetAmmoTypes]
+description = 'Returns a list of all ammo types currently registered.\r\n\r\n**Returns:** A table containing all ammo types. The keys are ammo IDs, the values are the names associated with those IDs.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[GetGlobalCounter]
+description = 'Returns the counter of a Global State.\r\n\r\nSee <page>Global States</page> for more information.\r\n\r\n**Returns:** The value of the given Global State, 0 if the global state doesn\'t exist.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the Global State to set.\r\n\r\nIf the Global State by that name does not exist, it will be created.\r\n\r\nSee <page>Global States</page> for a list of default global states.'
+[[.returns]]
+type = 'number'
+
+[GetGlobalState]
+description = 'Returns whether a Global State is off, active or dead ( inactive )\r\n\r\nSee <page>Global States</page> for more information.\r\n\r\n**Returns:** The state of the Global State. See <page>Enums/GLOBAL</page>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the Global State to retrieve the state of.\r\n\r\nIf the Global State by that name does not exist, **GLOBAL_DEAD** will be returned.\r\n\r\nSee <page>Global States</page> for a list of default global states.'
+[[.returns]]
+type = 'number'
+
+[GetIPAddress]
+description = 'Returns the public IP address and port of the current server. This will return the IP/port that you are connecting through when ran clientside.\r\n<note>Returns "0.0.0.0:0" in singleplayer.</note>\r\n\r\n<bug issue="3001">Returns "0.0.0.0:`port`" on the server when called too early, including in <page>GM:Initialize</page> and <page>GM:InitPostEntity</page>. This bug seems to only happen the first time a server is launched, and will return the correct value after switching maps.</bug>\r\n\r\n**Returns:** The IP address and port in the format "x.x.x.x:x"\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'string'
+
+[GetMap]
+description = 'Returns the name of the current map, without a file extension.\r\nOn the menu state, returns "menu".\r\n\r\n**Returns:** The name of the current map, without a file extension.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'string'
+
+[GetMapNext]
+description = 'Returns the next map that would be loaded according to the file that is set by the mapcyclefile convar.\r\n\r\n**Returns:** nextMap\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'string'
+
+[GetMapVersion]
+description = 'Returns the VBSP version of the current map.\r\n\r\n**Returns:** VBSP version of the currently loaded map, will be either 19, 20 or 21 for L4D1+ maps\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'number'
+
+[GetSkillLevel]
+description = 'Returns the difficulty level of the game.\r\n\r\n**TIP:** You can use this function in your scripted NPCs or Nextbots to make them harder, however, it is a good idea to lock powerful attacks behind the highest difficulty instead of just increasing the health.\r\n\r\n<note>Internally this is tied to the gamerules entity, so you\'ll have to wait to wait until <page>GM:InitPostEntity</page> is called to return the skill level</note>\r\n\r\n**Returns:** The difficulty level, Easy( 1 ), Normal( 2 ), Hard( 3 ).\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[GetTimeScale]
+description = 'Returns the time scale of the game\r\n\r\n**Returns:** The time scale\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[GetWorld]
+description = 'Returns the worldspawn entity.\r\n\r\n**Returns:** The world\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'Entity'
+
+[IsDedicated]
+description = 'Returns true if the server is a dedicated server, false if it is a listen server or a singleplayer game.\r\n\r\n<bug issue="1495">This always returns false on the client.</bug>\r\n\r\n**Returns:** Is the server dedicated or not.\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'boolean'
+
+[KickID]
+description = 'Kicks a player from the server. This can be ran before the player has spawned.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'id'
+type = 'string'
+description = 'UserID or SteamID of the player to kick.'
+``````````
+name = 'reason'
+type = 'string'
+description = 'Reason to display to the player. This can span across multiple lines.\r\n\r\n<warning>This will be shortened to ~512 chars, though this includes the command itself and the player index so will realistically be more around ~498. It is recommended to avoid going near the limit to avoid truncation.</warning>'
+
+[LoadNextMap]
+description = 'Loads the next map according to the nextlevel convar, or from the current mapcycle file set by the respective convar.\r\n\r\n**Scope:** Server'
+
+[MapLoadType]
+description = 'Returns the map load type of the current map.\r\n\r\nAfter changing the map with the console command `changelevel`, "newgame" is returned. With `changelevel2` (single player only), "transition" is returned.\r\n\r\n**Returns:** The load type. Possible values are: "newgame", "loadgame", "transition", "background".\r\n\r\n**Scope:** Server'
+[[.returns]]
+type = 'string'
+
+[MaxPlayers]
+description = 'Returns the maximum amount of players (including bots) that the server can have.\r\n\r\n**Returns:** The maximum amount of players\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'number'
+
+[MountGMA]
+description = 'Mounts a GMA addon from the disk.\r\nCan be used with <page>steamworks.DownloadUGC</page>\r\n\r\n<note>Any error models currently loaded that the mounted addon provides will be reloaded.\r\n\r\n\r\nAny error materials currently loaded that the mounted addon provides will NOT be reloaded. That means that this cannot be used to fix missing map materials, as the map materials are loaded before you are able to call this.</note>\r\n\r\n**Returns:** success\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'path'
+type = 'string'
+description = 'Location of the GMA file to mount, retrieved from <page>steamworks.DownloadUGC</page>. This file does not have to end with the .gma extension, but will be interpreted as a GMA.'
+[[.returns]]
+type = 'boolean'
+
+[RemoveRagdolls]
+description = 'Removes all the clientside ragdolls.\r\n\r\n**Scope:** Shared'
+
+[SetGlobalCounter]
+description = 'Sets the counter of a Global State.\r\n\r\nSee <page>Global States</page> for more information.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the Global State to set.\r\n\r\nIf the Global State by that name does not exist, it will be created.\r\n\r\nSee <page>Global States</page> for a list of default global states.'
+``````````
+name = 'count'
+type = 'number'
+description = 'The value to set for that Global State.'
+
+[SetGlobalState]
+description = 'Sets whether a Global State is off, active or dead ( inactive )\r\n\r\nSee <page>Global States</page> for more information.\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the Global State to set.\r\n\r\nIf the Global State by that name does not exist, it will be created.\r\n\r\nSee <page>Global States</page> for a list of default global states.'
+``````````
+name = 'state'
+type = 'number'
+description = 'The state of the Global State. See <page>Enums/GLOBAL</page>'
+
+[SetSkillLevel]
+description = 'Sets the difficulty level of the game, can be retrieved with <page>game.GetSkillLevel</page>.\r\n\r\nThis will automatically change whenever the "skill" convar is modified serverside.\r\n\r\n<bug issue="3491">This function will not work if the skill convar doesn\'t match the targeted value. To work around this, you must use RunConsoleCommand("skill", num) alongside this function.</bug>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'level'
+type = 'number'
+description = 'The difficulty level, Easy( 1 ), Normal( 2 ), Hard( 3 ).'
+
+[SetTimeScale]
+description = 'Sets the time scale of the game.\r\n\r\nThis function is supposed to remove the need of using the host_timescale convar, which is cheat protected.\r\n\r\nTo slow down or speed up the movement of a specific player, use <page>Player:SetLaggedMovementValue</page> instead.\r\n\r\n<note>Like host_timescale, this method does not affect sounds, if you wish to change that, look into <page>GM:EntityEmitSound</page>.</note>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'timeScale'
+type = 'number'
+description = 'The new timescale, minimum value is 0.001 and maximum is 5.'
+
+[SinglePlayer]
+description = 'Returns whenever the current session is a single player game.\r\n\r\n**Returns:** isSinglePlayer\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'boolean'
+
+[StartSpot]
+description = 'Returns position the player should start from, this is not the same thing as spawn points, it is used to properly transit the player between maps.\r\n\r\n**Returns:** startSpot\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'Vector'
+

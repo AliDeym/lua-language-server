@@ -1,0 +1,65 @@
+[cookie]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'cookie'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'cookie'
+	},
+	2 = {
+		type = 'library',
+		name = 'cookie'
+	}
+}
+
+[Delete]
+description = 'Deletes a cookie on the client.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the cookie that you want to delete.'
+
+[GetNumber]
+description = 'Gets the value of a cookie on the client as a number.\r\n\r\n**Returns:** The cookie value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the cookie that you want to get.'
+``````````
+name = 'default'
+type = 'any'
+description = 'Value to return if the cookie does not exist.'
+[[.returns]]
+type = 'number'
+
+[GetString]
+description = 'Gets the value of a cookie on the client as a string.\r\n\r\n**Returns:** The cookie value\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of the cookie that you want to get.'
+``````````
+name = 'default'
+type = 'any'
+description = 'Value to return if the cookie does not exist.'
+[[.returns]]
+type = 'string'
+
+[Set]
+description = 'Sets the value of a cookie, which is saved automatically by the <page>sql</page>.\r\n\r\nThese are stored in the *.db files - cl.db for clients, mn.db for menu state and sv.db for servers.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'key'
+type = 'string'
+description = 'The name of the cookie that you want to set.'
+``````````
+name = 'value'
+type = 'string'
+description = 'Value to store in the cookie.'
+

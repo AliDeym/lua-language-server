@@ -1,0 +1,41 @@
+[baseclass]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'baseclass'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'baseclass'
+	},
+	2 = {
+		type = 'library',
+		name = 'baseclass'
+	}
+}
+
+[Get]
+description = 'Gets the base class of an an object.\r\n\r\nThis is used not just by entities, but also by widgets, panels, drive modes, weapons and gamemodes (with "gamemode_" prefix).\r\n\r\nThe keyword **DEFINE_BASECLASS** translates into a call to this function. In the engine, it is replaced with:\r\n\r\n```\r\nlocal BaseClass = baseclass.Get\r\n```\r\n\r\n**Returns:** The base class\'s meta table.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The child class.'
+[[.returns]]
+type = 'table'
+
+[Set]
+description = 'Add a new base class that can be derived by others. This is done automatically for:\r\n* widgets\r\n* panels\r\n* drive modes\r\n* entities\r\n* weapons\r\n* gamemodes (with prefix "gamemode_")\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'The name of this base class. Must be completely unique.'
+``````````
+name = 'tab'
+type = 'table'
+description = 'The base class.'
+

@@ -1,0 +1,42 @@
+[resource]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'resource'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'resource'
+	},
+	2 = {
+		type = 'library',
+		name = 'resource'
+	}
+}
+
+[AddFile]
+description = 'Adds the specified and all related files to the files the client should download.\r\n\r\nFor convenience, this function will automatically add any other files that are related to the selected one, and throw an error if it can\'t find them. For example, a `.vmt` file will automatically add the `.vtf` with the same name, and a `.mdl` file will automatically add all `.vvd`, `.ani`, `.dx80.vtx`, `.dx90.vtx`, `.sw.vtx`, `.phy` and `.jpg` files with the same name, with a separate error for each missing file.\r\n\r\nIf you do not want it to do this, use <page>resource.AddSingleFile</page>.\r\n\r\n<warning>There\'s a 8192 downloadable file limit. If you need more, consider using Workshop addons - <page>resource.AddWorkshop</page>. You should also consider the fact that you have way too many downloads. This limit is shared among all resource.Add functions.</warning>\r\n\r\n<note>Running this function using a path relative to the main `garrysmod/` folder will not work for files in addons and gamemodes. Instead, the files must be added relative to their respective content folders. For example, a sound file from an addon would use the path "sound/[FILENAME_AND_EXTENSION]," despite the file being located in "addons/[ADDON_NAME]/sound/[FILENAME_AND_EXTENSION]"</note>\r\n\r\n<note>The file must exist on the server or players will not download it!</note>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'path'
+type = 'string'
+description = 'Virtual path of the file to be added, relative to `garrysmod/`. Do not add `.bz2` to the filepath. Do not put `gamemodes/*gamemodename*/content/` or `addons/<*addonname*/` into the path.'
+
+[AddSingleFile]
+description = 'Adds the specified file to the files the client should download.\r\n\r\nIf you wish to add textures or models, consider using <page>resource.AddFile</page> to add all the files required for a texture/model.\r\n\r\n<warning>There\'s a 8192 downloadable file limit. </warning>\r\n<note>If you need more than 8192, consider using Workshop addons - <page>resource.AddWorkshop</page>. You should also consider the fact that you have way too many downloads. This limit is shared among all resource.Add functions.</note>\r\n\r\n<note>The file must exist on the server or players will not download it!</note>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'path'
+type = 'string'
+description = 'Path of the file to be added, relative to garrysmod/'
+
+[AddWorkshop]
+description = 'Adds a workshop addon for the client to download before entering the server.\r\n\r\nHaving the raw files from a workshop item does not count as having already downloaded it.<br>\r\nSo players who previously downloaded a map through Fast Download will have to re-download it if you use the workshop.\r\n\r\nYou should try to only add addons that have custom content ( models, sounds, etc ).\r\n\r\nGamemodes that are <page text="workshop enabled">Gamemode_Creation#Gamemode_Text_File</page> are automatically added to this list - so there\'s no need to add them.\r\n\r\n\r\nThe server\'s current map is also automatically added, if it is loaded from a workshop addon.\r\n\r\n<warning>This will not "install" the addon on your server, see <page>Workshop for Dedicated Servers</page> for installing Steam Workshop addons onto your servers</warning>\r\n\r\n**Scope:** Server'
+[[.args]]
+name = 'workshopid'
+type = 'string'
+description = 'The workshop id of the file. This cannot be a collection.'
+

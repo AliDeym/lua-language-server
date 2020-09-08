@@ -1,0 +1,109 @@
+[scripted_ents]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'scripted_ents'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'scripted_ents'
+	},
+	2 = {
+		type = 'library',
+		name = 'scripted_ents'
+	}
+}
+
+[Alias]
+description = 'Defines an alias string that can be used to refer to another classname\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'alias'
+type = 'string'
+description = 'A new string which can be used to refer to another classname'
+``````````
+name = 'classname'
+type = 'string'
+description = 'The classname the alias should refer to'
+
+[Get]
+description = 'Returns a copy of the ENT table for a class, including functions defined by the base class\r\n\r\n**Returns:** entTable\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'The classname of the ENT table to return, can be an alias'
+[[.returns]]
+type = 'table'
+
+[GetList]
+description = 'Returns a copy of the list of all ENT tables registered\r\n\r\n**Returns:** A table of all entities in the following format: (table keys are the classnames)\r\n* <page>table</page> t - The <page>ENT associated with the entity</page>\r\n* <page>boolean</page> isBaseType - Always true\r\n* <page>string</page> Base - The entity base (note capital B in the key name)\r\n* <page>string</page> type - The entity type\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[GetMember]
+description = 'Retrieves a member of entity\'s table.\r\n\r\n**Returns:** The member or nil if failed\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'class'
+type = 'string'
+description = 'Entity\'s class name'
+``````````
+name = 'name'
+type = 'string'
+description = 'Name of member to retrieve'
+[[.returns]]
+type = 'any'
+
+[GetSpawnable]
+description = 'Returns a list of all ENT tables which contain either ENT.Spawnable or ENT.AdminSpawnable\r\n\r\n**Returns:** A table of <page>Structures/ENT</page>s\r\n\r\n**Scope:** Shared'
+[[.returns]]
+type = 'table'
+
+[GetStored]
+description = 'Returns the actual ENT table for a class. Modifying functions/variables in this table will change newly spawned entities\r\n\r\n**Returns:** entTable\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'The classname of the ENT table to return'
+[[.returns]]
+type = 'table'
+
+[GetType]
+description = 'Returns the \'type\' of a class, this will one of the following: \'anim\', \'ai\', \'brush\', \'point\'.\r\n\r\n**Returns:** type\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'classname'
+type = 'string'
+description = 'The classname to check'
+[[.returns]]
+type = 'string'
+
+[IsBasedOn]
+description = 'Checks if name is based on base\r\n\r\n**Returns:** Returns true if class name is based on base, else false.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'name'
+type = 'string'
+description = 'Entity\'s class name to be checked'
+``````````
+name = 'base'
+type = 'string'
+description = 'Base class name to be checked'
+[[.returns]]
+type = 'boolean'
+
+[OnLoaded]
+description = '<internal></internal>\r\n\r\nCalled after all ENTS have been loaded and runs <page>baseclass.Set</page> on each one.\r\n\r\nYou can retrieve all the currently registered ENTS with <page>scripted_ents.GetList</page>.\r\n\r\n<note>This is not called after an ENT auto refresh, and thus the inherited baseclass functions retrieved with <page>baseclass.Get</page> will not be updated</note>\r\n\r\n**Scope:** Shared'
+
+[Register]
+description = 'Registers an ENT table with a classname. Reregistering an existing classname will automatically update the functions of all existing entities of that class.\r\n\r\n<bug pull="1300">Sub-tables provided in the first argument will not carry over their metatable, and will receive a BaseClass key if the table was merged with the base\'s. Userdata references, which includes Vectors, Angles, Entities, etc. will not be copied.</bug>\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ENT'
+type = 'table'
+description = 'The ENT table to register'
+``````````
+name = 'classname'
+type = 'string'
+description = 'The classname to register'
+

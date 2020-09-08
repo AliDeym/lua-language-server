@@ -1,0 +1,138 @@
+[motionsensor]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'motionsensor'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'motionsensor'
+	},
+	2 = {
+		type = 'library',
+		name = 'motionsensor'
+	}
+}
+
+[BuildSkeleton]
+description = '\r\n\r\n**Returns:** Pos\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'translator'
+type = 'table'
+description = ''
+``````````
+name = 'player'
+type = 'Player'
+description = ''
+``````````
+name = 'rotation'
+type = 'Angle'
+description = ''
+[[.returns]]
+type = 'Vector'
+
+[ChooseBuilderFromEntity]
+description = '\r\n\r\n**Returns:** Chosen builder\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'ent'
+type = 'Entity'
+description = 'Entity to choose builder for'
+[[.returns]]
+type = 'string'
+
+[GetColourMaterial]
+description = 'Returns the depth map material.\r\n\r\n**Returns:** The material\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'IMaterial'
+
+[GetSkeleton]
+description = '\r\n\r\n**Scope:** Client'
+
+[IsActive]
+description = 'Return whether a kinect is connected - and active (ie - Start has been called).\r\n\r\n**Returns:** Connected and active or not\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[IsAvailable]
+description = 'Returns true if we have detected that there\'s a kinect connected to the PC\r\n\r\n**Returns:** Connected or not\r\n\r\n**Scope:** Client'
+[[.returns]]
+type = 'boolean'
+
+[ProcessAngle]
+description = '\r\n\r\n**Returns:** Return nil on failure\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'translator'
+type = 'table'
+description = ''
+``````````
+name = 'sensor'
+type = 'table'
+description = ''
+``````````
+name = 'pos'
+type = 'Vector'
+description = ''
+``````````
+name = 'ang'
+type = 'Angle'
+description = ''
+``````````
+name = 'special_vectors'
+type = 'table'
+description = ''
+``````````
+name = 'boneid'
+type = 'number'
+description = ''
+``````````
+name = 'v'
+type = 'table'
+description = ''
+[[.returns]]
+type = 'boolean'
+
+[ProcessAnglesTable]
+description = '\r\n\r\n**Returns:** Ang. If !translator.AnglesTable then return - {}\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'translator'
+type = 'table'
+description = ''
+``````````
+name = 'sensor'
+type = 'table'
+description = ''
+``````````
+name = 'pos'
+type = 'Vector'
+description = ''
+``````````
+name = 'rotation'
+type = 'Angle'
+description = ''
+[[.returns]]
+type = 'Angle'
+
+[ProcessPositionTable]
+description = '\r\n\r\n**Returns:** Pos. if !translator.PositionTable then return - {}\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'translator'
+type = 'table'
+description = ''
+``````````
+name = 'sensor'
+type = 'table'
+description = ''
+[[.returns]]
+type = 'Vector'
+
+[Start]
+description = 'This starts access to the kinect sensor. Note that this usually freezes the game for a couple of seconds.\r\n\r\n**Scope:** Client'
+
+[Stop]
+description = 'Stops the motion capture.\r\n\r\n**Scope:** Client'
+

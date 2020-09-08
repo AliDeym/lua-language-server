@@ -1,0 +1,252 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'CTakeDamageInfo'
+	},
+}
+
+[AddDamage]
+description = 'Increases the damage by damageIncrease.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'damageIncrease'
+type = 'number'
+description = 'The damage to add.'
+
+[GetAmmoType]
+description = 'Returns the ammo type used by the weapon that inflicted the damage.\r\n\r\n**Returns:** Ammo type ID\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'number'
+
+[GetAttacker]
+description = 'Returns the attacker ( character who originated the attack ), for example a player or an NPC that shot the weapon.\r\n\r\n**Returns:** The attacker\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'Entity'
+
+[GetBaseDamage]
+description = 'Returns the initial unmodified by skill level ( <page>game.GetSkillLevel</page> ) damage.\r\n\r\n**Returns:** baseDamage\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'number'
+
+[GetDamage]
+description = 'Returns the total damage.\r\n\r\n**Returns:** damage\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'number'
+
+[GetDamageBonus]
+description = 'Gets the current bonus damage.\r\n\r\n**Returns:** Bonus damage\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'number'
+
+[GetDamageCustom]
+description = 'Gets the custom damage type. This is used by Day of Defeat: Source and Team Fortress 2 for extended damage info, but isn\'t used in Garry\'s Mod by default.\r\n\r\n**Returns:** The custom damage type\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'number'
+
+[GetDamageForce]
+description = 'Returns a vector representing the damage force.\r\n\r\nCan be set with <page>CTakeDamageInfo:SetDamageForce</page>.\r\n\r\n**Returns:** The damage force\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'Vector'
+
+[GetDamagePosition]
+description = 'Returns the position where the damage was or is going to be applied to.\r\n\r\nCan be set using <page>CTakeDamageInfo:SetDamagePosition</page>.\r\n\r\n**Returns:** The damage position\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'Vector'
+
+[GetDamageType]
+description = 'Returns a bitflag which indicates the damage type(s) of the damage.\r\n\r\nConsider using <page>CTakeDamageInfo:IsDamageType</page> instead. Value returned by this function can contain multiple damage types.\r\n\r\n**Returns:** Damage type(s), a combination of <page>Enums/DMG</page>\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'number'
+
+[GetInflictor]
+description = 'Returns the inflictor of the damage. This is not necessarily a weapon.\r\n\r\nFor hitscan weapons this is the weapon.\r\n\r\n\r\nFor projectile weapons this is the projectile.\r\n\r\n\r\n\r\n\r\n\r\nFor a more reliable method of getting the weapon that damaged an entity, use <page text="GetAttacker">CTakeDamageInfo:GetAttacker</page> with <page text="GetActiveWeapon">Player:GetActiveWeapon</page>.\r\n\r\n**Returns:** The inflictor\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'Entity'
+
+[GetMaxDamage]
+description = 'Returns the maximum damage.\r\n\r\n**Returns:** maxDmg\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'number'
+
+[GetReportedPosition]
+description = 'Returns the initial, unmodified position where the damage occured.\r\n\r\n**Returns:** position\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'Vector'
+
+[IsBulletDamage]
+description = 'Returns true if the damage was caused by a bullet.\r\n\r\n**Returns:** isBulletDmg\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'boolean'
+
+[IsDamageType]
+description = 'Returns whenever the damageinfo contains the damage type specified.\r\n\r\n**Returns:** Whether this damage contains specified damage type or not\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'dmgType'
+type = 'number'
+description = 'Damage type to test. See <page>Enums/DMG</page>.'
+[[.returns]]
+type = 'boolean'
+
+[IsExplosionDamage]
+description = 'Returns whenever the damageinfo contains explosion damage.\r\n\r\n**Returns:** isExplDamage\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'boolean'
+
+[IsFallDamage]
+description = 'Returns whenever the damageinfo contains fall damage.\r\n\r\n**Returns:** isFallDmg\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+[[.returns]]
+type = 'boolean'
+
+[ScaleDamage]
+description = 'Scales the damage by the given value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'scale'
+type = 'number'
+description = 'Value to scale the damage with.'
+
+[SetAmmoType]
+description = 'Changes the ammo type used by the weapon that inflicted the damage.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'ammoType'
+type = 'number'
+description = 'Ammo type ID'
+
+[SetAttacker]
+description = 'Sets the attacker ( character who originated the attack ) of the damage, for example a player or an NPC.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'ent'
+type = 'Entity'
+description = 'The entity to be set as the attacker.'
+
+[SetDamage]
+description = 'Sets the amount of damage.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'damage'
+type = 'number'
+description = 'The value to set the absolute damage to.'
+
+[SetDamageBonus]
+description = 'Sets the bonus damage. Bonus damage isn\'t automatically applied, so this will have no outer effect by default.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'damage'
+type = 'number'
+description = 'The extra damage to be added.'
+
+[SetDamageCustom]
+description = 'Sets the custom damage type. This is used by Day of Defeat: Source and Team Fortress 2 for extended damage info, but isn\'t used in Garry\'s Mod by default.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'DamageType'
+type = 'number'
+description = 'Any integer - can be based on your own custom enums.'
+
+[SetDamageForce]
+description = 'Sets the directional force of the damage.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'force'
+type = 'Vector'
+description = 'The vector to set the force to.'
+
+[SetDamagePosition]
+description = 'Sets the position of where the damage gets applied to.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The position where the damage will be applied.'
+
+[SetDamageType]
+description = 'Sets the damage type.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'type'
+type = 'number'
+description = 'The damage type, see <page>Enums/DMG</page>.'
+
+[SetInflictor]
+description = 'Sets the inflictor of the damage for example a weapon.\r\n\r\nFor hitscan/bullet weapons this should the weapon.\r\n\r\n\r\nFor projectile ( rockets, etc ) weapons this should be the projectile.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'inflictor'
+type = 'Entity'
+description = 'The new inflictor.'
+
+[SetMaxDamage]
+description = 'Sets the maximum damage the object can cause.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'maxDamage'
+type = 'number'
+description = 'Maximum damage value.'
+
+[SetReportedPosition]
+description = 'Sets the origin of the damage.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'pos'
+type = 'Vector'
+description = 'The location of where the damage is originating'
+
+[SubtractDamage]
+description = 'Subtracts the specified amount from the damage.\r\n\r\n**Scope:** Shared'
+[[.args]]
+type = 'CTakeDamageInfo'
+``````````
+name = 'damage'
+type = 'number'
+description = 'Value to subtract.'
+

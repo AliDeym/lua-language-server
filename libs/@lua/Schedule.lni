@@ -1,0 +1,78 @@
+<default>
+type = 'function'
+
+parent = {
+	1 = {
+		type = 'object',
+		name = 'Schedule'
+	},
+}
+
+[AddTask]
+description = 'Adds a task to the schedule. See also <page>Schedule:AddTaskEx</page> if you wish to customize task start and run function names.\r\n\r\nSee also <page>ENTITY:StartSchedule</page>, <page>NPC:StartEngineTask</page>, and <page>NPC:RunEngineTask</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Schedule'
+``````````
+name = 'taskname'
+type = 'string'
+description = 'Custom task name'
+``````````
+name = 'taskdata'
+type = 'any'
+description = 'Task data to be passed into the NPC\'s functions'
+
+[AddTaskEx]
+description = 'Adds a task to the schedule with completely custom function names.\r\n\r\nSee also <page>Schedule:AddTask</page>.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Schedule'
+``````````
+name = 'start'
+type = 'string'
+description = 'The full name of a function on the entity\'s table to be ran when the task is started.'
+``````````
+name = 'run'
+type = 'string'
+description = 'The full name of a function on the entity\'s table to be ran when the task is continuously running.'
+``````````
+name = 'data'
+type = 'number'
+description = 'Task data to be passed into the NPC\'s functions'
+
+[EngTask]
+description = 'Adds an engine task to the schedule.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Schedule'
+``````````
+name = 'taskname'
+type = 'string'
+description = 'Task name, see [ai_task.h](https://github.com/ValveSoftware/source-sdk-2013/blob/55ed12f8d1eb6887d348be03aee5573d44177ffb/mp/src/game/server/ai_task.h#L89-L502)'
+``````````
+name = 'taskdata'
+type = 'number'
+description = 'Task data, can be a float.'
+
+[GetTask]
+description = 'Returns the task at the given index.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Schedule'
+``````````
+name = 'num'
+type = 'number'
+description = 'Task index.'
+
+[Init]
+description = '<internal></internal> Initialises the Schedule. Called by <page>ai_schedule.New</page> when the Schedule is created.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Schedule'
+``````````
+name = 'debugName'
+type = 'string'
+description = 'The name passed from <page>ai_schedule.New</page>.'
+
+[NumTasks]
+description = 'Returns the number of tasks in the schedule.\r\n\r\n**Returns:** The number of tasks in this schedule.\r\n\r\n**Scope:** Server'
+[[.args]]
+type = 'Schedule'
+[[.returns]]
+type = 'number'
+

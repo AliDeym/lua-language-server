@@ -1,0 +1,91 @@
+[list]
+type = 'table'
+[[.source]]
+type = 'global'
+``````````
+type = 'library'
+name = 'list'
+
+<default>
+type = 'function'
+parent = {
+	1 = {
+		type = 'global',
+		name = 'list'
+	},
+	2 = {
+		type = 'library',
+		name = 'list'
+	}
+}
+
+[Add]
+description = 'Adds an item to a named list\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'The list identifier'
+``````````
+name = 'item'
+type = 'any'
+description = 'The item to add to the list'
+
+[Contains]
+description = 'Returns true if the list contains the value. (as a value - not a key)\r\n\r\nFor a function that looks for a key and not a value see <page>list.HasEntry</page>.\r\n\r\n**Returns:** Returns true if the list contains the value, false otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'list'
+type = 'string'
+description = 'List to search through'
+``````````
+name = 'value'
+type = 'any'
+description = 'The value to test'
+[[.returns]]
+type = 'boolean'
+
+[Get]
+description = 'Returns a copy of the list stored at identifier\r\n\r\n**Returns:** The copy of the list\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'The list identifier'
+[[.returns]]
+type = 'table'
+
+[GetForEdit]
+description = 'Returns the actual table of the list stored at identifier. Modifying this will affect the stored list\r\n\r\n**Returns:** The actual list\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'The list identifier'
+[[.returns]]
+type = 'table'
+
+[HasEntry]
+description = 'Returns true if the list contains the given key.\r\n\r\nFor a function that looks for values and not keys see <page>list.Contains</page>.\r\n\r\n**Returns:** Returns true if the list contains the key, false otherwise\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'list'
+type = 'string'
+description = 'List to search through'
+``````````
+name = 'key'
+type = 'any'
+description = 'The key to test'
+[[.returns]]
+type = 'boolean'
+
+[Set]
+description = 'Sets a specific position in the named list to a value.\r\n\r\n**Scope:** Shared'
+[[.args]]
+name = 'identifier'
+type = 'string'
+description = 'The list identifier'
+``````````
+name = 'key'
+type = 'any'
+description = 'The key in the list to set'
+``````````
+name = 'item'
+type = 'any'
+description = 'The item to set to the list as key'
+
